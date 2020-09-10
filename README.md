@@ -1,5 +1,5 @@
 # Calcanim
-Este es un repositorio donde encontrarás todos los códigos usados para generar las animaciones de la lista de reproducción Calcanim en el canal de YouTube Animathica. Las animaciones están realizadas con [manim](https://github.com/3b1b/manim)
+Este es un repositorio donde encontrarás todos los códigos usados para generar las animaciones de la lista de reproducción Calcanim en el canal de YouTube [Animathica](https://www.youtube.com/channel/UCzkyH2bxpesubzc87VxqDiA). Las animaciones están realizadas con [manim](https://github.com/3b1b/manim)
 
 ## Introducción al cálculo multivariable:
   - Motivación, ¿de donde sale la necesidad de utilizar funciones de múltiples varialbes?
