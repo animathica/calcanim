@@ -937,3 +937,395 @@ class Propiedades_Norma(Scene):
         self.wait()
         self.play(Write(edita))
 
+        
+ 
+##################################
+#### DIFERENTES NORMAS EN R^N #####
+##################################
+
+class Normas(Scene):
+    def construct(self):
+        plano = NumberPlane()
+        intro1 = TextMobject("Veremos como se ve un c\\'{i}rculo unitario")
+        intro2 = TexMobject(r"\text{utilizando diferentes normas en }\mathbb{R}^2")
+        intro2.next_to(intro1, DOWN)
+        intro = VGroup(intro1, intro2)
+        circ1 = TextMobject("Recordemos que la definici\\'{o}n de una circunferencia es")
+        circ2 = TexMobject(r"\mathbb{S}^1=\{x\in\mathbb{R}^2 : \Vert x \Vert =1\}")
+        circ2.next_to(circ1, DOWN)
+        circ = VGroup(circ1, circ2)
+
+        self.play(Write(intro))
+        self.wait(2)
+        self.play(ReplacementTransform(intro,circ))
+        self.wait(2)
+        self.play(FadeOut(circ))
+
+        #### Norma 1 ####
+
+        title1 = TextMobject("Norma 1")
+        norm1 = TexMobject(r"\Vert x \Vert_1=\vert x_1 \vert + \vert x_2 \vert")
+        norm1.next_to(title1,DOWN)
+        Group1 = VGroup(title1,norm1)
+        Group1.scale(0.75)
+        Group1.set_color(RED)
+        fig1 = Square(side_length=np.sqrt(2),color=RED)
+        fig1.rotate(PI/4)
+
+        self.play(Write(Group1))
+        self.wait()
+        self.play(ApplyMethod(Group1.to_edge,UP))
+        self.play(ShowCreation(plano))
+        self.play(ShowCreation(fig1))
+        self.wait(2)
+        self.play(ApplyMethod(Group1.move_to,np.array([-5,3,0])))
+
+        #### Norma 2 ####
+
+        title2 =TextMobject("Norma 2")
+        norm2 = TexMobject(r"\Vert x \Vert_2=\left(x_1^2 + x_2^2 \right)^{1/2}")
+        norm2.next_to(title2,DOWN)
+        Group2 = VGroup(title2,norm2)
+        Group2.scale(0.75)
+        Group2.set_color(YELLOW)
+        fig2 = Circle(radius=1,color=YELLOW)
+
+        self.play(Write(Group2))
+        self.wait()
+        self.play(ApplyMethod(Group2.to_edge,UP))
+        self.play(ShowCreation(fig2))
+        self.wait(2)
+        self.play(ApplyMethod(Group2.move_to,np.array([5,3,0])))
+
+        #### Norma infinito ####
+
+        title3 = TextMobject("Norma infinito")
+        norminfty = TexMobject(r"\Vert x \Vert_{\infty} = \max\{\vert x_i \vert : i \in \{1,2\}\}")
+        norminfty.next_to(title3,DOWN)
+        Group3 = VGroup(title3,norminfty)
+        Group3.scale(0.75)
+        Group3.set_color(GREEN_SCREEN)
+        fig3 = Square(side_length=2,color=GREEN_SCREEN)
+
+        self.play(Write(Group3))
+        self.wait()
+        self.play(ApplyMethod(Group3.to_edge,UP))
+        self.play(ShowCreation(fig3))
+        self.wait(2)
+        self.remove(Group1,Group2,Group3,plano,fig1,fig2,fig3)
+        
+        #### Norma p ####
+
+        intro1 = TextMobject("Podemos definir una norma similar a las anteriores")
+        intro2 = TexMobject(r"\text{para cada } p\in\mathbb{R},\ p\geq 1")
+        intro2.next_to(intro1,DOWN)
+        intro = VGroup(intro1,intro2)
+        titlep = TexMobject(r"\text{Norma } p")
+        normp = TexMobject(r"\Vert x \Vert_p = \left(\sum_{i=1}^n \vert x_i \vert ^p \right)^{1/p}")
+        normp.next_to(titlep,DOWN)
+        Groupp = VGroup(titlep,normp)
+        text = TextMobject("Veamos que pasa cuando $p$ crece en $\\mathbb{R}$")
+
+        self.play(Write(intro))
+        self.wait(2)
+        self.play(ReplacementTransform(intro,Groupp))
+        self.wait(2)
+        self.play(FadeOut(Groupp))
+        self.play(Write(text))
+        self.play(FadeOut(text))
+        self.play(ShowCreation(plano))
+        self.play(FadeIn(Group3),ShowCreation(fig3))
+        self.play(ApplyMethod(Group3.to_edge,DOWN))
+
+        n = 1
+
+        while n<10:
+            valor_sig = TexMobject(r"p="+str(n))
+            valor_sig.to_edge(UP)
+            self.add(valor_sig)
+            D = []
+            j=0
+            dj=1/16
+            while j<1:
+                dot1 = Dot(radius=0.05,color=PINK)
+                dot1_2 = Dot(radius=0.05,color=PINK)
+                dot1.move_to(np.array([j,(1-j**n)**(1/n),0]))
+                dot1_2.move_to(np.array([(1-j**n)**(1/n),j,0]))
+                #self.add(dot1,dot1_2)
+                #self.wait(0.05)
+                D.append(dot1)
+                D.append(dot1_2)
+                j=j+dj
+            j=1
+            while j>0:
+                dot2 = Dot(radius=0.05,color=PINK)
+                dot2_2 = Dot(radius=0.05,color=PINK)
+                dot2.move_to(np.array([j,-(1-j**n)**(1/n),0]))
+                dot2_2.move_to(np.array([-(1-j**n)**(1/n),j,0]))
+                #self.add(dot2,dot2_2)
+                #self.wait(0.05)
+                D.append(dot2)
+                D.append(dot2_2)
+                j=j-dj
+            j=0
+            while j>-1:
+                dot3 = Dot(radius=0.05,color=PINK)
+                dot3_2 = Dot(radius=0.05,color=PINK)
+                dot3.move_to(np.array([j,-(1-(-j)**n)**(1/n),0]))
+                dot3_2.move_to(np.array([-(1-(-j)**n)**(1/n),j,0]))
+                #self.add(dot3,dot3_2)
+                #self.wait(0.05)
+                D.append(dot3)
+                D.append(dot3_2)
+                j=j-dj
+            j=-1
+            while j<0:
+                dot4 = Dot(radius=0.05,color=PINK)
+                dot4_2 = Dot(radius=0.05,color=PINK)
+                dot4.move_to(np.array([j,(1-(-j)**n)**(1/n),0]))
+                dot4_2.move_to(np.array([(1-(-j)**n)**(1/n),j,0]))
+                #self.add(dot4,dot4_2)
+                #self.wait(0.05)
+                D.append(dot4)
+                D.append(dot4_2)
+                j=j+dj
+            puntos = VGroup(*D)
+            self.add(puntos)
+            self.wait(0.5)
+            for i in D:
+                self.remove(i)
+            self.remove(valor_sig)
+            n=round(n + 0.2, 1)
+        self.remove(plano,Group3,fig3)
+        
+        conclus1 = TextMobject("Vemos que tiende al ``c\\'{i}rculo'' que resulta de usar")
+        conclus2 = TextMobject("la norma infinito, de ah\\'{i} su nombre.").next_to(conclus1,DOWN)
+        conclus = VGroup(conclus1,conclus2)
+        ejer = TextMobject("Puedes cambiar el código para verlo con más valores de $p$")
+
+        self.play(Write(ejer))
+        self.wait(2)
+        self.play(FadeOut(ejer))
+        self.play(Write(conclus))
+        self.wait(2)
+        self.play(FadeOut(conclus))
+       
+        
+##############################
+#### PROD. INTERIOR Y NORMA #####
+##############################
+
+class Producto_Interior(Scene):
+    def construct(self):
+        # signif = TextMobject("El significado geom\\'{e}trico del producto interno")
+        titulo = TextMobject("Aspectos geom\\'{e}tricos del producto interno").scale(1.2)
+
+        self.play(Write(titulo))
+        self.wait()
+        self.play(FadeOut(titulo))
+
+        tomemos = TextMobject("Consideremos dos vectores en el plano").shift(2 * DOWN)
+        vecx_label = TexMobject(r"\vec{x}")
+        vecy_label = TexMobject(r"\vec{y}")
+        vecx = Vector(direction=np.array([3, 3, 0]), color=BLUE).shift(2 * LEFT)
+        vecy = Vector(direction=np.array([5, 0, 0]), color=GREEN).shift(2 * LEFT)
+        vecx_label.next_to(vecx, LEFT).shift(RIGHT)
+        vecy_label.next_to(vecy, DOWN)
+
+        self.play(Write(tomemos))
+        self.play(GrowArrow(vecx), GrowArrow(vecy))
+        self.play(Write(vecx_label), Write(vecy_label))
+        self.wait(3)
+
+        lambdukis = TexMobject(
+            r"\text{¿Qué valor de}\ \lambda\ \text{hace a}\ \vec{y}\ \text{y}\ \vec{x}-\lambda\vec{y}\ \text{perpendiculares?}")
+        lambdukis.move_to(tomemos)
+        vecesp = Vector(direction=3 * UP).shift(1 * RIGHT)
+        vecesp_label = TexMobject(r'\vec{x}-\lambda\vec{y}').next_to(vecesp, RIGHT)
+        ylambd = Vector(direction=3 * RIGHT).shift(2 * LEFT).set_color(YELLOW)
+        ylambd_label = TexMobject(r"\lambda\vec{y}").move_to(vecy_label)
+        self.play(FadeOut(tomemos))
+        self.play(Write(lambdukis))
+        self.wait(5)
+        self.play(Transform(vecy_label, ylambd_label))
+        self.play(Write(vecesp_label), GrowArrow(vecesp), GrowArrow(ylambd))
+        self.wait(2)
+        self.play(FadeOut(vecx), FadeOut(vecx_label), FadeOut(vecy),
+                  FadeOut(vecy_label), FadeOut(ylambd), FadeOut(ylambd_label), FadeOut(lambdukis),
+                  FadeOut(vecesp), FadeOut(vecesp_label))
+        self.wait(3)
+
+        recordemos = TextMobject('Para responder a esta pregunta, basta recordar que').shift(2 * UP)
+        norm = TexMobject(r' \Vert \vec{x} \Vert = \sqrt{x_1^2+x_2^2}')
+        denota = TexMobject(r'\text{representa la longitud del vector}\ \vec{x}').shift(2 * DOWN)
+        grupo1 = VGroup(recordemos, norm, denota)
+        pitagoras = TextMobject("Utilicemos el Teorema de Pit\\'{a}goras en nuestro tri\\'{a}ngulo").shift(2 * DOWN)
+        normx = TexMobject(r'\Vert \vec{x} \Vert').move_to(vecx_label)
+        normlam = TexMobject(r'\Vert \lambda\vec{y} \Vert').move_to(ylambd_label).shift(0.5 * LEFT)
+        normesp = TexMobject(r'\Vert \vec{x}-\lambda\vec{y} \Vert').move_to(vecesp_label)
+        pitriangulo = TexMobject(
+            r"\Vert \lambda\vec{y} \Vert^2+\Vert \vec{x}-\lambda\vec{y} \Vert^2 = \Vert \vec{x} \Vert^2 ")
+        pitriangulo.move_to(pitagoras)
+        desa = TextMobject("Desarrollando esto, llegamos a la siguiente ecuaci\\'{o}n").move_to(pitriangulo).shift(DOWN)
+
+        self.play(Write(recordemos), Write(norm), Write(denota))
+        self.wait(7)
+        self.play(FadeOut(recordemos), FadeOut(norm), FadeOut(denota))
+        self.play(Write(pitagoras), GrowArrow(ylambd), GrowArrow(vecesp), GrowArrow(vecx))
+        self.play(Write(normx), Write(normesp), Write(normlam))
+        self.wait(3)
+        self.play(Transform(pitagoras, pitriangulo))
+        self.wait(4)
+        self.play(Write(desa))
+        self.wait(3)
+        self.play(FadeOut(pitagoras), FadeOut(desa),
+                  FadeOut(vecesp), FadeOut(normesp), FadeOut(vecx), FadeOut(normx), FadeOut(ylambd), FadeOut(normlam))
+        self.wait()
+
+        ec1 = TexMobject(r"2\lambda^2(y_1^2+y_2^2)-2\lambda(x_1y_1+x_2y_2)=0").shift(2 * UP)
+        cuyo = TextMobject("Cuya soluci\\'{o}n distinta de cero es:")
+        solu = TexMobject(r"\lambda = \frac{x_1y_1+x_2y_2}{\Vert \vec{y} \Vert^2}").shift(2 * DOWN)
+
+        self.play(Write(ec1))
+        self.wait(8)
+        self.play(Write(cuyo))
+        self.wait(3)
+        self.play(Write(solu))
+        self.wait(8)
+        self.play(FadeOut(ec1), FadeOut(cuyo))
+        self.play(
+            solu.shift, UP * 5,
+            run_time=1,
+            path_arc=2
+        )
+        self.wait(2)
+
+        xperp = Vector(direction=np.array([0, 3, 0]), color=BLUE).shift(LEFT + DOWN)
+        yperp = Vector(direction=np.array([3, 0, 0]), color=GREEN).shift(LEFT + DOWN)
+        kepasa = TextMobject("¿Qu\\'{e} pasa si los vectores \\textbf{ya} son perpendiculares?").shift(2.5 * DOWN)
+        xperp_label = TexMobject(r"\vec{x}").next_to(xperp.get_center(), LEFT)
+        yperp_label = TexMobject(r"\vec{y}").next_to(yperp.get_center(), DOWN)
+        dadocaso = TexMobject(r"\text{En dado caso},\ \lambda = 0").move_to(kepasa)
+        self.play(GrowArrow(xperp), GrowArrow(yperp), Write(xperp_label), Write(yperp_label), Write(kepasa))
+        self.wait(5)
+        self.play(Transform(kepasa, dadocaso))
+        self.wait(2.4)
+        self.play(FadeOut(xperp), FadeOut(xperp_label), FadeOut(yperp_label), FadeOut(yperp), FadeOut(kepasa))
+        self.wait()
+
+        newsolu = TexMobject(r"\lambda = \frac{x_1y_1+x_2y_2}{\Vert \vec{y} \Vert^2}= 0 \Rightarrow x_1y_1+x_2y_2 = 0")
+        cond = TexMobject(r"(\text{Si}\ \vec{y} \neq 0)").shift(2 * DOWN)
+
+        self.play(Transform(solu, newsolu))
+        self.play(Write(cond))
+        self.wait(8)
+        self.play(FadeOut(solu), FadeOut(cond))
+
+        textprodint = TextMobject("Si recordamos:").shift(2 * UP)
+        prodint = TexMobject(r"\vec{x} \cdot \vec{y} = x_1y_1+x_2y_2")
+        tons = TextMobject("Entonces").move_to(textprodint)
+        ida = TexMobject(r"\vec{x} \perp \vec{y} \Rightarrow \vec{x} \cdot \vec{y} = 0").scale(1.2)
+
+        self.play(Write(textprodint), Write(prodint))
+        self.wait(5)
+        self.play(Transform(textprodint, tons), Transform(prodint, ida))
+        self.wait(6)
+
+        masymas = TextMobject("Veamos otro aspecto geom\\'{e}trico del producto interno.").shift(UP)
+        regre = TextMobject("Regresemos al tri\\'{a}ngulo antes visto.")
+        self.play(Transform(textprodint, masymas), Transform(prodint, regre))
+        self.wait(5)
+
+        self.play(FadeOut(textprodint), FadeOut(prodint))
+
+        # FadeOut Todo
+        vecesp = Vector(direction=3 * UP).shift(1 * RIGHT)
+        vecesp_label = TexMobject(r'\vec{x}-\lambda\vec{y}').next_to(vecesp, RIGHT)
+        ylambd = Vector(direction=3 * RIGHT).shift(2 * LEFT).set_color(YELLOW)
+        ylambd_label = TexMobject(r"\lambda\vec{y}").next_to(ylambd).shift(2 * LEFT + 0.5 * DOWN)
+        vecx = Vector(direction=np.array([3, 3, 0]), color=BLUE).shift(2 * LEFT)
+        vecx_label = TexMobject(r"\vec{x}").next_to(vecx, LEFT).shift(RIGHT)
+        vecy = Vector(direction=np.array([5, 0, 0]), color=GREEN).shift(2 * LEFT)
+        vecy_label = TexMobject(r"\vec{y}").next_to(vecy).shift(0.5 * DOWN)
+
+        self.play(GrowArrow(vecx), GrowArrow(vecesp), GrowArrow(vecy))
+        self.play(Write(vecx_label), Write(vecesp_label), Write(vecy_label))
+
+        arco = ArcBetweenPoints(np.array([1, 0, 0]), np.array([0.7, 0.7, 0])).shift(2 * LEFT)
+        arco_label = TexMobject(r"\theta").next_to(arco, RIGHT)
+        angulis = TexMobject(r"\text{Consideremos el \'{a}ngulo entre}\ \vec{x}\ \text{y}\ \vec{y}").shift(2 * DOWN)
+        utilizando = TextMobject("Utilizando identidades trigonom\\'{e}tricas, sabemos que").move_to(angulis)
+        coseno = TexMobject(r"\cos\theta = \frac{\Vert \lambda\vec{y}\Vert}{\Vert \vec{x}\Vert}").move_to(angulis)
+        demo = TexMobject(r"\text{...se puede demostrar que independientemente del signo de}\ \lambda...").scale(
+            0.8).move_to(angulis).shift(DOWN)
+
+        self.play(GrowArrow(arco))
+        self.play(GrowArrow(ylambd))
+        self.play(Write(arco_label), Write(ylambd_label), Write(angulis))
+        self.wait(3)
+        self.play(Transform(angulis, utilizando))
+        self.wait(3)
+        self.play(Transform(angulis, coseno), FadeOut(vecy), FadeOut(vecy_label))
+        self.wait(4)
+        self.play(Write(demo))
+        self.wait(4)
+
+        cos2 = TexMobject(r"\cos\theta = \lambda \frac{\Vert \vec{y}\Vert}{\Vert \vec{x}\Vert}").move_to(angulis)
+
+        self.play(FadeOut(angulis))
+        self.play(Write(cos2))
+        self.wait(5)
+        self.play(FadeOut(vecx), FadeOut(vecx_label), FadeOut(vecesp), FadeOut(vecesp_label), FadeOut(ylambd_label),
+                  FadeOut(ylambd), FadeOut(demo), FadeOut(arco), FadeOut(arco_label))
+        self.play(
+            cos2.shift, UP * 5,
+            run_time=1,
+            path_arc=0
+        )
+
+        lambda_d = TexMobject(
+            r"\text{Se dedujo anteriormente que}\  \lambda =\frac{\vec{x} \cdot \vec{y}}{\Vert \vec{y} \Vert^2}")
+        lambda_dd = TexMobject(r"\text{Sustituyendo lo anterior...}")
+        cos3 = TexMobject(r"\cos\theta = \frac{\vec{x}\cdot\vec{y}}{\Vert \vec{x} \Vert\Vert \vec{y} \Vert}").shift(
+            2 * DOWN)
+
+        self.play(Write(lambda_d))
+        self.wait(6)
+        self.play(Transform(lambda_d, lambda_dd), Write(cos3))
+        self.wait(7)
+
+        yasi = TextMobject("Y as\\'{i}..").shift(2 * UP)
+        thetatex = TexMobject(
+            r"\theta = \arccos(\frac{\vec{x}\cdot\vec{y}}{\Vert \vec{x} \Vert\Vert \vec{y} \Vert}),\ \theta \in [0,\pi]").scale(
+            1.2)
+
+        self.play(FadeOut(cos2), Transform(lambda_d, yasi), FadeOut(cos3))
+        self.play(Write(thetatex))
+        self.wait(8
+                  )
+        # thetatex2 = TexMobject(r"\theta = \arccos(\frac{\vec{x}\cdot\vec{y}}{\Vert \vec{x} \Vert\Vert \vec{y} \Vert})")
+        siahora = TexMobject(r"\text{Si ahora}\ \vec{x} \cdot \vec{y}=0 ").shift(3 * UP)
+        regreso = TexMobject(r" \theta = \arccos(0) = \pi").shift(1.5 * UP)
+        esdecir = TexMobject(r"\vec{x} \cdot \vec{y} = 0 \Rightarrow \vec{x} \perp \vec{y}").scale(1.5)
+
+        self.play(Transform(lambda_d, siahora), Transform(thetatex, regreso), Write(esdecir))
+        self.wait(4)
+
+        enresumen = TextMobject("En resumen, vimos dos caracter\\'{i}sticas del producto interno").shift(2.5 * UP)
+
+        sii = TexMobject(r"1)\ \vec{x} \cdot \vec{y} = 0 \Leftrightarrow \vec{x} \perp \vec{y}").shift(UP).scale(1.2)
+        thetaa = TexMobject(
+            r"2)\ \theta = \arccos(\frac{\vec{x}\cdot\vec{y}}{\Vert \vec{x} \Vert\Vert \vec{y} \Vert}),\ \theta \in [0,\pi]").scale(
+            1).shift(DOWN)
+
+        esun = TextMobject("¡Este producto es m\\'{a}s que s\\'{o}lo una f\\'{o}rmula!").shift(2.5 * DOWN)
+        self.play(Transform(lambda_d, enresumen), FadeOut(thetatex), FadeOut(esdecir))
+        self.play(Write(sii))
+        self.wait(5)
+        self.play(Write(thetaa))
+        self.play(Write(esun))
+
+        self.wait(8)
+
+        self.play(FadeOut(lambda_d), FadeOut(sii), FadeOut(thetaa), FadeOut(esun))
+        self.wait()
