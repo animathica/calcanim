@@ -5,6 +5,7 @@ Este es un repositorio donde encontrarás todos los códigos usados para generar
 
 ### Windows:
   - https://www.youtube.com/watch?v=ZltiKHFWmv8 
+  - https://www.youtube.com/watch?v=M8PNyubthVE&t=845s&ab_channel=TheLazyAZ
   - https://manim.readthedocs.io/en/latest/installation/windows.html
 ### Linux:
   - https://www.youtube.com/watch?v=z_WJaHYH66M
