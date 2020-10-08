@@ -14,7 +14,7 @@ Este es un repositorio donde encontrarás todos los códigos usados para generar
   - https://www.youtube.com/watch?v=uZj_GQc6pN4
   - http://bhowell4.com/manic-install-tutorial-for-mac/
   
-Para que nuestros archivos se puedan ejecutar bien, es necesario que instales la **última versión de Manim**.
+Para que nuestros archivos se puedan ejecutar bien, es necesario que instales la **última versión de Manim**. Además, en el archivo *tex_template.tex* en la carpeta *manimlib*, debes modificar el paquete `babel` de `english` a `spanish`.
 
 Si lo prefieres, puedes usar esta aplicación en línea que te permitirá generar tus videos: 
 https://eulertour.com/gallery
