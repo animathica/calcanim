@@ -3265,11 +3265,11 @@ class Continua_y_acotada(Scene):
 
 
 ##Teorema del valor intermedio, sin corregir
-class TeoValorMedio_1(Scene):
+class TeoValorIntermedio_1(Scene):
     def construct(self):
 
         titulo=TextMobject('''Teoremas fuertes de continuidad''',''' \n
-                        Teorema del valor medio''').scale(1.5)#.move_to(1*UP)
+                        Teorema del valor intermedio''').scale(1.5)#.move_to(1*UP)
         text_1=TextMobject('''Sea $f:A\\subset\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$ continua en A.''','''\n
                                 Sea $B\\subset A$ conexo y $\\vec{x}_1,\\vec{x}_2\\in B$ ''','''\n
                                 tales que $f(\\vec{x}_1)<f(\\vec{x}_2)$.''','''\n
@@ -3325,12 +3325,12 @@ class TeoValorIntermedio_2(GraphScene):
         text4=TextMobject('''Podemos apreciar que $\\Vec{x}=0.8960$ cumple que\n
                              $f(\\Vec{x})=c=1$ ''').move_to(3*UP)
         text5=TextMobject('''Además si tomamos $B=[0,1], \ \\Vec{x},\\Vec{x}_1,\\Vec{x}_2\\in B$. \n
-                    Por lo cual se comple el teorema del valor medio.''').move_to(3.3*UP)
+                    Por lo cual se cumple el teorema del valor intermedio.''').move_to(3.3*UP)
         text6=TextMobject('''Sin embargo en B, $\\Vec{x}$, no es el único \n
                                 elemento que satisface que $f(\\Vec{x})=1$''').move_to(3.3*UP)
         text6_1=TextMobject('''También $f(\\vec{x}')=1$''' ).move_to(3*UP)
         text7=TextMobject('''¿Esto contradice el teorema del valor intermedio?''','''\n
-                             ¡NO! por que el teorema del valor medio no nos \n
+                             ¡NO! por que el teorema del valor intermedio no nos \n
                              dice que $\\Vec{x}$ es único. '''  )#.move_to(3*UP)
         text8=TextMobject('''Veamos un último ejemplo''')
         
@@ -3418,7 +3418,7 @@ class sup(ParametricSurface):
     def func(self, x, y):
         return np.array([x,y,x**2+y**2-2])
 
-class TeoValorMedio_3 (ThreeDScene):
+class TeoValorIntermedio_3 (ThreeDScene):
     def construct(self):
         text2=TextMobject('''Sea $f(x,y)=x^{2}+y^{2}-2$''').move_to(3*UP)
         text2.to_corner(DL)
