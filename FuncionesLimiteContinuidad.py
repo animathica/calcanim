@@ -1633,12 +1633,12 @@ class Definición_Gráficas(GraphScene,Scene):
         titulo = TextMobject("Gráficas de Funciones").scale(1.5)
         
         text_1 = TextMobject("Consideremos la siguiente función:").move_to(3.2*UP)
-        ejemplo_1_1 = TexMobject(r"f:[0,3]\subset\mathbb{R}\longrightarrow\mathbb{R}")
+        ejemplo_1_1 = TexMobject(r"f:[0,3]\subset\mathbb{R}\rightarrow\mathbb{R}")
         ejemplo_1_2 = TexMobject(r"f(x)=5-2x").next_to(ejemplo_1_1,DOWN)
         ejemplo_1 = VGroup(ejemplo_1_1,ejemplo_1_2).next_to(text_1,1.5*DOWN)
         
-        text_2_1 = TextMobject("La función $f$ nos permimte crear un listado de ")
-        text_2_2 = TextMobject("pares correspondientes ", "dominio","-","contradominio").next_to(text_2_1,DOWN)
+        text_2_1 = TextMobject("La función $f$ nos permite definir relaciones entre pares")
+        text_2_2 = TextMobject("correspondientes del ", "dominio"," y el ","contradominio").next_to(text_2_1,DOWN)
         text_2_2[1].set_color(BLUE_E)
         text_2_2[3].set_color(RED_E)
         text_2 = VGroup(text_2_1,text_2_2).move_to(text_1.get_center())
@@ -1649,30 +1649,27 @@ class Definición_Gráficas(GraphScene,Scene):
         text_3_2[1].set_color(RED_E)
         text_3 = VGroup(text_3_1,text_3_2).move_to(text_1.get_center())
 
-        text_4_1 = TextMobject("Cada par ", "dominio", "-","contradominio", " se puede concatenar")
-        text_4_2 = TextMobject("para generar un par ordenado contenido en $\mathbb{R}^2$").next_to(text_4_1,DOWN)
-        text_4_1[1].set_color(BLUE_E)
-        text_4_1[3].set_color(RED_E)
+        text_4_1 = TextMobject("Consideremos las parejas ordenadas")
+        text_4_2 = TextMobject("$($", "$x$", " , ", "$f(x)$","$)$, con ", "$x$", " en el dominio de $f$").next_to(text_4_1,DOWN)
+        text_4_2[1].set_color(BLUE_E)
+        text_4_2[3].set_color(RED_E)
+        text_4_2[5].set_color(BLUE_E)
         text_4 = VGroup(text_4_1,text_4_2).move_to(text_1.get_center())
 
-        text_5_1 = TextMobject("Estos pares ordenados conforman al conjunto")
-        text_5_2 = TextMobject("llamado ", "gráfica", " de $f$,", " $G_f$" , ", es decir").next_to(text_5_1,DOWN)
-        text_5_2[1].set_color(YELLOW_E)
-        text_5_2[3].set_color(YELLOW_E)
-        text_5 = VGroup(text_5_1,text_5_2).move_to(text_1.get_center())
+        text_5 = TextMobject("Definimos la ", "gráfica", " de $f$ como el siguiente conjunto:").move_to(3.2*UP)
+        text_5[1].set_color(YELLOW_E)
+        text_6 = TexMobject(r"G_f:=\{(x,f(x))\in \mathbb{R}^2|x\in[0,3] \}",color= YELLOW_E).next_to(text_5,1*DOWN)
+        def_graf = VGroup(text_5,text_6)
 
-        text_6 = TexMobject(r"G_f:=\{(x,f(x))\in \mathbb{R}^2|x\in[0,3] \}",color= YELLOW_E).move_to(text_1.get_center())
-
-        text_7_1 = TextMobject("En general, dada una función $f:A\subset\mathbb{R}^n\longrightarrow\mathbb{R}^m$,")
+        text_7_1 = TextMobject("En general, dada una función $f:A\\subset\\mathbb{R}^n\\rightarrow\\mathbb{R}^m$,")
         text_7_2 = TextMobject("se define la ", "gráfica"," de $f$ de la siguiente forma:" ).next_to(text_7_1,DOWN)
         text_7_2[1].set_color(YELLOW_E)
         text_7 = VGroup(text_7_1,text_7_2).move_to(text_1.get_center()+1*DOWN)
 
-        def_1 = TexMobject(r"G_f:=\{ x_1,...,x_n,f_1(\vec{x}),...,f_m(\vec{x})\in\mathbb{R}^{n+m}|\vec{x}=(x_1,...x_n)\in A \}").scale(0.95)
-        
-        text_8 = TextMobject('''Es decir, sólo es la concatenación en un par ordenado \n  
-                               de un vector del dominio ($\\vec{x}\in\mathbb{R}^n$) junto \n
-                               a su respectiva imagen ($f(\\vec{x})\in\mathbb{R}^m$)''').move_to(text_7.get_center())
+        def_1 = TexMobject(r"G_f:=\{ (x_1,...,x_n,f_1(\vec{x}),...,f_m(\vec{x}))\in\mathbb{R}^{n+m}|\vec{x}=(x_1,...x_n)\in A \}").scale(0.95)
+        text_8 = TextMobject("Es decir, ").next_to(def_1,1.5*DOWN)
+        def_2 = TexMobject(r"G_f:=\{(\vec{x},f(\vec{x}))\in \mathbb{R}^{n+m}| \vec{x}\text{ en el domino de } f \}").next_to(text_8,1.5*DOWN)
+        dt = VGroup(text_8,def_2)
         #RECTAS REALES
         numberline_1 = NumberLine(x_min=0,x_max=4,unit_size=0.75,include_numbers=True,
                                 include_tip=True,number_scale_val=0.6,lable_direction=1.2*DOWN).move_to(4.4*LEFT+0.5*UP)
@@ -1717,16 +1714,19 @@ class Definición_Gráficas(GraphScene,Scene):
         #secuencia de Animaciones
 
         self.play(Write(titulo))
-        self.wait()
+        self.wait(3)
         self.play(FadeOut(titulo))
         self.play(Write(text_1))
         self.play(Write(ejemplo_1))
-        self.wait(2.5)
+        self.wait(10)
         self.play(FadeOut(text_1),FadeOut(ejemplo_1_1))
         self.play(ShowCreation(numberline_1),ShowCreation(numberline_2))
         self.play(Write(text_numberline_1),Write(text_numberline_2))
         self.play(Write(text_2))
-        self.wait(0.5)
+        self.wait(7.625)
+        self.play(FadeOut(text_2))
+        self.play(Write(text_3))
+        self.wait(6.875)
 
         self.play(FadeIn(punto_dom_1),FadeIn(text_punto_dom_1))
         self.play(FadeIn(linea_dom_1))
@@ -1736,10 +1736,9 @@ class Definición_Gráficas(GraphScene,Scene):
 
         self.play(FadeIn(punto_dom_2),FadeIn(text_punto_dom_2))
         self.play(FadeIn(linea_dom_2))
-        self.play(FadeOut(text_2),FadeIn(linea_contra_2))
-        self.play(Write(text_3),FadeIn(punto_contra_2),FadeIn(text_punto_contra_2))
+        self.play(FadeIn(linea_contra_2))
+        self.play(FadeIn(punto_contra_2),FadeIn(text_punto_contra_2))
         self.play(FadeOut(dom_contra_2))
-
 
         self.play(FadeIn(punto_dom_3),FadeIn(text_punto_dom_3))
         self.play(FadeIn(linea_dom_3))
@@ -1786,39 +1785,37 @@ class Definición_Gráficas(GraphScene,Scene):
         puntos_graph = VGroup(punto_graph_1,punto_graph_2,punto_graph_3)
 
         self.play(Write(text_4))
-        self.wait()
+        self.wait(8)
         self.play(ReplacementTransform(pre_coord_1,coord_1))
         self.play(FadeIn(punto_graph_1))
         self.play(coord_1.move_to,self.coords_to_point(0.8,f(1)+0.5))
         self.wait(0.5)
 
         self.play(ReplacementTransform(pre_coord_2,coord_2))
-        self.play(FadeOut(text_4))
         self.play(FadeIn(punto_graph_2))
         self.play(coord_2.move_to,self.coords_to_point(2.5,f(2)+0.5))
-        self.play(Write(text_5))
-
         self.play(ReplacementTransform(pre_coord_3,coord_3))
         self.play(FadeIn(punto_graph_3))
         self.play(coord_3.move_to,self.coords_to_point(3.8,f(3)))
-        self.play(FadeOut(text_5))
-        self.wait(0.5)
-        self.play(Write(text_6),FadeOut(text_numberline_1),FadeOut(text_numberline_2))
+        self.play(FadeOut(text_4))
+        self.play(Write(text_5))
+        self.wait(5.375)
+        self.play(Write(text_6))
+        self.wait(8.75)
+        self.play(FadeOut(text_numberline_1),FadeOut(text_numberline_2))
         self.play(FadeOut(coord_1),FadeOut(coord_2),FadeOut(coord_3))
         self.play(ShowCreation(graph))
-        self.wait(2)
+        self.wait(5)
         self.play(
             *[FadeOut(mob)for mob in self.mobjects]
         )
         self.wait()
         self.play(Write(text_7))
-        self.wait(0.5)
+        self.wait(10)
         self.play(Write(def_1))
-        self.wait(0.5)
-        self.play(FadeOut(text_7))
-        self.wait()
-        self.play(Write(text_8))
-        self.wait(8)
+        self.wait(13)
+        self.play(Write(dt))
+        self.wait(13)
         self.play(
             *[FadeOut(mob)for mob in self.mobjects]
         )
@@ -1860,18 +1857,24 @@ class Visualización_Gráficas_1(GraphScene,Scene):
         text1_3 = TextMobject("la gráfica de $f$ es subconjunto de ", "$\mathbb{R}^{n+m}$").next_to(text1_2,DOWN)
         text1_3[1].set_color(YELLOW)
         text1 = VGroup(text1_1,text1_2,text1_3).move_to(0.5*UP)
-
-        text2_1 = TextMobject("Es posible visualizar la gráfica de una función únicamente si")
-        text2_2 = TexMobject(r"2 \leq n+m \leq 3",color=YELLOW).next_to(text2_1,DOWN)
-        text2_3 = TextMobject("Es decir, sólo si son de la siguiente forma:").next_to(text2_2,DOWN)
-        text2 = VGroup(text2_1,text2_2,text2_3).move_to(0.65*UP)
         
-        funcion_1 = TexMobject(r"f:A \subset \mathbb{R} \rightarrow \mathbb{R}").next_to(text2,DOWN)
+        funcion_1 = TexMobject(r"f:A \subset \mathbb{R} \rightarrow \mathbb{R}").move_to(1*DOWN)
         funcion_2 = TexMobject(r"f:A \subset \mathbb{R}^{2} \rightarrow \mathbb{R}").next_to(funcion_1,DOWN)
         funcion_3 = TexMobject(r"f:A \subset \mathbb{R} \rightarrow \mathbb{R}^{2}").next_to(funcion_2,DOWN)
         funciones = VGroup(funcion_1,funcion_2,funcion_3)
         
-        text3 = TextMobject("Ahora, veamos algunos ejemplos").move_to(text2_1.get_center()+1*DOWN)
+        text3 = TextMobject("Ahora, veamos algunos ejemplos")
+
+        text4_1 = TextMobject("Consideremos una recta $x=$ ", "$x_0$", ",").move_to(3.3*UP+2.5*RIGHT)
+        text4_2 = TextMobject("¿qué pasa si ", "$x_0$", " pertenece al dominio de $f$?").next_to(text4_1,DOWN)
+        text4_1[1].set_color(GREEN_E)
+        text4_2[1].set_color(GREEN_E)
+        text4 = VGroup(text4_1,text4_2).scale(0.8)
+
+        text5 = TextMobject('''Cada recta intersecta a la gráfica\n
+                                en un sólo punto ''').move_to(3.3*UP+2.5*RIGHT).scale(0.8)
+        text6 = TextMobject('''¿Qué pasará si $x_0$ no pertenece\n
+                             al dominio de $f$?''').move_to(3.3*UP+2.5*RIGHT).scale(0.8)
        
         #PRIMERA CAJA
         funciones.bg =SurroundingRectangle(funciones, buff = 0.8*SMALL_BUFF, color=WHITE)
@@ -1925,19 +1928,24 @@ class Visualización_Gráficas_1(GraphScene,Scene):
                                     $(3,f(3))\\in G_{f}$''').to_edge(LEFT).scale(0.75)
         text_grafica_1 = TexMobject(r"G_{f}",color=YELLOW).move_to(ejemplo_1.get_bottom()+0.75*DOWN+3*RIGHT)
 
-
+        ###Rectas verticales
+        dot_dom_1 = Dot().set_color(GREEN_E).move_to((1.5,-3.0,0))
+        dot_dom_2 = Dot().set_color(GREEN_E).move_to((4,-3.0,0))
+        dot_func_1 = Dot().move_to((1.5,-1.5,0))
+        dot_func_2 = Dot().move_to((4,0.9,0))
+        linea_vert_1 = Line((1.5,-3.5,0),(1.5,1.5,0)).set_color(GREEN_E)
+        linea_vert_2 = Line((4,-3.5,0),(4,1.5,0)).set_color(GREEN_E)
+        RectVert = VGroup(dot_dom_1,dot_dom_2,dot_func_1,dot_func_2,linea_vert_1,linea_vert_2)
         #Secuencia de Animación
         self.play(Write(titulo))
-        self.wait()
+        self.wait(3)
         self.play(FadeOut(titulo))
         self.play(Write(text1))
-        self.wait(3)
+        self.wait(9)
         self.play(FadeOut(text1))
-        self.play(Write(text2))
-        self.play(Write(funciones))
-        self.wait()
-        self.play(FadeOut(text2))
         self.play(Write(text3))
+        self.wait(3)
+        self.play(Write(funciones))
         self.wait(0.5)
         self.play(ShowCreation(funciones.bg))
         self.wait(0.5)
@@ -1953,16 +1961,18 @@ class Visualización_Gráficas_1(GraphScene,Scene):
                                     )
         self.play(FadeIn(ejemplo_1))
         self.play(FadeIn(dot_1_1),FadeIn(dot_1_x1),FadeIn(text_dot_1_x1),FadeIn(dot_1_y1),FadeIn(text_dot_1_y1))
+        self.wait(2)
         self.play(ShowCreation(linea_1_x1),ShowCreation(linea_1_y1))
         self.play(FadeIn(text_dot_1_1))
-        self.wait(0.5)
+        self.wait(2)
         self.play(FadeIn(dot_1_2),FadeIn(dot_1_x2),FadeIn(text_dot_1_x2),FadeIn(dot_1_y2),FadeIn(text_dot_1_y2))
+        self.wait(2)
         self.play(ShowCreation(linea_1_x2),ShowCreation(linea_1_y2))
         self.play(FadeIn(text_dot_1_2))
-        self.wait(0.5)
+        self.wait(2)
         self.play(FadeOut(text_dot_1_x1),FadeOut(text_dot_1_x2),FadeOut(text_dot_1_y1),FadeOut(text_dot_1_y2))
         self.play(ReplacementTransform(text_dots_1_1,text_dots_1_2))
-        self.wait(0.5)
+        self.wait(3)
         self.play(FadeOut(linea_1_x1),FadeOut(linea_1_x2),FadeOut(linea_1_y1),FadeOut(linea_1_y2),FadeOut(dot_1_x1),FadeOut(dot_1_x2),FadeOut(dot_1_y1),FadeOut(dot_1_y2))
         self.play(
             ShowCreation(graph),
@@ -1970,15 +1980,54 @@ class Visualización_Gráficas_1(GraphScene,Scene):
         )
         self.play(FadeIn(text_grafica_1))
         self.wait()
-        self.play(FadeOut(dot_1_1),FadeOut(dot_1_2),FadeOut(text_grafica_1),FadeOut(ejemplo_1),FadeOut(text_dots_1_2),FadeOut(graph)) 
-        self.play(FadeOut(self.axes))
-        self.wait()
+        self.play(FadeOut(ejemplo_1),FadeOut(dot_1_1),FadeOut(dot_1_2),FadeOut(text_dots_1_2))
+        self.play(Write(text4))
+        self.wait(6.5)
+        self.play(FadeIn(dot_dom_1))
+        self.play(ShowCreation(linea_vert_1))
+        self.play(FadeOut(text4))
+        self.play(FadeIn(text5))
+        self.wait(5)
+        self.play(FadeIn(dot_func_1))
+        self.play(FadeIn(dot_dom_2))
+        self.play(ShowCreation(linea_vert_2))
+        self.play(FadeIn(dot_func_2))
+        self.wait(2.5)
+        self.play(FadeOut(RectVert))
+        self.play(FadeOut(text5))
+        self.play(FadeIn(text6))
+        self.wait(7)
+        self.play(FadeOut(text_grafica_1),FadeOut(self.axes),FadeOut(graph),FadeOut(text6))
 
 #EJEMPLO 2 R^2 -> R#
 class Visualización_Gráficas_2(ThreeDScene,Scene):
     def setup(self):
         Scene.setup(self)
         ThreeDScene.setup(self)
+    def acomodar_textos(self,objeto):
+        self.add_fixed_in_frame_mobjects(objeto)
+        self.play(Write(objeto))
+    def FadeOutWrite3D(self,objeto1,objeto2):
+        self.play(FadeOut(objeto1))
+        self.acomodar_textos(objeto2)
+    def punto3D(self):
+        bola = ParametricSurface(
+            lambda u, v: np.array([
+                0.075*np.cos(v) * np.sin(u),
+            0.075*np.sin(v) * np.sin(u),
+            0.075*np.cos(u)
+            ]),v_min=0,v_max=TAU,u_min=0.001,u_max=PI-0.001,
+            resolution=(12,24),fill_opacity=1,stroke_color=GREEN_E,fill_color=GREEN_E)
+        return bola
+    def punto3D_2(self):
+        bola = ParametricSurface(
+            lambda u, v: np.array([
+                0.075*np.cos(v) * np.sin(u),
+            0.075*np.sin(v) * np.sin(u),
+            0.075*np.cos(u)
+            ]),v_min=0,v_max=TAU,u_min=0.001,u_max=PI-0.001,
+            resolution=(12,24),fill_opacity=1,stroke_color=GOLD_E,fill_color=GOLD_E)
+        return bola
     def construct(self):
 
         #Caja Ejemplo 1 (Para transición de cajas)
@@ -2003,17 +2052,34 @@ class Visualización_Gráficas_2(ThreeDScene,Scene):
         ejemplo_2_2 = TexMobject(r"G_{f}:=\{(x,y,f(x,y))\in \mathbb{R}^{3}|(x,y)\in A\}",color=YELLOW).next_to(ejemplo_2_1,DOWN)
         ejemplo_2 = VGroup(ejemplo_2_1,ejemplo_2_2).move_to(3.3*UP+3.6*RIGHT).scale(0.8)
         
+        ###Líneas verticales
+        text_1 = TextMobject("Consideremos una recta $(x,y,z)=($", "$x_0$",",","$y_0$","$,0)+\\alpha\\hat{z}$, con $\\alpha\\in\\mathbb{R}$").move_to(3.5*UP+2*RIGHT)
+        text_1[1].set_color(GREEN_E)
+        text_1[3].set_color(GREEN_E)
+        text_1_1 = TextMobject("¿qué pasa si ", "$(x_0,y_0)$"," pertence al dominio de $f$?").next_to(text_1,DOWN)
+        text_1_1[1].set_color(GREEN_E)
+        text_1 = VGroup(text_1,text_1_1).scale(0.7)
+
+        text_2 = TextMobject("La recta intersecta  la gráfica en un sólo punto").move_to(3.3*UP+2*RIGHT).scale(0.6)
+        text_3 = TextMobject("¿Qué pasará si ", "$(x_0,y_0)$"," no pertence al dominio de $f$?").move_to(3.3*UP+2*RIGHT).scale(0.6)
+        text_3[1].set_color(GREEN_E)
         Superficie = ParametricSurface(
             lambda u, v: np.array([
                 u,
                 v,
                 np.sin(u)*np.cos(v)
-            ]),v_min=-2.5,v_max=5,u_min=-3,u_max=5,checkerboard_colors=[GOLD_E,GOLD_E],
+            ]),v_min=-2.5,v_max=4,u_min=-3,u_max=5,checkerboard_colors=[GOLD_E,GOLD_E],
             resolution=(20, 50))
-
+        Superficie2 = ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                np.sin(u)*np.cos(v)
+            ]),v_min=-2.5,v_max=4,u_min=-3,u_max=5,checkerboard_colors=[GOLD_E,GOLD_E],
+            resolution=(20, 50),fill_opacity=0.5)
 
         axes = ThreeDAxes(x_min=-3,x_max=6,y_min=-3,y_max=6,z_min=-3,z_max=3,num_axis_pieces=40)
-        #Creo que es redundante lo del color=WHITE en los Dot, pero equis
+        #Creo que es redundante lo del color=WHITE en los Dot, pero no importa
         dot_2_1 = Dot().set_color(RED).move_to(np.array((3*PI/2,2.5,0.8)))
         dot_2_x1 = Dot().set_color(WHITE).move_to(np.array((3*PI/2,0,0)))
         dot_2_y1 = Dot().set_color(WHITE).move_to(np.array((0,2.5,0)))
@@ -2035,7 +2101,16 @@ class Visualización_Gráficas_2(ThreeDScene,Scene):
         gpo_coordxy_2_1 = VGroup(text_dot_2_x1,text_dot_2_y1)
         gpo_coordxyz_2_1 = VGroup(text_dot_2_xy1, text_dot_2_z1)
 
-        text_grafica_2 = TexMobject(r"G_{f}",color=GOLD_E).to_edge(RIGHT)
+        text_grafica_2 = TexMobject(r"G_{f}",color=GOLD_E).move_to(4.75*RIGHT+1*DOWN)
+        ###Objetos Rectas
+
+        dot_dom_1 = self.punto3D().move_to((PI/2,0,0))
+        dot_func_1 = self.punto3D_2().move_to((PI/2,0,1))
+        dot_dom_2 = self.punto3D().move_to((0,5,0))
+        linea_vert_1 = Line((PI/2,0,-3),(PI/2,0,3)).set_color(GREEN_E)
+        linea_vert_2 = Line((0,5,-3),(0,5,3)).set_color(GREEN_E)
+        RectVert = VGroup(dot_dom_1,dot_dom_2,dot_func_1,linea_vert_1)
+
 
         #EJEMPLO 2
         self.add(Caja_1)
@@ -2046,30 +2121,64 @@ class Visualización_Gráficas_2(ThreeDScene,Scene):
         self.add_fixed_in_frame_mobjects(ejemplo_2)
         self.set_camera_orientation(phi=55 * DEGREES,theta=-50*DEGREES,distance=50)
         self.play(ShowCreation(axes))
-        self.play(FadeIn(dot_2_x1),FadeIn(text_dot_2_x1),FadeIn(dot_2_y1),FadeIn(text_dot_2_y1),FadeIn(dot_2_z1),FadeIn(text_dot_2_z1))
+        self.wait()        
+        self.play(FadeIn(dot_2_x1),FadeIn(text_dot_2_x1))
+        self.wait(1.5)
+        self.play(FadeIn(dot_2_y1),FadeIn(text_dot_2_y1))
+        self.wait(1.5)
+        self.play(FadeIn(dot_2_z1),FadeIn(text_dot_2_z1))
         self.wait(1.5)
         self.begin_ambient_camera_rotation(rate=0.04)
         self.play(FadeIn(dot_2_xy1),ReplacementTransform(gpo_coordxy_2_1,text_dot_2_xy1))
-        #self.play(FadeIn(linea_2_x1))
-        #self.play(FadeIn(linea_2_y1))
-        #self.play(FadeIn(dot_2_1))
-        #self.play(FadeIn(linea_2_xy1),FadeIn(linea_2_z1))
-        #self.play(ReplacementTransform(gpo_coordxyz_2_1,text_dot_2_1))
-        #self.wait(1.5)
-        #self.play(FadeOut(dot_2_xy1),FadeOut(dot_2_x1),FadeOut(dot_2_y1),FadeOut(dot_2_z1),FadeOut(linea_2_x1),FadeOut(linea_2_xy1),FadeOut(linea_2_y1),FadeOut(linea_2_z1),FadeOut(text_dot_2_1))
+        self.play(FadeIn(linea_2_x1))
+        self.play(FadeIn(linea_2_y1))
+        self.play(FadeIn(dot_2_1))
+        self.play(FadeIn(linea_2_xy1),FadeIn(linea_2_z1))
+        self.wait(2)
+        self.play(ReplacementTransform(gpo_coordxyz_2_1,text_dot_2_1))
+        self.wait(3.5)
+        self.play(FadeOut(dot_2_xy1),FadeOut(dot_2_x1),FadeOut(dot_2_y1),FadeOut(dot_2_z1),FadeOut(linea_2_x1),FadeOut(linea_2_xy1),FadeOut(linea_2_y1),FadeOut(linea_2_z1),FadeOut(text_dot_2_1))
         self.play(ShowCreation(Superficie))
         self.add_fixed_in_frame_mobjects(text_grafica_2)
         self.wait(3)
-        self.play(FadeOut(dot_2_1),FadeOut(Superficie),FadeOut(text_grafica_2),FadeOut(ejemplo_2),FadeOut(axes))
+        self.stop_ambient_camera_rotation()
+        self.play(FadeOut(dot_2_1),FadeOut(text_grafica_2),FadeOut(ejemplo_2))
         self.wait()
+        self.acomodar_textos(text_1)
+        self.wait(12)
+        self.move_camera(phi=75 * DEGREES,theta=-50*DEGREES,distance=50,frame_center=[0,0,1])
+        self.play(ReplacementTransform(Superficie,Superficie2))
+        self.begin_ambient_camera_rotation(rate=0.04)
+        self.play(FadeIn(dot_dom_1))
+        self.play(ShowCreation(linea_vert_1))
+        self.FadeOutWrite3D(text_1,text_2)
+        self.play(FadeIn(dot_func_1))
+        self.wait(4.5)
+        self.play(FadeOut(dot_dom_1),FadeOut(dot_func_1),FadeOut(linea_vert_1))
+        self.FadeOutWrite3D(text_2,text_3)
+        self.wait(5)
+        self.play(FadeIn(dot_dom_2))
+        self.wait(1.5)
+        self.play(ShowCreation(linea_vert_2))
+        self.stop_ambient_camera_rotation
+        self.wait(5)
+        self.play(FadeOut(axes),FadeOut(Superficie2),FadeOut(text_3),FadeOut(dot_dom_2),FadeOut(linea_vert_2))
+
+
 
 #EJEMPLO 3 R -> R^2#
 class Visualización_Gráficas_3(ThreeDScene,Scene):
     def setup(self):
         Scene.setup(self)
         ThreeDScene.setup(self)
+    def FadeOutWrite3D(self,objeto1,objeto2):
+        self.play(FadeOut(objeto1))
+        self.acomodar_textos(objeto2)
+    def acomodar_textos(self,objeto):
+        self.add_fixed_in_frame_mobjects(objeto)
+        self.play(Write(objeto))
     def construct(self):
-        
+    
 
         #CAJA EJEMPLO 2
         funcion_1_2 = TexMobject(r"f:A \subset \mathbb{R} \rightarrow \mathbb{R}")
@@ -2087,14 +2196,27 @@ class Visualización_Gráficas_3(ThreeDScene,Scene):
         funciones_3.bg =SurroundingRectangle(funciones_3, buff = 0.8*SMALL_BUFF, color=WHITE)
         Caja_3 = VGroup(funciones_3.bg,funciones_3)
        
-        text_3 =TextMobject('''No es común visualizar la gráfica de funciones $\\mathbb{R} \\rightarrow \\mathbb{R}^{2}$,\n
-                                 pues usualmente nos interesa únicamente \n
-                                 el contradominio. Aún así, en algunas aplicaciones \n 
-                                 esta gráfica tiene gran utilidad.''').move_to((0,-0.5,0))
+        text_3 = TextMobject('''No es común en clase graficar funciones de $\\mathbb{R}\\rightarrow\\mathbb{R}^2$\n
+                                por la dificultad de hacer los dibujos en pizarrón''')
+        text_4 = TextMobject('''Generalmente se trabaja con la imagen de la\n
+                                función, dibujando las curvas correspondientes\n
+                                 en el plano del contradominio ''')
+        text_5 = TextMobject('''En este y otros videos podemos usar\n
+                                 la gráfica de este tipo de funciones ''')
 
+        text_6 = TextMobject("Consideremos algunos puntos de la gráfica").move_to(3.3*UP+2*RIGHT).scale(0.8)
+        text_7 = TextMobject('''Análogo a los casos anteriores, podemos tomar \n
+                                planos paralelos al plano $xy$''').move_to(3.3*UP+2*RIGHT).scale(0.8)
+        text_8 = TextMobject('''La intersección de la gráfica con estos\n
+                                 planos sólo puede ser un punto''').move_to(3.3*UP+2*RIGHT).scale(0.8)
+        text_9 = TextMobject('''Si fuera más de un punto,\n
+                                $f$ no sería función''').move_to(3.3*UP+RIGHT).scale(0.8)
+        text_10 = TextMobject('''Si la intersección fuera el vacío,\n
+                                 el punto correspondiente en el eje t\n
+                                 no sería parte del dominio ''').move_to(3.3*UP).scale(0.7)
         #EJEMPLO 3
         
-        ejemplo_3_1 = TexMobject(r"f(t)=\frac{t}{4\pi}(\cos(t),\sin(t)))",color=YELLOW)
+        ejemplo_3_1 = TexMobject(r"f(t)=\frac{t}{4\pi}(\cos(t),\sin(t))",color=YELLOW)
         ejemplo_3_2 = TexMobject(r"G_{f}:=\{(t,f(t))\in \mathbb{R}^{3}|t\in A\}",color=YELLOW).next_to(ejemplo_3_1,DOWN)
         ejemplo_3 = VGroup(ejemplo_3_1,ejemplo_3_2).move_to(3.2*UP).scale(0.65)
 
@@ -2192,6 +2314,14 @@ class Visualización_Gráficas_3(ThreeDScene,Scene):
         
         punto_8 = Dot(color=RED).move_to((1*8*PI/(8*PI),0,8*PI/2))
 
+        plano_9 = ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                9*PI/2
+            ]),v_min=-1.5,v_max=1.5,u_min=-1.5,u_max=1.5,fill_color=PURPLE_E,fill_opacity=0.25,
+            resolution=(1, 1))
+
         planos = VGroup(plano_1,plano_2,plano_3,plano_4,plano_5,plano_6,plano_7,plano_8)
         puntos = VGroup(punto_1,punto_2,punto_3,punto_4,punto_5,punto_6,punto_7,punto_8)
         #Etiquetas ejes
@@ -2229,58 +2359,74 @@ class Visualización_Gráficas_3(ThreeDScene,Scene):
         self.wait(0.5)
         self.play(ReplacementTransform(Caja_2,Caja_3))
         self.add_fixed_in_frame_mobjects(Caja_3)
-        self.play(Write(text_3),run_time=5)
-        self.wait(2)
+        self.play(Write(text_3))
+        self.wait(9.5)
         self.play(FadeOut(text_3))
+        self.play(Write(text_4))
+        self.wait(8.5)
+        self.play(FadeOut(text_4))
+        self.play(Write(text_5))
+        self.wait(7.2)
+        self.play(FadeOut(text_5))
+        self.wait(0.5)
         self.play(FadeIn(ejemplo_3_10))
         self.set_camera_orientation(phi=0)
         self.play(ShowCreation(axes_2),FadeIn(ejes_1))
         self.wait(0.5)
         self.play(ShowCreation(curva_1))
-        self.wait()
+        self.wait(3)
         self.play(FadeOut(ejes_1),FadeOut(ejemplo_3_10))
         self.move_camera(phi=142 * DEGREES,theta=55*DEGREES,gamma=-60*DEGREES,frame_center=(0.5,0,5),run_time=3)
-        self.add_fixed_in_frame_mobjects(ejes_2)
-        self.add_fixed_in_frame_mobjects(ejemplo_3)
+        self.acomodar_textos(ejes_2)
         self.wait(2.5)
+        self.acomodar_textos(text_6)
+        self.wait(4)
         self.play(FadeOut(curva_1),FadeIn(puntos))
         self.wait(0.5)
         self.play(FadeOut(ejes_2))
         self.move_camera(phi=115*DEGREES,theta=32*DEGREES,gamma=-70*DEGREES,frame_center=(0,-0.1,6),run_time=2)
         self.wait()
+        self.FadeOutWrite3D(text_6,text_7)
+        self.wait(6.5)
         self.play(FadeIn(plano_1))
-        self.add_fixed_in_frame_mobjects(text_plano_1)
-        self.add_fixed_in_frame_mobjects(text_planos_i)
+        self.acomodar_textos(text_plano_1)
+        self.acomodar_textos(text_planos_i)
         self.play(FadeIn(plano_2))
-        self.add_fixed_in_frame_mobjects(text_plano_2)
+        self.acomodar_textos(text_plano_2)
+        self.FadeOutWrite3D(text_7,text_8)
+        self.wait(6.5)
         self.play(FadeIn(plano_3))
-        self.add_fixed_in_frame_mobjects(text_plano_3)
+        self.acomodar_textos(text_plano_3)
         self.play(FadeIn(plano_4))
-        self.add_fixed_in_frame_mobjects(text_plano_4)
+        self.acomodar_textos(text_plano_4)
+        self.FadeOutWrite3D(text_8,text_9)
+        self.wait(5.7)        
         self.play(FadeIn(plano_5))
-        self.add_fixed_in_frame_mobjects(text_plano_5)
+        self.acomodar_textos(text_plano_5)
         self.play(FadeIn(plano_6))
-        self.add_fixed_in_frame_mobjects(text_plano_6)
+        self.acomodar_textos(text_plano_6)
+        self.FadeOutWrite3D(text_9,text_10)
+        self.wait(8.75)        
         self.play(FadeIn(plano_7))
-        self.add_fixed_in_frame_mobjects(text_plano_7)
+        self.acomodar_textos(text_plano_7)
         self.play(FadeIn(plano_8))
-        self.add_fixed_in_frame_mobjects(text_plano_8)
-        self.wait(1.5)
+        self.acomodar_textos(text_plano_8)
+        self.play(FadeIn(plano_9))
         self.play(ShowCreation(curva_1),run_time=2)
-        self.wait()
-        self.play(FadeOut(text_planos_2),FadeOut(text_planos_i))
+        self.wait(2)
+        self.play(FadeOut(plano_9))
+        self.play(FadeOut(text_planos_2),FadeOut(text_planos_i),FadeOut(text_10))
         self.move_camera(phi=142 * DEGREES,theta=55*DEGREES,gamma=-60*DEGREES,frame_center=(0,-0.8,5),run_time=2)
-        self.add_fixed_in_frame_mobjects(ejes_3) 
+        self.acomodar_textos(ejes_3) 
         self.wait(2.5)
         self.play(FadeOut(planos))
-        self.add_fixed_in_frame_mobjects(text_grafica_3)
-        self.wait(2)
-        #FALTA VER LA FORMA DE REGRESAR A LA CÁMARA INCIAL, NO ME FUNCIONÓ set_to_default_angled_camera_orientation ni mover la cámara a 0,0,0 o algo así.
+        self.acomodar_textos(text_grafica_3)
+        self.wait(3)
         self.play(
             *[FadeOut(mob)for mob in self.mobjects]
         )
         self.wait()
-
+        
 def Range(in_val,end_val,step=1):
     return list(np.arange(in_val,end_val+step,step))
 
