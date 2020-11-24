@@ -37,26 +37,86 @@ class Operaciones_continuidad(ThreeDScene):
     # Aquí se realiza la animación
     def construct(self):
         k = 3 #Cambia también esta constante al mismo valor que la de la función
-        title = TextMobject('''Continuidad: teoremas de operaciones''')
-        t_1 = TextMobject('''Sean $f,g:D\\subseteq\\mathbb{R}^n\\longrightarrow\\mathbb{R}^m$, $x_0\\in D$ \n
-                            $f$ y $g$ continuas en $x_0$ entonces:''').shift(3*UP)
-        t_2 = TextMobject('''1) $f+g$ es continua en $x_0$''').next_to(t_1,DOWN,buff=1.2)
-        t_3 = TextMobject('''2) Sea $k\\in\\mathbb{R}$, $kf$ es continua en $x_0$''').next_to(t_2,DOWN)
-        t_4 = TextMobject('''3) $f\\cdot g$ es continua en $x_0$''').next_to(t_3,DOWN)
+        title = TextMobject('''Continuidad: Teoremas de Operaciones''').scale(1.5)
+        t_1 = TextMobject('''Sean $f,g:D\\subseteq\\mathbb{R}^n\\longrightarrow\\mathbb{R}^m$, ''','''$x_0$''','''$\\in D$ \n
+                            $f$ y $g$ ''','''continuas''',''' en ''','''$x_0$''',''' entonces:''').shift(2*UP)
+        t_1.set_color_by_tex_to_color_map({
+            '''continuas''': BLUE,
+            '''$x_0$''': PURPLE_B
+        })
+        t_2 = TextMobject('''1) $f+g$ es ''','''continua''',''' en ''','''$x_0$''').next_to(t_1,DOWN,buff=1.2)
+        t_2.set_color_by_tex_to_color_map({
+            '''continua''': BLUE,
+            '''$x_0$''': PURPLE_B
+        })
+        t_3 = TextMobject('''2) Sea $k\\in\\mathbb{R}$, $kf$ es ''','''continua''',''' en ''','''$x_0$''').next_to(t_2,DOWN)
+        t_3.set_color_by_tex_to_color_map({
+            '''continua''': BLUE,
+            '''$x_0$''': PURPLE_B
+        })
+        t_4 = TextMobject('''3) $f\\cdot g$ es ''','''continua''',''' en ''','''$x_0$''').next_to(t_3,DOWN)
+        t_4.set_color_by_tex_to_color_map({
+            '''continua''': BLUE,
+            '''$x_0$''': PURPLE_B
+        })
+        Nota = TextMobject('''Nota: la tercera operación es un producto interior \\\\
+                            Si $m=1$ se trata de producto de reales''').scale(0.75).to_edge(DOWN)
         t_5 = TextMobject('''Veamos algunos ejemplos...''')
-        reglaf = TexMobject(r"f(t)=(\cos(5t),\sin(5t))",color=RED).scale(0.7).to_corner(LEFT+UP)
-        reglag = TexMobject(r"g(t)=(t,t)",color=BLUE).scale(0.7).to_corner(LEFT+UP)
-        t_6 = TextMobject('''$f$ y $g$ son funciones continuas \n
-                            en $t_0=0$, ¿puedes demostrarlo?''').scale(0.7).to_corner(LEFT+UP)
+        reglaf = TextMobject('''$f(t)$''','''$=(\cos(5t),\sin(5t))$''').scale(0.85).to_corner(LEFT+UP).shift(1*RIGHT)
+        reglaf.set_color_by_tex_to_color_map({
+            '''$f(t)$''': RED
+        })
+        reglaf.bg = SurroundingRectangle(reglaf,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        reglag = TextMobject('''$g(t)$''','''$=(t,t)$''').scale(0.85).to_corner(LEFT+UP).shift(2*RIGHT)
+        reglag.set_color_by_tex_to_color_map({
+            '''$g(t)$''': TEAL_D
+        })
+        reglag.bg = SurroundingRectangle(reglag,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        t_6 = TextMobject('''$f$''',''' y ''','''$g$''',''' son funciones ''','''continuas''',''' \n
+                            en ''','''$t_0=0$''',''', ¿puedes demostrarlo?''').scale(0.85).to_corner(LEFT+UP)
+        t_6.set_color_by_tex_to_color_map({
+            '''continuas''': BLUE,
+            '''$f$''': RED,
+            '''$g$''': TEAL_D,
+            '''$t_0=0$''': YELLOW
+        })
+        t_6.bg = SurroundingRectangle(t_6,color=WHITE,fill_color=BLACK,fill_opacity=1)
         t_7 = TextMobject('''Entonces $f+g$ también es \n
-                            continua en $t_0$''').scale(0.7).to_corner(LEFT+UP)
-        reglafmasg = TexMobject(r"(f+g)(t)=(t+\cos(5t),t+\sin(5t))",color=YELLOW).scale(0.7).to_corner(LEFT+UP)
+                            ''','''continua''',''' en ''','''$t_0$''').scale(0.85).to_corner(LEFT+UP)
+        t_7.set_color_by_tex_to_color_map({
+            '''continua''': BLUE,
+            '''$t_0$''': YELLOW
+        })
+        t_7.bg = SurroundingRectangle(t_7,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        reglafmasg = TextMobject('''$(f+g)(t)$''','''$=(t+\cos(5t),t+\sin(5t))$''').scale(0.85).to_corner(LEFT+UP)
+        reglafmasg.set_color_by_tex_to_color_map({
+            '''$(f+g)(t)$''': PINK
+        })
+        reglafmasg.bg = SurroundingRectangle(reglafmasg,color=WHITE,fill_color=BLACK,fill_opacity=1)
         t_8 = TextMobject('''Si tomamos $k=$'''+str(k)+''', \n
-                            $kf$ también es continua en $t_0$''').scale(0.7).to_corner(LEFT+UP)
-        reglakf = TexMobject(r"("+str(k)+r"f)(t)=("+str(k)+r"\cos(5t),"+str(k)+r"\sin(5t))",color=YELLOW).scale(0.7).to_corner(LEFT+UP)
-        t_9 = TextMobject('''Por último, al tomar el producto punto de $f$ y $g$, la función \n
-                            resultante es también continua en $t_0$''')
-        reglafpuntog = TexMobject(r"(f\cdot g)(t)=2t^2+t\cos(5t)+t\sin(5t)").scale(0.7).to_corner(LEFT+UP)
+                            $kf$ también es ''','''continua''',''' en ''','''$t_0$''').scale(0.85).to_corner(LEFT+UP).shift(0.4*RIGHT)
+        t_8.set_color_by_tex_to_color_map({
+            '''continua''': BLUE,
+            '''$t_0$''': YELLOW
+        })
+        t_8.bg = SurroundingRectangle(t_8,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        reglakf = TexMobject(r"("+str(k)+r"f)(t)=("+str(k)+r"\cos(5t),"+str(k)+r"\sin(5t))").scale(0.85).to_corner(LEFT+UP).shift(0.4*RIGHT)
+        reglakf.bg = SurroundingRectangle(reglakf,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        for i in range(0,7):
+            reglakf[0][i].set_color(ORANGE)
+        t_9 = TextMobject('''Por último, al tomar el producto punto de ''','''$f$''',''' y ''','''$g$''',''', la función \n
+                            resultante es también ''','''continua''',''' en ''','''$t_0$''')
+        t_9.set_color_by_tex_to_color_map({
+            '''$f$''': RED,
+            '''$g$''': TEAL_D,
+            '''continua''': BLUE,
+            '''$t_0$''': YELLOW
+        })
+        reglafpuntog = TextMobject('''$(f\cdot g)(t)$''','''$=2t^2+t\cos(5t)+t\sin(5t)$''').scale(0.85).to_corner(LEFT+UP)
+        reglafpuntog.set_color_by_tex_to_color_map({
+            '''$(f\cdot g)(t)$''': GREEN_D
+        })
+        reglafpuntog.bg = SurroundingRectangle(reglafpuntog,color=WHITE,fill_color=BLACK,fill_opacity=1)
         
         # Ejes en 3D
         axis_config = {
@@ -78,79 +138,122 @@ class Operaciones_continuidad(ThreeDScene):
         # Funciones que se van a utilizar
         tmin = -6
         tmax = 6
-        f = ParametricFunction(self.helicoide,t_min=tmin,t_max=tmax,color=RED)
-        g = ParametricFunction(self.identidad,t_min=tmin,t_max=tmax,color=BLUE)
-        fmasg = ParametricFunction(self.func_suma,t_min=tmin,t_max=tmax,color=YELLOW)
-        kf = ParametricFunction(self.func_por_escalar,t_min=tmin,t_max=tmax,color=YELLOW)
-        fpuntog = ParametricFunction(self.func_prod_int,t_min=-1.3,t_max=1.3,color=YELLOW)
-        dot1 = Dot(point=(0,1,0),color=GREEN_SCREEN,radius=0.1) 
-        dot2 = Dot(point=(0,0,0),color=GREEN_SCREEN,radius=0.1)
-        dot3 = Dot(point=(0,1,0),color=GREEN_SCREEN,radius=0.1)
-        dot4 = Dot(point=(0,k,0),color=GREEN_SCREEN,radius=0.1)
-        dot5 = Dot(point=(0,0,0),color=GREEN_SCREEN,radius=0.1)
+        f = ParametricFunction(self.helicoide,t_min=tmin,t_max=tmax,color=RED).set_shade_in_3d(True)
+        g = ParametricFunction(self.identidad,t_min=tmin,t_max=tmax,color=TEAL_D).set_shade_in_3d(True)
+        fmasg = ParametricFunction(self.func_suma,t_min=tmin,t_max=tmax,color=PINK).set_shade_in_3d(True)
+        kf = ParametricFunction(self.func_por_escalar,t_min=tmin,t_max=tmax,color=ORANGE).set_shade_in_3d(True)
+        fpuntog = ParametricFunction(self.func_prod_int,t_min=-1.3,t_max=1.3,color=GREEN_D).set_shade_in_3d(True)
+        dot1 = Dot(point=(0,1,0),color=YELLOW,radius=0.1) 
+        dot2 = Dot(point=(0,0,0),color=YELLOW,radius=0.1)
+        dot3 = Dot(point=(0,1,0),color=YELLOW,radius=0.1)
+        dot4 = Dot(point=(0,k,0),color=YELLOW,radius=0.1)
+        dot5 = Dot(point=(0,0,0),color=YELLOW,radius=0.1)
         ### Grupos ###
-        Group1 = VGroup(t_1,t_2,t_3,t_4)
+        Group1 = VGroup(t_1,t_2,t_3,t_4,Nota)
         ### Animación ###
         self.play(Write(title))
         self.wait()
         self.play(FadeOutAndShiftDown(title))
         self.play(Write(t_1))
-        self.wait()
+        self.wait(8)
         self.play(Write(t_2))
-        self.wait()
+        self.wait(3)
         self.play(Write(t_3))
-        self.wait()
+        self.wait(3.25)
         self.play(Write(t_4))
-        self.wait()
+        self.wait(3.25)
+        self.play(Write(Nota))
+        self.wait(2.75)
         self.play(FadeOut(Group1))
         self.play(Write(t_5))
-        self.wait()
+        self.wait(2)
         self.play(FadeOut(t_5))
 
         self.set_camera_orientation(phi=115*DEGREES,theta=-65*DEGREES)
         self.play(ShowCreation(ejes))
         self.begin_ambient_camera_rotation(rate=0.07)
+        self.acomodar_textos(reglaf.bg)
         self.acomodar_textos(reglaf)
+        self.add_foreground_mobjects(reglaf.bg)
+        self.add_foreground_mobjects(reglaf)
         self.play(ShowCreation(f),run_time=2)
-        self.add(dot1)
-        self.play(FadeOut(reglaf))
+        self.wait(2.5)
+        self.play(FadeOut(reglaf),FadeOut(reglaf.bg))
+        self.remove_foreground_mobjects(reglaf.bg)
+        self.remove_foreground_mobjects(reglaf)
+        self.acomodar_textos(reglag.bg)
         self.acomodar_textos(reglag)
+        self.add_foreground_mobjects(reglag.bg)
+        self.add_foreground_mobjects(reglag)
         self.play(ShowCreation(g),run_time=2)
-        self.add(dot2)
-        self.play(FadeOut(reglag))
+        self.wait(2.5)
+        self.play(FadeOut(reglag),FadeOut(reglag.bg))
+        self.remove_foreground_mobjects(reglag.bg)
+        self.remove_foreground_mobjects(reglag)
+        self.acomodar_textos(t_6.bg)
         self.acomodar_textos(t_6)
-        self.wait(2)
+        self.add_foreground_mobjects(t_6.bg)
+        self.add_foreground_mobjects(t_6)
+        self.add(dot1,dot2)
+        self.wait(4.5)
         self.remove(dot1,dot2)
-        self.play(FadeOut(f),FadeOut(t_6))
+        self.play(FadeOut(f),FadeOut(g),FadeOut(t_6),FadeOut(t_6.bg))
+        self.remove_foreground_mobjects(t_6.bg)
+        self.remove_foreground_mobjects(t_6)
+        self.acomodar_textos(t_7.bg)
         self.acomodar_textos(t_7)
-        self.wait()
-        self.play(FadeOut(t_7))
+        self.add_foreground_mobjects(t_7.bg)
+        self.add_foreground_mobjects(t_7)
+        self.wait(4.5)
+        self.play(FadeOut(t_7),FadeOut(t_7.bg))
+        self.remove_foreground_mobjects(t_7.bg)
+        self.remove_foreground_mobjects(t_7)
+        self.acomodar_textos(reglafmasg.bg)
         self.acomodar_textos(reglafmasg)
+        self.add_foreground_mobjects(reglafmasg.bg)
+        self.add_foreground_mobjects(reglafmasg)
         self.play(ShowCreation(fmasg),run_time=2)
         self.add(dot3)
-        self.wait(2)
+        self.wait(6)
         self.remove(dot3)
-        self.play(FadeOut(fmasg),FadeOut(g),FadeOut(reglafmasg))
+        self.play(FadeOut(fmasg),FadeOut(reglafmasg),FadeOut(reglafmasg.bg))
+        self.remove_foreground_mobjects(reglafmasg.bg)
+        self.remove_foreground_mobjects(reglafmasg)
+        self.acomodar_textos(t_8.bg)
         self.acomodar_textos(t_8)
-        self.wait()
-        self.play(FadeOut(t_8))
+        self.add_foreground_mobjects(t_8.bg)
+        self.add_foreground_mobjects(t_8)
+        self.wait(4.5)
+        self.play(FadeOut(t_8),FadeOut(t_8.bg))
+        self.remove_foreground_mobjects(t_8.bg)
+        self.remove_foreground_mobjects(t_8)
+        self.acomodar_textos(reglakf.bg)
         self.acomodar_textos(reglakf)
+        self.add_foreground_mobjects(reglakf.bg)
+        self.add_foreground_mobjects(reglakf)
         self.play(ShowCreation(kf),run_time=2)
         self.add(dot4)
         self.wait(2)
         self.remove(dot4)
-        self.play(FadeOut(reglakf),FadeOut(kf),FadeOut(ejes))
+        self.play(FadeOut(reglakf.bg),FadeOut(reglakf),FadeOut(kf),FadeOut(ejes))
+        self.remove_foreground_mobjects(reglakf.bg)
+        self.remove_foreground_mobjects(reglakf)
         self.stop_ambient_camera_rotation()
         self.set_camera_orientation(phi=0,theta=-90*DEGREES)
         self.play(Write(t_9))
-        self.wait()
+        self.wait(8)
         self.play(FadeOutAndShiftDown(t_9))
         self.play(ShowCreation(ejes2))
+        self.play(FadeIn(reglafpuntog.bg))
         self.play(Write(reglafpuntog))
+        self.add_foreground_mobjects(reglafpuntog.bg)
+        self.add_foreground_mobjects(reglafpuntog)
         self.play(ShowCreation(fpuntog))
         self.add(dot5)
-        self.wait(2)
+        self.wait(4)
         self.play(FadeOut(ejes2),FadeOut(reglafpuntog),FadeOut(fpuntog),FadeOut(dot5))
+        self.remove_foreground_mobjects(reglafpuntog.bg)
+        self.remove_foreground_mobjects(reglafpuntog)
 
 
 
@@ -181,25 +284,63 @@ class Continuidad_con_sucesiones(ThreeDScene):
     
     def construct(self):
         # Textos
-        t_1 = TextMobject('''Continuidad en curvas con sucesiones''')
-        t_2 = TextMobject('''Recuerda que una posible definición de continuidad es \n
-                            $f:\\mathbb{R}\\to\\mathbb{R}^2$ es continua en $t_0$ si''')
+        t_1 = TextMobject('''Continuidad en Curvas con Sucesiones''').scale(1.5)
+        t_2 = TextMobject('''Recuerda que una posible definición de ''','''continuidad''',''' es: \n
+                            $f:\\mathbb{R}\\to\\mathbb{R}^2$ es ''','''continua''',''' en $t_0$ si''').shift(1*UP)
+        t_2.set_color_by_tex_to_color_map({
+            '''continuidad''': BLUE,
+            '''continua''': BLUE
+        })
         t_3 = TexMobject(r"\lim_{t\to t_0}f(t)=f(t_0)").next_to(t_2,DOWN)
-        t_4 = TextMobject('''Aquí utilizaremos una equivalencia con sucesiones: \n
-                            $f:\\mathbb{R}\\to\\mathbb{R}^2$ es continua en $t_0$ \n
-                            si $\\forall\\{X_n\\}\\subset\\mathbb{R}$ sucesión tal que''')
-        t_5 = TexMobject(r"\lim_{n\to\infty}X_n=t_0,\ \lim_{n\to\infty}f(x_n)=f(t_0)").next_to(t_4,DOWN)
+        t_4 = TextMobject('''Aquí utilizaremos una equivalencia con ''','''sucesiones''',''':''')
+        t_4.set_color_by_tex_to_color_map({
+            '''sucesiones''': PURPLE_B
+        })
+        t_4_1 = TextMobject('''$f:\\mathbb{R}\\to\\mathbb{R}^2$ es ''','''continua''',''' en $t_0$ \n
+                            $\\Leftrightarrow \\forall\\{x_n\\}\\subset\\mathbb{R}$ ''','''sucesión''',''' tal que''').shift(1*UP)
+        t_4_1.set_color_by_tex_to_color_map({
+            '''sucesión''': PURPLE_B,
+            '''continua''': BLUE
+        })
+        t_5 = TexMobject(r"\lim_{n\to\infty}x_n=t_0,\\\\ \lim_{n\to\infty}f(x_n)=f(t_0)").next_to(t_4_1,DOWN)
         t_6 = TextMobject('''Veamos un par de ejemplos...''')
         nota = TextMobject('''NOTA: Aquí ejemplificaremos usando solo una sucesión, puedes probar con \n
                             otras sucesiones modificando el código correspondiente.''').scale(0.5).shift(3.5*DOWN)
-        t_7 = TextMobject('''Considera $t_0=0$''').scale(0.7).to_corner(LEFT+UP)
-        reglaf = TexMobject(r"f(t)=(\cos(4t),\sin(4t))",color=RED).scale(0.7).align_to(t_7,LEFT).shift(3*UP)
-        t_8 = TextMobject('''Toma la sucesión $X_n=\\dfrac{3}{n}$''').scale(0.7).to_corner(RIGHT+UP)
-        t_9 = TextMobject('''Converge a 0, su imagen a $(1,0)$ \n
-                            y su gráfica a $(0,1,0)$''').scale(0.7).next_to(t_8,DOWN)
-        reglag = TexMobject(r"g(t)=(t+\cos(4t),t+\sin(4t))",color=BLUE).scale(0.7).align_to(t_7,LEFT).shift(3*UP)
-        t_10 = TextMobject('''¿Y cómo sería una función discontinua?''').scale(0.7).to_corner(LEFT+UP)
-        reglacontra1_tex = ["(1,1)",",","t\\leq 0"]
+        t_7 = TextMobject('''Considera $t_0=0$''').scale(0.7).to_corner(LEFT+UP).shift(1*RIGHT)
+        t_7.bg = SurroundingRectangle(t_7,color=WHITE,fill_color=BLACK,fill_opacity=0.5)
+        reglaf = TextMobject('''$f(t)$''','''$=(\cos(4t),\sin(4t))$''').scale(0.7).align_to(t_7,LEFT).shift(2.7*UP).shift(0.5*LEFT)
+        reglaf.set_color_by_tex_to_color_map({
+            '''$f(t)$''': RED
+        })
+        reglaf.bg = SurroundingRectangle(reglaf,color=WHITE,fill_color=BLACK,fill_opacity=0.5)
+        reglaf.group = VGroup(reglaf,reglaf.bg)
+        t_8 = TextMobject('''Toma la ''','''sucesión ''','''$X_n$''','''$=\\dfrac{3}{n}$''').scale(0.7).to_corner(RIGHT+DOWN).shift(2.5*UP).shift(1.5*LEFT)
+        t_8.set_color_by_tex_to_color_map({
+            '''$X_n$''': YELLOW
+        })
+        t_8.bg = SurroundingRectangle(t_8,color=WHITE,fill_color=BLACK,fill_opacity=0.5)
+        t_8.group = VGroup(t_8,t_8.bg)
+        #t_9 = TextMobject('''Converge a 0, su imagen a $(1,0)$ \n
+        #                    y su gráfica a $(0,1,0)$''').scale(0.7).next_to(t_8.bg,DOWN)
+        t_9 = TextMobject('''$\\lim_{n \\to \\infty} $''','''$X_n$''','''$ = 0$ \\\\
+                                $\\lim_{n \\to \\infty} f(X_n) = (1,0)$ \\\\
+                                $\\lim_{n \\to \\infty} (X_n,f(X_n)) = (0,1,0)$''').scale(0.7).next_to(t_8.bg,DOWN)
+        t_9[1].set_color(YELLOW)
+        reglag = TextMobject('''$g(t)$''','''$=(t+\cos(4t),t+\sin(4t))$''').scale(0.7).align_to(t_7,LEFT).shift(2.7*UP).shift(1*LEFT)
+        t_9.bg = SurroundingRectangle(t_9,color=WHITE,fill_color=BLACK,fill_opacity=0.5)
+        t_9.group = VGroup(t_9,t_9.bg)
+        reglag.set_color_by_tex_to_color_map({
+            '''$g(t)$''': BLUE
+        })
+        reglag.bg = SurroundingRectangle(reglag,color=WHITE,fill_color=BLACK,fill_opacity=0.5)
+        t_10 = TextMobject('''¿Y cómo sería una función ''','''discontinua?''').scale(0.7).to_corner(LEFT+UP)
+        t_10.bg = SurroundingRectangle(t_10,color=WHITE,fill_color=BLACK,fill_opacity=0.5)
+        t_10.group = VGroup(t_10,t_10.bg)
+        t_10.set_color_by_tex_to_color_map({
+            '''discontinua''': GREEN_D
+        })
+        #reglacontra1_tex = ["(1,1)",",","t\\leq 0"]
+        reglacontra1_tex = ["(1,1),","t\\leq 0"]
         reglacontra2_tex = ["(-1,-1)",",","t>0"]
         reglacontra1_mob = TexMobject(*reglacontra1_tex)
         reglacontra2_mob = TexMobject(*reglacontra2_tex)
@@ -209,17 +350,50 @@ class Continuidad_con_sucesiones(ThreeDScene):
         reglacontra2 = VGroup(*reglacontra2_mob).shift(DOWN)
         reglacontra = VGroup(reglacontra1,reglacontra2)
         brace = Brace(reglacontra,LEFT)
-        h = brace.get_text("$h(x)=$")
-        reglacompleta = VGroup(reglacontra,brace,h).scale(0.7).next_to(t_7,DOWN).align_to(t_7,LEFT)
-        t_11 = TextMobject('''Toma las sucesiones $X_n=\\dfrac{3}{n}$ y \n
-                            $Y_n=-\\dfrac{3}{n}$''').scale(0.7).to_corner(RIGHT+UP)
-        t_12 = TextMobject('''$X_n$ converge a 0, su imagen a $(-1,-1)$ \n
-                            y su gráfica a $(0,-1,-1)$''').scale(0.7).next_to(t_11,DOWN)
-        t_13 = TextMobject('''$Y_n$ converge a 0, su imagen a $(1,1)$ \n
-                            y su gráfica a $(0,1,1)$''').scale(0.7).next_to(t_12,DOWN)
-        t_14 = TextMobject('''Tenemos entonces dos sucesiones que convergen a $t_0$ \n
-                            cuyas sucesiones de imágenes convergen a cosas distintas.\n
-                            Concluimos que la función es discontinua en $t_0$.''').scale(0.7).to_corner(RIGHT+UP)
+        h = brace.get_text("$h(x)$","$=$")
+        h.set_color_by_tex_to_color_map({
+            "$h(x)$": ORANGE
+            })
+        reglacompleta = VGroup(reglacontra,brace,h).scale(0.7).next_to(t_7.bg,DOWN).align_to(t_7,LEFT)
+        reglacompleta.bg = SurroundingRectangle(reglacompleta,color=WHITE,fill_color=BLACK,fill_opacity=0.5)
+        t_11 = TextMobject('''Toma las ''','''sucesiones ''','''$X_n$''','''$=\\dfrac{3}{n}$ y \n
+                            ''','''$Y_n$''','''$=-\\dfrac{3}{n}$''').scale(0.7).to_corner(RIGHT+UP)
+        t_11.bg = SurroundingRectangle(t_11,color=WHITE,fill_color=BLACK,fill_opacity=0.5)
+        t_11.set_color_by_tex_to_color_map({
+            '''$X_n$''': YELLOW,
+            '''$Y_n$''': YELLOW
+            })
+        #t_12 = TextMobject('''$X_n$''',''' converge a 0, su imagen a $(-1,-1)$ \n
+        #                    y su gráfica a $(0,-1,-1)$''').scale(0.7).to_corner(RIGHT+DOWN).shift(2*UP)
+        t_12 = TextMobject('''$\\lim_{n \\to \\infty} $''','''$X_n$''','''$ = 0$ \\\\
+                                $\\lim_{n \\to \\infty} f(X_n) = (-1,-1)$ \\\\
+                                $\\lim_{n \\to \\infty} (X_n,f(X_n)) = (0,-1,-1)$''').scale(0.7).to_corner(RIGHT+DOWN).shift(2*UP)
+        t_12[1].set_color(YELLOW)
+        t_12.bg = SurroundingRectangle(t_12,color=WHITE,fill_color=BLACK,fill_opacity=0.5)
+        #t_12.set_color_by_tex_to_color_map({
+        #    '''$X_n$''': YELLOW
+        #    })
+        #t_13 = TextMobject('''$Y_n$''',''' converge a 0, su imagen a $(1,1)$ \n
+        #                    y su gráfica a $(0,1,1)$''').scale(0.7).next_to(t_12.bg,DOWN)
+        t_13 = TextMobject('''$\\lim_{n \\to \\infty} $''','''$Y_n$''','''$ = 0$ \\\\
+                                $\\lim_{n \\to \\infty} f(Y_n) = (1,1)$ \\\\
+                                $\\lim_{n \\to \\infty} (Y_n,f(Y_n)) = (0,1,1)$''').scale(0.7).next_to(t_12.bg,DOWN)
+        t_13.bg = SurroundingRectangle(t_13,color=WHITE,fill_color=BLACK,fill_opacity=0.5)
+        t_13.set_color_by_tex_to_color_map({
+            '''$Y_n$''': YELLOW
+            })
+        t_13.group = VGroup(t_13,t_13.bg)
+        t_14 = TextMobject('''Tenemos entonces dos ''','''sucesiones''',''' \\\\ 
+                            que convergen a $t_0$ cuyas ''','''sucesiones''',''' \\\\ 
+                            de imágenes convergen a cosas distintas.\\\\
+                            Concluimos que la función \\\\ 
+                            es ''','''discontinua''',''' en $t_0$.''').scale(0.7).to_corner(RIGHT+DOWN).shift(1*UP)
+        t_14.bg = SurroundingRectangle(t_14,color=WHITE,fill_color=BLACK,fill_opacity=0.5)
+        t_14.set_color_by_tex_to_color_map({
+            '''discontinua''': GREEN_D,
+            '''sucesiones''': PURPLE_B
+        })
+        t_14.group = VGroup(t_14,t_14.bg)
         
         # Ejes en 3D
         axis_config = {
@@ -228,17 +402,17 @@ class Continuidad_con_sucesiones(ThreeDScene):
             "y_min" : -6,
             "y_max" : 6,
             "z_min" : -6,
-            "z_max" : 6,
+            "z_max" : 6
         }
         ejes = ThreeDAxes(**axis_config)
 
         # Funciones que se van a utilizar
         tmin = -6
         tmax = 6
-        f = ParametricFunction(self.helicoide,t_min=tmin,t_max=tmax,color=RED)
-        g = ParametricFunction(self.func_suma,t_min=tmin,t_max=tmax,color=BLUE)
-        contra_1 = ParametricFunction(self.contra1,t_min=tmin,t_max=0,color=ORANGE)
-        contra_2 = ParametricFunction(self.contra2,t_min=0.001,t_max=tmax,color=ORANGE)
+        f = ParametricFunction(self.helicoide,t_min=tmin,t_max=tmax,color=RED).set_shade_in_3d(True)
+        g = ParametricFunction(self.func_suma,t_min=tmin,t_max=tmax,color=BLUE).set_shade_in_3d(True)
+        contra_1 = ParametricFunction(self.contra1,t_min=tmin,t_max=0,color=ORANGE).set_shade_in_3d(True)
+        contra_2 = ParametricFunction(self.contra2,t_min=0.001,t_max=tmax,color=ORANGE).set_shade_in_3d(True)
 
         # Sucesiones
         X = []
@@ -261,11 +435,12 @@ class Continuidad_con_sucesiones(ThreeDScene):
 
         # Grupos útiles
         Grupo1 = VGroup(t_2,t_3)
-        Grupo2 = VGroup(t_4,t_5)
-        Grupo3 = VGroup(t_8,t_9)
+        Grupo1_1 = VGroup(t_4)
+        Grupo2 = VGroup(t_4_1,t_5)
+        Grupo3 = VGroup(t_8,t_9,t_8.bg,t_9.bg)
         Grupo4 = VGroup(t_6,nota)
-        Grupo5 = VGroup(t_11,t_12,t_13)
-        Grupo6 = VGroup(t_7,reglacompleta,contra_1,contra_2,t_14,suce3,suce4,ejes)
+        Grupo5 = VGroup(t_11,t_12,t_11.bg,t_12.bg,t_13,t_13.bg)
+        Grupo6 = VGroup(t_7,t_7.bg,reglacompleta,reglacompleta.bg,contra_1,contra_2,t_14,t_14.bg,suce3,suce4,ejes)
 
         # Animación        
         
@@ -273,60 +448,141 @@ class Continuidad_con_sucesiones(ThreeDScene):
         self.wait()
         self.play(FadeOutAndShiftDown(t_1))
         self.play(Write(Grupo1))
-        self.wait()
-        self.play(ReplacementTransform(Grupo1,Grupo2))
-        self.wait()
+        self.wait(10)
+        self.play(ReplacementTransform(Grupo1,Grupo1_1))
+        self.wait(2.5)
+        self.play(ReplacementTransform(Grupo1_1,Grupo2))
+        self.wait(10)
         self.play(FadeOut(Grupo2))
         self.play(Write(Grupo4))
-        self.wait()
+        self.wait(3)
         self.play(FadeOutAndShiftDown(Grupo4))
 
         self.set_camera_orientation(phi=115*DEGREES,theta=-65*DEGREES)
         self.play(ShowCreation(ejes))
+        self.acomodar_textos(t_7.bg)
         self.acomodar_textos(t_7)
+        self.add_foreground_mobjects(t_7.bg)
+        self.add_foreground_mobjects(t_7)
+        self.wait(2)
         self.begin_ambient_camera_rotation(rate=0.07)
 
+        self.acomodar_textos(reglaf.bg)
         self.acomodar_textos(reglaf)
+        self.add_foreground_mobjects(reglaf.bg)
+        self.add_foreground_mobjects(reglaf)
         self.play(ShowCreation(f),run_time=2)
+        self.wait(2.5)
+        self.acomodar_textos(t_8.bg)
         self.acomodar_textos(t_8)
+        self.add_foreground_mobjects(t_8.bg)
+        self.add_foreground_mobjects(t_8)
         self.play(Write(suce1),run_time=3)
+        self.wait(2)
+        self.acomodar_textos(t_9.bg)
         self.acomodar_textos(t_9)
-        self.wait()
-        self.play(FadeOut(suce1),FadeOut(reglaf),FadeOut(f),FadeOut(Grupo3))
+        self.add_foreground_mobjects(t_9.bg)
+        self.add_foreground_mobjects(t_9)
+        self.wait(10)
+        self.remove_foreground_mobjects(reglaf.bg)
+        self.remove_foreground_mobjects(reglaf)
+        self.remove_foreground_mobjects(t_8.bg)
+        self.remove_foreground_mobjects(t_8)
+        self.remove_foreground_mobjects(t_9.bg)
+        self.remove_foreground_mobjects(t_9)
+        self.play(FadeOut(suce1),FadeOut(reglaf.group),FadeOut(f),FadeOut(Grupo3),FadeOut(t_8.group),FadeOut(t_9.group))
 
+        self.acomodar_textos(reglag.bg)
         self.acomodar_textos(reglag)
+        self.add_foreground_mobjects(reglag.bg)
+        self.add_foreground_mobjects(reglag)
         self.play(ShowCreation(g),run_time=2)
+        self.wait(4)
+        self.acomodar_textos(t_8.bg)
         self.acomodar_textos(t_8)
         self.play(Write(suce2),run_time=3)
+        self.wait(2)
+        self.acomodar_textos(t_9.bg)
         self.acomodar_textos(t_9)
-        self.wait()
-        self.play(FadeOut(suce2),FadeOut(reglag),FadeOut(g),FadeOut(Grupo3),FadeOut(t_7))
-
+        self.wait(10)
+        self.remove_foreground_mobjects(reglag.bg)
+        self.remove_foreground_mobjects(reglag)
+        self.remove_foreground_mobjects(t_7.bg)
+        self.remove_foreground_mobjects(t_7)
+        self.remove_foreground_mobjects(t_8.bg)
+        self.remove_foreground_mobjects(t_8)
+        self.remove_foreground_mobjects(t_9.bg)
+        self.remove_foreground_mobjects(t_9)
+        self.play(FadeOut(suce2),FadeOut(reglag),FadeOut(g),FadeOut(reglag.bg),FadeOut(Grupo3),FadeOut(t_7),FadeOut(t_7.bg))
+        
+        self.acomodar_textos(t_10.bg)
         self.acomodar_textos(t_10)
-        self.wait()
-        self.play(FadeOut(t_10))
+        self.add_foreground_mobjects(t_10.bg)
+        self.add_foreground_mobjects(t_10)
+        self.wait(2.5)
+        self.play(FadeOut(t_10),FadeOut(t_10.bg))
+        self.remove_foreground_mobjects(t_10.bg)
+        self.remove_foreground_mobjects(t_10)
+        self.acomodar_textos(t_7.bg)
         self.acomodar_textos(t_7)
+        self.add_foreground_mobjects(t_7.bg)
+        self.add_foreground_mobjects(t_7)
+        self.wait(2)
+        self.acomodar_textos(reglacompleta.bg)
         self.acomodar_textos(reglacompleta)
+        self.add_foreground_mobjects(reglacompleta.bg)
+        self.add_foreground_mobjects(reglacompleta)
+        self.wait(9)
         self.play(ShowCreation(contra_1),ShowCreation(contra_2),run_time=2)
+        self.acomodar_textos(t_11.bg)
         self.acomodar_textos(t_11)
-        self.wait()
+        self.add_foreground_mobjects(t_11.bg)
+        self.add_foreground_mobjects(t_11)
+        self.wait(5)
         self.play(Write(suce3),Write(suce4))
         self.wait()
+        self.acomodar_textos(t_12.bg)
         self.acomodar_textos(t_12)
-        self.wait()
+        self.add_foreground_mobjects(t_12.bg)
+        self.add_foreground_mobjects(t_12)
+        self.wait(10)
+        self.acomodar_textos(t_13.bg)
         self.acomodar_textos(t_13)
-        self.wait()
+        self.add_foreground_mobjects(t_13.bg)
+        self.add_foreground_mobjects(t_13)
+        self.wait(10)
+        self.remove_foreground_mobjects(t_11.bg)
+        self.remove_foreground_mobjects(t_11)
+        self.remove_foreground_mobjects(t_12.bg)
+        self.remove_foreground_mobjects(t_12)
+        self.remove_foreground_mobjects(t_13.bg)
+        self.remove_foreground_mobjects(t_13)
+        self.remove_foreground_mobject(Grupo5)
         self.play(FadeOut(Grupo5))
+        self.acomodar_textos(t_14.bg)
         self.acomodar_textos(t_14)
-        self.wait()
+        self.add_foreground_mobjects(t_14.bg)
+        self.add_foreground_mobjects(t_14)
+        self.wait(9)
+        self.remove_foreground_mobjects(t_14.bg)
+        self.remove_foreground_mobjects(t_14)
+        self.remove_foreground_mobjects(t_7.bg)
+        self.remove_foreground_mobjects(t_7)
+        self.remove_foreground_mobjects(reglacompleta.bg)
+        self.remove_foreground_mobjects(reglacompleta)
         self.play(FadeOut(Grupo6))
-        self.wait()
-
+        self.wait(3)
 
         self.stop_ambient_camera_rotation()
+        
 
 #### Función proyección
 class Proyeccion (ThreeDScene):
+
+    def acomodar_textos(self,objeto):
+        self.add_fixed_in_frame_mobjects(objeto)
+        self.play(Write(objeto))
+
     def construct(self):
         grid = NumberPlane()
 
@@ -334,7 +590,7 @@ class Proyeccion (ThreeDScene):
         x1=0
         x2=3
         x3=0
-
+        
         y1=1
         y2=1
         y3=2
@@ -348,8 +604,8 @@ class Proyeccion (ThreeDScene):
         Vylabel.move_to(Vy.get_end()+0.5*RIGHT-0.3*UP)
         escalar=(((x1*y1)+(x2*y2))/((y1*y1)+(y2*y2)))
         vec=Arrow((0, 0, 0), (y1*escalar) * RIGHT + (y2*escalar)*UP, buff=0,
-                            color=PURPLE_C)
-        veclabel=TexMobject("\\vec{z}").set_color(PURPLE_C)
+                            color=PURPLE_B)
+        veclabel=TexMobject("\\vec{z}").set_color(PURPLE_B)
         veclabel.move_to(vec.get_end()+0.5*LEFT)
         linea = DashedLine((y1*escalar,y2*escalar,0),(x1,x2,0),dash_length=0.1,
         positive_space_ratio=0.5,stroke_width=3,color="#88FF00")
@@ -361,32 +617,51 @@ class Proyeccion (ThreeDScene):
         positive_space_ratio=0.5,stroke_width=3,color=WHITE)
        
 
-        titulo=TextMobject("Función proyección")
-        text=TextMobject('''Tomemos dos vectores en el plano \n
-                            cartesiano''').shift(2 * DOWN +3*LEFT)
+        titulo=TextMobject("Vector Proyección").scale(1.5)
+        text=TextMobject('''Tomemos dos vectores en \\\\ 
+                            el plano cartesiano''')
+        text.bg = SurroundingRectangle(text,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text.group = VGroup(text.bg,text).shift(2 * DOWN +3*LEFT)
         text1=TextMobject('''Podemos representar geométricamente\n
                             la proyección de''',''' $\\vec{x}$''',''' sobre''',''' $\\vec{y}$''',''' como''',
                             ''' $\\vec{z}$''').move_to(text.get_center()+1*RIGHT)
+        text1.bg = SurroundingRectangle(text1,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text1.group = VGroup(text1.bg,text1).move_to(text.get_center()+1*RIGHT)
         text1[1].set_color(BLUE_C)
         text1[3].set_color(YELLOW_C)
-        text1[5].set_color(PURPLE_C)
-        text2=TextMobject('''Notemos que es como obtener la sombra que \n
-                            genera $\\vec{x}$ sobre la recta que pasa por $\\vec{y}$''')
-        text2.move_to(2*DOWN)
-        text3=TextMobject('''Además de que''',''' la proyección de $\\vec{y}$ sobre $\\vec{x} $''')
-        text3_1=TextMobject('''es diferente a''',''' la proyección de $\\vec{x}$ sobre $\\vec{y}$''')
-        text3.move_to(-2*UP)
-        text3_1.move_to(-2.5*UP)
+        text1[5].set_color(PURPLE_B)
+
+        text2=TextMobject('''Notemos que con la sombra de ''','''$\\vec{x}$''',''' sobre la recta que \n
+                            genera ''','''$\\vec{y}$''',''' obtenemos el ''','''vector proyección''','''.''')
+        text2[1].set_color(BLUE_C)
+        text2[3].set_color(YELLOW)
+        text2[5].set_color(PURPLE_C)
+        text2.bg = SurroundingRectangle(text2,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text2.group = VGroup(text2.bg,text2)
+        text2.group.move_to(2*DOWN)
+        text3=TextMobject('''Además de que la ''','''proyección de $\\vec{y}$ sobre $\\vec{x} $''',''' \\\\
+                            es diferente a la ''','''proyección de $\\vec{x}$ sobre $\\vec{y}$''')
+        text3.bg = SurroundingRectangle(text3,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text3.group = VGroup(text3.bg,text3)
+        text3.group.move_to(-2*UP)
         text3[1].set_color(RED)
-        text3_1[1].set_color(PURPLE_C)
-        Def=TextMobject('''La proyección de $\\vec{x}$ sobre\n
-                            $\\vec{y}$ se define como:''') #Revisar que este bien dicho
+        text3[3].set_color(PURPLE_B)
+        Def=TextMobject('''La ''','''proyección''',''' de ''','''$\\vec{x}$''',''' sobre\n
+                            ''','''$\\vec{y}$''',''' se define como:''') #Revisar que este bien dicho
+        Def[1].set_color(GREEN_D)
+        Def[3].set_color(BLUE)
+        Def[5].set_color(YELLOW)
         Def_copy=Def.copy()
-        Def_copy.move_to(3*UP)
-        Def1=TexMobject(r"Proy_{\vec{y}}(\vec{x}):=\frac{\vec{x}\cdot\vec{y}}{\vec{y}\cdot\vec{y}} \vec{y}")
-        Def1_1=Def1.copy().move_to(3*UP)
-        text4=TextMobject('''Veamos un último ejemplo, agregandole una coordenada \n
-                                en z a los vectores anteriores''')
+        Def_copy.move_to(2.5*UP)
+        Def1=TextMobject('''$Proy_{\\vec{y}}(\\vec{x}):=\\frac{\\vec{x}\\cdot\\vec{y}}{\\vec{y}\\cdot\\vec{y}} \\vec{y}$''')
+        Def1[0][0].set_color(GREEN_D)
+        Def1[0][1].set_color(GREEN_D)
+        Def1[0][2].set_color(GREEN_D)
+        Def1[0][3].set_color(GREEN_D)
+        Def1_1=Def1.copy().move_to(2.5*UP)
+        text4=TextMobject('''Veamos un último ejemplo, agregándole una coordenada \n
+                                en ''','''z''',''' a los vectores anteriores''')
+        text4[1].set_color(PURPLE_B)
                                 
         #Animacion2d
         self.play(Write(titulo))
@@ -394,40 +669,39 @@ class Proyeccion (ThreeDScene):
         self.play(FadeOut(titulo))
         self.play(Write(grid))
         self.wait()
-        self.play(Write(text))
+        self.play(Write(text.group))
         self.play(ShowCreation(Vx),Write(Vxlabel))
         self.play(ShowCreation(Vy),Write(Vylabel))
-        self.wait()
-        self.play(ReplacementTransform(text,text1))
+        self.wait(2)
+        self.play(ReplacementTransform(text.group,text1.group))
         self.wait()
         self.play(ShowCreation(linea))
-        self.wait()
+        self.wait(2)
         self.play(ShowCreation(vec),Write(veclabel))
         self.wait()
-        self.play(ReplacementTransform(text1,text2))
-        self.wait(2)
-        self.play(ReplacementTransform(text2,text3))
-        self.play(Write(text3_1))
+        self.play(ReplacementTransform(text1.group,text2.group))
+        self.wait(7)
+        self.play(ReplacementTransform(text2.group,text3.group))
         self.play(ReplacementTransform(linea,linea1),FadeIn(Vy1))
         self.play(ShowCreation(vec1))
-        self.wait()
+        self.wait(2)
         self.play(FadeOut(Vx),FadeOut(Vy),FadeOut(linea1),
                   FadeOut(Vxlabel),FadeOut(Vylabel),FadeOut(veclabel),FadeOut(Vy1))
         self.wait()
-        self.play(FadeOut(grid),FadeOut(text3),
-                 FadeOut(vec),FadeOut(vec1),FadeOut(text3_1)
+        self.play(FadeOut(grid),FadeOut(text3.group),
+                 FadeOut(vec),FadeOut(vec1)
         )
         self.wait()
         self.play(Write(Def))
-        self.wait()
+        self.wait(3)
         self.play(ReplacementTransform(Def,Def_copy))
         self.play(Write(Def1))
-        self.wait()
+        self.wait(3.5)
         self.play(FadeOut(Def_copy))
         self.wait()
         self.play(ReplacementTransform(Def1,Def1_1))
         self.play(Write(text4))
-        self.wait()
+        self.wait(5)
         self.play(FadeOut(text4),FadeOut(Def1_1))
         self.wait()
         
@@ -435,14 +709,21 @@ class Proyeccion (ThreeDScene):
         #CÓDIGO PARA LA ANIMACION 3D
         axes = ThreeDAxes()
 
-        Vx3d=Arrow((0, 0, 0), x1 * RIGHT + x2*UP+x3*OUT,buff=0,color=BLUE_C)
+        Vx3d=Arrow((0, 0, 0), x1 * RIGHT + x2*UP+x3*OUT,buff=0,color=BLUE)
         Vx3dlabel=TexMobject("\\vec{x}",color=BLUE_C)
         Vx3dlabel.move_to(3*UP+5*LEFT)
-        Vy3d=Arrow((0, 0, 0), y1 * RIGHT + y2*UP+y3*OUT,buff=0,color=YELLOW)
+        #Vy3d=Arrow((0, 0, 0), y1 * RIGHT + y2*UP+y3*OUT,buff=0,color=YELLOW)
+        Vy3d=Line((0, 0, 0), y1 * RIGHT + y2*UP+y3*OUT,buff=0,color=YELLOW)
+
+        Vy3da = ArrowTip(start_angle=Vy3d.get_angle(), color=YELLOW).move_to(y1 * RIGHT + y2*UP+y3*OUT)
+
+        Vy3d.group = VGroup(Vy3d,Vy3da)
+
         Vy3dlabel=TexMobject("\\vec{y}",color=YELLOW)
         Vy3dlabel.move_to(2.5*UP+5*LEFT)
-        Plabel=TextMobject('''Proyección de $\\vec{y}$ \n
-                            sobre $\\vec{x}$''',color=RED)
+        Plabel=TextMobject('''Proyección''',''' de $\\vec{y}$ \n
+                            sobre $\\vec{x}$''').shift(0.25*DOWN)
+        Plabel[0].set_color(RED)
         Plabel.move_to(1.7*UP+5*LEFT)
         escalar3d=(((x1*y1)+(x2*y2)+(x3*y3))/((x1*x1)+(x2*x2)+(x3*x3)))
         vec3d=Arrow((0, 0, 0), (x1*escalar3d) * RIGHT + (x2*escalar3d)*UP+((x3*escalar3d))*OUT,buff=0,color=RED)
@@ -454,17 +735,20 @@ class Proyeccion (ThreeDScene):
         #Se puede cambiar la siguiente linea para modificar la posición de la camara
         self.set_camera_orientation(phi=80 * DEGREES,theta=45*DEGREES,distance=6)           
         self.play(ShowCreation(axes)) 
-        self.play(ShowCreation(Vx3d))
-        self.add_fixed_in_frame_mobjects(Vx3dlabel)
-        self.play(ShowCreation(Vy3d))
-        self.add_fixed_in_frame_mobjects(Vy3dlabel)
+        self.play(ShowCreation(Vx3d),run_time=0.75)
+        self.acomodar_textos(Vx3dlabel)
+        #self.add_fixed_in_frame_mobjects(Vx3dlabel)
+        self.play(ShowCreation(Vy3d.group),run_time=0.75)
+        self.acomodar_textos(Vy3dlabel)
+        #self.add_fixed_in_frame_mobjects(Vy3dlabel)
         self.play(ShowCreation(linea3d))
         self.play(ShowCreation(vec3d))
-        self.add_fixed_in_frame_mobjects(Plabel)
+        self.acomodar_textos(Plabel)
+        #self.add_fixed_in_frame_mobjects(Plabel)
         #inicia movimiento de la camara, se puede cambiar la velocidad con rate
-        self.begin_ambient_camera_rotation(rate=1)
+        self.begin_ambient_camera_rotation(rate=0.5)
         self.wait(4)
-        self.play(FadeOut(axes),FadeOut(Vy3d),FadeOut(Vx3d),
+        self.play(FadeOut(axes),FadeOut(Vy3d.group),FadeOut(Vx3d),
                     FadeOut(Vy3dlabel),FadeOut(Vx3dlabel),
                     FadeOut(Plabel),FadeOut(vec3d),FadeOut(linea3d))
         self.add_fixed_in_frame_mobjects(text5)
@@ -3365,20 +3649,34 @@ class FunContinuasEnAbiertos (Scene):
 class Continua_y_acotada(Scene):
     def construct(self):
         # Textos
-        title = TextMobject('''Continua en compactos implica acotada''')
-        t1 = TextMobject('''$f:A\\subset\\mathbb{R}^n\\to\\mathbb{R}^m$ es acotada si \n
-                            $f[A]\\subset\\mathbb{R}^m$ es acotada''')
+        #title = TextMobject('''Continua en compactos implica acotada''').scale(1.5)
+        title = TextMobject('''Teorema Fuerte: \\\\
+                            Funciones Continuas son Acotadas''').scale(1.5)
+        t1 = TextMobject('''$f:A\\subset\\mathbb{R}^n\\to\\mathbb{R}^m$ es ''','''acotada''',''' si \n
+                            $f(A)\\subset\\mathbb{R}^m$ es ''','''acotada''')
+        t1.set_color_by_tex_to_color_map({
+            '''acotada''': PURPLE_B
+        })
         t2 = TextMobject('''Teniendo en cuenta la definición anterior consideremos el \n 
-                            conjunto $A=[0,\\ 1.5]\\times[0,2]$ en $\\mathbb{R}^2$''')
-        t3 = TextMobject('''¿Puedes probar que este conjunto es compacto?''')
+                            conjunto ''','''$A$''','''$ =[0,\\ 1.5]\\times[0,2]$ en $\\mathbb{R}^2$''')
+        t2[1].set_color(RED)
+        t3 = TextMobject('''Recuerda que este conjunto es ''','''compacto''').next_to(t2,DOWN).scale(0.85).shift(2.5*UP)
+        t3[1].set_color(ORANGE)
         t4 = TextMobject('''Toma la función $f:A\\to\\mathbb{R}^2$ dada por $f(x,y)=(x^2,y^2)$, \n 
-                            ¿cuál es la imagen de $A$ bajo $f$?''')
-        t5 = TextMobject('''$f$ es continua y $f[A]$ es un conjunto acotado. \n
-                            Intenta demostrar ambas afirmaciones''')
+                            ¿cuál es la ''','''imagen''',''' de ''','''$A$''',''' bajo $f$?''').scale(1.17)
+        t4[1].set_color(BLUE)
+        t4[3].set_color(RED)
+        t5 = TextMobject('''$f$ es ''','''continua''',''' y $f(A)$ es un conjunto ''','''acotado''','''. \n
+                            Intenta demostrar ambas afirmaciones.''').scale(1.17)
+        t5[1].set_color(GREEN_D)
+        t5[3].set_color(PURPLE_B)
         t6 = TextMobject('''El resultado que vimos, es uno de los teoremas importantes \n
-                            de continuidad, y dice lo siguiente:''').shift(UP)
-        t7 = TextMobject('''Si $F:K\\subset\\mathbb{R}^n\\to\\mathbb{R}^m$ es continua y $K$ compacto \n
-                            entonces $F$ es acotada''').next_to(t6,DOWN)
+                            de continuidad, y dice lo siguiente:''').shift(UP*0.75)
+        t7 = TextMobject('''Si $F:K\\subset\\mathbb{R}^n\\to\\mathbb{R}^m$ es ''','''continua''',''' y $K$ ''','''compacto''',''' \n
+                            entonces $F$ es ''','''acotada''').next_to(t6,DOWN*1)
+        t7[-1].set_color(PURPLE_B)
+        t7[1].set_color(GREEN_D)
+        t7[3].set_color(ORANGE)
         
         # Ejes
         ejes1 = Axes(x_min=-0.5,x_max=5,y_min=-0.5,y_max=4).move_to((-6+2.25,-3+1.75,0))
@@ -3391,38 +3689,42 @@ class Continua_y_acotada(Scene):
         f = TexMobject(r"f(x,y)").next_to(flecha,DOWN).shift(0.25*DOWN)
 
         # Grupos
-        Grupo1 = VGroup(t3,t4,t5).to_edge(UP).scale(0.7)
+        Grupo0 = VGroup(t2,t3)
+        Grupo1 = VGroup(t4,t5).to_edge(UP).scale(0.7)
         Grupo2 = VGroup(flecha,f)
         Grupo3 = VGroup(ejes1,ejes2,compacto,imagen,Grupo2,t5)
+
 
         # Animación
 
         self.play(Write(title))
-        self.wait()
+        self.wait(3.25)
         self.play(ReplacementTransform(title,t1))
-        self.wait(2)
+        self.wait(7.5)
         self.play(ReplacementTransform(t1,t2))
-        self.wait(2)
-        self.play(ApplyMethod(t2.scale,0.7))
+        self.wait(5)
+        self.play(ApplyMethod(t2.scale,0.85))
         self.play(ApplyMethod(t2.to_edge,UP))
         self.wait()
         self.play(ShowCreation(ejes1))
         self.play(ShowCreation(compacto))
         self.wait()
-        self.play(ReplacementTransform(t2,t3))
-        self.wait(2)
-        self.play(ReplacementTransform(t3,t4))
-        self.wait(2)
+        self.play(Write(t3))
+        self.wait(3)
+        self.play(FadeOut(t3))
+        self.play(ReplacementTransform(t2,t4))
+        self.wait(7)
         self.play(Write(Grupo2))
         self.play(ShowCreation(ejes2))
         self.play(ShowCreation(imagen))
         self.wait()
         self.play(ReplacementTransform(t4,t5))
-        self.wait(2)
+        self.wait(7)
         self.play(FadeOut(Grupo3))
         self.play(Write(t6))
+        self.wait(5)
         self.play(Write(t7))
-        self.wait(3)
+        self.wait(5)
         self.play(FadeOut(t6),FadeOut(t7))
 
 
