@@ -2427,6 +2427,11 @@ class Visualización_Gráficas_3(ThreeDScene,Scene):
         )
         self.wait()
         
+
+########################################
+## DEFINICION DE CONJUNTOS DE NIVEL ####
+########################################
+
 def Range(in_val,end_val,step=1):
     return list(np.arange(in_val,end_val+step,step))
 
@@ -2443,12 +2448,13 @@ class ConjNiv_Def(GraphScene,Scene):
         "x_axis_label": "$x$",
     }
     def construct(self):
-        titulo = TextMobject("Conjuntos de nivel").scale(1.1)
+        titulo = TextMobject("Conjuntos de Nivel").scale(1.5)
 
-       ## Definición: hay que expandir la definición
-        intro_a= TextMobject("Especificamente para funciones $f:A\\subset \\mathbb{R}^n \\to \\mathbb{R} $").shift(UP)
-        intro_b = TextMobject("podemos definir un conjunto \\textbf{que vive en el dominio}.")
-        intro = VGroup(intro_a,intro_b)
+       
+        intro_a = TextMobject("Para funciones $f:A\\subset \\mathbb{R}^n \\to \\mathbb{R} $, se").shift(UP)
+        intro_b = TextMobject('''define al conjunto de nivel de $f$ como ''').next_to(intro_a,DOWN)
+        intro_c = TextMobject("$N_c(f):=\\{ \\vec{x}\\in A| f(\\vec{x})=c\\}$").next_to(intro_b,DOWN)
+        intro = VGroup(intro_a,intro_b, intro_c)
 
        # COMENZAMOS CON LA DEFINICIÓN
        # Conjunto abstracto en R^n
@@ -2467,7 +2473,7 @@ class ConjNiv_Def(GraphScene,Scene):
 
         # Construimos nuestro eje real sencillo
         text_2 = TextMobject("Consideremos un número real", " $c$", " $\\in \\mathbb{R}$").to_edge(UP)
-        text_2[1].set_color(RED)
+        text_2[1].set_color(RED_C)
 
         Linea_Eje_Real = DoubleArrow(start = (-1,0,0), end = (4,0,0), stroke_width = 2, buff = 0.1).shift(2*RIGHT+DOWN)
         ticks = []
@@ -2476,15 +2482,15 @@ class ConjNiv_Def(GraphScene,Scene):
         label_R =TexMobject(r"\mathbb{R}").shift(1.5*DOWN+2*RIGHT)
         Eje_Real = VGroup(*ticks, Linea_Eje_Real,label_R)
 
-        dot_c = Dot(point = (2.5,0,0), color = RED, radius = 0.1).shift(2*RIGHT+DOWN)
-        dot_c_dup = Dot(point = (2.5,0,0), color = RED, radius = 0.1).shift(2*RIGHT+DOWN)
-        label_c = TextMobject("c").set_color(RED).next_to(dot_c,1.5*DOWN)
+        dot_c = Dot(point = (2.5,0,0), color = RED_C, radius = 0.1).shift(2*RIGHT+DOWN)
+        dot_c_dup = Dot(point = (2.5,0,0), color = RED_C, radius = 0.1).shift(2*RIGHT+DOWN)
+        label_c = TextMobject("c").set_color(RED_C).next_to(dot_c,1.5*DOWN)
         punto_c = VGroup(dot_c,label_c)
 
         text_3a = TextMobject("Si tomamos todos los puntos ","$\\vec{x}_i$ ",  "en ", "A", " que al aplicarles la función").to_edge(UP)
         text_3a[3].set_color(BLUE)
         text_3b = TextMobject("toman el valor de", " $c$").next_to(text_3a,DOWN) 
-        text_3b[1].set_color(RED)
+        text_3b[1].set_color(RED_C)
         text_3 = VGroup(text_3a, text_3b).scale(0.9)
 
         pto_cn1 = Dot(point = (0,0,0)).shift(DOWN+3*LEFT)
@@ -2506,37 +2512,44 @@ class ConjNiv_Def(GraphScene,Scene):
         text_4 = VGroup(text_4a,text_4b).scale(0.9)
 
         def_conjniv = TexMobject(r"N_c(f):=\{\vec{x}\in A \vert f(\vec{x}) = c \}").to_edge(UP)
-        text_5 = TextMobject("Veamos algunos ejemplos").to_edge(UP)
-        
+        def_conjniv1 = TextMobject("O, usando la definición de imagen inversa, ").to_edge(UP)
+        def_conjniv2 = TexMobject("N_c(f):= f^{-1}(\\{c\\})").next_to(def_conjniv1,DOWN)
+        def_conjniv_group = VGroup(def_conjniv1, def_conjniv2)
+
+        text5 = TextMobject("Veamos un ejemplo")
 
         ### Secuencia de la animación HASTA ANTES DE DECLARAR LOS EJES
         self.play(Write(titulo))
-        self.wait()
+        self.wait(1.15)
         self.play(FadeOut(titulo))
         self.play(Write(intro_a))
         self.play(Write(intro_b))
-        self.wait()
+        self.play(Write(intro_c))
+        self.wait(8)
         self.play(FadeOut(intro))
         self.play(Write(text_1),FadeIn(Ejes_1),FadeIn(A_svg_1))
         self.play(FadeIn(Eje_Real))
-        self.wait()
+        self.wait(4.5)
         self.play(FadeIn(punto_c),ReplacementTransform(text_1,text_2))
-        self.wait(2)
+        self.wait(3.5)
         self.play(ReplacementTransform(text_2,text_3))
         self.play(ShowCreation(conjniv), ShowCreation(f))
-        self.wait(2)
+        self.wait(7.7)
         self.play(Transform(conjniv_dup,dot_c_dup), runtime = 3)
         self.wait(2)
         self.play(ReplacementTransform(text_3, text_4))
-        self.wait(3)
+        self.wait(7)
         self.play(ReplacementTransform(text_4,def_conjniv))
-        self.wait(3)
-        self.play(ReplacementTransform(def_conjniv, text_5))
+        self.wait(4)
+        self.play(ReplacementTransform(def_conjniv, def_conjniv_group))
+        self.wait(4)
         self.play(FadeOut(punto_c),FadeOut(conjniv_dup),FadeOut(conjniv),FadeOut(A_svg_1),FadeOut(f),
         FadeOut(Ejes_1),FadeOut(Eje_Real))
         self.wait()
-        self.play(FadeOut(text_5))
-
+        self.play(FadeOut(def_conjniv_group))
+        self.play(Write(text5))
+        self.wait(2.5)
+        self.play(FadeOut(text5))
         """
         A partir de este punto tengo que romper el esquema tradicional de sólo instanciar objetos
         antes de la secuencia de animación. Esto tengo que hacerlo para poder utilizar el método
@@ -2548,10 +2561,10 @@ class ConjNiv_Def(GraphScene,Scene):
         self.setup_axes()
         line_1 = Line (start = self.coords_to_point(-4*PI, 1), end = self.coords_to_point(4*PI, 1), stroke_width = 2, color = RED)
         # Ejemplo de funciones R -> R
-        text_6 = TextMobject("Obtengamos el conjunto de nivel 1 de ","$f = \\sin(x)$").to_edge(UP).scale(0.8)
+        text_6 = TextMobject("Obtengamos el conjunto de nivel 1 de ","$f(x) = \\sin(x)$").to_edge(UP).scale(0.8)
         text_6[1].set_color(YELLOW)
         text_7 = TextMobject("Este conjunto estará contenido en $\\mathbb{R}$").to_edge(UP).scale(0.8)
-        text_8 = TexMobject(r"N_1(f) = \{\frac{\pi}{2}+2k\pi \vert k \in \mathbb{Z} \}").to_edge(UP).shift(0.5*UP).scale(0.8)
+        text_8 = TexMobject(r"N_1(f) = \left\{\frac{\pi}{2}+2k\pi \vert k \in \mathbb{Z} \right\}").to_edge(UP).shift(0.5*UP).scale(0.8)
         graph_dotlines = []
         for i in range(-2,2):
             graph_dotlines.append(DashedLine(start = self.coords_to_point((PI/2)+i*2*PI,0), end = self.coords_to_point((PI/2)+i*2*PI,1)))
@@ -2593,21 +2606,21 @@ class ConjNiv_Def(GraphScene,Scene):
                                 )
         self.play(ShowCreation(plotSin),run_time = 3)
         self.play(Write(text_6))
-        self.wait()
+        self.wait(4.5)
         self.play(ShowCreation(line_1))
         self.wait()
         self.wait(2)
         self.play(ReplacementTransform(text_6,text_7))
-        self.wait(2)
+        self.wait(3.25)
         self.play(ReplacementTransform(text_7,text_8))
         self.play(ShowCreation(Dotlines))
-        self.wait()
+        self.wait(4)
         self.play(ShowCreation(GraphDots))
         self.wait(2)
         self.play(text_8.shift, 6*DOWN+3*LEFT, runtime = 2)
-        self.wait()
+        self.wait(1.5)
         self.play(Write(text_9))
-        self.wait(3)
+        self.wait(6)
         self.play(Transform(GDotsDup,YellowDots), runtime = 4)
         self.wait(3)
         self.play(
@@ -2652,9 +2665,9 @@ class ConjNiv_Def(GraphScene,Scene):
                 x_tex.next_to(self.coords_to_point(x_val, 0), DOWN)
             self.x_axis_labels.add(x_tex)
 
-################################
+#############################
 ###CONJUNTO DE NIVEL EN R3###
-################################
+#############################
 class ConjNiv_R3(ThreeDScene,Scene):
     def setup(self):
         Scene.setup(self)
@@ -2675,19 +2688,20 @@ class ConjNiv_R3(ThreeDScene,Scene):
             ]),v_min=-3,v_max=3,u_min=-3,u_max=3,fill_opacity=0.75,checkerboard_colors=[GOLD_E,GOLD_E],
             resolution=(80, 80))
 
-        text_2 = TextMobject("Consideremos", "$c=2$").to_edge(DOWN).set_opacity(0)
+        text_2 = TextMobject("Consideremos", " $c=2$").to_edge(DOWN).set_opacity(0)
         text_2[1].set_color(RED)
         text_3 = TextMobject("Este conjunto estará contenido en $\mathbb{R}^2$").to_edge(DOWN).set_opacity(0)
 
-        
+        #CREAMOS EL PLANO Z=2
         plano_1 = ParametricSurface(
             lambda u, v: np.array([
                 u,
                 v,
                 2
-            ]),v_min=-3,v_max=3,u_min=-3,u_max=3,fill_color=RED,fill_opacity=0.5, checkerboard_colors=[RED,RED],
+            ]),v_min=-3,v_max=3,u_min=-3,u_max=3,fill_color=RED,fill_opacity=0.7, checkerboard_colors=[RED,RED],
             resolution=(60, 60))
         
+        #EL CONJUNTO DE NIVEL PARA C=2
         circulo_niv2= ParametricFunction(
                 lambda u : np.array([
                 2*math.cos(u),
@@ -2713,7 +2727,7 @@ class ConjNiv_R3(ThreeDScene,Scene):
             )  
 
         conjunto_nivel2 = TexMobject(r"N_2(f) = \{ \vec{x} \in \mathbb{R}^2 \vert \Vert \vec{x} \Vert = 2 \}").shift(2*UP+3*RIGHT).scale(0.7)
-        conjunto_nivel2_short = TexMobject(r"N_2(f)").shift(1.75*UP+1.75*RIGHT).scale(0.5)
+        conjunto_nivel2_short = TexMobject(r"N_2(f)").shift(1.75*UP+1.75*RIGHT).scale(0.6)
         text_4 = TextMobject("Repitamos lo anterior ahora con ", "$c = 1$").to_edge(DOWN).set_opacity(0)
         text_4[1].set_color(RED)
 
@@ -2749,8 +2763,8 @@ class ConjNiv_R3(ThreeDScene,Scene):
             )  
 
         conjunto_nivel1 = TexMobject(r"N_1(f) = \{ \vec{x} \in \mathbb{R}^2 \vert \Vert \vec{x} \Vert = 1 \}").shift(2*DOWN+3*RIGHT).scale(0.7)
-        conjunto_nivel1_short = TexMobject(r"N_1(f)").shift(UP+RIGHT).scale(0.5)
-        text_5 = TextMobject("¡Los conjuntos de nivel nos ayudan a imaginar la gráfica!").to_edge(DOWN).set_opacity(0).scale(0.8)
+        conjunto_nivel1_short = TexMobject(r"N_1(f)").shift(UP+RIGHT).scale(0.6)
+        text_5 = TextMobject("¡Los conjuntos de nivel nos ayudan a esbozar la gráfica!").to_edge(DOWN).set_opacity(0).scale(0.8)
 
         ## Secuencia de la Animación
         axes = ThreeDAxes(x_min=-4,x_max=4,y_min=-4,y_max=4,z_min=-2,z_max=4,num_axis_pieces=40)
@@ -2759,31 +2773,34 @@ class ConjNiv_R3(ThreeDScene,Scene):
         self.play(text_1.set_opacity, 1, runtime  = 2)
         self.play(ShowCreation(axes))
         self.play(ShowCreation(superficie))
-        self.wait(2)
+        self.wait(5.5)
 
+        #PLANO 1
         self.play(FadeOut(text_1))
         self.add_fixed_in_frame_mobjects(text_2)
         self.play(text_2.set_opacity, 1, runtime  = 2)
         self.play(ShowCreation(plano_1))
-        self.wait()
+        self.wait(2)
         self.move_camera(phi=90 * DEGREES,theta=-90*DEGREES,frame_center=(0.1,0,1))
 
         self.play(FadeOut(text_2))
         self.add_fixed_in_frame_mobjects(text_3)
         self.play(text_3.set_opacity, 1, runtime  = 2)
-        self.wait(3)
+        self.wait(4)
 
+        #CONJUNTO DE NIVEL
         self.play(FadeOut(text_3))
         self.move_camera(phi= 0 * DEGREES,theta=-90*DEGREES,run_time=2)
         self.play(ShowCreation(circulo_niv2), runtime = 2)
 
         self.move_camera(phi=75 * DEGREES,theta=-45*DEGREES,distance=100,run_time=2)
         self.play(ReplacementTransform(circulo_niv2_dup, circulo_niv2_R2))
+        self.add_foreground_mobjects(superficie)
         self.play(Write(conjunto_nivel2))
 
         self.play(FadeOut(superficie), FadeOut(plano_1), FadeOut(circulo_niv2),FadeOut(circulo_niv2_dup))
         self.move_camera(phi= 0 * DEGREES,theta=-90*DEGREES,run_time=2)
-        self.wait(3)
+        self.wait(5.5)
         self.play(ReplacementTransform(conjunto_nivel2,conjunto_nivel2_short))
 
 
@@ -2792,7 +2809,7 @@ class ConjNiv_R3(ThreeDScene,Scene):
         self.add_fixed_in_frame_mobjects(text_4)
         self.play(text_4.set_opacity, 1, runtime  = 2)
         self.play(ShowCreation(plano_2))
-        self.wait(2)
+        self.wait(4)
         self.play(FadeOut(text_4))
         self.move_camera(phi= 0 * DEGREES,theta=-90*DEGREES,run_time=3)
         self.play(ShowCreation(circulo_niv1), runtime = 2)
@@ -2803,7 +2820,7 @@ class ConjNiv_R3(ThreeDScene,Scene):
         self.play(FadeOut(superficie), FadeOut(plano_2), FadeOut(circulo_niv1),FadeOut(circulo_niv1_dup))
         self.move_camera(phi= 0 * DEGREES,theta=-90*DEGREES,run_time=3)
         self.play(Write(conjunto_nivel1_short))
-        self.wait(3)
+        self.wait(4)
 
         self.move_camera(phi=75 * DEGREES,theta=-45*DEGREES,distance=100,run_time=3)
         self.play(ShowCreation(superficie),ShowCreation(circulo_niv1),ShowCreation(circulo_niv2))
@@ -2814,7 +2831,7 @@ class ConjNiv_R3(ThreeDScene,Scene):
         self.play(
             *[FadeOut(mob)for mob in self.mobjects]
         )
-        self.wait()
+        self.wait(2)
 
 
 
