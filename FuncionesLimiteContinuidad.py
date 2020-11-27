@@ -1046,8 +1046,9 @@ class ThreeDSurface(ParametricSurface):
 
 class LimitesR2_a_R_1 (ThreeDScene):
     def construct(self):
-        titulo=TextMobject('''Límite de funciones de \n
-                                $\\mathbb{R}^{n}\\rightarrow\\mathbb{R}^{m}$''')
+        titulo=TextMobject('''Divergencia a infinito de funciones de\n
+                                $\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$\n
+                                en un punto $a$''')
         text=TextMobject(''' En el caso de funciones de:\n
                             $\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$.''')
         text_1=TextMobject('''Donde $n\\in\\lbrace 1,2,3...\\rbrace$''').move_to(text.get_center()+1*DOWN)
@@ -1059,7 +1060,7 @@ class LimitesR2_a_R_1 (ThreeDScene):
         Def3=TextMobject('''$\\exists \\ \\delta>0$ tal que si $\\vec{x}\\in B_{\\delta}(\\vec{a})\\setminus\\vec{a}\\cap
                                 D\\implies f(\\vec{x})>M$''').shift(1.5*DOWN)
         text_2=TextMobject('''Veamos el siguiente ejemplo.''')
-        text1=TexMobject(r"f:D\subset\mathbb{R}-\lbrace\vec{0}\rbrace\rightarrow\mathbb{R}").shift(2.5*UP)
+        text1=TexMobject(r"f:D\subset\mathbb{R}^2\rightarrow\mathbb{R}").shift(2.5*UP)
         text1_1=TexMobject(r"D=\lbrace (x,y)|x,y\in\mathbb{R}^{+}-\lbrace 0 \rbrace \rbrace").shift(1.25*UP)
         text2=TexMobject(r"f(x,y)=\frac{1}{x+y}").shift(-.1*UP)
         text3=TextMobject('''Veamos el límite cuando:''').shift(-1*UP)
@@ -1114,7 +1115,8 @@ class LimitesR2_a_R_1 (ThreeDScene):
                             algebraicas.''')
         text7.to_corner(UL)
         text8=TextMobject('''Puedes visualizar con mejor detalle la gráfica \n
-                                de la función anterior en el notebook anexo''')
+                                de la función anterior en el notebook anexo, así\n
+                                como modificar los valores de M''')
         r=0.5
         cilindro = ParametricSurface(
             lambda u, v: np.array([
@@ -1198,15 +1200,15 @@ class superficie4(ParametricSurface):
         
 class LimitesRnaR (ThreeDScene):
     def construct(self):
-        titulo=TextMobject('''Limite de funciones a $\\infty$ \n
-                                de $\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$''')
+        titulo=TextMobject('''Divergencia a infinito de funciones \n
+                            de $\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$ en infinito''')
 
         text1=TextMobject('''Sea $f:\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$''').move_to(2*UP)
-        text2=TexMobject(r"\lim_{\vec{x}\rightarrow\infty}f(\vec{x})=\infty^{+} \leftrightarrow\forall\ M\in\mathbb{R}").move_to(0.8*UP)
+        text2=TexMobject(r"\lím_{\vec{x}\rightarrow\infty}f(\vec{x})=\infty^{+} \leftrightarrow\forall\ M\in\mathbb{R}").move_to(0.8*UP)
         text3=TextMobject('''$\\exists\\delta>0$ tal que si $\\vec{x}\\in B^{c}_{\\delta}(\\vec{0})$ ''' ).move_to(0.5*DOWN)
         text4=TexMobject(r'''\implies f(\vec{x})>M''').move_to(1.6*DOWN)
         text5=TextMobject("Veamos el siguiente ejemplo para aterrizar lo anterior.")
-        text6=TextMobject('''Tomemos:\n
+        text6=TextMobject('''Tomemos el paraboloide:\n
                                 $f(x,y)=y^{2}+x^{2}-1$''')
         
         self.play(Write(titulo))
@@ -1243,8 +1245,8 @@ class LimitesRnaR (ThreeDScene):
         text4.to_corner(UL)
         text5=TextMobject('''Podemos realizar lo mismo con cualquier M$\\in\\mathbb{R}$''')
         text5.to_corner(UL)
-        text6=TextMobject('''Por lo cual notaremos que la función no \n
-                                tiene límite cuando $\\vec{x}\\rightarrow\\infty$.''')
+        text6=TextMobject('''Por lo cual notaremos que la función diverge a $+\\infty$ \n
+                             cuando $\\vec{x}\\rightarrow\\infty$.''')
         text6.to_corner(UL)
        # text7=TextMobject('''¿Se te ocurre como modificar la definición \n
         #                        cuando la función diverge a $\\infty^{-}$''')
@@ -1321,7 +1323,7 @@ class LimitesRnaR (ThreeDScene):
 
 class Limite4_1 (ThreeDScene):
     def construct (self):
-        titulo=TextMobject('''Límite a $\\infty$ de funciones de \n
+        titulo=TextMobject('''Límite en infinito de funciones de \n
                                 $\\mathbb{R}^{n}$ a $\\mathbb{R}$\n
                                 cuando es un valor L''')
         text=TextMobject("Sea $f:\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$").move_to(2.2*UP)
@@ -3262,18 +3264,17 @@ class FunContinuasEnAbiertos (Scene):
         text4=TextMobject('''Ahora tomemos un abierto en el contradominio de f \n
                             $U\\subset\\mathbb{R}^{2}$''').move_to(2.3*UP)
         text5=TextMobject('''Tomemos la imagen inversa de U''').move_to(text4)
-        text6=TextMobject(''' $f^{-1}[U]$\n
+        text6=TextMobject(''' $f^{-1}(U)$\n
                            $\\leftarrow$ ''').move_to(-1*UP)
         text7=TextMobject('''Lo mismo ocurre con cualquier abierto de $\\mathbb{R}^{2}$''').move_to(text5)
-        text8=TextMobject(''' $f^{-1}[A]$\n
+        text8=TextMobject(''' $f^{-1}(A)$\n
                            $\\leftarrow$ ''').move_to(-1*UP)
 
-        textf=TextMobject('''Entonces\n
-                            $f:\\mathbb{R}^{n}\\rightarrow\\mathbb{R}^{m}$\n''',
+        textf=TextMobject('''$f:\\mathbb{R}^{n}\\rightarrow\\mathbb{R}^{m}$\n''',
                                '''f es continua en $\\bf{TODO}$ $\\mathbb{R}^{n}$\n
                                 si solo si para todo \n  ''',    
                                '''$ U\\subset\\mathbb{R}^{m}$ abierto \n
-                                   se cumple que $f^{-1}[U]$ es abierto ''')
+                                   se cumple que $f^{-1}(U)$ es abierto ''')
         textf1=TextMobject(''' Lo mismo ocurre si el dominio de $f$ es abierto,\n 
                                       ''',''' ¿qué pasa si no lo es? \n
                                       ''',''' Investiga sobre topología relativa.''')
@@ -3302,9 +3303,11 @@ class FunContinuasEnAbiertos (Scene):
         #usar una caja que no este esquinada y elevada en y en el segundo ejemplo
         y=0
 
-        caja3=Rectangle(height=r3, width=r4,fill_color=YELLOW_C,color=YELLOW_C ,fill_opacity=1,buff=0).move_to((3.7)*LEFT+(-3+(r3/2))*UP)
+        caja3=Rectangle(height=r3, width=(r4/3),fill_color=YELLOW_C,color=YELLOW_C ,fill_opacity=1,buff=0).move_to((4.7)*LEFT+(-3+(r3/2))*UP)
         
-        caja4=Rectangle(height=r3, width=(r4/2)**2,fill_color=PURPLE_C,color=PURPLE_C ,fill_opacity=1,buff=0).move_to((3.3+((((r4/2)**2)/2)))*RIGHT+(-3+(r3/2))*UP)
+        caja5=Rectangle(height=r3, width=(r4/3),fill_color=YELLOW_C,color=YELLOW_C ,fill_opacity=1,buff=0).move_to((2.8)*LEFT+(-3+(r3/2))*UP)
+
+        caja4=Rectangle(height=r3, width=(r4/2)**2,fill_color=PURPLE_C,color=PURPLE_C ,fill_opacity=1,buff=0).move_to((3.8+((((r4/2)**2)/2)))*RIGHT+(-3+(r3/2))*UP)
         caja4label=TextMobject("A").next_to(caja4)
 
         punto=np.array([1,-4,0])
@@ -3340,8 +3343,9 @@ class FunContinuasEnAbiertos (Scene):
         self.play(ReplacementTransform(caja2,caja4),ReplacementTransform(caja2label,caja4label))
         self.play(ReplacementTransform(text6,text8))
         self.play(ReplacementTransform(caja1,caja3))
+        self.play(ShowCreation(caja5))
         self.wait()
-        self.play(FadeOut(caja3),FadeOut(caja4),FadeOut(G1),FadeOut(G2),FadeOut(text8),FadeOut(text1[1]),
+        self.play(FadeOut(caja3),FadeOut(caja4),FadeOut(caja5),FadeOut(G1),FadeOut(G2),FadeOut(text8),FadeOut(text1[1]),
                      FadeOut(text7),FadeOut(caja4label)   )
         self.play(Write(textf[0]))
         self.wait(5)
