@@ -258,6 +258,13 @@ class Operaciones_continuidad(ThreeDScene):
 
 
 class Continuidad_con_sucesiones(ThreeDScene):
+
+    CONFIG = {
+        "x_axis_label": "t",
+        "y_axis_label": None
+
+}
+
     def acomodar_textos(self,objeto):
         self.add_fixed_in_frame_mobjects(objeto)
         self.play(Write(objeto))
@@ -395,6 +402,16 @@ class Continuidad_con_sucesiones(ThreeDScene):
         })
         t_14.group = VGroup(t_14,t_14.bg)
         
+        t_15_1 = TextMobject('''Intenta demostrar que la siguiente función \\\\
+                                es discontinua en todo el plano:''').shift(1*UP)
+        dir1 = TextMobject('''$1$ si $x \\in \\mathbb{Q}$ ''')
+        dir2 = TextMobject('''$0$ si $x \\not \\in \\mathbb{Q}$ ''').next_to(dir1,DOWN)
+        dir = VGroup(dir1,dir2)
+        brace = Brace(dir,LEFT)
+        f = brace.get_text("$f(x)=$")
+        dirichlet = VGroup(dir,brace,f).next_to(t_15_1,DOWN)
+        t_15 = VGroup(t_15_1,dirichlet)
+
         # Ejes en 3D
         axis_config = {
             "x_min" : -6,
@@ -402,9 +419,13 @@ class Continuidad_con_sucesiones(ThreeDScene):
             "y_min" : -6,
             "y_max" : 6,
             "z_min" : -6,
-            "z_max" : 6
+            "z_max" : 6,
+            "x_axis_label": "t",
+            "y_axis_label": None
         }
         ejes = ThreeDAxes(**axis_config)
+        #ejes = ThreeDAxes()
+        ejes.add(ejes.get_x_axis_label("t"))
 
         # Funciones que se van a utilizar
         tmin = -6
@@ -571,9 +592,12 @@ class Continuidad_con_sucesiones(ThreeDScene):
         self.remove_foreground_mobjects(reglacompleta.bg)
         self.remove_foreground_mobjects(reglacompleta)
         self.play(FadeOut(Grupo6))
-        self.wait(3)
-
         self.stop_ambient_camera_rotation()
+        self.set_camera_orientation(phi=0,theta=-90*DEGREES)
+        self.remove(ejes)
+        self.play(Write(t_15))
+        self.wait(9)
+        self.play(FadeOut(t_15))
         
 
 #### Función proyección
