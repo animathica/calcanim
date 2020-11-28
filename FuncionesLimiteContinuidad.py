@@ -1069,31 +1069,29 @@ class LimitesR2_a_R_1 (ThreeDScene):
         
         #ANIMACION
         self.play(Write(titulo))
-        self.wait()
+        self.wait(6.5)
         self.play(FadeOut(titulo))
         self.play(Write(text))
         self.play(Write(text_1))
-        self.wait()
-        self.wait()
+        self.wait(6.5)
         self.play(FadeOut(G1))
         self.play(Write(Def))
         self.play(Write(Def1))
         self.play(Write(Def2))
         self.play(Write(Def3))
-        self.wait()
+        self.wait(11)
         self.play(FadeOut(Def),FadeOut(Def1),FadeOut(Def2),FadeOut(Def3))
         self.play(Write(text_2))
         self.wait()
         self.play(FadeOut(text_2))
         self.play(Write(text1))
         self.play(Write(text1_1))
-        self.wait()
         self.play(Write(text2))
         self.wait()
         self.play(Write(text3))
         self.wait()
         self.play(Write(text4))
-        self.wait()
+        self.wait(7.6)
         self.play(FadeOut(text4),FadeOut(text3),FadeOut(text2),FadeOut(text1_1),
                     FadeOut(text1))
         self.wait()
@@ -1118,19 +1116,19 @@ class LimitesR2_a_R_1 (ThreeDScene):
                                 de la función anterior en el notebook anexo, así\n
                                 como modificar los valores de M''')
         r=0.5
-        cilindro = ParametricSurface(
-            lambda u, v: np.array([
-                r*np.cos(TAU * v),
-                r*np.sin(TAU * v),
-                2*u
-            ]),
-            resolution=(6, 32)).fade(0.1).set_opacity(0.2) 
+        #cilindro = ParametricSurface(
+        #    lambda u, v: np.array([
+        #        r*np.cos(TAU * v),
+        #        r*np.sin(TAU * v),
+        #        2*u
+        #    ]),
+        #    resolution=(6, 32)).fade(0.1).set_opacity(0.2) 
         linea=Line((0,0,0),(0.5*np.cos(np.pi/4),0.5*np.sin(np.pi/4),0),stroke_width=4,color="#88FF00")
-        bola=Circle(radius=r,color=WHITE)
+        bola=Circle(radius=r,color=WHITE).set_fill(PURPLE)
         text5_1=TexMobject(r"\delta").move_to(bola.get_center()+0.7*UP+0.7*RIGHT)
         text5_1.set_color("#88FF00")
         linea1=Line((0,0,1),(0.5,0.5,1),stroke_width=6,color=PURPLE_D)
-        plano1=Rectangle(height=2, width=3,color=PURPLE_C,fill_color=PURPLE_C,fill_opacity=0.4,color_opacity=0.4).move_to(-1*IN)
+        #plano1=Rectangle(height=2, width=3,color=PURPLE_C,fill_color=PURPLE_C,fill_opacity=0.4,color_opacity=0.4).move_to(-1*IN)
         linea2=Line((0.5*np.cos(np.pi/4),0.5*np.sin(np.pi/4),0),(0.5*np.cos(np.pi/4),0.5*np.sin(np.pi/4),1/(r*(2*np.cos(np.pi/4)))),stroke_width=6,color=RED)
         
 
@@ -1155,18 +1153,18 @@ class LimitesR2_a_R_1 (ThreeDScene):
         self.add_fixed_in_frame_mobjects(text6)
         self.play(Write(text6))
         self.play()
-        self.play(ShowCreation(plano1))
-        self.wait()
-        self.play(ShowCreation(cilindro))
+        #self.play(ShowCreation(plano1))
+        self.wait(5.75)
+        #self.play(ShowCreation(cilindro))
         self.play(FadeOut(text6))
         self.add_fixed_in_frame_mobjects(text7)
         self.play(Write(text7))
-        self.wait()
-        self.play(FadeOut(text7),FadeOut(axes),FadeOut(plano1),FadeOut(surface),
-                    FadeOut(bola),FadeOut(cilindro))
+        self.wait(5.7)
+        #self.play(FadeOut(text7),FadeOut(axes),FadeOut(plano1),FadeOut(surface),
+        self.play(FadeOut(text7),FadeOut(axes),FadeOut(surface),FadeOut(bola))
         self.add_fixed_in_frame_mobjects(text8)
         self.play(Write(text8))
-        self.wait(2)
+        self.wait(4)
         self.play(FadeOut(text8))
 
 
@@ -1212,19 +1210,19 @@ class LimitesRnaR (ThreeDScene):
                                 $f(x,y)=y^{2}+x^{2}-1$''')
         
         self.play(Write(titulo))
-        self.wait()
+        self.wait(5.3)
         self.play(FadeOut(titulo))
         self.play(Write(text1))
         self.play(Write(text2))
         self.play(Write(text3))
         self.play(Write(text4))
-        self.wait(3)
+        self.wait(8)
         self.play(FadeOut(text1),FadeOut(text2),FadeOut(text3),FadeOut(text4))
         self.play(Write(text5))
-        self.wait()
+        self.wait(5)
         self.play(FadeOut(text5))
         self.play(Write(text6))
-        self.wait()
+        self.wait(3.8)
         self.play(FadeOut(text6))
         self.custom_method()
 
@@ -1291,7 +1289,7 @@ class LimitesRnaR (ThreeDScene):
         self.add_fixed_in_frame_mobjects(text2)
         self.play(Write(text2))
         self.play(ShowCreation(plano1))
-        self.wait()
+        self.wait(2.75)
         self.play(FadeOut(text2))
         self.add_fixed_in_frame_mobjects(text3)
         self.play(Write(text3))
@@ -1303,17 +1301,18 @@ class LimitesRnaR (ThreeDScene):
         self.add_fixed_in_frame_mobjects(text4)
         self.play(Write(text4))
         self.play(ShowCreation(cilindro))
-        self.wait()
+        self.wait(8.3)
         self.play(FadeOut(text4))
         self.add_fixed_in_frame_mobjects(text5)
         self.play(Write(text5))
         self.play(plano1.shift,M1*OUT,runtime=1.5)
         self.play(ReplacementTransform(bola,bola1))
         self.play(ReplacementTransform(cilindro,cilindro1))
+        self.wait(4.6)
         self.play(FadeOut(text5))
         self.add_fixed_in_frame_mobjects(text6)
         self.play(Write(text6))
-        self.wait()
+        self.wait(6.5)
         self.play(FadeOut(cilindro1),FadeOut(axes),FadeOut(text6),FadeOut(superficie),
                     FadeOut(plano1),FadeOut(bola1))
        
@@ -1336,23 +1335,23 @@ class Limite4_1 (ThreeDScene):
         text6=TexMobject(r"f(x,y)=1+\frac{1}{x^{2}+y^{2}}").move_to(1.5*DOWN)
         G2=VGroup(text4,text5,text6)
 
-        self.play(Write(titulo))
-        self.wait(2)
-        self.play(FadeOut(titulo))
-        self.play(Write(text))
-        self.play(Write(text1))
-        self.play(Write(text2))
-        self.play(Write(text3))
-        self.wait(3)
-        self.play(FadeOut(G1))
-        self.play(Write(text4))
-        self.wait()
-        self.play(text4.shift,2*UP,runtime=1.5)
-        self.play(Write(text5))
-        self.play(Write(text6))
-        self.wait(2)
-        self.play(FadeOut(G2))
-        self.wait()
+        #self.play(Write(titulo))
+        #self.wait(5.25)
+        #self.play(FadeOut(titulo))
+        #self.play(Write(text))
+        #self.play(Write(text1))
+        #self.play(Write(text2))
+        #self.play(Write(text3))
+        #self.wait(6)
+        #self.play(FadeOut(G1))
+        #self.play(Write(text4))
+        #self.wait(4.6)
+        #self.play(text4.shift,2*UP,runtime=1.5)
+        #self.play(Write(text5))
+        #self.play(Write(text6))
+        #self.wait(3)
+        #self.play(FadeOut(G2))
+        #self.wait()
         self.custom_method()
 
 
@@ -1375,6 +1374,8 @@ class Limite4_1 (ThreeDScene):
                                 $\\epsilon>0$.''').to_corner(UL)
         text6=TextMobject('''Por lo cual:''').to_corner(UL)
         text7=TexMobject(r"\lim_{\vec{x}\rightarrow\infty}f(\vec{x})=1").move_to(text5.get_center()+1*DOWN)
+        
+        cir1=Circle(radius=1, color=RED).move_to(3*UP + 3*RIGHT)
     
         #epsilons se pueden modificar
         r=0.5
@@ -1387,68 +1388,69 @@ class Limite4_1 (ThreeDScene):
         
         circulo=Circle(radius=R,color=YELLOW_C)
         circulo1=Circle(radius=R1,color=YELLOW_C)
-        cilindro = ParametricSurface(
-            lambda u, v: np.array([
-                R*np.cos(TAU * v),
-                R*np.sin(TAU * v),
-                4*u
-            ]),
-            resolution=(6, 32)).fade(0.1).set_opacity(0.2)
-        cilindro.set_color(YELLOW_C)
-        cilindro1 = ParametricSurface(
-            lambda u, v: np.array([
-                R1*np.cos(TAU * v),
-                R1*np.sin(TAU * v),
-                4*u
-            ]),
-            resolution=(6, 32)).fade(0.1).set_opacity(0.2)
-        cilindro1.set_color(YELLOW_C)
+        #cilindro = ParametricSurface(
+        #    lambda u, v: np.array([
+        #        R*np.cos(TAU * v),
+        #        R*np.sin(TAU * v),
+        #        4*u
+        #    ]),
+        #    resolution=(6, 32)).fade(0.1).set_opacity(0.2)
+        #cilindro.set_color(YELLOW_C)
+        #cilindro1 = ParametricSurface(
+        #    lambda u, v: np.array([
+        #        R1*np.cos(TAU * v),
+        #        R1*np.sin(TAU * v),
+        #        4*u
+        #    ]),
+        #    resolution=(6, 32)).fade(0.1).set_opacity(0.2)
+        #cilindro1.set_color(YELLOW_C)
     ###Animacion
         self.set_camera_orientation(0.8*np.pi/2, -0.25*np.pi,distance=12)
         self.begin_ambient_camera_rotation(rate=0.001)
         self.play(ShowCreation(axes))
         self.add_fixed_in_frame_mobjects(text1)
-        self.play(Write(text1))
+        #self.play(Write(text1))
         self.play(ShowCreation(superficie))
-        self.wait()
-        self.play(FadeOut(text1))
-        self.add_fixed_in_frame_mobjects(text2)
-        self.play(Write(text2))
-        self.play(ShowCreation(linea))
-        self.play(FadeOut(text2))
-        self.add_fixed_in_frame_mobjects(text3)
-        self.play(Write(text3))
-        self.add_fixed_in_frame_mobjects(text3_1)
-        self.play(Write(text3_1))
-        self.play(ShowCreation(linea1))
-        self.play(ShowCreation(circulo))
-        self.play(FadeOut(text3),FadeOut(text3_1))
-        self.add_fixed_in_frame_mobjects(text4)
-        self.play(Write(text4))
-        self.play(ShowCreation(cilindro))
-        self.wait()
-        self.play(FadeOut(text4))
-        self.add_fixed_in_frame_mobjects(text5)
-        self.play(Write(text5),FadeOut(linea1))
-        self.play(linea.shift,(R+0.1)*RIGHT,runtime=10)        
-        self.wait()
-        self.play(FadeOut(text5))
-        self.add_fixed_in_frame_mobjects(text5_1)
-        self.play(Write(text5_1))
-        self.play(ReplacementTransform(linea,linea_1))
-        self.play(ReplacementTransform(circulo,circulo1))
-        self.play(ReplacementTransform(cilindro,cilindro1))
-        self.play(linea_1.shift,(R1+0.1)*RIGHT,runtime=10)
-        self.wait()
-        self.play(FadeOut(text5_1))
-        self.add_fixed_in_frame_mobjects(text6)
-        self.play(Write(text6))
-        self.add_fixed_in_frame_mobjects(text7)
-        self.play(Write(text7))
-        self.wait(2)
-        self.play(FadeOut(text7),FadeOut(text6),FadeOut(axes),
-                    FadeOut(cilindro1),FadeOut(superficie),FadeOut(linea_1),
-                    FadeOut(circulo1))        
+        #self.wait()
+        #self.play(FadeOut(text1))
+        #self.add_fixed_in_frame_mobjects(text2)
+        #self.play(Write(text2))
+        #self.play(ShowCreation(linea))
+        #self.play(FadeOut(text2))
+        #self.add_fixed_in_frame_mobjects(text3)
+        #self.play(Write(text3))
+        #self.add_fixed_in_frame_mobjects(text3_1)
+        #self.play(Write(text3_1))
+        #self.play(ShowCreation(linea1))
+        #self.play(ShowCreation(circulo))
+        #self.play(FadeOut(text3),FadeOut(text3_1))
+        #self.add_fixed_in_frame_mobjects(text4)
+        #self.play(Write(text4))
+        #self.play(ShowCreation(cilindro))
+        #self.wait()
+        self.play(ShowCreation(cir1))
+        #self.play(FadeOut(text4))
+        #self.add_fixed_in_frame_mobjects(text5)
+        #self.play(Write(text5),FadeOut(linea1))
+        #self.play(linea.shift,(R+0.1)*RIGHT,runtime=10)        
+        #self.wait(6.5)
+        #self.play(FadeOut(text5))
+        #self.add_fixed_in_frame_mobjects(text5_1)
+        #self.play(Write(text5_1))
+        #self.play(ReplacementTransform(linea,linea_1))
+        #self.play(ReplacementTransform(circulo,circulo1))
+        #self.play(ReplacementTransform(cilindro,cilindro1))
+        #self.play(linea_1.shift,(R1+0.1)*RIGHT,runtime=10)
+        #self.wait(3)
+        #self.play(FadeOut(text5_1))
+        #self.add_fixed_in_frame_mobjects(text6)
+        #self.play(Write(text6))
+        #self.add_fixed_in_frame_mobjects(text7)
+        #self.play(Write(text7))
+        #self.wait(2)
+        #self.play(FadeOut(text7),FadeOut(text6),FadeOut(axes),
+        #            FadeOut(cilindro1),FadeOut(superficie),FadeOut(linea_1),
+        #            FadeOut(circulo1))        
         
 
 ##########################
