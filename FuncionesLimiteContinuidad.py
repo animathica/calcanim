@@ -2424,7 +2424,7 @@ class Visualización_Gráficas_2(ThreeDScene,Scene):
         self.play(FadeOut(dot_2_xy1),FadeOut(dot_2_x1),FadeOut(dot_2_y1),FadeOut(dot_2_z1),FadeOut(linea_2_x1),FadeOut(linea_2_xy1),FadeOut(linea_2_y1),FadeOut(linea_2_z1),FadeOut(text_dot_2_1))
         self.play(ShowCreation(Superficie))
         self.add_fixed_in_frame_mobjects(text_grafica_2)
-        self.wait(3)
+        self.wait(23)
         self.stop_ambient_camera_rotation()
         self.play(FadeOut(dot_2_1),FadeOut(text_grafica_2),FadeOut(ejemplo_2))
         self.wait()
@@ -2658,7 +2658,7 @@ class Visualización_Gráficas_3(ThreeDScene,Scene):
         self.play(ShowCreation(axes_2),FadeIn(ejes_1))
         self.wait(0.5)
         self.play(ShowCreation(curva_1))
-        self.wait(3)
+        self.wait(19)
         self.play(FadeOut(ejes_1),FadeOut(ejemplo_3_10))
         self.move_camera(phi=142 * DEGREES,theta=55*DEGREES,gamma=-60*DEGREES,frame_center=(0.5,0,5),run_time=3)
         self.acomodar_textos(ejes_2)
@@ -3117,10 +3117,11 @@ class ConjNiv_R3(ThreeDScene,Scene):
         )
         self.wait(2)
 
+
 ####IMAGEN INVERSA
 class ImgInversa(GraphScene):
     def construct(self):
-        titulo = TextMobject("Imagen inversa de un conjunto ")
+        titulo = TextMobject("Imagen Inversa")
         # titulo_b = TextMobject("$f: \\mathbb{R}^n \\to \\mathbb{R}^m$").next_to(titulo_a,DOWN)
         # titulo = VGroup(titulo_a, titulo_b)
         text_1a = TextMobject("Sea $f$ una función ").to_edge(UP)
@@ -3185,15 +3186,12 @@ class ImgInversa(GraphScene):
         D = VGroup(D_1, D_2, D_3)
         D_stuff = VGroup(D_1, D_2, D_3, D_label)
 
-        text_3 = TextMobject("Podemos preguntarnos, ¿de que parte de","A"," provienen?").to_edge(UP)
+        text_3 = TextMobject("Podemos preguntarnos, ¿de qué parte de"," A"," provienen?").to_edge(UP)
         text_3.set_color_by_tex_to_color_map({
             "A": BLUE,
         })
         ## Ahora si, mencionamos y dibujamos los puntos que son la imagen inversa
-        text_4 = TexMobject(r"\text{Buscamos } ", r"\{",r"\vec{x}","r\in A \vert f(\vec{x}) \in D \}").to_edge(UP)
-        text_4.set_color_by_tex_to_color_map({
-            r"\vec{x}": RED,
-        })
+        text_4 = TextMobject("Buscamos $\\{\\vec{x}\\in A | f(\\vec{x})\\in D \\}$").to_edge(UP)
         C_1 = Dot(point=(-3.2, -1, 0)).set_color(RED)
         A_C1D1 = Arrow(start=(-3.2, -1, 0), end=(3.2, -1, 0), stroke_width=2)
         C_2 = Dot(point=(-3.3, -0.5, 0)).set_color(RED)
@@ -3204,9 +3202,9 @@ class ImgInversa(GraphScene):
 
         finv_stuff = VGroup(C_1, A_C1D1, C_2, A_C2D3, C_3, A_C3D2, finv_label)
 
-        text_5a = TexMobject(r"f^{-1}(D)", r":=\{\vec{x}\in A \vert f(\vec{x}) \in D \}").to_edge(UP)
+        text_5a = TextMobject("$f^{-1}(D)$", "$:=\\{\\vec{x}\\in A | f(\\vec{x})\\in D \\}$").to_edge(UP)
         text_5a[0].set_color(RED)
-        text_5b = TextMobject("a este conjunto se le llama la", " \"imagen inversa\" ", "de", " $D$").next_to(text_5a,
+        text_5b = TextMobject("a este conjunto se le llama la", " imagen inversa ", "de", " $D$").next_to(text_5a,
                                                                                                               DOWN)
         text_5b[1].set_color(RED)
         text_5b[3].set_color(YELLOW)
@@ -3292,8 +3290,6 @@ class ImgInversa(GraphScene):
         self.wait(5.3)
         self.play(FadeOut(squares), FadeOut(text_10), FadeOut(Ejes_1), FadeOut(Ejes_2),
                   FadeOut(finv_D_arrow))
-
-        
         
         
         
