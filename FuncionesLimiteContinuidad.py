@@ -5465,7 +5465,8 @@ class Continua_y_acotada(Scene):
         # title = TextMobject('''Continua en compactos implica acotada''').scale(1.5)
         title = TextMobject(
             """Teorema Fuerte: \\\\
-                            Funciones Continuas son Acotadas"""
+                            las funciones continuas son ccotadas \n
+                            en compactos"""
         ).scale(1.5)
         t1 = TextMobject(
             """$f:A\\subset\\mathbb{R}^n\\to\\mathbb{R}^m$ es """,
