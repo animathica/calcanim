@@ -2120,6 +2120,30 @@ class ThreeDSurface(ParametricSurface):
 
 class LimitesR2_a_R_1(ThreeDScene):
     def construct(self):
+
+        titulo=TextMobject('''Divergencia a infinito de funciones de\n
+                                $\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$\n
+                                en un punto $a$''')
+        text=TextMobject(''' En el caso de funciones de:\n
+                            $\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$.''')
+        text_1=TextMobject('''Donde $n\\in\\lbrace 1,2,3...\\rbrace$''').move_to(text.get_center()+1*DOWN)
+        G1=VGroup(text,text_1)
+        Def=TextMobject('''Sea una función $f:D\\subseteq\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$''').shift(1.5*UP)
+        Def1=TextMobject('''Y sea $\\vec{a}\\in D$''').shift(0.6*UP)
+        Def2=TexMobject(r''' \lim_{x \to \vec{a}}f(\vec{x})=\infty\leftrightarrow\forall M\in\mathbb{R}''').shift(0.5*DOWN)
+        #En el video la definción dice limite al infinito, pero ya lo corregí para que sea el limite cuando x tiende a a
+        Def3=TextMobject('''$\\exists \\ \\delta>0$ tal que si $\\vec{x}\\in B_{\\delta}(\\vec{a})\\setminus\\vec{a}\\cap
+                                D\\implies f(\\vec{x})>M$''').shift(1.5*DOWN)
+        text_2=TextMobject('''Veamos el siguiente ejemplo.''')
+        text1=TexMobject(r"f:D\subset\mathbb{R}^2\rightarrow\mathbb{R}").shift(2.5*UP)
+        text1_1=TexMobject(r"D=\lbrace (x,y)|x,y\in\mathbb{R}^{+}-\lbrace 0 \rbrace \rbrace").shift(1.25*UP)
+        text2=TexMobject(r"f(x,y)=\frac{1}{x+y}").shift(-.1*UP)
+        text3=TextMobject('''Veamos el límite cuando:''').shift(-1*UP)
+        text4=TextMobject("(x,y)$\\rightarrow\\vec{0}=(0,0)$").shift(-1.8*UP)
+        
+        
+        #ANIMACION
+
         titulo = TextMobject(
             """Límite de funciones de \n
                                 $\\mathbb{R}^{n}\\rightarrow\\mathbb{R}^{m}$"""
@@ -2156,31 +2180,40 @@ class LimitesR2_a_R_1(ThreeDScene):
         text4 = TextMobject("(x,y)$\\rightarrow\\vec{0}=(0,0)$").shift(-1.8 * UP)
 
         # ANIMACION
+
         self.play(Write(titulo))
-        self.wait()
+        self.wait(6.5)
         self.play(FadeOut(titulo))
         self.play(Write(text))
         self.play(Write(text_1))
-        self.wait()
-        self.wait()
+        self.wait(6.5)
         self.play(FadeOut(G1))
         self.play(Write(Def))
         self.play(Write(Def1))
         self.play(Write(Def2))
         self.play(Write(Def3))
+
+        self.wait(11)
+        self.play(FadeOut(Def),FadeOut(Def1),FadeOut(Def2),FadeOut(Def3))
+
         self.wait()
         self.play(FadeOut(Def), FadeOut(Def1), FadeOut(Def2), FadeOut(Def3))
+
         self.play(Write(text_2))
         self.wait()
         self.play(FadeOut(text_2))
         self.play(Write(text1))
         self.play(Write(text1_1))
-        self.wait()
         self.play(Write(text2))
         self.wait()
         self.play(Write(text3))
         self.wait()
         self.play(Write(text4))
+
+        self.wait(7.6)
+        self.play(FadeOut(text4),FadeOut(text3),FadeOut(text2),FadeOut(text1_1),
+                    FadeOut(text1))
+
         self.wait()
         self.play(
             FadeOut(text4),
@@ -2189,13 +2222,19 @@ class LimitesR2_a_R_1(ThreeDScene):
             FadeOut(text1_1),
             FadeOut(text1),
         )
+
         self.wait()
         self.custom_method()
 
     def custom_method(self):
         axes = ThreeDAxes()
         surface = ThreeDSurface()
+
+        text4=TextMobject('''Tomemos  M=1''')
+        M=TextMobject("M").move_to(1*UP+0.3*LEFT)
+
         text4 = TextMobject("""Tomemos  M=1""")
+
         text4.to_corner(UL)
         text5 = TextMobject("""Si tomamos""", """ $\\delta=0.5$""")
         text5[1].set_color("#88FF00")
@@ -2211,6 +2250,41 @@ class LimitesR2_a_R_1(ThreeDScene):
                             algebraicas."""
         )
         text7.to_corner(UL)
+
+        text8=TextMobject('''Puedes visualizar con mejor detalle la gráfica \n
+                                de la función anterior en el notebook anexo, así\n
+                                como modificar los valores de M''')
+        r=0.5
+        #cilindro = ParametricSurface(
+        #    lambda u, v: np.array([
+        #        r*np.cos(TAU * v),
+        #        r*np.sin(TAU * v),
+        #        2*u
+        #    ]),
+        #    resolution=(6, 32)).fade(0.1).set_opacity(0.2) 
+        linea=Line((0,0,0),(0.5*np.cos(np.pi/4),0.5*np.sin(np.pi/4),0),stroke_width=4,color="#88FF00")
+        bola=Circle(radius=r,color=PURPLE,fill_opacity=1)
+        text5_1=TexMobject(r"\delta").move_to(bola.get_center()+0.7*UP+0.7*RIGHT)
+        text5_1.set_color("#88FF00")
+        linea1=Line((0,0,1),(0.5,0.5,1),stroke_width=6,color=PURPLE_D)
+        #plano1=Rectangle(height=2, width=3,color=PURPLE_C,fill_color=PURPLE_C,fill_opacity=0.4,color_opacity=0.4).move_to(-1*IN)
+        linea2=Line((0.5*np.cos(np.pi/4),0.5*np.sin(np.pi/4),0),(0.5*np.cos(np.pi/4),0.5*np.sin(np.pi/4),1/(r*(2*np.cos(np.pi/4)))),stroke_width=6,color=RED)
+        
+        lineaZ=Line((0,0,1),(0,0,3.2),stroke_width=7,color=PURPLE)
+
+        def puntosEnSuperficie(rad):
+            puntos=[]
+            for i in range(2000):
+                azar=np.random.rand(1,2)
+                if (0.1 < np.sqrt(azar[0][0]**2 + azar[0][1]**2) < rad):
+                    puntos.append(Dot(surface.func(azar[0][0], azar[0][1]),radius=0.05,
+                        color=PURPLE))
+            return puntos
+
+        puntos=puntosEnSuperficie(r)
+
+        grupo= VGroup(*puntos)
+
         text8 = TextMobject(
             """Puedes visualizar con mejor detalle la gráfica \n
                                 de la función anterior en el notebook anexo"""
@@ -2257,6 +2331,7 @@ class LimitesR2_a_R_1(ThreeDScene):
             color=RED,
         )
 
+
         # ANIMACION
         self.set_camera_orientation(0.8 * np.pi / 2, -0.25 * np.pi, distance=4)
         self.add(axes)
@@ -2265,6 +2340,7 @@ class LimitesR2_a_R_1(ThreeDScene):
         self.wait()
         self.add_fixed_in_frame_mobjects(text4)
         self.play(Write(text4))
+        self.add_fixed_in_frame_mobjects(M)
         self.wait()
         self.play(FadeOut(text4))
         self.play(ShowCreation(bola))
@@ -2278,12 +2354,20 @@ class LimitesR2_a_R_1(ThreeDScene):
         self.add_fixed_in_frame_mobjects(text6)
         self.play(Write(text6))
         self.play()
-        self.play(ShowCreation(plano1))
-        self.wait()
-        self.play(ShowCreation(cilindro))
+        #self.play(ShowCreation(plano1))
+        self.play(ShowCreation(lineaZ))
+        self.play(FadeIn(grupo))
+        self.wait(5.75)
+        #self.play(ShowCreation(cilindro))
         self.play(FadeOut(text6))
         self.add_fixed_in_frame_mobjects(text7)
         self.play(Write(text7))
+
+        self.wait(5.7)
+        #self.play(FadeOut(text7),FadeOut(axes),FadeOut(plano1),FadeOut(surface),
+        self.play(FadeOut(text7),FadeOut(axes),FadeOut(lineaZ),FadeOut(surface),FadeOut(bola),FadeOut(M),
+                FadeOut(grupo))
+
         self.wait()
         self.play(
             FadeOut(text7),
@@ -2293,9 +2377,10 @@ class LimitesR2_a_R_1(ThreeDScene):
             FadeOut(bola),
             FadeOut(cilindro),
         )
+
         self.add_fixed_in_frame_mobjects(text8)
         self.play(Write(text8))
-        self.wait(2)
+        self.wait(4)
         self.play(FadeOut(text8))
 
 
@@ -2332,6 +2417,19 @@ class superficie4(ParametricSurface):
 
 class LimitesRnaR(ThreeDScene):
     def construct(self):
+
+        titulo=TextMobject('''Divergencia a infinito de funciones \n
+                            de $\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$ en infinito''')
+
+        text1=TextMobject('''Sea $f:\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$''').move_to(2*UP)
+        text2=TexMobject(r"\lím_{\vec{x}\rightarrow\infty}f(\vec{x})=\infty^{+} \leftrightarrow\forall\ M\in\mathbb{R}").move_to(0.8*UP)
+        text3=TextMobject('''$\\exists\\delta>0$ tal que si $\\vec{x}\\in B^{c}_{\\delta}(\\vec{0})$ ''' ).move_to(0.5*DOWN)
+        text4=TexMobject(r'''\implies f(\vec{x})>M''').move_to(1.6*DOWN)
+        text5=TextMobject("Veamos el siguiente ejemplo para aterrizar lo anterior.")
+        text6=TextMobject('''Tomemos el paraboloide:\n
+                                $f(x,y)=y^{2}+x^{2}-1$''')
+        
+
         titulo = TextMobject(
             """Limite de funciones a $\\infty$ \n
                                 de $\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$"""
@@ -2353,20 +2451,26 @@ class LimitesRnaR(ThreeDScene):
                                 $f(x,y)=y^{2}+x^{2}-1$"""
         )
 
+
         self.play(Write(titulo))
-        self.wait()
+        self.wait(5.3)
         self.play(FadeOut(titulo))
         self.play(Write(text1))
         self.play(Write(text2))
         self.play(Write(text3))
         self.play(Write(text4))
+
+        self.wait(8)
+        self.play(FadeOut(text1),FadeOut(text2),FadeOut(text3),FadeOut(text4))
+
         self.wait(3)
         self.play(FadeOut(text1), FadeOut(text2), FadeOut(text3), FadeOut(text4))
+
         self.play(Write(text5))
-        self.wait()
+        self.wait(5)
         self.play(FadeOut(text5))
         self.play(Write(text6))
-        self.wait()
+        self.wait(3.8)
         self.play(FadeOut(text6))
         self.custom_method()
 
@@ -2390,13 +2494,72 @@ class LimitesRnaR(ThreeDScene):
             """Podemos realizar lo mismo con cualquier M$\\in\\mathbb{R}$"""
         )
         text5.to_corner(UL)
+
+        text6=TextMobject('''Por lo cual notaremos que la función diverge a $+\\infty$ \n
+                             cuando $\\vec{x}\\rightarrow\\infty$.''')
+
         text6 = TextMobject(
             """Por lo cual notaremos que la función no \n
                                 tiene límite cuando $\\vec{x}\\rightarrow\\infty$."""
         )
+
         text6.to_corner(UL)
         # text7=TextMobject('''¿Se te ocurre como modificar la definición \n
         #                        cuando la función diverge a $\\infty^{-}$''')
+
+        M=0
+        r=M+1.4
+        #cilindro = ParametricSurface(
+       #     lambda u, v: np.array([
+       #         r*np.cos(TAU * v),
+       #         r*np.sin(TAU * v),
+       #         2*u
+       #     ]),
+       #     resolution=(6, 32)).fade(0.1).set_opacity(0.4)
+       # cilindro.set_color(RED_C).move_to(M*IN)
+        #cilindro.set_opacity(0.4)
+        M1=-0.5
+        r1=M1+1.5
+        #cilindro1 = ParametricSurface(
+        #    lambda u, v: np.array([
+        #        r1*np.cos(TAU * v),
+        #        r1*np.sin(TAU * v),
+        #        4*u
+        #    ]),
+        #    resolution=(6, 32)).fade(0.1).set_opacity(0.4)
+        #cilindro1.set_color(RED_C).move_to((M1/2)*IN)
+       # cilindro2.set_opacity(0.4)
+        
+        #bola1=Circle(radius=r1,color=RED,color_opacity=1).move_to(M1*OUT)
+        bola1=Circle(radius=r1,color=RED,color_opacity=1)
+       
+        #plano1=Rectangle(height=3, width=5,color=PURPLE_C,fill_color=PURPLE_C,fill_opacity=0.4,
+        #                        color_opacity=0.4 ).move_to(M*OUT)
+        bola=Circle(radius=r,color=RED,color_opacity=1).move_to(M*OUT)
+        linealabel=TexMobject(r'''\delta''').next_to(bola,RIGHT,buff=0.5).set_color(RED_C).rotate(PI/2,axis=RIGHT).scale(2)
+        linea=Line((0,0,0),(r,0,0),stroke_width=3,color=RED_C) 
+
+        def puntosEnSuperficie(rad,lim,num):
+            puntosDom = []
+            puntosSur = []
+            for i in range(num):
+                azar = np.random.uniform(-lim,lim, (1,2))[0]
+                if ((rad < np.sqrt(azar[0]**2 + azar[1]**2)) and not (azar[0]<0 and azar[1]>0)):
+                    puntosDom.append(Dot(np.array([azar[0], azar[1],0]), color = PURPLE))
+                    puntosSur.append(Dot(superficie.func(azar[0], azar[1]), color = RED))
+            return puntosDom, puntosSur
+
+        puntosD1, puntosS1 = puntosEnSuperficie(r, 3, 6000)
+        puntosD2, puntosS2 = puntosEnSuperficie(r1, r, 3000)
+
+        GPuntosD1 = VGroup(*puntosD1)
+        GPuntosS1 = VGroup(*puntosS1)
+        GPuntosD2 = VGroup(*puntosD2)
+        GPuntosS2 = VGroup(*puntosS2)
+
+    ###Animacion
+        self.set_camera_orientation(0.8*np.pi/2, -0.25*np.pi,distance=15)
+
         M = 0
         r = M + 1.4
         cilindro = (
@@ -2446,6 +2609,7 @@ class LimitesRnaR(ThreeDScene):
         linea = Line((0, 0, 0), (r, 0, 0), stroke_width=3, color=RED_C)
         ###Animacion
         self.set_camera_orientation(0.8 * np.pi / 2, -0.25 * np.pi, distance=15)
+
         self.begin_ambient_camera_rotation(rate=0.001)
         self.play(ShowCreation(axes))
         self.add_fixed_in_frame_mobjects(text1)
@@ -2455,8 +2619,8 @@ class LimitesRnaR(ThreeDScene):
         self.play(FadeOut(text1))
         self.add_fixed_in_frame_mobjects(text2)
         self.play(Write(text2))
-        self.play(ShowCreation(plano1))
-        self.wait()
+        #self.play(ShowCreation(plano1))
+        self.wait(2.75)
         self.play(FadeOut(text2))
         self.add_fixed_in_frame_mobjects(text3)
         self.play(Write(text3))
@@ -2467,11 +2631,29 @@ class LimitesRnaR(ThreeDScene):
         self.play(FadeOut(text3))
         self.add_fixed_in_frame_mobjects(text4)
         self.play(Write(text4))
-        self.play(ShowCreation(cilindro))
-        self.wait()
+        self.play(FadeIn(GPuntosD1))
+        self.play(FadeIn(GPuntosS1))
+        #self.play(ShowCreation(cilindro))
+        self.wait(8.3)
         self.play(FadeOut(text4))
         self.add_fixed_in_frame_mobjects(text5)
         self.play(Write(text5))
+
+        ##self.play(plano1.shift,M1*OUT,runtime=1.5)
+        self.play(ReplacementTransform(bola,bola1))
+        self.wait()
+        self.play(FadeIn(GPuntosD2))
+        self.play(FadeIn(GPuntosS2))
+        #self.play(ReplacementTransform(cilindro,cilindro1))
+        self.wait(4.6)
+        self.play(FadeOut(text5))
+        self.add_fixed_in_frame_mobjects(text6)
+        self.play(Write(text6))
+        self.wait(6.5)
+        self.play(FadeOut(axes),FadeOut(text6),FadeOut(superficie),FadeOut(bola1),
+                FadeOut(GPuntosD1),FadeOut(GPuntosS1),FadeOut(GPuntosD2),FadeOut(GPuntosS2))
+       
+
         self.play(plano1.shift, M1 * OUT, runtime=1.5)
         self.play(ReplacementTransform(bola, bola1))
         self.play(ReplacementTransform(cilindro, cilindro1))
@@ -2489,13 +2671,20 @@ class LimitesRnaR(ThreeDScene):
         )
 
 
+
 # Cuando el limite es r
 
+
+
+class Limite4_1 (ThreeDScene):
+    def construct (self):
+        titulo=TextMobject('''Límite en infinito de funciones de \n
 
 class Limite4_1(ThreeDScene):
     def construct(self):
         titulo = TextMobject(
             """Límite a $\\infty$ de funciones de \n
+
                                 $\\mathbb{R}^{n}$ a $\\mathbb{R}$\n
                                 cuando es un valor L"""
         )
@@ -2516,20 +2705,25 @@ class Limite4_1(ThreeDScene):
         G2 = VGroup(text4, text5, text6)
 
         self.play(Write(titulo))
-        self.wait(2)
+        self.wait(5.25)
         self.play(FadeOut(titulo))
         self.play(Write(text))
         self.play(Write(text1))
         self.play(Write(text2))
         self.play(Write(text3))
-        self.wait(3)
+        self.wait(6)
         self.play(FadeOut(G1))
         self.play(Write(text4))
+
+        self.wait(4.6)
+        self.play(text4.shift,2*UP,runtime=1.5)
+
         self.wait()
         self.play(text4.shift, 2 * UP, runtime=1.5)
+
         self.play(Write(text5))
         self.play(Write(text6))
-        self.wait(2)
+        self.wait(3)
         self.play(FadeOut(G2))
         self.wait()
         self.custom_method()
@@ -2547,6 +2741,67 @@ class Limite4_1(ThreeDScene):
             text3.get_center() + 1 * DOWN
         )
         text3_1[1].set_color(YELLOW_C)
+
+        text4=TextMobject('''Tal que la imagen de los puntos que no \n
+                            pertenecen a $ B_{\\delta}(\\vec{0})$''').to_corner(UL)
+        text5=TextMobject('''Están a una distancia $\\epsilon$\n
+                                de 1.''').to_corner(UL)
+        text5_1=TextMobject('''Es posible hacer lo mismo con toda\n
+                                $\\epsilon>0$.''').to_corner(UL)
+        text6=TextMobject('''Por lo cual:''').to_corner(UL)
+        text7=TexMobject(r"\lim_{\vec{x}\rightarrow\infty}f(\vec{x})=1").move_to(text5.get_center()+1*DOWN)
+        
+        M=TextMobject("1").move_to(1*UP+0.2*LEFT)
+
+        #epsilons se pueden modificar
+        r=0.5
+        r1=1
+        linea=Line((0,0,1),(0,0,1+r),stroke_width=6,color=RED)
+        linea_1=Line((0,0,1),(0,0,1+r1),stroke_width=6,color=RED)
+        R=1.7
+        R1=R-0.5
+        linea1=Line((0,0,0),(R,0,0),stroke_width=6,color=YELLOW_C)
+        
+        circulo=Circle(radius=R,color=YELLOW_C)
+        circulo1=Circle(radius=R1,color=YELLOW_C)
+        #cilindro = ParametricSurface(
+        #    lambda u, v: np.array([
+        #        R*np.cos(TAU * v),
+        #        R*np.sin(TAU * v),
+        #        4*u
+        #    ]),
+        #    resolution=(6, 32)).fade(0.1).set_opacity(0.2)
+        #cilindro.set_color(YELLOW_C)
+        #cilindro1 = ParametricSurface(
+        #    lambda u, v: np.array([
+        #        R1*np.cos(TAU * v),
+        #        R1*np.sin(TAU * v),
+        #        4*u
+        #    ]),
+        #    resolution=(6, 32)).fade(0.1).set_opacity(0.2)
+        #cilindro1.set_color(YELLOW_C)
+
+        def puntosEnSuperficie(rad,lim,num):
+            puntosDom = []
+            puntosSur = []
+            for i in range(num):
+                azar = lim*np.random.rand(1,2)[0] + 0.1
+                if (rad < np.sqrt(azar[0]**2 + azar[1]**2) < lim):
+                    puntosDom.append(Dot(np.array([azar[0], azar[1],0]), color = BLUE))
+                    puntosSur.append(Dot(superficie.func(azar[0], azar[1]), color = RED))
+            return puntosDom, puntosSur
+
+        puntosD1, puntosS1 = puntosEnSuperficie(R, 5, 6000)
+        puntosD2, puntosS2 = puntosEnSuperficie(R1, R, 3000)
+
+        GPuntosD1 = VGroup(*puntosD1)
+        GPuntosS1 = VGroup(*puntosS1)
+        GPuntosD2 = VGroup(*puntosD2)
+        GPuntosS2 = VGroup(*puntosS2)
+
+    ###Animacion
+        self.set_camera_orientation(0.8*np.pi/2, -0.25*np.pi,distance=12)
+
         text4 = TextMobject(
             """Tal que la imagen de los puntos que no \n
                             pertenecen a $ B_{\\delta}(\\vec{0})$"""
@@ -2599,9 +2854,11 @@ class Limite4_1(ThreeDScene):
         cilindro1.set_color(YELLOW_C)
         ###Animacion
         self.set_camera_orientation(0.8 * np.pi / 2, -0.25 * np.pi, distance=12)
+
         self.begin_ambient_camera_rotation(rate=0.001)
         self.play(ShowCreation(axes))
         self.add_fixed_in_frame_mobjects(text1)
+        self.add_fixed_in_frame_mobjects(M)
         self.play(Write(text1))
         self.play(ShowCreation(superficie))
         self.wait()
@@ -2619,10 +2876,27 @@ class Limite4_1(ThreeDScene):
         self.play(FadeOut(text3), FadeOut(text3_1))
         self.add_fixed_in_frame_mobjects(text4)
         self.play(Write(text4))
-        self.play(ShowCreation(cilindro))
+        #self.play(ShowCreation(cilindro))
         self.wait()
         self.play(FadeOut(text4))
+        self.play(FadeIn(GPuntosD1))
         self.add_fixed_in_frame_mobjects(text5)
+
+        self.play(Write(text5),FadeOut(linea1))
+        self.play(FadeIn(GPuntosS1))
+        self.play(linea.shift,(R+0.1)*RIGHT,runtime=10)        
+        self.wait(6.5)
+        self.play(FadeOut(text5))
+        self.add_fixed_in_frame_mobjects(text5_1)
+        self.play(Write(text5_1))
+        self.play(ReplacementTransform(linea,linea_1))
+        self.play(ReplacementTransform(circulo,circulo1))
+        #self.play(ReplacementTransform(cilindro,cilindro1))
+        self.play(FadeIn(GPuntosD2))
+        self.play(FadeIn(GPuntosS2))
+        self.play(linea_1.shift,(R1+0.1)*RIGHT,runtime=10)
+        self.wait(3)
+
         self.play(Write(text5), FadeOut(linea1))
         self.play(linea.shift, (R + 0.1) * RIGHT, runtime=10)
         self.wait()
@@ -2634,12 +2908,19 @@ class Limite4_1(ThreeDScene):
         self.play(ReplacementTransform(cilindro, cilindro1))
         self.play(linea_1.shift, (R1 + 0.1) * RIGHT, runtime=10)
         self.wait()
+
         self.play(FadeOut(text5_1))
         self.add_fixed_in_frame_mobjects(text6)
         self.play(Write(text6))
         self.add_fixed_in_frame_mobjects(text7)
         self.play(Write(text7))
         self.wait(2)
+
+        self.play(FadeOut(text7),FadeOut(text6),FadeOut(axes),FadeOut(M),
+                    FadeOut(superficie),FadeOut(linea_1),FadeOut(circulo1),FadeOut(GPuntosD1),
+                    FadeOut(GPuntosS1),FadeOut(GPuntosD2),FadeOut(GPuntosS2))        
+        
+
         self.play(
             FadeOut(text7),
             FadeOut(text6),
@@ -2649,6 +2930,7 @@ class Limite4_1(ThreeDScene):
             FadeOut(linea_1),
             FadeOut(circulo1),
         )
+
 
 
 ##########################
@@ -5283,6 +5565,66 @@ class FunContinuasEnAbiertos(Scene):
             TextMobject(
                 """La imagen inversa de un abierto,\n
                                  bajo una función continua,\n 
+
+                                     es un abierto''').move_to(-0.5*UP).scale(1.5)
+        text1=TextMobject('''Tomemos la función ''',''' $f(x,y)=(x^{2},y)$''','''$ \ , \  (x,y)\\in\\mathbb{R}^{2}$''').move_to(1*UP)
+        text2=TextMobject('''Notemos que $Im(f)={(x,z)\\in\\mathbb{R}^2|x\\geq 0}$ y''').move_to(0*UP)
+        
+        text3=TextMobject(''' $f(x,y)$ es continua en  $\\mathbb{R}^{2}$''').move_to(1*DOWN)
+        text4=TextMobject('''Ahora tomemos un abierto en el contradominio de f \n
+                            $U\\subset\\mathbb{R}^{2}$''').move_to(2.3*UP)
+        text5=TextMobject('''Tomemos la imagen inversa de U''').move_to(text4)
+        text6=TextMobject(''' $f^{-1}(U)$\n
+                           $\\leftarrow$ ''').move_to(-1*UP)
+        text7=TextMobject('''Lo mismo ocurre con cualquier abierto de $\\mathbb{R}^{2}$''').move_to(text5)
+        text8=TextMobject(''' $f^{-1}(A)$\n
+                           $\\leftarrow$ ''').move_to(-1*UP)
+
+        textf=TextMobject('''$f:\\mathbb{R}^{n}\\rightarrow\\mathbb{R}^{m}$\n''',
+                               '''f es continua en $\\bf{TODO}$ $\\mathbb{R}^{n}$\n
+                                si solo si para todo \n  ''',    
+                               '''$ U\\subset\\mathbb{R}^{m}$ abierto \n
+                                   se cumple que $f^{-1}(U)$ es abierto ''')
+        textf1=TextMobject(''' Lo mismo ocurre si el dominio de $f$ es abierto,\n 
+                                      ''',''' ¿qué pasa si no lo es? \n
+                                      ''',''' Investiga sobre topología relativa.''')
+        textf2=TextMobject('''También puedes modificar el código para ver más \n
+                                ejemplos con cajas''')
+        linea1=Arrow((-6,-4,0),(-0.5,-4,0),stroke_width=6,color=WHITE,buff=0)
+        linea2=Arrow((-3.5,-7,0),(-3.5,0,0),stroke_width=6,color=WHITE,buff=0)
+        G1=VGroup(linea1,linea2).move_to(-2.5*UP+3.5*LEFT)
+
+        linea3=Arrow((0.5,-4,0),(6,-4,0),stroke_width=6,color=WHITE,buff=0)
+        linea4=Arrow((3,-7,0),(3,0,0),stroke_width=6,color=WHITE,buff=0)
+        G2=VGroup(linea3,linea4).move_to(3.5*RIGHT-2.5*UP)
+
+        #Pueden cambiar estos parametros para cambiar la caja de la imagen inversa
+        r1=1#altura
+        r2=1.5#ancho
+    
+        caja1=Rectangle(height=r1, width=r2,fill_color=YELLOW_C,color=YELLOW_C ,fill_opacity=1,buff=0).move_to((3.7+(-r2/2))*LEFT-2.5*UP)
+        
+        caja2=Rectangle(height=r1, width=r2*r2,fill_color=PURPLE_C,color=PURPLE_C ,fill_opacity=1,buff=0).move_to((3.3+r2*r2/2)*RIGHT+-2.5*UP)
+        caja2label=TextMobject("U").next_to(caja2)
+        #Tambien se puede cambiar r3 y r4 para cambiar los tamaños de la caja en el 2do ejemplo
+        r3=2#altura
+        r4=2#ancho
+        #posiciones de la caja, por si se quiere
+        #usar una caja que no este esquinada y elevada en y en el segundo ejemplo
+        y=0
+
+        caja3=Rectangle(height=r3, width=(r4/3),fill_color=YELLOW_C,color=YELLOW_C ,fill_opacity=1,buff=0).move_to((4.7)*LEFT+(-3+(r3/2))*UP)
+        
+        caja5=Rectangle(height=r3, width=(r4/3),fill_color=YELLOW_C,color=YELLOW_C ,fill_opacity=1,buff=0).move_to((2.8)*LEFT+(-3+(r3/2))*UP)
+
+        caja4=Rectangle(height=r3, width=(r4/2)**2,fill_color=PURPLE_C,color=PURPLE_C ,fill_opacity=1,buff=0).move_to((3.8+((((r4/2)**2)/2)))*RIGHT+(-3+(r3/2))*UP)
+        caja4label=TextMobject("A").next_to(caja4)
+
+        punto=np.array([1,-4,0])
+        
+
+### Animación
+
                                      es un abierto"""
             )
             .move_to(-0.5 * UP)
@@ -5395,6 +5737,7 @@ class FunContinuasEnAbiertos(Scene):
         punto = np.array([1, -4, 0])
 
         ### Animación
+
         self.play(Write(titulo))
         self.wait()
         self.play(titulo.shift, 2 * UP, runtime=1.5)
@@ -5421,6 +5764,15 @@ class FunContinuasEnAbiertos(Scene):
         self.play(ShowCreation(caja1))
         self.play(ReplacementTransform(text5, text7))
         self.wait(5)
+
+        self.play(ReplacementTransform(caja2,caja4),ReplacementTransform(caja2label,caja4label))
+        self.play(ReplacementTransform(text6,text8))
+        self.play(ReplacementTransform(caja1,caja3))
+        self.play(ShowCreation(caja5))
+        self.wait()
+        self.play(FadeOut(caja3),FadeOut(caja4),FadeOut(caja5),FadeOut(G1),FadeOut(G2),FadeOut(text8),FadeOut(text1[1]),
+                     FadeOut(text7),FadeOut(caja4label)   )
+
         self.play(
             ReplacementTransform(caja2, caja4),
             ReplacementTransform(caja2label, caja4label),
@@ -5438,6 +5790,7 @@ class FunContinuasEnAbiertos(Scene):
             FadeOut(text7),
             FadeOut(caja4label),
         )
+
         self.play(Write(textf[0]))
         self.wait(5)
         self.play(Write(textf[1]))
