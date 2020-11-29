@@ -1107,7 +1107,7 @@ class Proyeccion(ThreeDScene):
 ####LIMITES DE R a R2
 
 
-class ExitenciaLimites(ThreeDScene):
+class Existencia_Limites(ThreeDScene):
     def cur(self, t):
         return np.array([t, t ** 2, t ** 3])
 
@@ -1118,7 +1118,8 @@ class ExitenciaLimites(ThreeDScene):
 
         ###Texto
         titulo = TextMobject(
-            "Exixtencia del límite de funciones de \n $\\mathbb{R}^{n}\\rightarrow\\mathbb{R}^{m}$"
+            """Existencia del límite de funciones de \n
+            $\\mathbb{R}^{n}\\rightarrow\\mathbb{R}^{m}$"""
         )
         definicion_1 = TextMobject(
             """Sean $f:A \\subset \\mathbb{R}^{n}\\rightarrow\\mathbb{R}^{m}$ y $\\vec{x}_0 \\in A^{\\prime} $. """
@@ -1128,12 +1129,36 @@ class ExitenciaLimites(ThreeDScene):
         )
         definicion_3 = TextMobject(
             """si $\\forall$ $\\epsilon > 0$ $\\exists$ $\\delta>0$ tal que si $\\Vert  \\vec{x} - \\vec{x}_0 \\Vert  < \\delta$ y $\\vec{x} \\in A \\setminus  \{\\vec{x}_0\}$, """
-        )
+        ).move_to(definicion_2.get_center() + 0.8 * DOWN)
         definicion_4 = TextMobject(
-            """entonces $\\Vert f(\\vec{x}) - \\vec{l} \\Vert < \\epsilon$"""
+            """ entonces $\\Vert f(\\vec{x}) - \\vec{l} \\Vert < \\epsilon$"""
+        ).move_to(definicion_3.get_center() + 0.8 * DOWN)
+        ### Animacion definiciones
+        self.play(Write(titulo.scale(1.5)))
+        self.wait()
+        self.play(FadeOut(titulo))
+        self.play(Write(definicion_1))
+        self.wait(6.87)
+        self.play(definicion_1.shift, 1.2 * UP, runtime=1.5)
+        self.play(Write(definicion_2))
+        self.wait(8)
+        self.play(Write(definicion_3))
+        self.wait(11)
+        self.play(Write(definicion_4))
+        self.wait(4.62)
+        self.play(
+            FadeOut(definicion_2),
+            FadeOut(definicion_3),
+            FadeOut(definicion_4),
+            FadeOut(definicion_1),
         )
+        self.wait()
+        self.custom_method()
+
+    def custom_method(self):
         t_1 = TextMobject("Por ejemplo, consideremos la siguiente función:")
         t_2 = TextMobject("$f(t) = (t^2, t^3)$")
+        t_2[0].set_color(RED)
         t_3 = TextMobject(
             """Veamos el límite cuando \n  
         $ t \\rightarrow 0$"""
@@ -1141,13 +1166,15 @@ class ExitenciaLimites(ThreeDScene):
         t_4 = TextMobject(
             """Tomamos de forma \n  
         arbitraria """,
-            """ $\\epsilon > 0$""",
+            """ $\\epsilon$""",
+            """$> 0$""",
         )
         t_4[1].set_color(BLUE)
         t_5 = TextMobject(
             """Y observamos gráficamente \n
         que $\\exists$ """,
-            """ $\\delta > 0 $""",
+            """ $\\delta$""",
+            """$> 0$""",
         )
         t_5[1].set_color("#88FF00")
         t_6 = TextMobject(
@@ -1162,12 +1189,17 @@ class ExitenciaLimites(ThreeDScene):
             """$\\epsilon$ """,
         )
         t_7[1].set_color(BLUE)
-        t_8 = TextMobject("""$$\\therefore \lim_{t \\to 0} f(t) = \\vec{0} $$""")
+        t_8 = TextMobject(
+            """$\\displaystyle \\therefore \lim_{t \\to 0}$""",
+            """ $f(t) = \\vec{0} $""",
+        )
+        t_8[1].set_color(RED)
         t_9 = TextMobject(
             """Ahora consideremos \n 
         esta otra función"""
         )
         t_10 = TextMobject("""$g(x,y) = \\frac{1}{1 + x^2 + y^2}$""")
+        t_10[0].set_color(BLUE)
         t_11 = TextMobject(
             """¿Existe límite cuando \n 
         $(x,y)\\rightarrow (0,0)$ ?"""
@@ -1175,16 +1207,21 @@ class ExitenciaLimites(ThreeDScene):
         t_12 = TextMobject(
             """De la misma manera \n 
         podemos visualizar que \n
-         se cumple la definción"""
+         se cumple la definición"""
         )
         t_13 = TextMobject(
             """Observamos que \n
-        $$ \lim_{(x,y) \\to (0,0)} g(x,y) = 1 $$"""
+        $\\displaystyle \lim_{(x,y) \\to (0,0)}$""",
+            """$\\ g(x,y) = 1 $""",
         )
+        t_13[1].set_color(BLUE)
         t_14 = TextMobject(
-            """¿Puedes encontrar de forma analítica la \n
-        $\\delta$ apropiada para demostrar estos limites?"""
+            """¿Puedes encontrar de forma analítica \n
+             la""",
+            """ $\\delta$""",
+            """ apropiada para demostrar estos límites?""",
         )
+        t_14[1].set_color("#88FF00")
 
         t_1.to_corner(UL)
         t_2.to_corner(UL)
@@ -1203,6 +1240,9 @@ class ExitenciaLimites(ThreeDScene):
         ### Objetos
 
         axes = ThreeDAxes()
+        axes.add(axes.get_x_axis_label("t"))
+        axes1 = ThreeDAxes()
+        axes1.add(axes1.get_axis_labels())
         curve = ParametricFunction(self.cur, color=RED, t_min=-3, t_max=3)
         surface = ParametricSurface(
             self.sur, color=GREEN, u_min=-3, u_max=3, v_min=-3, v_max=3
@@ -1397,33 +1437,13 @@ class ExitenciaLimites(ThreeDScene):
 
         ###Animaciones
         self.begin_ambient_camera_rotation(rate=0.06)
-        self.add_fixed_in_frame_mobjects(titulo)
-        self.play(Write(titulo))
-        self.wait()
-        self.play(FadeOut(titulo))
-        self.add_fixed_in_frame_mobjects(definicion_1)
-        self.play(Write(definicion_1))
-        self.wait(4)
-        self.play(FadeOut(definicion_1))
-        self.add_fixed_in_frame_mobjects(definicion_2)
-        self.play(Write(definicion_2))
-        self.wait(3)
-        self.play(FadeOut(definicion_2))
-        self.add_fixed_in_frame_mobjects(definicion_3)
-        self.play(Write(definicion_3))
-        self.wait(5)
-        self.play(FadeOut(definicion_3))
-        self.add_fixed_in_frame_mobjects(definicion_4)
-        self.play(Write(definicion_4))
-        self.wait(3)
-        self.play(FadeOut(definicion_4))
         self.add_fixed_in_frame_mobjects(t_1)
         self.play(Write(t_1))
-        self.wait()
+        self.wait(4.25)
         self.play(FadeOut(t_1))
         self.add_fixed_in_frame_mobjects(t_2)
         self.play(Write(t_2))
-        self.wait()
+        self.wait(3.125)
         self.add(axes)
         self.set_camera_orientation(phi=75 * DEGREES, theta=-45 * DEGREES)
         self.play(LaggedStart(ShowCreation(curve)))
@@ -1431,26 +1451,29 @@ class ExitenciaLimites(ThreeDScene):
         self.play(FadeOut(t_2))
         self.add_fixed_in_frame_mobjects(t_3)
         self.play(Write(t_3))
-        self.wait()
+        self.wait(4.625)
         self.play(FadeOut(t_3))
         self.add_fixed_in_frame_mobjects(t_4)
         self.play(Write(t_4))
-        self.wait()
+        self.wait(4.625)
         self.add(Group_1)
         self.wait(2)
         self.play(FadeOut(t_4))
         self.add_fixed_in_frame_mobjects(t_5)
         self.play(Write(t_5))
+        self.wait(5)
         self.add(Group_2)
         self.wait(2)
         self.play(FadeOut(t_5))
         self.add_fixed_in_frame_mobjects(t_6)
         self.play(Write(t_6))
+        self.wait(6.5)
         self.add(Bola)
         self.wait(2)
         self.play(FadeOut(t_6))
         self.add_fixed_in_frame_mobjects(t_7)
         self.play(Write(t_7))
+        self.wait(6.5)
         Big_Group_1.add_updater(update_group_1)
         self.add(Big_Group_1)
         self.play(x.increment_value, 5, rate_func=linear, run_time=10)
@@ -1458,26 +1481,29 @@ class ExitenciaLimites(ThreeDScene):
         self.play(FadeOut(t_7))
         self.add_fixed_in_frame_mobjects(t_8)
         self.play(Write(t_8))
-        self.wait(2)
+        self.wait(5)
         self.play(FadeOut(Big_Group_1))
         self.play(FadeOut(t_8))
         self.play(FadeOut(curve))
         self.add_fixed_in_frame_mobjects(t_9)
+        self.play(FadeOut(axes))
+        self.add(axes1)
         self.play(Write(t_9))
-        self.wait()
+        self.wait(3.875)
         self.play(FadeOut(t_9))
         self.add_fixed_in_frame_mobjects(t_10)
         self.play(Write(t_10))
-        self.wait()
+        self.wait(3.875)
         self.play(LaggedStart(ShowCreation(surface)))
         self.wait(2)
         self.play(FadeOut(t_10))
         self.add_fixed_in_frame_mobjects(t_11)
         self.play(Write(t_11))
-        self.wait()
+        self.wait(4.25)
         self.play(FadeOut(t_11))
         self.add_fixed_in_frame_mobjects(t_12)
         self.play(Write(t_12))
+        self.wait(6.125)
         self.add(Group_3, Group_4, Bola_2)
         self.wait()
         Big_Group_2.add_updater(update_group_2)
@@ -1487,14 +1513,14 @@ class ExitenciaLimites(ThreeDScene):
         self.play(FadeOut(t_12))
         self.add_fixed_in_frame_mobjects(t_13)
         self.play(Write(t_13))
-        self.wait(2)
+        self.wait(5)
         self.play(FadeOut(Big_Group_2))
         self.play(FadeOut(t_13))
         self.play(FadeOut(surface))
-        self.play(FadeOut(axes))
+        self.play(FadeOut(axes1))
         self.add_fixed_in_frame_mobjects(t_14)
         self.play(Write(t_14))
-        self.wait(2)
+        self.wait(6.5)
         self.play(FadeOut(t_14))
 
 
@@ -1506,36 +1532,202 @@ class Limites_Al_Infinito(ThreeDScene):
 
         ###Texto
         titulo = TextMobject(
-            "Divergencia a infinito de funciones de \n $\\mathbb{R}\\rightarrow\\mathbb{R}^{n}$ en infinto"
+            """Divergencia a infinito de funciones de \n
+            $\\mathbb{R}\\rightarrow\\mathbb{R}^{n}$ en infinito""",
         )
         definicion_1 = TextMobject(
             """Sea $f: \\mathbb{R} \\rightarrow \\mathbb{R}^{n}$"""
         )
         definicion_2 = TextMobject(
-            """$$\\implies \\lim_{t \\rightarrow  \\infty} f(t) = \\vec{\\infty} \\Leftrightarrow  \\forall \\: M >0$$"""
+            """$$\\implies \\ \\lim_{t \\rightarrow  \\infty} f(t) = \\vec{\\infty} \\Leftrightarrow  \\forall \\: M >0$$"""
         )
         definicion_3 = TextMobject(
-            """$\\exists$ $\\delta >0$ tal que si $ t> \\delta$ """
-        )
-        definicion_4 = TextMobject("""$\\implies \\Vert f(t) \\Vert > M$""")
+            """$\\exists$ $\\delta >0$ tal que si $ t> \\delta$ \n 
+            $\\implies \\ \\Vert f(t) \\Vert > M$"""
+        ).move_to(definicion_2.get_center() + 0.9 * DOWN)
+
+        ##Animacion definiciones
+        self.play(Write(titulo.scale(1.5)))
+        self.wait()
+        self.play(FadeOut(titulo))
+        self.play(Write(definicion_1))
+        self.wait(2.5)
+        self.play(definicion_1.shift, 1.2 * UP, runtime=1.5)
+        self.play(Write(definicion_2))
+        self.wait(6.5)
+        self.play(Write(definicion_3))
+        self.wait(7.6)
+        self.play(FadeOut(definicion_2), FadeOut(definicion_3), FadeOut(definicion_1))
+        self.wait()
+        self.custom_method()
+
+    def custom_method(self):
         t_1 = TextMobject("""Por ejemplo:""")
         t_2 = TextMobject("""$f(t) = (t \\sin(5t),- e^{\\frac{t}{2}} \\cos(5t))$""")
+        t_2.set_color(TEAL)
         t_3 = TextMobject("""Cuando  $t \\rightarrow \\infty$""")
-        t_4 = TextMobject("""Vemos que  $\\forall$""", """$M>0$""")
+        t_4 = TextMobject("""Vemos que  $\\forall$""", """ $M$""", """$>0$""")
         t_4[1].set_color(YELLOW)
         t_5 = TextMobject("""Si $t > $  """, """$\\delta$ """, """ adecuada""")
         t_5[1].set_color(RED)
         t_6 = TextMobject(
-            """Notamos que \n
-        $\\Vert f(t) \\Vert >$""",
+            """Notamos que \n 
+        $ \\Vert $""",
+            """$f(t)$""",
+            """$ \\Vert > $""",
             """$  M$""",
         )
-        t_6[1].set_color(YELLOW)
+        t_6[1].set_color(TEAL)
+        t_6[3].set_color(YELLOW)
         t_7 = TextMobject("""$\\forall$""", """ $M $""", """$> 0$""")
         t_7[1].set_color(YELLOW)
         t_8 = TextMobject(
             """¿Qué crees que sucede cuando $t \\rightarrow - \\infty$?"""
         )
+
+        t_1.to_corner(UL)
+        t_2.to_corner(UL)
+        t_3.to_corner(UL)
+        t_4.to_corner(UL)
+        t_5.to_corner(UL)
+        t_6.to_corner(UL)
+        t_7.to_corner(UL)
+
+        axes = ThreeDAxes(
+            x_min=-5.5, x_max=5.5, z_min=-5.5, z_max=40, num_axis_pieces=50
+        )
+        axes.add(axes.get_x_axis_label("t"))
+        curve_1 = ParametricFunction(self.cur_1, color=TEAL, t_min=-5, t_max=5)
+
+        M = Line(
+            np.array([0, 0, 0]),
+            np.array([0, -1 / np.sqrt(2), 1 / np.sqrt(2)]),
+            stroke_width=8,
+            color=YELLOW,
+        ).move_to(np.array([1, -1 / (2 * np.sqrt(2)), 1 / (2 * np.sqrt(2))]))
+        m = (
+            TextMobject("$M$")
+            .rotate(PI / 2, axis=RIGHT)
+            .rotate(PI / 2, about_edge=Z_AXIS)
+            .move_to(M.get_center() + np.array([0, -0.5, 0.5]))
+            .set_color(YELLOW)
+        )
+        Delta = Line(
+            np.array([0, 0, 0]), np.array([1, 0, 0]), stroke_width=8, color=RED
+        ).move_to(np.array([0.5, 0, 0]))
+        delta = (
+            TextMobject("$\\delta$")
+            .rotate(PI / 2, axis=RIGHT)
+            .rotate(PI / 2, about_edge=Z_AXIS)
+            .move_to(Delta.get_center() + np.array([0.5, 0.5, 0]))
+            .set_color(RED)
+        )
+        Bola = (
+            Circle(radius=1, color=YELLOW)
+            .rotate(PI / 2, axis=RIGHT)
+            .rotate(PI / 2, about_edge=Z_AXIS)
+            .move_to(np.array([1, 0, 0]))
+        )
+
+        ###Grupos
+        Group = VGroup(M, m, Delta, delta, Bola)
+        Group_1 = VGroup(curve_1)
+        Group_2 = VGroup(M, m)
+        Group_3 = VGroup(Delta, delta)
+
+        ### Update
+
+        x = ValueTracker(1)
+
+        def update_group(Group):
+            M, m, Delta, delta, Bola = Group
+            M_new = Line(
+                np.array([0, 0, 0]),
+                np.array([0, -x.get_value() / np.sqrt(2), x.get_value() / np.sqrt(2)]),
+                stroke_width=8,
+                color=YELLOW,
+            ).move_to(
+                np.array(
+                    [
+                        x.get_value(),
+                        -x.get_value() / (2 * np.sqrt(2)),
+                        x.get_value() / (2 * np.sqrt(2)),
+                    ]
+                )
+            )
+            M.become(M_new)
+            m.move_to(
+                M_new.get_center()
+                + np.array([0, -x.get_value() / np.sqrt(2), x.get_value() / np.sqrt(2)])
+            )
+            Delta_new = Line(
+                np.array([0, 0, 0]),
+                np.array([x.get_value(), 0, 0]),
+                stroke_width=8,
+                color=RED,
+            ).move_to(np.array([(x.get_value()) / 2, 0, 0]))
+            Delta.become(Delta_new)
+            delta.move_to(Delta_new.get_center() + np.array([0.5, 0.5, 0]))
+            Bola_new = (
+                Circle(radius=x.get_value(), color=YELLOW)
+                .rotate(PI / 2, axis=RIGHT)
+                .rotate(PI / 2, about_edge=Z_AXIS)
+                .move_to(np.array([x.get_value(), 0, 0]))
+            )
+            Bola.become(Bola_new)
+            return Group
+
+        ### Animaciones
+        self.begin_ambient_camera_rotation(rate=0.12)
+        self.add_fixed_in_frame_mobjects(t_1)
+        self.play(Write(t_1))
+        self.wait(2.75)
+        self.play(FadeOut(t_1))
+        self.add(axes)
+        self.set_camera_orientation(phi=65 * DEGREES, theta=-90 * DEGREES)
+        self.play(LaggedStart(ShowCreation(Group_1)))
+        self.wait(2)
+        self.add_fixed_in_frame_mobjects(t_2)
+        self.play(Write(t_2))
+        self.wait(6)
+        self.play(FadeOut(t_2))
+        self.add_fixed_in_frame_mobjects(t_3)
+        self.play(Write(t_3))
+        self.wait(3.5)
+        self.play(FadeOut(t_3))
+        self.add_fixed_in_frame_mobjects(t_4)
+        self.play(Write(t_4))
+        self.wait(4.2)
+        self.add(Group_2)
+        self.wait()
+        self.play(FadeOut(t_4))
+        self.wait()
+        self.add_fixed_in_frame_mobjects(t_5)
+        self.play(Write(t_5))
+        self.wait(3.8)
+        self.add(Group_3)
+        self.wait()
+        self.play(FadeOut(t_5))
+        self.add(Bola)
+        self.add_fixed_in_frame_mobjects(t_6)
+        self.play(Write(t_6))
+        self.wait(4.2)
+        self.play(FadeOut(t_6))
+        self.wait()
+        self.add_fixed_in_frame_mobjects(t_7)
+        self.play(Write(t_7))
+        self.wait(3.5)
+        Group.add_updater(update_group)
+        self.add(Group)
+        self.play(x.increment_value, 2, rate_func=linear, run_time=10)
+        self.wait()
+        self.play(FadeOut(t_7))
+        self.play(FadeOut(Group))
+        self.play(FadeOut(Group_1), FadeOut(axes))
+        self.add_fixed_in_frame_mobjects(t_8)
+        self.play(Write(t_8))
+        self.wait(5)
+        self.play(FadeOut(t_8))
 
 
 class Divergencia_A_Infinito(ThreeDScene):
@@ -1546,7 +1738,8 @@ class Divergencia_A_Infinito(ThreeDScene):
 
         ###Texto
         titulo = TextMobject(
-            "Divergencia a infinito de funciones de \n $\\mathbb{R}\\rightarrow\\mathbb{R}^{n}$ en un punto $t_0$"
+            """Divergencia a infinito de funciones de \n
+            $\\mathbb{R}\\rightarrow\\mathbb{R}^{n}$ en un punto $t_0$"""
         )
         definicion_1 = TextMobject(
             """Sea $f: \\mathbb{R} \\rightarrow \\mathbb{R}^{n}$"""
@@ -1555,30 +1748,51 @@ class Divergencia_A_Infinito(ThreeDScene):
             """$$\\lim_{t \\rightarrow t_{0}} f(t) = \\vec{\\infty} \\Leftrightarrow  \\forall \\: M >0$$"""
         )
         definicion_3 = TextMobject(
-            """$\\exists$ $\\delta >0$ tal que si $|t-t_{0}| < \\delta$ """
-        )
-        definicion_4 = TextMobject("""$\\Rightarrow \\Vert f(t) \\Vert > M$""")
+            """$\\exists \\delta >0$ tal que si $0< |t-t_{0}| < \\delta$ \n $\\Rightarrow \\Vert f(t) \\Vert > M$"""
+        ).move_to(definicion_2.get_center() + 0.8 * DOWN)
+
+        ### Animaciones
+        self.play(Write(titulo.scale(1.5)))
+        self.wait()
+        self.play(FadeOut(titulo))
+        self.play(Write(definicion_1))
+        self.wait(4.25)
+        self.play(definicion_1.shift, 1.2 * UP, runtime=1.5)
+        self.play(Write(definicion_2))
+        self.wait(6.125)
+        self.play(Write(definicion_3))
+        self.wait(8.75)
+        self.play(FadeOut(definicion_2), FadeOut(definicion_3), FadeOut(definicion_1))
+        self.wait()
+        self.custom_method()
+
+    def custom_method(self):
         t_1 = TextMobject("""Veamos este ejemplo:""")
         t_2 = TextMobject("""$f(t) = (\\frac{1}{1-t},t^2)$""")
+        t_2[0].set_color(PURPLE)
         t_3 = TextMobject(
             """¿Qué sucede cuando \n
         $t \\rightarrow 1$?"""
         )
-        t_4 = TextMobject("""Tomemos """, """$M>0$""")
+        t_4 = TextMobject("""Tomemos """, """$M$""", """$>0$""")
         t_4[1].set_color("#88FF00")
         t_5 = TextMobject(
             """Si elegimos adecuadamente \n
         """,
-            """$\\delta >0 $""",
+            """$\\delta$""",
+            """$>0 $""",
         )
         t_5[1].set_color(BLUE)
         t_6 = TextMobject(
             """Es claro que \n
-        $\\Vert f(t) \\Vert >$""",
+        $\\Vert$""",
+            """$ f(t) $""",
+            """$\\Vert >$""",
             """$  M$""",
         )
-        t_6[1].set_color("#88FF00")
-        t_7 = TextMobject("""$\\forall$""", """ $M $""", """$> 0$""")
+        t_6[1].set_color(PURPLE)
+        t_6[3].set_color("#88FF00")
+        t_7 = TextMobject("""$\\forall$""", """ $M$""", """$> 0$""")
         t_7[1].set_color("#88FF00")
         t_8 = TextMobject(
             """¿Se te ocurre como definir este límite usando sucesiones?"""
@@ -1595,6 +1809,7 @@ class Divergencia_A_Infinito(ThreeDScene):
         ### Objetos
 
         axes = ThreeDAxes()
+        axes.add(axes.get_x_axis_label("t"))
         curve_1_1 = ParametricFunction(self.cur_1, color=PURPLE, t_min=-3, t_max=0.9)
         curve_1_2 = ParametricFunction(self.cur_1, color=PURPLE, t_min=1.1, t_max=3)
 
@@ -1676,31 +1891,11 @@ class Divergencia_A_Infinito(ThreeDScene):
             Bola.become(Bola_new)
             return Group
 
-        ### Animaciones
+        ## Animaciones
         self.begin_ambient_camera_rotation(rate=0.1)
-        self.add_fixed_in_frame_mobjects(titulo)
-        self.play(Write(titulo))
-        self.wait()
-        self.play(FadeOut(titulo))
-        self.add_fixed_in_frame_mobjects(definicion_1)
-        self.play(Write(definicion_1))
-        self.wait(3)
-        self.play(FadeOut(definicion_1))
-        self.add_fixed_in_frame_mobjects(definicion_2)
-        self.play(Write(definicion_2))
-        self.wait(4)
-        self.play(FadeOut(definicion_2))
-        self.add_fixed_in_frame_mobjects(definicion_3)
-        self.play(Write(definicion_3))
-        self.wait(4)
-        self.play(FadeOut(definicion_3))
-        self.add_fixed_in_frame_mobjects(definicion_4)
-        self.play(Write(definicion_4))
-        self.wait(4)
-        self.play(FadeOut(definicion_4))
         self.add_fixed_in_frame_mobjects(t_1)
         self.play(Write(t_1))
-        self.wait()
+        self.wait(3.125)
         self.play(FadeOut(t_1))
         self.add(axes)
         self.set_camera_orientation(phi=65 * DEGREES, theta=-90 * DEGREES)
@@ -1708,14 +1903,15 @@ class Divergencia_A_Infinito(ThreeDScene):
         self.wait(2)
         self.add_fixed_in_frame_mobjects(t_2)
         self.play(Write(t_2))
-        self.wait()
+        self.wait(3.87)
         self.play(FadeOut(t_2))
         self.add_fixed_in_frame_mobjects(t_3)
         self.play(Write(t_3))
-        self.wait()
+        self.wait(4.25)
         self.play(FadeOut(t_3))
         self.add_fixed_in_frame_mobjects(t_4)
         self.play(Write(t_4))
+        self.wait(3.5)
         self.add(Group_2)
         self.wait()
         self.play(FadeOut(t_4))
@@ -1723,17 +1919,17 @@ class Divergencia_A_Infinito(ThreeDScene):
         self.wait()
         self.add_fixed_in_frame_mobjects(t_5)
         self.play(Write(t_5))
-        self.wait()
+        self.wait(4.25)
         self.play(FadeOut(t_5))
         self.add(Bola)
         self.add_fixed_in_frame_mobjects(t_6)
         self.play(Write(t_6))
-        self.wait()
+        self.wait(4.625)
         self.play(FadeOut(t_6))
         self.wait()
         self.add_fixed_in_frame_mobjects(t_7)
         self.play(Write(t_7))
-        self.wait()
+        self.wait(3.5)
         Group.add_updater(update_group)
         self.add(Group)
         self.play(x.increment_value, 1, rate_func=linear, run_time=10)
@@ -1742,7 +1938,7 @@ class Divergencia_A_Infinito(ThreeDScene):
         self.play(FadeOut(Group), FadeOut(Group_1), FadeOut(axes))
         self.add_fixed_in_frame_mobjects(t_8)
         self.play(Write(t_8))
-        self.wait()
+        self.wait(5.375)
         self.play(FadeOut(t_8))
 
 
@@ -1777,32 +1973,37 @@ class Limites2(ThreeDScene):
         ).move_to(texto1.get_center() + 0.8 * DOWN)
         texto1_2 = TextMobject("""Veamos el siguiente ejemplo.""")
         texto1_3 = TextMobject(
-            """$f:\\mathbb{R}^{+}\\rightarrow\\mathbb{R}^{2}$ \n
-                                    $f(x)=(\\frac{1}{x^{3}},\\frac{1}{x^{3}})$"""
+            """$f$""",
+            """$:\\mathbb{R}^{+}\\rightarrow\\mathbb{R}^{2}$ \n""",
+            """$f(x)=(\\frac{1}{x^{3}},\\frac{1}{x^{3}})$""",
         )
-
+        texto1_3[0].set_color(BLUE_C)
+        texto1_3[2].set_color(BLUE_C)
         ###Animacion
-        self.play(Write(titulo2))
+        self.play(Write(titulo2.scale(1.5)))
         self.wait()
         self.play(FadeOut(titulo2))
         self.play(Write(texto))
-        self.wait()
+        self.wait(4.25)
         self.play(texto.shift, 1.2 * UP, runtime=1.5)
         self.play(Write(texto1))
+        self.wait(6.125)
         self.play(Write(texto1_1))
-        self.wait(3)
+        self.wait(8)
         self.play(FadeOut(texto1), FadeOut(texto1_1), FadeOut(texto))
         self.wait()
         self.play(Write(texto1_2))
+        self.wait(3.5)
         self.play(FadeOut(texto1_2))
         self.play(Write(texto1_3))
-        self.wait()
+        self.wait(6.125)
         self.play(FadeOut(texto1_3))
         self.wait()
         self.custom_method()
 
     def custom_method(self):
         axes1 = ThreeDAxes()
+        axes.add(axes.get_x_axis_label("t"))
         surface2 = superficie2()
         texto2 = TextMobject("""Tomemos""", """  $\\epsilon$=0.8""")
         texto2[1].set_color(RED)
@@ -1815,19 +2016,29 @@ class Limites2(ThreeDScene):
         )
         texto3.to_corner(UL)
         texto4 = TextMobject(
-            """Veamos que hay un punto en x desde el cual\n
-                              f(x) esta a una distancia menor de $\\epsilon$\n
-                              del 0 del plano yz."""
+            """Veamos que hay un punto \n 
+            en x desde el cual """,
+            """$f(x)$""",
+            """ esta a una distancia menor  \n
+             de """,
+            """$\\epsilon$""",
+            """ del 0 del plano yz.""",
         )
+        texto4[1].set_color(BLUE_C)
+        texto4[3].set_color(RED)
         texto4.to_corner(UL)
         texto4_1 = TextMobject(
-            """Es posible hacer lo mismo con cualquier\n
-                                $\\epsilon>0$"""
+            """Es posible hacer lo mismo \n
+            con cualquier """,
+            """$\\epsilon$""",
+            """$>0$""",
         )
+        texto4_1[1].set_color(RED)
         texto4_1.to_corner(UL)
         texto5 = TextMobject(
-            """Por lo cual notaremos que la función tiene \n
-                                límite cuando $x\\rightarrow \\infty^{+}$ y es (0,0)"""
+            """Por lo cual notaremos que \n 
+            la función tiene límite cuando \n  
+            $x\\rightarrow \\infty^{+}$ y es (0,0)"""
         )
         texto5.to_corner(UL)
         texto6 = TextMobject(
@@ -1853,31 +2064,33 @@ class Limites2(ThreeDScene):
         self.begin_ambient_camera_rotation(rate=0.001)
         self.add_fixed_in_frame_mobjects(texto2)
         self.play(Write(texto2))
+        self.wait(3.5)
         self.play(ShowCreation(circulo))
         self.play(FadeOut(texto2))
         self.add_fixed_in_frame_mobjects(texto3)
         self.play(Write(texto3))
-        self.wait()
+        self.wait(9.125)
         self.play(FadeOut(texto3))
         self.move_camera(phi=80 * DEGREES, theta=-PI / 8, rate=0.2)
         self.play(circulo.shift, 1.8 * RIGHT, runtime=3)
         self.add_fixed_in_frame_mobjects(texto4)
         self.play(Write(texto4))
-        self.wait()
+        self.wait(9.875)
         self.play(FadeOut(texto4))
         self.add_fixed_in_frame_mobjects(texto4_1)
         self.play(Write(texto4_1))
+        self.wait(5.75)
         self.play(ReplacementTransform(circulo, circulo1))
         self.play(circulo1.shift, 2 * RIGHT, runtime=3)
         self.wait()
         self.play(FadeOut(texto4_1))
         self.add_fixed_in_frame_mobjects(texto5)
         self.play(Write(texto5))
-        self.wait(2)
+        self.wait(8.375)
         self.play(FadeOut(texto5), FadeOut(circulo1), FadeOut(axes1), FadeOut(surface2))
         self.add_fixed_in_frame_mobjects(texto6)
         self.play(Write(texto6))
-        self.wait()
+        self.wait(7.625)
         self.play(FadeOut(texto6))
 
 
