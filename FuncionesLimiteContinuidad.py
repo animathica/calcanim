@@ -3457,7 +3457,7 @@ class ExtremeValue(GraphScene, Scene):
 
     # defining text
     def construct(self):
-        extreme = TextMobject('Teorema del Valor Extremo').scale(1.5)
+        extreme = TextMobject('Teorema del Valor Extremo')
         # Definición intuitiva
         def_intuitiva = TextMobject("""De manera intuitiva, este teorema nos dice que si \n
         tenemos una función continua en un conjunto compacto, \n
