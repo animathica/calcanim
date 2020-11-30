@@ -2689,7 +2689,7 @@ class LimitesR2_a_R_1 (ThreeDScene):
                                 D\\implies f(\\vec{x})>M$''').shift(1.5*DOWN)
         text_2=TextMobject('''Veamos el siguiente ejemplo.''')
         text1=TexMobject(r"f:D\subset\mathbb{R}^2\rightarrow\mathbb{R}").shift(2.5*UP)
-        text1_1=TexMobject(r"D=\lbrace (x,y)|x,y\in\mathbb{R}^{+}-\lbrace 0 \rbrace \rbrace").shift(1.25*UP)
+        text1_1=TexMobject(r"D=\lbrace (x,y)|x,y\in\mathbb{R}^{+}\rbrace").shift(1.25*UP)
         text2=TexMobject(r"f(x,y)=\frac{1}{x+y}").shift(-.1*UP)
         text3=TextMobject('''Veamos el límite cuando:''').shift(-1*UP)
         text4=TextMobject("(x,y)$\\rightarrow\\vec{0}=(0,0)$").shift(-1.8*UP)
@@ -3152,7 +3152,7 @@ class FunContinuasEnAbiertos (Scene):
                                  bajo una función continua,\n 
                                      es un abierto''').move_to(-0.5*UP).scale(1.5)
         text1=TextMobject('''Tomemos la función ''',''' $f(x,y)=(x^{2},y)$''','''$ \ , \  (x,y)\\in\\mathbb{R}^{2}$''').move_to(1*UP)
-        text2=TextMobject('''Notemos que $Im(f)={(x,z)\\in\\mathbb{R}^2|x\\geq 0}$ y''').move_to(0*UP)
+        text2=TextMobject('''Notemos que $Im(f)=\\{(x,z)\\in\\mathbb{R}^2|x\\geq 0\\}$ y''').move_to(0*UP)
         
         text3=TextMobject(''' $f(x,y)$ es continua en  $\\mathbb{R}^{2}$''').move_to(1*DOWN)
         text4=TextMobject('''Ahora tomemos un abierto en el contradominio de f \n
