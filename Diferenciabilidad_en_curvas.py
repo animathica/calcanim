@@ -467,9 +467,22 @@ class Reparametrizacion_y_regla_de_la_cadena2 (ThreeDScene):
 #En esta animación sólo se pueden modificar los intervalos en los que se evaluan las parametrizaciones
 #Sin embargo se puede aconsejar que se analice el código para crear sus propias animaciones sobre derivadas 
 #O para visualizar como se dibujan las curvas dependiendo de la parametrización
-class Curvas_suaves_y_cruces_1 (MovingCameraScene,Scene):
-    def curva1(self,x):
+ 
+def gota(t):
+    return  [(1-np.sin(t))*np.cos(t),np.sin(t)-1,0]
+def lemniscata(t):
+    return  [(2)*np.cos(t),2*np.sin(2*t),0]
+def abs(t):
+    return  [t,np.abs(t),0]
+def cicloide(t):
+    return  [(t-np.sin(t)),(1-np.cos(t)),0]
+def curva1(x):
         return  [x,x**2*np.sin(1/x)+x,0]
+def curva2(t):
+        return [t**3,np.exp(t),np.cos(10*t)]
+
+class Curvas_suaves_y_cruces_1 (MovingCameraScene,Scene):
+    
     def setup (self):
         Scene.setup(self)
         MovingCameraScene.setup(self)
@@ -509,10 +522,10 @@ class Curvas_suaves_y_cruces_1 (MovingCameraScene,Scene):
         tmax2=0.5
         ref=Dot(color=RED,radius=0.003)
 
-        f1 = ParametricFunction(self.curva1,t_min=tmin1,t_max=tmax1,color=BLUE_C)
+        f1 = ParametricFunction(curva1,t_min=tmin1,t_max=tmax1,color=BLUE_C)
         text4_1=TextMobject('''y $f(0)=0$. ''').scale(0.05).next_to(ref,UP,buff=0.01)        
         
-        f2 = ParametricFunction(self.curva1,t_min=tmin2,t_max=tmax2,color=BLUE_C)
+        f2 = ParametricFunction(curva1,t_min=tmin2,t_max=tmax2,color=BLUE_C)
         self.camera_frame.save_state()
         self.play(Write(titulo))
         self.wait(3.5)
@@ -578,8 +591,6 @@ class Curvas_suaves_y_cruces_1 (MovingCameraScene,Scene):
    
 
 class Curvas_suaves_y_cruces_2 (ThreeDScene):
-    def curva1(self,t):
-        return [t**3,np.exp(t),np.cos(10*t)]
     def construct (self):
         
         text8=TextMobject('''Tomemos la siguiente curva parametrizada por''','''\n 
@@ -601,7 +612,7 @@ class Curvas_suaves_y_cruces_2 (ThreeDScene):
         tmin = -1.5
         tmax = 1.5
  
-        f1 = ParametricFunction(self.curva1,t_min=tmin,t_max=tmax,color=RED)
+        f1 = ParametricFunction(curva2,t_min=tmin,t_max=tmax,color=RED)
         t1=ValueTracker(tmin)
         ti=tmin
         n=((3*ti**2)**2+np.exp(ti)**2+(10*np.sin(10*ti))**2)**(1/2)
@@ -661,14 +672,7 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
     def setup (self):
         Scene.setup(self)
         MovingCameraScene.setup(self)
-    def gota(self,t):
-        return  [(1-np.sin(t))*np.cos(t),np.sin(t)-1,0]
-    def lemniscata(self,t):
-        return  [(2)*np.cos(t),2*np.sin(2*t),0]
-    def abs(self,t):
-        return  [t,np.abs(t),0]
-    def cicloide(self,t):
-        return  [(t-np.sin(t)),(1-np.cos(t)),0]
+    
     def construct(self):
 
         text15=TextMobject('''Tomemos la siguiente curva.''').move_to(3*UP)
@@ -721,68 +725,99 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
         xmin=-4
         xmax=4
         ##
-        fabs = ParametricFunction(self.abs,t_min=-4,t_max=4,color=BLUE_C)
+        fabs = ParametricFunction(abs,t_min=-4,t_max=4,color=BLUE_C)
         tmin = np.pi/2
         tmax = 5*np.pi/2
         tmin1 = 0
         tmax1 = 2*np.pi
-        fgota = ParametricFunction(self.gota,t_min=tmin,t_max=tmax,color=RED)
-        flemniscata = ParametricFunction(self.lemniscata,t_min=tmin1,t_max=tmax1,color=GREEN)
-        fcicliode = ParametricFunction(self.cicloide,t_min=-2*np.pi-1,t_max=2*np.pi+1,color=GREEN)
+        fgota = ParametricFunction(gota,t_min=tmin,t_max=tmax,color=RED)
+        flemniscata = ParametricFunction(lemniscata,t_min=tmin1,t_max=tmax1,color=GREEN)
+        fcicliode = ParametricFunction(cicloide,t_min=-2*np.pi-1,t_max=2*np.pi+1,color=GREEN)
 
         #Tangente del valor absoluto
         t1=ValueTracker(xmin)
-        def tan_abs():
+        punto_abs1=Dot(color=RED,fill_opacity=1,fill_color=RED).move_to([tmin,np.abs(tmin),0])
+        tan1=Line([0,0,0],[1,tmin/np.abs(tmin),0],color=RED,opacity=1).move_to(punto_abs1)#.get_center()+0.2*DOWN+0.2*RIGHT)
+
+        def tan_abs(obj):
             t = t1.get_value()
             x=[t,np.abs(t),0]
             n=2**(1/2)/2
-            d = Dot(color=RED,fill_opacity=1,fill_color=RED).move_to(x)
-            tan=Line([0,0,0],[1,t/np.abs(t),0],color=RED,opacity=1).move_to(d)#.get_center()+0.2*DOWN+0.2*RIGHT)
-            V1=VGroup(tan,d)
-            return V1
-        tan_absf = always_redraw(tan_abs) 
+            punto_abs1.become(Dot(color=RED,fill_opacity=1,fill_color=RED).move_to(x))
+            tan1.become(Line([0,0,0],[1,t/np.abs(t),0],color=RED,opacity=1).move_to(punto_abs1))#.get_center()+0.2*DOWN+0.2*RIGHT)
+        tan_absf=VGroup(punto_abs1,tan1)
+        tan_absf.add_updater(tan_abs)
+
+
         t1_1=ValueTracker(0.0001)
-        def tan_abs_1():
+        punto_abs2=Dot(color=RED,fill_opacity=1,fill_color=RED).move_to([tmin,np.abs(tmin),0])
+        tan2=Line([0,0,0],[1,tmin/np.abs(tmin),0],color=RED,opacity=1).move_to(punto_abs1)#.get_center()+0.2*DOWN+0.2*RIGHT)
+
+        def tan_abs2(obj):
             t = t1_1.get_value()
             x=[t,np.abs(t),0]
-            d = Dot(color=RED).move_to(x)
-            tan=Line([0,0,0],[1,t/np.abs(t),0],color=RED,opacity=1).move_to(d)#.get_center()+0.2*UP+0.2*RIGHT)           
-            V2=VGroup(tan,d)
-            return V2
-        tan_absf_1 = always_redraw(tan_abs_1) 
-        #Para el movimiento de un objeto en la gota
-        s1=ValueTracker(tmin)
-        def Pgota():
-            s = s1.get_value()
-            x=[(1-np.sin(s))*np.cos(s),np.sin(s)-1,0]
-            d = Dot(radius=0.1,color=RED,fill_opacity=1).move_to(x)
-            return d
-        p_gota = always_redraw(Pgota)
+            n=2**(1/2)/2
+            punto_abs2.become(Dot(color=RED,fill_opacity=1,fill_color=RED).move_to(x))
+            tan2.become(Line([0,0,0],[1,t/np.abs(t),0],color=RED,opacity=1).move_to(punto_abs2))#.get_center()+0.2*DOWN+0.2*RIGHT)
+        tan_absf_1=VGroup(punto_abs2,tan2)
+        tan_absf_1.add_updater(tan_abs2)
+    
+        
+       # t1_1=ValueTracker(0.0001)
+       # def tan_abs_1():
+        #    t = t1_1.get_value()
+        #    x=[t,np.abs(t),0]
+        #    d = Dot(color=RED).move_to(x)
+        #    tan=Line([0,0,0],[1,t/np.abs(t),0],color=RED,opacity=1).move_to(d)#.get_center()+0.2*UP+0.2*RIGHT)           
+        #    V2=VGroup(tan,d)
+        #    return V2
+        #tan_absf_1 = always_redraw(tan_abs_1) 
       
-        #tangente de la gota
+        #Movimiento para la gota
         s1_1=ValueTracker(tmin)
-        def Dgota():
+        si=tmin
+        #derivada_gota=Arrow(((1-np.sin(si))*np.cos(si),np.sin(si)-1,0),((1-np.sin(si))*np.cos(si)+np.sin(si)**2-np.cos(si)**2,np.cos(si)+np.sin(si)-1,0),buff=0)#.shift(d,buff=0)
+        punto_gota = Dot(color=RED,fill_opacity=1).move_to([(1-np.sin(si))*np.cos(si),np.sin(si)-1,0])
+        def Dgota(obj):
             s = s1_1.get_value()
             x=np.array([(1-np.sin(s))*np.cos(s),np.sin(s)-1,0])
-            d = Dot(color=RED,fill_opacity=1).move_to(x)
-            #de=np.array([(np.sin(s)**2-np.cos(s)**2,np.cos(s),0)])
-            
-            deriv=Arrow(((1-np.sin(s))*np.cos(s),np.sin(s)-1,0),((1-np.sin(s))*np.cos(s)+np.sin(s)**2-np.cos(s)**2,np.cos(s)+np.sin(s)-1,0),buff=0)#.shift(d,buff=0)
-    
-            G=VGroup(d,deriv)
-            return G
-        d_gota = always_redraw(Dgota)
+            punto_gota.become(Dot(color=RED,fill_opacity=1).move_to(x))
+         #   derivada_gota.become(Arrow(((1-np.sin(s))*np.cos(s),np.sin(s)-1,0),((1-np.sin(s))*np.cos(s)+np.sin(s)**2-np.cos(s)**2,np.cos(s)+np.sin(s)-1,0),buff=0))#.shift(d,buff=0)
+        #mover el vector
+        #erivada_gota.add_updater(Dgota)
+        #para mover el punto
+        punto_gota.add_updater(Dgota)
+
+        #Para generar el movimiento de la derivada
+        s1_2=ValueTracker(tmin)
+        derivada_gota=Arrow(((1-np.sin(si))*np.cos(si),np.sin(si)-1,0),((1-np.sin(si))*np.cos(si)+np.sin(si)**2-np.cos(si)**2,np.cos(si)+np.sin(si)-1,0),buff=0)#.shift(d,buff=0)
+        punto_gota1 = Dot(color=RED,fill_opacity=1).move_to([(1-np.sin(si))*np.cos(si),np.sin(si)-1,0])
+        def Dgota(obj):
+            s = s1_2.get_value()
+            x=np.array([(1-np.sin(s))*np.cos(s),np.sin(s)-1,0])
+            punto_gota1.become(Dot(color=RED,fill_opacity=1).move_to(x))
+            derivada_gota.become(Arrow(((1-np.sin(s))*np.cos(s),np.sin(s)-1,0),((1-np.sin(s))*np.cos(s)+np.sin(s)**2-np.cos(s)**2,np.cos(s)+np.sin(s)-1,0),buff=0))#.shift(d,buff=0)
+        #mover el vector
+        derivada_gota.add_updater(Dgota)
+        #para mover el punto
+        punto_gota1.add_updater(Dgota)
+
+
 
         #Para la lemniscata    
         s2=ValueTracker(tmin1)
-        def Dlemniscata():
-            s = s2.get_value()
-            x=[2*np.cos(s),2*np.sin(2*s),0]
-            d = Dot(radius=0.1,color=RED,fill_opacity=1).move_to(x)
-            deriv=Arrow([2*np.cos(s),2*np.sin(2*s),0],[-2*np.sin(s)+2*np.cos(s),4*np.cos(2*s)+2*np.sin(2*s),0],buff=0)#.move_to(d)#.get_center()+*0.2*UP+s*0.2*RIGHT)
-            G1=VGroup(d,deriv)
-            return G1
-        d_lemniscata = always_redraw(Dlemniscata)
+        sg=tmin1
+        derivada_lem=Arrow([2*np.cos(sg),2*np.sin(2*sg),0],[-2*np.sin(sg)+2*np.cos(sg),4*np.cos(2*sg)+2*np.sin(2*sg),0],buff=0)#.move_to(d)#.get_center()+*0.2*UP+s*0.2*RIGHT)
+        punto_lem=Dot(radius=0.1,color=RED,fill_opacity=1).move_to([2*np.cos(sg),2*np.sin(2*sg),0])
+
+        def Dlemniscata(obj):
+            sg1 = s2.get_value()
+            xg=[2*np.cos(sg1),2*np.sin(2*sg1),0]
+            punto_lem.become(Dot(radius=0.1,color=RED,fill_opacity=1).move_to(xg))
+            derivada_lem.become(Arrow([2*np.cos(sg1),2*np.sin(2*sg1),0],[-2*np.sin(sg1)+2*np.cos(sg1),4*np.cos(2*sg1)+2*np.sin(2*sg1),0],buff=0))#.move_to(d)#.get_center()+*0.2*UP+s*0.2*RIGHT)
+    
+        derivada_lem.add_updater(Dlemniscata)
+        punto_lem.add_updater(Dlemniscata)
         fondo=Rectangle(HEIGHT=FRAME_HEIGHT,WIDHT=FRAME_WIDTH,color=BLACK,fill_opacity=1 )
 
         self.camera_frame.save_state()
@@ -816,19 +851,19 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
         self.play(Write(text20))
         self.wait(6)
         #movimiento de una particula en la gota
-        self.play(ShowCreation(p_gota))
-        self.play(s1.set_value, tmax,run_time=10)
+        self.play(ShowCreation(punto_gota))#,ShowCreation(deriv))
+        self.play(s1_1.set_value, tmax,run_time=10)
         self.wait()
         #Termina movimiento de partícula en la gota
-        self.play(FadeOut(text20),FadeOut(p_gota))
+        self.play(FadeOut(text20),FadeOut(punto_gota))
         self.play(Write(text21))
         self.wait(8)
         #Animación del vector tangente
-        self.add(d_gota)
-        self.play(s1_1.set_value, tmax-0.1,run_time=10)
+        self.play(ShowCreation(punto_gota1),ShowCreation(derivada_gota))
+        self.play(s1_2.set_value, tmax-0.1,run_time=10)
         self.wait()
         ###
-        self.play(FadeOut(text21),FadeOut(axes),FadeOut(fgota),FadeOut(d_gota))
+        self.play(FadeOut(text21),FadeOut(axes),FadeOut(fgota),FadeOut(punto_gota1),FadeOut(derivada_gota))
         self.play(Write(text22[0]))
         self.wait(8)
         self.play(Write(text22[1]))
@@ -866,12 +901,12 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
             # Nueva posición
             self.camera_frame.move_to,ORIGIN)
         #Derivada en la lemniscata
-        self.add(d_lemniscata)
+        self.play(ShowCreation(punto_lem),ShowCreation(derivada_lem))
         self.play(s2.set_value, tmax1,run_time=10)
         self.play(Restore(self.camera_frame))
         self.play(Write(text29))
         self.wait(5.7)
-        self.play(FadeOut(text29),FadeOut(axes),FadeOut(flemniscata),FadeOut(d_lemniscata))
+        self.play(FadeOut(text29),FadeOut(axes),FadeOut(flemniscata),FadeOut(punto_lem),FadeOut(derivada_lem))
         self.play(Write(text30))
         self.wait(7)
         self.play(ReplacementTransform(text30,text31))
@@ -885,8 +920,13 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
         self.play(FadeOut(text33),FadeOut(fcicliode))
         self.play(Write(text34))
         self.wait(7)
-        self.play(FadeOut(text34))
-
+        self.play(FadeOut(text34))     
+    
+      
+  
+     
+     
+        
 
 ########################
 ### Curvas regulares ###
