@@ -762,16 +762,6 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
         tan_absf_1=VGroup(punto_abs2,tan2)
         tan_absf_1.add_updater(tan_abs2)
     
-        
-       # t1_1=ValueTracker(0.0001)
-       # def tan_abs_1():
-        #    t = t1_1.get_value()
-        #    x=[t,np.abs(t),0]
-        #    d = Dot(color=RED).move_to(x)
-        #    tan=Line([0,0,0],[1,t/np.abs(t),0],color=RED,opacity=1).move_to(d)#.get_center()+0.2*UP+0.2*RIGHT)           
-        #    V2=VGroup(tan,d)
-        #    return V2
-        #tan_absf_1 = always_redraw(tan_abs_1) 
       
         #Movimiento para la gota
         s1_1=ValueTracker(tmin)
@@ -782,9 +772,6 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
             s = s1_1.get_value()
             x=np.array([(1-np.sin(s))*np.cos(s),np.sin(s)-1,0])
             punto_gota.become(Dot(color=RED,fill_opacity=1).move_to(x))
-         #   derivada_gota.become(Arrow(((1-np.sin(s))*np.cos(s),np.sin(s)-1,0),((1-np.sin(s))*np.cos(s)+np.sin(s)**2-np.cos(s)**2,np.cos(s)+np.sin(s)-1,0),buff=0))#.shift(d,buff=0)
-        #mover el vector
-        #erivada_gota.add_updater(Dgota)
         #para mover el punto
         punto_gota.add_updater(Dgota)
 
@@ -851,7 +838,7 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
         self.play(Write(text20))
         self.wait(6)
         #movimiento de una particula en la gota
-        self.play(ShowCreation(punto_gota))#,ShowCreation(deriv))
+        self.play(ShowCreation(punto_gota))
         self.play(s1_1.set_value, tmax,run_time=10)
         self.wait()
         #Termina movimiento de partícula en la gota
@@ -924,10 +911,6 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
     
       
   
-     
-     
-        
-
 ########################
 ### Curvas regulares ###
 ########################
