@@ -5,12 +5,13 @@ from manimlib.imports import *
 #######################################################
 
 #Esta animación está en creada en partes, uniendo las animaciones al final del código
-class Reparametrizacion_y_regla_de_la_cadena1 (ThreeDScene):
-    def curva1(self,t):
-        return [t,np.cos(4*t),np.sin(4*t)] 
-    def curva2(self,s):
-        return [-s**3,np.cos(-4*s**3),np.sin(-4*s**3)]
+ 
+def curva1p(t):
+    return [t,np.cos(4*t),np.sin(4*t)] 
+def curva2p(s):
+    return [-s**3,np.cos(-4*s**3),np.sin(-4*s**3)]
 
+class Reparametrizacion_y_regla_de_la_cadena1 (ThreeDScene):    
     def textos1 (self):
         axis_config = {
             "x_min" : -8,
@@ -37,8 +38,8 @@ class Reparametrizacion_y_regla_de_la_cadena1 (ThreeDScene):
         tmin = -8
         tmax = 8
         vs=tmax**(1/3)
-        f = ParametricFunction(self.curva1,t_min=tmin,t_max=tmax,color=RED)
-        g = ParametricFunction(self.curva1,t_min=tmin,t_max=tmax,color=BLUE_C)
+        f = ParametricFunction(curva1p,t_min=tmin,t_max=tmax,color=RED)
+        g = ParametricFunction(curva1p,t_min=tmin,t_max=tmax,color=BLUE_C)
         self.play(Write(titulo))
         self.wait(5)
         self.play(FadeOut(titulo))
@@ -109,127 +110,66 @@ class Reparametrizacion_y_regla_de_la_cadena1 (ThreeDScene):
             "tip_height": 0.25,
 
         }
+        number_line= NumberLine( **line_config).move_to(2*DOWN+(3-0.5)*LEFT)
+
         ##Movimiento para una partícula en la primera parametrización
         t1 = ValueTracker(-t0)
-        def moving_dot():
+        p_1=Sphere(radius=0.1,color=RED,fill_opacity=1).move_to([(-t0,np.cos(4*(-t0)),np.sin(4*(-t0)))])
+        def mov_1(obj):
             t = t1.get_value()
-            x=[(t,np.cos(4*t),np.sin(4*t))]
-            d = Sphere(radius=0.1,color=RED,fill_opacity=1).move_to(x)
-            return d
-        dd = always_redraw(moving_dot)
-        number_line= NumberLine( **line_config).move_to(2*DOWN+(3-0.5)*LEFT)
-        def moving_arrow():
-            t = t1.get_value()
-            vec=Dot(color=RED).move_to(number_line.number_to_point(t))#,UP,buff=0)#.scale(0.5)
-            t_label=TextMobject("t").next_to(vec,UP,buff=0.1)
-            Gt=VGroup(t_label,vec)
-            return Gt
-        Gt = always_redraw(moving_arrow)
-        #Movimiento para una partícula en la segunda parametrización
+            p_1.become(Sphere(radius=0.1,color=RED,fill_opacity=1).move_to([(t,np.cos(4*t),np.sin(4*t))]))
+        p_1.add_updater(mov_1)
+
+        p_t=Sphere(radius=0.1,color=RED,fill_opacity=1).move_to(number_line.number_to_point(t0))
+        pt_label=TextMobject("t").next_to(p_t,UP,buff=0.1)
+
+        def mov_t(obj):
+            tn = t1.get_value()
+            p_t.become(Sphere(radius=0.1,color=RED,fill_opacity=1).move_to(number_line.number_to_point(tn)))
+            pt_label.become(TextMobject("t").next_to(p_t,UP,buff=0.1))
+        
+        Movimiento_1=VGroup(p_t,pt_label)
+        Movimiento_1.add_updater(mov_t)
+
+
+        #movimiento para la esfera en la parametrización
 
         s1=ValueTracker(-(t0**(1/3)))
-        def moving_dot2():
+        p_2 = Sphere(radius=0.1).move_to([(-(-(t0**(1/3)))**3,np.cos(-4*(-(t0**(1/3)))**3),np.sin(-4*(-(t0**(1/3)))**3))])
+        def mov_2(obj):
             s = s1.get_value()
-            x2=[(-s**3,np.cos(-4*s**3),np.sin(-4*s**3))]
-            d2 = Sphere(radius=0.1).move_to(x2)
-            return d2
-        dd2 = always_redraw(moving_dot2)
+            p_2.become(Sphere(radius=0.1).move_to([(-s**3,np.cos(-4*s**3),np.sin(-4*s**3))]))
+        
+        p_2.add_updater(mov_2)
+
         number_line2= NumberLine(**line_config2).next_to(number_line,DOWN,buff=1)
-        def moving_arrow2():
-            s = s1.get_value()
-            vec2=Dot(color=BLUE_C).move_to(number_line2.number_to_point(s))#,UP,buff=0)#.scale(0.5)
-            s_label=TextMobject("s").next_to(vec2,UP,buff=0.1)
-            Gs=VGroup(s_label,vec2)
-            return Gs
-        Gs = always_redraw(moving_arrow2)
+        s=Dot(color=BLUE_C).move_to(number_line2.number_to_point(-(t0**(1/3))))#,UP,buff=0)#.scale(0.5)
+        s_label=TextMobject("s").next_to(s,UP,buff=0.1)
+        def mov_s(obj):
+            sn = s1.get_value()
+            s.become(Dot(color=BLUE_C).move_to(number_line2.number_to_point(sn)))#,UP,buff=0)#.scale(0.5)
+            s_label.become(TextMobject("s").next_to(s,UP,buff=0.1))
+        s.add_updater(mov_s)
+        s_label.add_updater(mov_s)
+        Movimiento_2=VGroup(s,s_label)
+    
         fondo2=Circle(radius=20,color=BLACK, fill_opacity=1,fill_color=BLACK)
-        self.add(dd)
-        self.add_fixed_in_frame_mobjects(Gt)
-        self.add(Gt)
+        self.add(p_1)
         self.add_fixed_in_frame_mobjects(number_line)
-        self.play(ShowCreation(number_line))
+        self.add_fixed_in_frame_mobjects(Movimiento_1)
+        self.play(ShowCreation(number_line),ShowCreation(Movimiento_1))
         self.play(t1.set_value, t0,run_time=20) 
-        self.add(dd2)
-        self.add_fixed_in_frame_mobjects(Gs)
-        self.add(Gs)
+        #mov para la reparametrizacion
         self.add_fixed_in_frame_mobjects(number_line2)
-        self.play(ShowCreation(number_line2))
+        self.add_fixed_in_frame_mobjects(Movimiento_2)
+        self.play(ShowCreation(number_line2),ShowCreation(Movimiento_2),ShowCreation(p_2))
         self.play(s1.set_value, t0**(1/3),run_time=20) 
         self.wait()
-        self.play(FadeOut(dd),FadeOut(number_line),FadeOut(number_line2),
-                    FadeOut(dd2),FadeOut(Gs),FadeOut(Gt))
+        self.play(FadeOut(p_1),FadeOut(number_line),FadeOut(number_line2),
+                    FadeOut(p_2),FadeOut(Movimiento_1),FadeOut(Movimiento_2))
         self.add_fixed_in_frame_mobjects(fondo2)       
         self.play(GrowFromCenter(fondo2))
-
-    def dev_particula (self):
-        t0=7
-        line_config = {
-            "x_min" : -t0,
-            "x_max" : t0,
-            "unit_size": 0.3,
-            "include_numbers": True,
-            #"numbers_to_show": None,
-            ##"longer_tick_multiple": 2,
-            "number_at_center": 0,
-            "number_scale_val": 0.5,
-            "label_direction": DOWN,
-            "line_to_number_buff": MED_SMALL_BUFF,
-            "include_tip": False,
-            "tip_width": 0.25,
-            "tip_height": 0.25,
-
-        }
-        line_config2 = {
-            "x_min" : -(t0**(1/3)),
-            "x_max" : t0**(1/3),
-            "unit_size": 1.1,
-            "include_numbers": True,
-            #"numbers_to_show": None,
-            ##"longer_tick_multiple": 2,
-            "number_at_center": 0,
-            "number_scale_val": 0.5,
-            "label_direction": DOWN,
-            "line_to_number_buff": MED_SMALL_BUFF,
-            "include_tip": False,
-            "tip_width": 0.25,
-            "tip_height": 0.25,
-
-        }
-        axis_config = {
-            "x_min" : -8,
-            "x_max" : 8,
-            "y_min" : -8,
-            "y_max" : 8,
-            "z_min" : -8,
-            "z_max" : 8,
-        }
-        s2=ValueTracker(-(t0**(1/3)))
-        def deriv():
-            s = s2.get_value()
-            x2=[(-s**3,np.cos(-4*s**3),np.sin(-4*s**3))]
-            dev=[(-3*s**2,-4*-3*s**2*np.sin(-4*s**3),4*-3*s**2*np.cos(-4*s**3))]
-            d2 = Sphere(radius=0.1).move_to(x2)
-            derivada=Arrow((-s**3,np.cos(-4*s**3),np.sin(-4*s**3)),(1,-4*np.sin(-4*s**3),4*np.cos(-4*s**3)),color=BLUE_C)
-            G1=VGroup(d2,derivada)
-            return G1
-        G1 = always_redraw(deriv)
-        
-        number_line= NumberLine( **line_config).move_to(2*DOWN+(3-0.5)*LEFT)
-        number_line3= NumberLine(**line_config2).next_to(number_line,DOWN,buff=1)
-        def t_deriv():
-            s = s2.get_value()
-            vec2=Dot(color=BLUE_C).move_to(number_line3.number_to_point(s))#,UP,buff=0)#.scale(0.5)
-            s_label=TextMobject("s").next_to(vec2,UP,buff=0.1)
-            Gderiv=VGroup(s_label,vec2)
-            return Gderiv
-        Gderiv = always_redraw(t_deriv)
-        axes = ThreeDAxes( **axis_config)
-        tmin = -10
-        tmax = 10
-        vs=tmax**(1/3)
-        f = ParametricFunction(self.curva1,t_min=tmin,t_max=tmax,color=BLUE_C)
-
-        self.play(ShowCreation(axes))
+   
     def textos2 (self):
         axis_config = {
             "x_min" : -8,
@@ -268,8 +208,8 @@ class Reparametrizacion_y_regla_de_la_cadena1 (ThreeDScene):
         tmin = -7
         tmax = 7
         vs=tmax**(1/3)
-        f = ParametricFunction(self.curva1,t_min=tmin,t_max=tmax,color=RED)
-        g = ParametricFunction(self.curva1,t_min=tmin,t_max=tmax,color=BLUE_C)
+        f = ParametricFunction(curva1p,t_min=tmin,t_max=tmax,color=RED)
+        g = ParametricFunction(curva1p,t_min=tmin,t_max=tmax,color=BLUE_C)
         fondo=Rectangle(HEIGHT=FRAME_HEIGHT,WIDHT=FRAME_WIDTH,color=BLACK,fill_opacity=1 )
         self.add_fixed_in_frame_mobjects(text6)
         self.play(Write(text6))
@@ -315,10 +255,6 @@ class Reparametrizacion_y_regla_de_la_cadena1 (ThreeDScene):
         self.textos2()
         
 class Reparametrizacion_y_regla_de_la_cadena2 (ThreeDScene):
-    def curva1(self,t):
-        return [t,np.cos(4*t),np.sin(4*t)] 
-    def curva2(self,s):
-        return [-s**3,np.cos(-4*s**3),np.sin(-4*s**3)]
     def construct(self):
         t0=7
         line_config = {
@@ -374,55 +310,61 @@ class Reparametrizacion_y_regla_de_la_cadena2 (ThreeDScene):
         tmin = -5
         tmax = 5
         vs=tmax**(1/3)
-        g = ParametricFunction(self.curva1,t_min=-t0,t_max=t0,color=BLUE_C)
+        g = ParametricFunction(curva1p,t_min=-t0,t_max=t0,color=BLUE_C)
         
         t2 = ValueTracker(tmin)
         number_line= NumberLine( **line_config).move_to(2*DOWN+(3-0.5)*LEFT)
         number_line3= NumberLine(**line_config2).move_to(2*DOWN+(3-0.5)*LEFT)
-        def mov1():
-            t = t2.get_value()
-            x=[t,np.cos(4*t),np.sin(4*t)]
-            #n=((1+(4*np.sin(4*t)**2+(4*np.cos(4*t)**2)))**(1/2))*10
-            d1 = Sphere(radius=0.1,color=RED,fill_opacity=1).move_to(x)
-            dev=Arrow( (t,np.cos(4*t),np.sin(4*t)),(t+1,np.cos(4*t)-np.sin(4*t)*4,np.sin(4*t)+np.cos(4*t)*4)  ,buff=0 )
+        #Movimiento para la parametrización
+        p_parametrizacion = Sphere(radius=0.1,color=RED,fill_opacity=1).move_to([tmin,np.cos(4*tmin),np.sin(4*tmin)])
+        d_parametrizacion=Arrow( (tmin,np.cos(4*tmin),np.sin(4*tmin)),(tmin+1,np.cos(4*tmin)-np.sin(4*tmin)*4,np.sin(4*tmin)+np.cos(4*tmin)*4)  ,buff=0 )
+
+
+        def mov_parametrizacion(obj):
+            tp = t2.get_value()
+            x=[tp,np.cos(4*tp),np.sin(4*tp)]
+            p_parametrizacion.become(Sphere(radius=0.1,color=RED,fill_opacity=1).move_to([tp,np.cos(4*tp),np.sin(4*tp)]))
+            d_parametrizacion.become(Arrow( (tp,np.cos(4*tp),np.sin(4*tp)),(tp+1,np.cos(4*tp)-np.sin(4*tp)*4,np.sin(4*tp)+np.cos(4*tp)*4)  ,buff=0 ))
+        cjto1=VGroup(p_parametrizacion,d_parametrizacion)
+        cjto1.add_updater(mov_parametrizacion)
             
-            #el movimiento en el number plane
-            #vec2=Dot(color=BLUE_C).move_to(number_line.number_to_point(t))#,UP,buff=0)#.scale(0.5)
-            #t_label=TextMobject("t").next_to(vec2,UP,buff=0.1)
-            dd1=VGroup(d1,dev)#,vec2,t_label)
-            return dd1
-        dd1=always_redraw(mov1)
-        def deriv_1():
-            t = t2.get_value()
-            vec2=Dot(color=BLUE_C).move_to(number_line.number_to_point(t))#,UP,buff=0)#.scale(0.5)
-            t_label=TextMobject("t").next_to(vec2,UP,buff=0.1)
-            deriv1=VGroup(t_label,vec2)
-            return deriv1
-        deriv1 = always_redraw(deriv_1)        
+            
+        #el movimiento en el number plane
+        t=Dot(color=BLUE_C).move_to(number_line.number_to_point(tmin))#,UP,buff=0)#.scale(0.5)
+        t_label=TextMobject("t").next_to(t,UP,buff=0.1)
 
-#Derivada para la reparametrización       
+        def mov_plane1(obj):
+            tn = t2.get_value()
+            t.become(Dot(color=BLUE_C).move_to(number_line.number_to_point(tn)))
+            t_label.become(TextMobject("t").next_to(t,UP,buff=0.1))
+            
+        cjto1_1=VGroup(t,t_label)
+        cjto1_1.add_updater(mov_plane1)
+
+#Derivada para la reparametrización  
         t1 = ValueTracker(-vs)
-        def mov():
-            s = t1.get_value()
-            x=[-s**3,np.cos(-4*s**3),np.sin(-4*s**3)]
-            d1 = Sphere(radius=0.1,color=RED,fill_opacity=1).move_to(x)
-            n=0.6#((3*s**2)**2+(12*s**2*np.sin(-4*s**3))**2+((12*s**2*np.cos(-4*s**3))**2))**(1/2)*() 
-            dev=Arrow( (-s**3,np.cos(-4*s**3),np.sin(-4*s**3)),(-s**3-3*s**2*n,np.cos(-4*s**3)-np.sin(-4*s**3)*(-12*s**2)*n,np.sin(-4*s**3)+np.cos(-4*s**3)*(-12*s**2)*n),buff=0 )
-            #Movimiento para el number line
-           # vec2=Dot(color=BLUE_C).move_to(number_line3.number_to_point(s))#,UP,buff=0)#.scale(0.5)
-           # s_label=TextMobject("s").next_to(vec2,UP,buff=0.1)
-            dd=VGroup(d1,dev)#,s_label,vec2)
-            return dd
-        def deriv_2():
-            s = t1.get_value()
-            vec2=Dot(color=BLUE_C).move_to(number_line3.number_to_point(s))#,UP,buff=0)#.scale(0.5)
-            t_label=TextMobject("s").next_to(vec2,UP,buff=0.1)
-            deriv2=VGroup(t_label,vec2)
-            return deriv1
-        deriv2 = always_redraw(deriv_2)
-        dd=always_redraw(mov)
+        n=0.6#reescalamentiento de la derivada
+        p_reparametrizacion = Sphere(radius=0.1,color=RED,fill_opacity=1).move_to([-(-vs)**3,np.cos(-4*(-vs)**3),np.sin(-4*(-vs)**3)])
+        d_reparametrizacion=Arrow( (-(-vs)**3,np.cos(-4*(-vs)**3),np.sin(-4*(-vs)**3)),(-(-vs)**3-3*(-vs)**2*n,np.cos(-4*(-vs)**3)-np.sin(-4*(-vs)**3)*(-12*(-vs)**2)*n,np.sin(-4*(-vs)**3)+np.cos(-4*(-vs)**3)*(-12*(-vs)**2)*n),buff=0 )
 
-        #Number=VGroup(number_line)
+        
+        def mov_reparametrizacion(obj):
+            s = t1.get_value()
+            p_reparametrizacion.become(Sphere(radius=0.1,color=RED,fill_opacity=1).move_to([-s**3,np.cos(-4*s**3),np.sin(-4*s**3)]))
+            d_reparametrizacion.become(Arrow( (-s**3,np.cos(-4*s**3),np.sin(-4*s**3)),(-s**3-3*s**2*n,np.cos(-4*s**3)-np.sin(-4*s**3)*(-12*s**2)*n,np.sin(-4*s**3)+np.cos(-4*s**3)*(-12*s**2)*n),buff=0 ))
+ 
+        cjto2=VGroup(p_reparametrizacion,d_reparametrizacion)
+        cjto2.add_updater(mov_reparametrizacion)
+
+        sp=Dot(color=BLUE_C).move_to(number_line3.number_to_point((-vs)))#,UP,buff=0)#.scale(0.5)
+        sp_label=TextMobject("s").next_to(sp,UP,buff=0.1)
+
+        def move_plane2(obj):
+            sn = t1.get_value()
+            sp.become(Dot(color=BLUE_C).move_to(number_line3.number_to_point(sn)))#,UP,buff=0)#.scale(0.5)
+            sp_label.become(TextMobject("s").next_to(sp,UP,buff=0.1))
+        cjto2_1=VGroup(sp,sp_label)
+        cjto2_1.add_updater(move_plane2)
 
         self.set_camera_orientation(0.8*np.pi/2, -0.25*np.pi,distance=20)           
         self.play(ShowCreation(axes))
@@ -430,21 +372,24 @@ class Reparametrizacion_y_regla_de_la_cadena2 (ThreeDScene):
         self.add_fixed_in_frame_mobjects(text15)
         self.play(Write(text15))
         self.wait(3)
+        #Parte para la derivada de la parametrización
         self.add_fixed_in_frame_mobjects(number_line)
-        self.add_fixed_in_frame_mobjects(deriv1)
-        self.play(ShowCreation(dd1),ShowCreation(number_line),ShowCreation(deriv1))
+        self.add_fixed_in_frame_mobjects(cjto1_1)
+        self.play(ShowCreation(cjto1),ShowCreation(number_line),ShowCreation(cjto1_1))
         self.play(t2.set_value, tmax,run_time=20) 
         self.wait()
-        self.play(FadeOut(text15),FadeOut(dd1),FadeOut(number_line),FadeOut(deriv1))
+        self.play(FadeOut(text15),FadeOut(cjto1),FadeOut(number_line),FadeOut(cjto1_1))
         self.add_fixed_in_frame_mobjects(text16)
         self.play(Write(text16))
         self.wait(3)
+        #Movimiento para la reparametrizacion
         self.add_fixed_in_frame_mobjects(number_line3)
-        self.add_fixed_in_frame_mobjects(deriv2)
-        self.play(ShowCreation(dd),ShowCreation(number_line3),ShowCreation(deriv2))
+        self.add_fixed_in_frame_mobjects(cjto2_1)
+        self.play(ShowCreation(cjto2),ShowCreation(number_line3),ShowCreation(cjto2_1))
         self.play(t1.set_value, vs,run_time=20) 
         self.wait()
-        self.play(FadeOut(axes),FadeOut(dd),FadeOut(g),FadeOut(text16),FadeOut(number_line3),FadeOut(deriv2))
+        self.play(FadeOut(axes),FadeOut(cjto2),FadeOut(g),FadeOut(text16),FadeOut(number_line3),FadeOut(cjto2_1))
+        #termina movimiento de la segunda reparametrizacion
         self.add_fixed_in_frame_mobjects(text12)
         self.play(Write(text12))
         self.wait(15)
@@ -457,7 +402,7 @@ class Reparametrizacion_y_regla_de_la_cadena2 (ThreeDScene):
         self.play(Write(text14))
         self.wait(5)
         self.play(FadeOut(text14))
-
+  
 
 
 ########################################
