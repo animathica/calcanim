@@ -1686,10 +1686,10 @@ class Existencia_Limites(ThreeDScene):
             """Decimos que $f$ tiene límite en $\\vec{x}_0$ y  que su límite es $\\vec{l} \\in \\mathbb{R}^{m}$, """
         )
         definicion_3 = TextMobject(
-            """si $\\forall$ $\\epsilon > 0$ $\\exists$ $\\delta>0$ tal que si $\\Vert  \\vec{x} - \\vec{x}_0 \\Vert  < \\delta$ y $\\vec{x} \\in A \\setminus  \{\\vec{x}_0\}$, """
+            """si $\\forall$ $\\varepsilon > 0$ $\\exists$ $\\delta>0$ tal que si $\\Vert  \\vec{x} - \\vec{x}_0 \\Vert  < \\delta$ y $\\vec{x} \\in A \\setminus  \{\\vec{x}_0\}$, """
         ).move_to(definicion_2.get_center() + 0.8 * DOWN)
         definicion_4 = TextMobject(
-            """ entonces $\\Vert f(\\vec{x}) - \\vec{l} \\Vert < \\epsilon$"""
+            """ entonces $\\Vert f(\\vec{x}) - \\vec{l} \\Vert < \\varepsilon$"""
         ).move_to(definicion_3.get_center() + 0.8 * DOWN)
         ### Animacion definiciones
         self.play(Write(titulo.scale(1.5)))
@@ -1724,7 +1724,7 @@ class Existencia_Limites(ThreeDScene):
         t_4 = TextMobject(
             """Tomamos de forma \n  
         arbitraria """,
-            """ $\\epsilon$""",
+            """ $\\varepsilon$""",
             """$> 0$""",
         )
         t_4[1].set_color(BLUE)
@@ -1744,7 +1744,7 @@ class Existencia_Limites(ThreeDScene):
             """Veamos que esto se \n
         sigue cumpliendo con valores \n 
         más pequeños de """,
-            """$\\epsilon$ """,
+            """$\\varepsilon$ """,
         )
         t_7[1].set_color(BLUE)
         t_8 = TextMobject(
@@ -1887,7 +1887,7 @@ class Existencia_Limites(ThreeDScene):
             color="#88FF00",
         ).move_to((1 / (2 * np.sqrt(2)), 1 / (2 * np.sqrt(2)), 1))
 
-        epsilon = TextMobject("$\\epsilon$")
+        epsilon = TextMobject("$\\varepsilon$")
         epsilon.rotate(PI / 2, axis=RIGHT).rotate(PI / 2, about_edge=Z_AXIS).move_to(
             Epsilon.get_center() + np.array([0, 0.5, 0.5])
         ).set_color(BLUE)
@@ -1896,7 +1896,7 @@ class Existencia_Limites(ThreeDScene):
             Delta.get_center() + np.array([0.5, 0.5, 0])
         ).set_color("#88FF00")
 
-        epsilon_2 = TextMobject("$\\epsilon$")
+        epsilon_2 = TextMobject("$\\varepsilon$")
         epsilon_2.rotate(PI / 2, axis=RIGHT).rotate(PI / 2, about_edge=Z_AXIS).move_to(
             Epsilon_2.get_center() + np.array([0.5, 0, 0.5])
         ).set_color(RED)
@@ -2043,9 +2043,9 @@ class Existencia_Limites(ThreeDScene):
         self.play(FadeOut(Big_Group_1))
         self.play(FadeOut(t_8))
         self.play(FadeOut(curve))
-        self.add_fixed_in_frame_mobjects(t_9)
         self.play(FadeOut(axes))
         self.add(axes1)
+        self.add_fixed_in_frame_mobjects(t_9)
         self.play(Write(t_9))
         self.wait(3.875)
         self.play(FadeOut(t_9))
@@ -2300,7 +2300,7 @@ class Divergencia_A_Infinito(ThreeDScene):
             $\\mathbb{R}\\rightarrow\\mathbb{R}^{n}$ en un Punto $t_0$"""
         )
         definicion_1 = TextMobject(
-            """Sea $f: \\mathbb{R} \\rightarrow \\mathbb{R}^{n}$"""
+            """Sea $f: \\mathbb{R} \\rightarrow \\mathbb{R}^{n}$, $n\\geq2$"""
         )
         definicion_2 = TextMobject(
             """$$\\lim_{t \\rightarrow t_{0}} f(t) = \\vec{\\infty} \\Leftrightarrow  \\forall \\: M >0$$"""
@@ -2524,10 +2524,10 @@ class Limites2(ThreeDScene):
         )
         texto = TextMobject("""Sea $f:\\mathbb{R}\\rightarrow\\mathbb{R}^{n}$""")
         texto1 = TexMobject(
-            r""" \lim_{x \to \infty}f(x)=\vec{L}\leftrightarrow\forall \ \epsilon>0"""
+            r""" \lim_{x \to \infty}f(x)=\vec{L}\Leftrightarrow\forall \ \varepsilon>0"""
         )
         texto1_1 = TextMobject(
-            """$\\exists \\ M\\in\\mathbb{R}$ tal que $x>M \\ \\implies ||f(x)-\\vec{L}||<\\epsilon$"""
+            """$\\exists \\ M\\in\\mathbb{R}$ tal que $x>M \\ \\implies ||f(x)-\\vec{L}||<\\varepsilon$"""
         ).move_to(texto1.get_center() + 0.8 * DOWN)
         texto1_2 = TextMobject("""Veamos el siguiente ejemplo.""")
         texto1_3 = TextMobject(
@@ -2561,9 +2561,9 @@ class Limites2(ThreeDScene):
 
     def custom_method(self):
         axes1 = ThreeDAxes()
-        axes.add(axes.get_x_axis_label("t"))
+        axes1.add(axes1.get_x_axis_label("t"))
         surface2 = superficie2()
-        texto2 = TextMobject("""Tomemos""", """  $\\epsilon$=0.8""")
+        texto2 = TextMobject("""Tomemos""", """  $\\varepsilon$=0.8""")
         texto2[1].set_color(RED)
         texto2.to_corner(UL)
 
@@ -2579,7 +2579,7 @@ class Limites2(ThreeDScene):
             """$f(x)$""",
             """ esta a una distancia menor  \n
              de """,
-            """$\\epsilon$""",
+            """$\\varepsilon$""",
             """ del 0 del plano yz.""",
         )
         texto4[1].set_color(BLUE_C)
@@ -2588,7 +2588,7 @@ class Limites2(ThreeDScene):
         texto4_1 = TextMobject(
             """Es posible hacer lo mismo \n
             con cualquier """,
-            """$\\epsilon$""",
+            """$\\varepsilon$""",
             """$>0$""",
         )
         texto4_1[1].set_color(RED)
@@ -2601,7 +2601,7 @@ class Limites2(ThreeDScene):
         texto5.to_corner(UL)
         texto6 = TextMobject(
             """¿Se te ocurre como modificar la definición \n
-                    anterior cuando el límite es a $\\infty^{-}$?"""
+                    anterior cuando $x\\rightarrow \\infty^{-}$?"""
         )
         r = 0.8
         r1 = 0.4
@@ -2683,7 +2683,7 @@ class LimitesR2_a_R_1 (ThreeDScene):
         G1=VGroup(text,text_1)
         Def=TextMobject('''Sea una función $f:D\\subseteq\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$''').shift(1.5*UP)
         Def1=TextMobject('''Y sea $\\vec{a}\\in D$''').shift(0.6*UP)
-        Def2=TexMobject(r''' \lim_{x \to \vec{a}}f(\vec{x})=\infty\leftrightarrow\forall M\in\mathbb{R}''').shift(0.5*DOWN)
+        Def2=TexMobject(r''' \lim_{x \to \vec{a}}f(\vec{x})=\infty\Leftrightarrow\forall M\in\mathbb{R}''').shift(0.5*DOWN)
         #En el video la definción dice limite al infinito, pero ya lo corregí para que sea el limite cuando x tiende a a
         Def3=TextMobject('''$\\exists \\ \\delta>0$ tal que si $\\vec{x}\\in B_{\\delta}(\\vec{a})\\setminus\\vec{a}\\cap
                                 D\\implies f(\\vec{x})>M$''').shift(1.5*DOWN)
@@ -2849,7 +2849,7 @@ class LimitesRnaR (ThreeDScene):
                             de $\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$ en Infinito''').scale(1.5)
 
         text1=TextMobject('''Sea $f:\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$''').move_to(2*UP)
-        text2=TexMobject(r"lím_{\vec{x}\rightarrow\infty}f(\vec{x})=\infty^{+} \leftrightarrow\forall\ M\in\mathbb{R}").move_to(0.8*UP)
+        text2=TexMobject(r"\lim_{\vec{x}\rightarrow\infty}f(\vec{x})=\infty^{+} \Leftrightarrow\forall\ M\in\mathbb{R}").move_to(0.8*UP)
         text3=TextMobject('''$\\exists\\delta>0$ tal que si $\\vec{x}\\in B^{c}_{\\delta}(\\vec{0})$ ''' ).move_to(0.5*DOWN)
         text4=TexMobject(r'''\implies f(\vec{x})>M''').move_to(1.6*DOWN)
         text5=TextMobject("Veamos el siguiente ejemplo para aterrizar lo anterior.")
@@ -2994,9 +2994,9 @@ class Limite4_1 (ThreeDScene):
         titulo=TextMobject('''Existencia del Límite en Infinito\n
                             de Funciones de $\\mathbb{R}^n$ $\\rightarrow$ $\\mathbb{R}$''').scale(1.5)
         text=TextMobject("Sea $f:\\mathbb{R}^{n}\\rightarrow\\mathbb{R}$").move_to(2.2*UP)
-        text1=TexMobject(r"\lim_{\vec{x}\rightarrow\infty}f(\vec{x})=L\leftrightarrow\forall\epsilon>0").move_to(1*UP)
+        text1=TexMobject(r"\lim_{\vec{x}\rightarrow\infty}f(\vec{x})=L\Leftrightarrow\forall\varepsilon>0").move_to(1*UP)
         text2=TexMobject(r"\exists\delta>0 \ tq \ \forall \vec{x}\in B^{c}_{\delta}(\vec{0})").move_to(-0.2*UP)
-        text3=TexMobject(r"\implies d(f(\vec{x}),L)<\epsilon").move_to(1.4*DOWN)
+        text3=TexMobject(r"\implies d(f(\vec{x}),L)<\varepsilon").move_to(1.4*DOWN)
         G1=VGroup(text,text1,text2,text3)
         text4=TextMobject('''Veamos el siguiente ejemplo para aterrizar ideas:''')
         text5=TexMobject(r"f:\mathbb{R}^{2}\rightarrow\mathbb{R}")
@@ -3028,7 +3028,7 @@ class Limite4_1 (ThreeDScene):
         superficie=superficie4()
         text1=TexMobject(r'''f(x,y)=1+\frac{1}{x^{2}+y^{2}}''')
         text1.to_corner(UL)       
-        text2=TextMobject("Tomemos", " $\epsilon$=0.5")
+        text2=TextMobject("Tomemos", " $\varepsilon$=0.5")
         text2.to_corner(UL)
         text2[1].set_color(RED)
         text3=TextMobject('''Y notemos que \n 
@@ -3038,10 +3038,10 @@ class Limite4_1 (ThreeDScene):
         text4=TextMobject('''Tal que la imagen de los\n
                              puntos que no \n
                             pertenecen a $ B_{\\delta}(\\vec{0})$,''').to_corner(UL)
-        text5=TextMobject('''están a una distancia $\\epsilon$\n
+        text5=TextMobject('''están a una distancia $\\varepsilon$\n
                                 de 1.''').to_corner(UL)
         text5_1=TextMobject('''Es posible hacer lo mismo\n  
-                            con toda $\\epsilon>0$.''').to_corner(UL)
+                            con toda $\\varepsilon>0$.''').to_corner(UL)
         text6=TextMobject('''Por lo cual:''').to_corner(UL)
         text7=TexMobject(r"\lim_{\vec{x}\rightarrow\infty}f(\vec{x})=1").move_to(text5.get_center()+1*DOWN)
         
@@ -3457,7 +3457,9 @@ class ExtremeValue(GraphScene, Scene):
 
     # defining text
     def construct(self):
-        extreme = TextMobject('Teorema del Valor Extremo')
+        extreme = TextMobject('''Teorema fuerte: \n
+                                Las Funciones Continuas son \n
+                                Acotadas en Compactos''')
         # Definición intuitiva
         def_intuitiva = TextMobject("""De manera intuitiva, este teorema nos dice que si \n
         tenemos una función continua en un conjunto compacto, \n
@@ -3571,14 +3573,14 @@ class Superficie(ThreeDScene):
 
     def construct(self):
         axis_config = {
-            "x_min": -4,
-            "x_max": 4,
-            "y_min": -4,
-            "y_max": 4,
-            "z_min": -5,
-            "z_max": 6,
+            "x_min": -5,
+            "x_max": 5,
+            "y_min": -5,
+            "y_max": 5,
+            "z_min": -10,
+            "z_max": 18,
             "unit_size": 0.5,
-            "graph_origin": np.array([0, 0, -4])
+            "graph_origin": np.array([0, 0, 0])
         }
 
         ejm2 = TextMobject(""" Visualicemos ahora este teorema usando \n
@@ -3612,7 +3614,7 @@ class Superficie(ThreeDScene):
                 v,
                 u ** 2 - v ** 2 + 5
             ]), v_min=-3, v_max=3, u_min=-3, u_max=3, checkerboard_colors=[BLUE_E, BLUE],
-            resolution=(15, 32))
+            resolution=(5, 18))
 
         # Si alguien puede hacer que el triángulo pueda pegarse a la sabana, use el triángulo parametrizado akí.
         #        lado1 = ParametricFunction(lambda t: np.array([-1*t,  -3*t+1, 0]),
@@ -3669,7 +3671,7 @@ class Superficie(ThreeDScene):
         self.begin_ambient_camera_rotation(rate=0.2)
         self.play( ShowCreation(verts), ShowCreation(sabanita),
                   ShowCreation(extremos), ShowCreation(minimos), run_time=12)
-        self.wait(3)
+        self.wait(5)
         self.play(FadeOut(minimos), FadeOut(extremos), FadeOut(sabanita), FadeOut(verts),
                   FadeOut(axes))
         self.wait(2)
@@ -4249,7 +4251,7 @@ class Continua_y_acotada(Scene):
         # Textos
         #title = TextMobject('''Continua en compactos implica acotada''').scale(1.5)
         title = TextMobject('''Teorema Fuerte: \n
-                            Funciones Continuas son \n
+                            Las Funciones Continuas son \n
                             Acotadas en Compactos''').scale(1.5)
         t1 = TextMobject('''$f:A\\subset\\mathbb{R}^n\\to\\mathbb{R}^m$ es ''','''acotada''',''' si \n
                             $f(A)\\subset\\mathbb{R}^m$ es ''','''acotada''')
@@ -4340,7 +4342,7 @@ class TeoValorIntermedio_1(Scene):
         text_1_4 = TextMobject('''Si $c\\in\\mathbb{R}$ es tal que $f(\\vec{x}_1)<c<f(\\vec{x}_2)$,''').next_to(text_1_3,DOWN)
         text_1_5 = TextMobject('''entonces existe $\\vec{x}$ tal que $f(\\vec{x})=c$ ''').next_to(text_1_4,DOWN)
         text_1_1[1].set_color(PURPLE_B)
-        text_1_1[3].set_color(ORANGE)
+        text_1_1[2].set_color(ORANGE)
         text1 = VGroup(text_1_1,text_1_2,text_1_3,text_1_4,text_1_5)
         text_2=TextMobject( "Veamos algunos ejemplos que ilustran este teorema")
 
@@ -4425,7 +4427,7 @@ class TeoValorIntermedio_2(GraphScene):
         text6_1.bg  = SurroundingRectangle(text6_1,color=WHITE,fill_color=BLACK,fill_opacity=0.75)
         text6_1.group = VGroup(text6_1.bg,text6_1)
         text7=TextMobject('''¿Esto contradice el teorema del valor intermedio?''').shift(0.5*UP)
-        text7_1=TextMobject('''¡NO! por que el teorema del valor intermedio no nos \n
+        text7_1=TextMobject('''¡NO! porque el teorema del valor intermedio no nos \n
                              dice que $\\Vec{x}$ es único. '''  ).next_to(text7,DOWN)#.move_to(3*UP)
         text7.group = VGroup(text7,text7_1)
         text8=TextMobject('''Veamos un último ejemplo''')
@@ -4559,7 +4561,7 @@ class TeoValorIntermedio_3 (ThreeDScene):
         #text3_0[0][14].set_color(RED)
         #text3_0[0][15].set_color(RED)
         #text3_0[0][16].set_color(RED)
-        text3=TextMobject('''Y sea $\\Vec{x}_1=(0,0),\\Vec{x}_2=(2,0)$''',''' y $c=5$''').to_edge(DOWN)
+        text3=TextMobject('''Y sea $\\Vec{x}_1=(0,0),\\Vec{x}_2=(2,0)$''',''' y $c=0$''').to_edge(DOWN)
         text3.bg = SurroundingRectangle(text3,color=WHITE,fill_color=BLACK,fill_opacity=1)
         text3.group = VGroup(text3.bg,text3)
         text3[0][4].set_color(PURPLE_B)
