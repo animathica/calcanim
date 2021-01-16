@@ -3,6 +3,8 @@ from manimlib.imports import *
 #####################################################################################
 ###### Composición de una superficie con funciones lineales y traslaciones ##########
 #####################################################################################
+
+##########esferas
 class superficie_1(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -14,11 +16,10 @@ class superficie_1(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, u, v):
+        #Se puede modificar para cambiar el radio de la esfera 
         r=0.2
         return np.array([u,v,r*np.sin(7*(v+u))]) 
-        #return np.array([r*np.cos(u)*np.cos(v),r*np.cos(v)*np.sin(u),r*np.sin(v)]) 
-        #return np.array([0.6*x,0.6*y,0.6*((x*np.cos(y))**2+(y/np.sin(x))**2)]) 
-#esferas
+        
 class superficie_2(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -30,9 +31,9 @@ class superficie_2(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, u, v):
+        #Se puede modificar para cambiar el radio de la esfera 
         r=1
         return np.array([r*np.cos(u)*np.cos(v),r*np.cos(v)*np.sin(u),r*np.sin(v)]) 
-#Esferas
 class superficie_3(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -44,7 +45,9 @@ class superficie_3(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, u, v):
+        #Se puede modificar para cambiar el radio de la esfera 
         r=1
+        #Se puede modificar para cambiar la transformación
         k=0.1
         return np.array([r*np.cos(u)*np.cos(v),r*np.cos(v)*np.sin(u),k*r*np.sin(v)]) 
 class superficie_4(ParametricSurface):
@@ -58,9 +61,13 @@ class superficie_4(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, u, v):
+        #Se puede modificar para cambiar el radio de la esfera 
         r=1
+        #Se puede modificar para cambiar la transformación
         k=2
         return np.array([r*np.cos(u)*np.cos(v),r*np.cos(v)*np.sin(u),k*r*np.sin(v)]) 
+#### segundo ejemplo
+
 class superficie_5(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -73,8 +80,6 @@ class superficie_5(ParametricSurface):
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
         return np.array([x,y,(np.sin(3*(x+y))+y)*0.3])
-        #[y,x,x**3+(x*y**2)+np.cos(x)]) 
-
 class superficie_5_reflejada(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -87,7 +92,6 @@ class superficie_5_reflejada(ParametricSurface):
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
         return np.array([x,y,(np.sin(3*(x-y))-y)*0.3]) 
-
 class superficie_5_reflejada1(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -101,6 +105,7 @@ class superficie_5_reflejada1(ParametricSurface):
     def func(self, x, y):
         return np.array([x,y,(np.sin(3*(-x+y))+y)*0.3]) 
 
+#### tercer ejemplo
 class superficie_6(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -112,10 +117,10 @@ class superficie_6(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
+        #Se puede cambiar a y b para modificar la translación
         a=0
         b=0
         return np.array([x+a,y+b,x**2+(y**2*(np.sin(y)**2))]) 
-
 class superficie_6_1(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -127,6 +132,7 @@ class superficie_6_1(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
+        #Se puede cambiar a y b para modificar la translación
         a=2
         b=0
         return np.array([x+a,y+b,x**2+(y**2*(np.sin(y)**2))])
@@ -142,6 +148,7 @@ class superficie_6_2(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
+         #Se puede cambiar a y b para modificar la translación
         a=0
         b=2
         return np.array([x+a,y+b,x**2+(y**2*(np.sin(y)**2))])
@@ -171,7 +178,6 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         text10=TextMobject('''Mientras que la gráfica de $f(-x,-y)$ es una \n
                                     reflexión respecto al eje vertical. ''').move_to(3*UP)
         text11=TextMobject('''¿Qué pasa con $f(k(x,y))$, con $k\\in\\mathbb{R}$? ''')
-        ###HAY QUE VER SI CON F SE NOTA LA HOMOTECIA HORIZONTAL, POR LA SIMETRÍA DEL PARABOLOIDE NO SE VA A NOTAR EL CAMBIO MUCHO.
         text12=TextMobject('''También podemos hacer traslaciones horizontales. Por ejemplo:''').move_to(3*UP)
         text13=TextMobject('''$g(x,y)=x^{2}+y^{2}\\sin^{2}(y)$''').move_to(3*DOWN)
         text14=TextMobject('''La gráfica de $g((x,y)+(2,0))$ se ve: ''').move_to(3*DOWN)
@@ -187,7 +193,7 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         k1=-2
         superficie2=superficie_1().move_to([0,0,k1])
         k2=3
-        superficie3=superficie_1().move_to([0,0,3])
+        superficie3=superficie_1().move_to([0,0,k2])
         superficie4=superficie_2()
         superficie5=superficie_3()
         superficie6=superficie_4()
@@ -201,12 +207,7 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         superficie11=superficie_6_2()
 
 
-        #Updaters
-        #def mov1 (obj):
-         #   t = k1u.get_value()
-         #   superficie1.become(superficie2)
-        #superficie1.add_updater(mov1)                        
-        #animación
+    
         self.play(Write(titulo))
         self.wait(6)
         self.play(FadeOut(titulo))
