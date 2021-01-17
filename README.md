@@ -58,3 +58,4 @@ https://eulertour.com/gallery
   - Lema del número de Lebesgue
   - Conjuntos Disconexos/Conexos
   - Conjuntos Convexos
+  - Conjuntos compactos
