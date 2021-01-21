@@ -1673,7 +1673,7 @@ class Velocidad_y_rapidez(ThreeDScene):
         t_9 = TextMobject('''Notemos que si $t - t_0 > 0$, \n
         el vector: ''', '''$\\frac{\\gamma (t) - \\gamma (t_0)}{t - t_0}$''')
         t_9.set_color_by_tex_to_color_map({
-            '''$\\frac{\\gamma (t) - \\gamma (t_0)}{t - t_0}$''':PURPLE    
+            '''$\\frac{\\gamma (t) - \\gamma (t_0)}{t - t_0}$''':LIGHT_PINK    
         })
         t_10 = TextMobject('''nos dice cómo cambió \n
         la posición en proporción 
@@ -1686,22 +1686,22 @@ class Velocidad_y_rapidez(ThreeDScene):
         t_12 = TextMobject('''Este vector es la velocidad \n
         promedio de $\\gamma$ en $[t_0,t]$''')
         t_13 = TextMobject('''Con esto en mente, decimos \n
-        que $\\gamma$ es diferenciable \n 
+        que $\\gamma$ es derivable \n 
         en $t_0$ si existe ''')
         t_14 = TextMobject(''' $$\\gamma ' (t_0) : = \\lim_{t \\rightarrow t_0} \\frac{\gamma (t) - \\gamma (t_0)}{t - t_0}$$''')
-        t_14.set_color_by_tex_to_color_map({''' $$\\gamma ' (t_0) : = \\lim_{t \\rightarrow t_0} \\frac{\gamma (t) - \\gamma (t_0)}{t - t_0}$$''':PURPLE})
+        t_14.set_color_by_tex_to_color_map({''' $$\\gamma ' (t_0) : = \\lim_{t \\rightarrow t_0} \\frac{\gamma (t) - \\gamma (t_0)}{t - t_0}$$''':LIGHT_PINK})
         t_15 = TextMobject(''' El vector ''', '''$\\gamma ' (t_0)$''', ''' se llama \n 
         la derivada de $\\gamma$ en $t_0$ ''')
-        t_15.set_color_by_tex_to_color_map({'''$\\gamma ' (t_0)$''': PURPLE})
+        t_15.set_color_by_tex_to_color_map({'''$\\gamma ' (t_0)$''': LIGHT_PINK})
         t_16 = TextMobject('''que es la velocidad \n 
         (instantánea) del movimiento \n 
         al tiempo $t_0$''')
         t_17 = TextMobject('''$\\gamma'(t_0)$''', ''' nos da información \n 
         sobre la dirección, ''')
-        t_17.set_color_by_tex_to_color_map({'''$\\gamma'(t_0)$''': PURPLE})
+        t_17.set_color_by_tex_to_color_map({'''$\\gamma'(t_0)$''': LIGHT_PINK})
         t_18 = TextMobject('''sentido y rapidez de cómo \n
         $\gamma(t)$ recorre la curva \n 
-        alrededor de $\gamma(t_0)$.''')
+        cerca de $\gamma(t_0)$.''')
         t_19 = TextMobject('''Además ''','''$\\Vert \\gamma'(t_0) \\Vert$''',''' depende \n 
         de cómo es $\\Vert \\gamma(t)-\\gamma(t_0)\\Vert$ ''')
         t_19.set_color_by_tex_to_color_map({'''$\\Vert \\gamma'(t_0) \\Vert$''': ORANGE})
@@ -1726,7 +1726,7 @@ class Velocidad_y_rapidez(ThreeDScene):
         se recorre la curva, ''')
         t_27 = TextMobject('''por ello se llama la \n 
         rapidez de $\\gamma$ en $t_0$.''')
-        t_28 = TextMobject('''Sabiendo esto, ¿Crees que la velocidad y rapidez dependen de la parametrización de la curva? ''')
+        t_28 = TextMobject('''Sabiendo esto, ¿crees que la velocidad y rapidez dependen de la parametrización de la curva? ''')
 
         
         
@@ -1766,7 +1766,7 @@ class Velocidad_y_rapidez(ThreeDScene):
         gamma = Vector(direction= self.cur(t), color=RED)
         gamma_0 =  Vector(direction= self.cur(t_0), color=GREEN)
         diferencia = Vector(direction=self.cur(t) - self.cur(t_0), color=YELLOW).move_to((self.cur(t) + self.cur(t_0))/2)
-        derivada =  Vector(direction=(self.cur(t) - self.cur(t_0))/(t - t_0), color=PURPLE).move_to((self.cur(t) + self.cur(t_0))/2 + ((self.cur(t) - self.cur(t_0))/(t - t_0)- (self.cur(t) - self.cur(t_0)))/2)
+        derivada =  Vector(direction=(self.cur(t) - self.cur(t_0))/(t - t_0), color=PINK).move_to((self.cur(t) + self.cur(t_0))/2 + ((self.cur(t) - self.cur(t_0))/(t - t_0)- (self.cur(t) - self.cur(t_0)))/2)
         
        
 
@@ -1781,13 +1781,13 @@ class Velocidad_y_rapidez(ThreeDScene):
             gamma, gamma_0, derivada = Group
             gamma_new = Vector(direction= self.cur(x.get_value()), color=RED)
             gamma.become(gamma_new)
-            derivada_new = Vector(direction=(self.cur(x.get_value()) - self.cur(t_0))/(x.get_value() - t_0), color=PURPLE).move_to((self.cur(x.get_value()) + self.cur(t_0))/2 + ((self.cur(x.get_value()) - self.cur(t_0))/(x.get_value() - t_0)- (self.cur(x.get_value()) - self.cur(t_0)))/2)
+            derivada_new = Vector(direction=(self.cur(x.get_value()) - self.cur(t_0))/(x.get_value() - t_0), color=PINK).move_to((self.cur(x.get_value()) + self.cur(t_0))/2 + ((self.cur(x.get_value()) - self.cur(t_0))/(x.get_value() - t_0)- (self.cur(x.get_value()) - self.cur(t_0)))/2)
             derivada.become(derivada_new)
             return Group
 
         y = ValueTracker(t_0)
         def update_group_0(derivada):
-            derivada_new = Vector(direction=(self.cur(x.get_value()) - self.cur(y.get_value()))/(x.get_value() - y.get_value()), color=PURPLE).move_to((self.cur(x.get_value()) + self.cur(y.get_value()))/2 + ((self.cur(x.get_value()) - self.cur(y.get_value()))/(x.get_value() - y.get_value())- (self.cur(x.get_value()) - self.cur(y.get_value())))/2)
+            derivada_new = Vector(direction=(self.cur(x.get_value()) - self.cur(y.get_value()))/(x.get_value() - y.get_value()), color=PINK).move_to((self.cur(x.get_value()) + self.cur(y.get_value()))/2 + ((self.cur(x.get_value()) - self.cur(y.get_value()))/(x.get_value() - y.get_value())- (self.cur(x.get_value()) - self.cur(y.get_value())))/2)
             derivada.become(derivada_new)
             return Group
 
