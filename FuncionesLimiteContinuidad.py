@@ -3,28 +3,7 @@ from manimlib.imports import *
 ##A lo largo de este código estan todas las animaciones realizadas 
 # por AniMathica sobre el tema de continuidad, límite y funciones 
 # de Rn a Rm fecha
-# 14/10/2020​
-
-
-class Operaciones_continuidad(ThreeDScene):
-    def acomodar_textos(self,objeto):
-        self.add_fixed_in_frame_mobjects(objeto)
-        self.play(Write(objeto))
-    def acomodar_puntos(self,objeto):
-        self.add_fixed_in_frame_mobjects(objeto)
-        self.add(objeto)
-
-    # Definimos las funciones a utilizar (las que vamos a graficar)
-    # Puedes cambiar estas funciones con las que se te ocurra
-    # Son funciones de R  a R2, y estamos obteniendo sus gráficas
-    # por lo que la primer entrada siempre debe ser lo que parametriza
-    # la función, es decir, la variable independiente 
-    def helicoide(self,t):
-        return [t,np.cos(5*t),np.sin(5*t)] #f(t)=(cos(5t),sin(5t))
-    
-    def identidad(self,t):
-        return [t,t,t] #g(t)=(t,t)
-    
+# 14/10
     def func_suma(self,t):
         return [t,t+np.cos(5*t),t+np.sin(5*t)] #(f+g)(t)=(t+cos(5t),t+sin(5t))
     
@@ -68,7 +47,6 @@ class Operaciones_continuidad(ThreeDScene):
             "z_max" : 6,
         }
         ejes = ThreeDAxes(**axis_config)
-        # Ejes en 2D
         ejes2 = Axes(
             x_min=-6,
             x_max=6,
