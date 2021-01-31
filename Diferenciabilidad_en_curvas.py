@@ -1082,7 +1082,54 @@ class Regulares_y_picos(Scene):
         self.play(FadeOut(Group6))
         self.wait()
         
-        #### Curvas Rectificables ####
+######################################################
+##### Curvas rectificables ###########################
+######################################################
+
+#-------------Fuciones auxiliares para la función partición_círculo-------------
+def set_angs():
+    return [0, 1*2*np.pi/3.0, 2*2*np.pi/3.0, 3*2*np.pi/3.0]
+def partir(angulos,j):
+    left = 0
+    right = left+1
+    for iteracion in range(1,j):
+        index = 2*iteracion-1
+        angulos.insert(index,(angulos[left]+angulos[right])/2.0)
+        left = 2*iteracion
+        right = left+1
+    return angulos
+#-------------Fución utilizada en la clase Curvas_Rectificables-----------------
+def particion_circulo(n):
+    '''
+    INPUT:
+        Esta función recibe el número de puntos, n, que se le agregan a la 
+    partición inicial [0, 1*2*np.pi/3.0, 2*2*np.pi/3.0, 3*2*np.pi/3.0]. De manera
+    que al círculo se le van agragando puntos al círculo en sentido antihorario.
+    n es un entero que va de [0,21], pero se puede generalizar a más puntos.
+
+    OUTPUT:
+        Devuelve la partición en forma de un array
+    
+    No modificar los valores aquí dados, a menos que se necesite generalizar el
+    algoritmo.
+    '''
+    angs = set_angs()
+    for num_puntos in range(n+1):
+        for i in range(1,num_puntos+2):
+            if num_puntos<=3:
+                angs = set_angs()
+                angs = partir(angs, i)
+            elif 3<num_puntos<=9:
+                angs = set_angs()
+                angs = partir(angs, 4)
+                angs = partir(angs, i-3)
+            elif 9<num_puntos<=21:
+                angs = set_angs()
+                angs = partir(angs, 4)
+                angs = partir(angs, 7)
+                angs = partir(angs, i-9)
+    return angs
+
 class Curvas_Rectificables(GraphScene,Scene):
     def setup(self):
         Scene.setup(self)
@@ -1094,33 +1141,60 @@ class Curvas_Rectificables(GraphScene,Scene):
     def particiones(self):
         numberline_1 = NumberLine(x_min=0,x_max=2*PI+1,unit_size=0.75).move_to(2.8*LEFT+3*DOWN)
         distancias_poligonales_2 =[]
-        dist_2 = Dot(radius=0).move_to((-0.3,1,0))
-        dot_3 = Dot(color=RED,radius=0.05).move_to((3.5,-2+2.25,0))
-        dist_3 = TexMobject(r"d(\mathcal{P})=9.00").move_to((-0.3,1.5,0)).scale(0.8).set_color(RED_E)
-        dot_4 = Dot(color=RED,radius=0.05).move_to((4,-2+2.55,0))
-        dist_4 = TexMobject(r"d(\mathcal{P})=9.11").move_to((-0.3,1.5,0)).scale(0.8).set_color(RED_E)
-        dot_5 = Dot(color=RED,radius=0.05).move_to((4.5,-2+2.75,0))
-        dist_5 = TexMobject(r"d(\mathcal{P})=9.18").move_to((-0.3,1.5,0)).scale(0.8).set_color(RED_E)
-        dot_6 = Dot(color=RED,radius=0.05).move_to((5,-2+2.9,0))
-        dist_6 = TexMobject(r"d(\mathcal{P})=9.23").move_to((-0.3,1.5,0)).scale(0.8).set_color(RED_E)
-        dot_7 = Dot(color=RED,radius=0.05).move_to((5.5,-2+3,0))
-        dist_7 = TexMobject(r"d(\mathcal{P})=9.27").move_to((-0.3,1.5,0)).scale(0.8).set_color(RED_E)
-        conjunto = VGroup(dist_2,dot_3,dist_3,dot_4,dist_4,dot_5,dist_5,dot_6,dist_6,dot_7,dist_7)
-        distancias_poligonales_2=[(*conjunto)]
+        arrow = Arrow((-1.2,1,0),(0.0,1,0)).set_color(RED)
+
+        dot_4 = Dot(color=RED,radius=0.05).move_to((1.5,-2+0.40,0))
+        dist_4 = TexMobject(r"d(\mathcal{P})=7.79").move_to((-0.8,1.5,0)).scale(0.7).set_color(RED_E)
+
+        dot_5 = Dot(color=RED,radius=0.05).move_to((2,-2+1.40,0))
+        dist_5 = TexMobject(r"d(\mathcal{P}')=8.19").move_to((-0.8,1.5,0)).scale(0.7).set_color(RED_E)
+
+        dot_6 = Dot(color=RED,radius=0.05).move_to((2.5,-2+2.4,0))
+        dist_6 = TexMobject(r"d(\mathcal{P}')=8.59").move_to((-0.8,1.5,0)).scale(0.7).set_color(RED_E)
+
+        dot_7 = Dot(color=RED,radius=0.05).move_to((3,-2+3.2,0))
+        dist_7 = TexMobject(r"d(\mathcal{P}')=9.0").move_to((-0.8,1.5,0)).scale(0.7).set_color(RED_E)
+
+        dot_8 = Dot(color=RED,radius=0.05).move_to((3.5,-2+3.40,0))
+        dist_8 = TexMobject(r"d(\mathcal{P}')=9.05").move_to((-0.8,1.5,0)).scale(0.7).set_color(RED_E)
+
+        dot_9 = Dot(color=RED,radius=0.05).move_to((4,-2+3.55,0))
+        dist_9 = TexMobject(r"d(\mathcal{P}')=9.10").move_to((-0.8,1.5,0)).scale(0.7).set_color(RED_E)
+
+        dot_10 = Dot(color=RED,radius=0.05).move_to((4.5,-2+3.70,0))
+        dist_10 = TexMobject(r"d(\mathcal{P}')=9.15").move_to((-0.8,1.5,0)).scale(0.7).set_color(RED_E)
+
+        dot_11 = Dot(color=RED,radius=0.05).move_to((5,-2+3.80,0))
+        dist_11 = TexMobject(r"d(\mathcal{P}')=9.21").move_to((-0.8,1.5,0)).scale(0.7).set_color(RED_E)
+
+        dot_12 = Dot(color=RED,radius=0.05).move_to((5.5,-2+3.90,0))
+        dist_12 = TexMobject(r"d(\mathcal{P}')=9.26").move_to((-0.8,1.5,0)).scale(0.7).set_color(RED_E)
+
+        dot_13 = Dot(color=RED,radius=0.05).move_to((6,-2+4.0,0))
+        dist_13 = TexMobject(r"d(\mathcal{P}')=9.31").move_to((-0.8,1.5,0)).scale(0.7).set_color(RED_E)
+
+        dots = [dot_4, dot_5, dot_6, dot_7, dot_8, dot_9, dot_10, dot_11, dot_12, dot_13]
+        dists = [dist_4, dist_5, dist_6, dist_7, dist_8, dist_9, dist_10, dist_11, dist_12, dist_13]
         Grupo_1 = VGroup(Dot(radius=0).move_to(3*LEFT))
-        for j in range(6,11,1):
+
+        for j in range(10):
+            
             conj_puntos_particion = []
             conj_evaluacion_particion = []
             conj_poligonal_particion = []
             suma_distancias = 0
-            for i in range(0,j):
-                punto_dom = Dot().move_to(numberline_1.get_left()+((2*PI/(j-1))*i*0.75)*RIGHT)
+
+            particion = particion_circulo(j)
+            for i in range(len(particion)):
+                punto_dom = Dot().move_to(numberline_1.get_left()+particion[i]*0.75*RIGHT)
                 conj_puntos_particion.append(punto_dom)
-                punto_eval = Dot().move_to((1.5*math.cos((2*PI/(j-1))*i)-3,1.5*math.sin((2*PI/(j-1))*i),0))
+                punto_eval = Dot().move_to((1.5*np.cos(particion[i])-3,1.5*np.sin(particion[i]),0))
                 conj_evaluacion_particion.append(punto_eval)
-                linea_poligonal = Line((1.5*math.cos((2*PI/(j-1))*i)-3,1.5*math.sin((2*PI/(j-1))*i),0),(1.5*math.cos((2*PI/(j-1))*(i+1))-3,1.5*math.sin((2*PI/(j-1))*(i+1)),0))
-                conj_poligonal_particion.append(linea_poligonal)
-                suma_distancias+=((1.5*math.cos((2*PI/(j))*(i+1))-1.5*math.cos((2*PI/(j))*i))**2+(1.5*math.sin((2*PI/(j))*(i+1))-1.5*math.sin((2*PI/(j))*i))**2)**(0.5)
+                if i<(len(particion)-1):
+                    linea_poligonal = Line((1.5*np.cos(particion[i])-3,1.5*np.sin(particion[i]),0),(1.5*np.cos(particion[i+1])-3,1.5*np.sin(particion[i+1]),0))
+                    conj_poligonal_particion.append(linea_poligonal)
+                    suma_distancias += np.linalg.norm(np.array((1.5*np.cos(particion[i])-3,1.5*np.sin(particion[i]),0))-\
+                                                    np.array((1.5*np.cos(particion[i+1])-3,1.5*np.sin(particion[i+1]),0)))
         ####Conjuntos con elementos
             puntos_particion = VGroup(*conj_puntos_particion)
             puntos_evaluacion_particion = VGroup(*conj_evaluacion_particion)
@@ -1129,20 +1203,22 @@ class Curvas_Rectificables(GraphScene,Scene):
 
         ####Animaciones con poligonal
             focus_poligonal_1 = []
-            for i in range(0,j):
+            for i in range(0,len(poligonal_particion)):
                 focus_poligonal_1.append(FadeToColor(poligonal_particion[i],RED,rate_func=there_and_back))
             focus_poligonal_2 = []
-            for i in range(0,j):
+            for i in range(0,len(poligonal_particion)):
                 focus_poligonal_2.append(FadeToColor(poligonal_particion[i],RED,rate_func=there_and_back))
         ####Ejecución de Animaciones        
             Grupo = VGroup(puntos_particion,puntos_evaluacion_particion,poligonal_particion)
             self.play(ReplacementTransform(Grupo_1,Grupo))
+            
+            self.play(ShowCreation(arrow))
+            self.play(FadeIn(dots[j]),FadeIn(dists[j]))
+            self.play(FadeOut(dists[j]))
+
             Grupo_1 = VGroup(puntos_particion,puntos_evaluacion_particion,poligonal_particion)
             self.play(LaggedStart(*focus_poligonal_2),run_time=2)
-            self.play(ReplacementTransform(distancias_poligonales_2[(2*j)-12],distancias_poligonales_2[(2*j)-10]))
-            self.play(FadeIn(distancias_poligonales_2[(2*j)-11]))
-            self.wait(0.5)
-        self.play(FadeOut(dist_7))
+        self.play(FadeOut(arrow))
     CONFIG = {
         "x_min": -2,
         "x_max": 2,
@@ -1172,8 +1248,8 @@ class Curvas_Rectificables(GraphScene,Scene):
     def construct(self):
         ####TEXTOS
         titulo = TextMobject("Curvas Rectificables").scale(1.5)
-        text_1 = TextMobject('''Sea $\\sigma$ una curva en $\\mathbb{R}^n$\n
-                                $\\sigma: A\\subset\\mathbb{R}\\rightarrow\\mathbb{R}^n$''')
+        text_1 = TextMobject('''Sea $\\gamma$ una curva en $\\mathbb{R}^n$\n
+                                $\\gamma: A\\subset\\mathbb{R}\\rightarrow\\mathbb{R}^n$''')
         text_2 = TextMobject('''Como ejemplo, tomemos la curva \n
                                 $\\gamma : A=[0,2\\pi]\\rightarrow\\mathbb{R}^2$ \n
                              $\\gamma(t)=\\dfrac{3}{2}(\\cos{(t)},\\sin{(t)})$''')
@@ -1191,22 +1267,23 @@ class Curvas_Rectificables(GraphScene,Scene):
                                  $\\mathcal{P}$ con vértices en cada punto de $\\gamma_{\\mathcal{S}}$''').move_to(3.2*UP)
         text_11 = TextMobject('''La longitud $d(\\mathcal{P})$ de la poligonal se define\n
                                      como la suma de cada segmento de recta:''').move_to(3.2*UP)
-        text_12 = TexMobject(r'''d(\mathcal{P})=\sum_{i=1}^m|\gamma(t_i)-\gamma(t_{i-1})| ''').move_to(3*UP)
-        text_12_1 = TextMobject('''En el ejemplo, para esta partición, $d(\\mathcal{P})=8.48$ ''').move_to(3*UP)
-        text_13 = TextMobject('''Consideremos un refinamiento $\\mathcal{S}'$ de la partición $\\mathcal{S}$  ''').move_to(3*UP)
-        text_14 = TextMobject('''A partir de $\\mathcal{S}'$ definimos otra poligonal $\\mathcal{P}'$ ''').move_to(3*UP)
-        text_15 = TextMobject(''' Por la desigualdad del triangulo, $d(\mathcal{P}')\geq d(\mathcal{P})$''').move_to(3*UP)
-        text_15_1 = TextMobject(''' En el ejemplo, para esta partición, $d(\\mathcal{P}')=8.81$''').move_to(3*UP)
+        text_12 = TexMobject(r'''d(\mathcal{P})=\sum_{i=1}^m \left\Vert \gamma(t_i)-\gamma(t_{i-1}) \right\Vert''').move_to(3.2*UP)
+        text_12_1 = TextMobject('''En el ejemplo, para esta partición, $d(\\mathcal{P})=7.79$ ''').move_to(3.2*UP)
+        text_13 = TextMobject('''Consideremos un refinamiento $\\mathcal{S}'$ de la partición $\\mathcal{S}$  ''').move_to(3.2*UP)
+        text_14 = TextMobject('''A partir de $\\mathcal{S}'$ definimos otra poligonal $\\mathcal{P}'$ ''').move_to(3.2*UP)
+        text_15 = TextMobject(''' Por ser $\\mathcal{P}'$ refinamiento de $\mathcal{P}$, $d(\mathcal{P}')\geq d(\mathcal{P})$''').move_to(3.2*UP)
+        text_15_1 = TextMobject(''' En el ejemplo, para esta partición, $d(\\mathcal{P}')=8.19$''').move_to(3.2*UP)
         text_16_1 = TextMobject("Consideremos el conjunto").move_to(3.6*UP)
-        text_16_2 = TextMobject("$L:=\\{ d(\\mathcal{P}) | \\text{$\\mathcal{P}$ es una poligonal sobre $\\gamma$} \}$").next_to(text_16_1,DOWN)
+        text_16_2 = TextMobject("$L:=\\{ d(\\mathcal{P}) | \\text{$\\mathcal{P}$ es una poligonal sobre $\\gamma$} \}$").move_to(2.9*UP)
         text_16 = VGroup(text_16_1,text_16_2)
         text_17 = TextMobject('''Decimos que $\\gamma$ es una curva rectificable\n
-                                 si $L$ es un conjunto acotado superiormente ''').move_to(3*UP)
-        text_18 = TextMobject(''' Además, $\\text{sup}(L)= \\text{ longitud de curva $\\gamma$}$''').move_to(3*UP)
-        text_18_1 = TextMobject("En el ejemplo, $\\text{sup}(L)=3\\pi$").move_to(3*UP)
-        text_19 = TextMobject(''' En general, una curva en $\\mathbb{R}^n$,  $\\sigma: A\\subset\\mathbb{R}\\rightarrow\\mathbb{R}^n$\n
+                                 si $L$ es un conjunto acotado superiormente ''').move_to(3.2*UP)
+        text_18 = TextMobject(''' Además, $\\text{sup}(L)= \\text{ longitud de curva $\\gamma$}$''').move_to(3.2*UP)
+        text_18_0 = TextMobject(''' Para curvas suaves, $\\text{sup}(L)=\\displaystyle\\int_{a}^{b}\\left\\Vert \\gamma'(t) \\right\\Vert dt$''').move_to(3.2*UP)
+        text_18_1 = TextMobject("En el ejemplo, $\\text{sup}(L)=3\\pi$").move_to(3.2*UP)
+        text_19 = TextMobject(''' En general, una curva en $\\mathbb{R}^n$,  $\\gamma: A\\subset\\mathbb{R}\\rightarrow\\mathbb{R}^n$\n
                                  es rectificable si $\\forall$  $a,b\\in A, a<b$, \n
-                                $\\sigma$ es rectificable en $[a,b]$''')
+                                $\\gamma$ es rectificable en $[a,b]$''')
         ###OBJETOS
 
         #Función
@@ -1237,14 +1314,18 @@ class Curvas_Rectificables(GraphScene,Scene):
         conj_evaluacion_particion_1 = []
         conj_poligonal_particion_1 = []
         suma_distancias_1 = 0
-        for i in range(0,4):
-            punto_dom = Dot().move_to(numberline_1.get_left()+((2*PI/3)*i*0.75)*RIGHT)
+
+        particion = particion_circulo(0) ##Se añadirán cero puntos al triángulo inscrito
+        for i in range(len(particion)):
+            punto_dom = Dot().move_to(numberline_1.get_left()+particion[i]*0.75*RIGHT)
             conj_puntos_particion_1.append(punto_dom)
-            punto_eval = Dot().move_to((1.5*math.cos((2*PI/3)*i)-3,1.5*math.sin((2*PI/3)*i),0))
+            punto_eval = Dot().move_to((1.5*np.cos(particion[i])-3,1.5*np.sin(particion[i]),0))
             conj_evaluacion_particion_1.append(punto_eval)
-            linea_poligonal = Line((1.5*math.cos((2*PI/3)*i)-3,1.5*math.sin((2*PI/3)*i),0),(1.5*math.cos((2*PI/3)*(i+1))-3,1.5*math.sin((2*PI/3)*(i+1)),0))
-            conj_poligonal_particion_1.append(linea_poligonal)
-            suma_distancias_1=suma_distancias_1+((1.5*math.cos((2*PI/4)*(i+1))-1.5*math.cos((2*PI/4)*i))**2+(1.5*math.sin((2*PI/4)*(i+1))-1.5*math.sin((2*PI/4)*i))**2)**(0.5)
+            if i<(len(particion)-1):
+                linea_poligonal = Line((1.5*np.cos(particion[i])-3,1.5*np.sin(particion[i]),0),(1.5*np.cos(particion[i+1])-3,1.5*np.sin(particion[i+1]),0))
+                conj_poligonal_particion_1.append(linea_poligonal)
+                suma_distancias_1 += np.linalg.norm(np.array((1.5*np.cos(particion[i])-3,1.5*np.sin(particion[i]),0))-\
+                                                    np.array((1.5*np.cos(particion[i+1])-3,1.5*np.sin(particion[i+1]),0)))
         ####Conjuntos con elementos
         puntos_particion_1 = VGroup(*conj_puntos_particion_1)
         puntos_evaluacion_particion_1 = VGroup(*conj_evaluacion_particion_1)
@@ -1253,10 +1334,10 @@ class Curvas_Rectificables(GraphScene,Scene):
         
         ####Animaciones con poligonal
         focus_poligonal_1_1 = []
-        for i in range(0,4):
+        for i in range(0,len(conj_poligonal_particion_1)):
             focus_poligonal_1_1.append(FadeToColor(poligonal_particion_1[i],RED,rate_func=there_and_back))
         focus_poligonal_1_2 = []
-        for i in range(0,4):
+        for i in range(0,len(conj_poligonal_particion_1)):
             focus_poligonal_1_2.append(FadeToColor(poligonal_particion_1[i],RED,rate_func=there_and_back))
 
         ##########Particiones, Evaluaciones y poligonal con 5 elementos#########
@@ -1266,14 +1347,18 @@ class Curvas_Rectificables(GraphScene,Scene):
         conj_evaluacion_particion_2 = []
         conj_poligonal_particion_2 = []
         suma_distancias_2 = 0
-        for i in range(0,5):
-            punto_dom = Dot().move_to(numberline_1.get_left()+((2*PI/4)*i*0.75)*RIGHT)
+
+        particion = particion_circulo(1) ##Se añadirán cero puntos al triángulo inscrito
+        for i in range(len(particion)):
+            punto_dom = Dot().move_to(numberline_1.get_left()+particion[i]*0.75*RIGHT)
             conj_puntos_particion_2.append(punto_dom)
-            punto_eval = Dot().move_to((1.5*math.cos((2*PI/4)*i)-3,1.5*math.sin((2*PI/4)*i),0))
+            punto_eval = Dot().move_to((1.5*np.cos(particion[i])-3,1.5*np.sin(particion[i]),0))
             conj_evaluacion_particion_2.append(punto_eval)
-            linea_poligonal = Line((1.5*math.cos((2*PI/4)*i)-3,1.5*math.sin((2*PI/4)*i),0),(1.5*math.cos((2*PI/4)*(i+1))-3,1.5*math.sin((2*PI/4)*(i+1)),0))
-            conj_poligonal_particion_2.append(linea_poligonal)
-            suma_distancias_2=suma_distancias_2+((1.5*math.cos((2*PI/5)*(i+1))-1.5*math.cos((2*PI/5)*i))**2+(1.5*math.sin((2*PI/5)*(i+1))-1.5*math.sin((2*PI/5)*i))**2)**(0.5)
+            if i<(len(particion)-1):
+                linea_poligonal = Line((1.5*np.cos(particion[i])-3,1.5*np.sin(particion[i]),0),(1.5*np.cos(particion[i+1])-3,1.5*np.sin(particion[i+1]),0))
+                conj_poligonal_particion_2.append(linea_poligonal)
+                suma_distancias_2 += np.linalg.norm(np.array((1.5*np.cos(particion[i])-3,1.5*np.sin(particion[i]),0))-\
+                                                    np.array((1.5*np.cos(particion[i+1])-3,1.5*np.sin(particion[i+1]),0)))
         ####Conjuntos con elementos
         puntos_particion_2 = VGroup(*conj_puntos_particion_2)
         puntos_evaluacion_particion_2 = VGroup(*conj_evaluacion_particion_2)
@@ -1283,40 +1368,40 @@ class Curvas_Rectificables(GraphScene,Scene):
         
         ####Animaciones con poligonal
         focus_poligonal_2_1 = []
-        for i in range(0,5):
-            focus_poligonal_2_1.append(FadeToColor(poligonal_particion_2[i],RED,rate_func=there_and_back))
+        for i in range(0,len(conj_poligonal_particion_1)):
+            focus_poligonal_1_1.append(FadeToColor(poligonal_particion_1[i],RED,rate_func=there_and_back))
         focus_poligonal_2_2 = []
-        for i in range(0,5):
-            focus_poligonal_2_2.append(FadeToColor(poligonal_particion_2_copy[i],RED,rate_func=there_and_back))
+        for i in range(0,len(conj_poligonal_particion_1)):
+            focus_poligonal_1_2.append(FadeToColor(poligonal_particion_1[i],RED,rate_func=there_and_back))
                
         #### Diagrama de distancias
         #### Los labels y líneas fueron creados aquí mismo con iteraciones for
-        EjeY_1 = Arrow(start = (0,-1,0), end = (0,4.5,0), stroke_width = 2).set_color(BLUE)
-        EjeX_1 = Arrow(start = (-1,0,0), end = (4.5,0,0), stroke_width = 2).set_color(BLUE)
+        EjeY_1 = Arrow(start = (-1,-1,0), end = (-1,4.8,0), stroke_width = 2).set_color(BLUE)
+        EjeX_1 = Arrow(start = (-2,0,0), end = (5.0,0,0), stroke_width = 2).set_color(BLUE)
         label_x = TextMobject("Elementos de Partición $\\mathcal{P}$").shift(1.75*RIGHT+0.75*DOWN).scale(0.5)
-        label_y = TextMobject("Longitud de Poligonal $d(\\mathcal{P})$").move_to(1.75*UP+0.9*LEFT).rotate_in_place(90*DEGREES).scale(0.5)
+        label_y = TextMobject("$d(\\mathcal{P})$").move_to(1.75*UP+2.0*LEFT).rotate_in_place(90*DEGREES).scale(0.5)
         etiquetas_eje_x = []
-        for i in range(4,11):
-            line_x = Line((0.5+0.5*(i-4),-0.05,0),(0.5+0.5*(i-4),0.05,0))
+        for i in range(4,14):
+            line_x = Line((0.5+0.5*(i-4)-1,-0.05,0),(0.5+0.5*(i-4)-1,0.05,0))
             lable_line_x = TexMobject(round(i,2)).move_to(line_x.get_bottom()+0.25*DOWN).scale(0.6)
             both_1 = VGroup(line_x,lable_line_x)
             etiquetas_eje_x.append(both_1)
         etiquetas_eje_y = []
-        for i in range(4,10):
-            line_y = Line((-0.05,0.5+0.5*(i-4),0),(0.05,0.5+0.5*(i-4),0))
-            label_line_y = TexMobject(round(8.3+(i-4)*0.2,3)).scale(0.6).move_to(line_y.get_left()+0.35*LEFT)
+        for i in range(4,12):
+            line_y = Line((-0.05-1,0.2+0.5*(i-4),0),(0.05-1,0.2+0.5*(i-4),0))
+            label_line_y = TexMobject(round(7.7+(i-4)*0.2,3)).scale(0.6).move_to(line_y.get_left()+0.35*LEFT)
             both_2 = VGroup(line_y,label_line_y)
             etiquetas_eje_y.append(both_2)
-        line_3pi = Line((2.05,-1.5+0.5*(5.5),0),(1.95,-1.5+0.5*(5.5),0)) 
+        line_3pi = Line((2-1-0.05,-0.6+0.5*(9.5-4),0),(2-1+0.05,-0.6+0.5*(9.5-4),0))
         label_line_3pi = TexMobject(r"3\pi").scale(0.8).move_to(line_3pi.get_left()+0.4*LEFT+0.1*UP).set_color(YELLOW)
         Ejes_1 = VGroup(EjeX_1, EjeY_1,label_x,label_y,*etiquetas_eje_x,*etiquetas_eje_y).shift(2*RIGHT+2*DOWN)
-        recta_3pi = Line((2,-1.5+0.5*(9.5-4),0),(6,-1.5+0.5*(9.5-4),0)).set_color(YELLOW)
+        recta_3pi = Line((2-1,-0.6+0.5*(9.5-4),0),(6, -0.6+0.5*(9.5-4),0)).set_color(YELLOW)
         ###Puntos en diagrama
-        arrow = Arrow((-1.2,1,0),(0.6,1,0)).set_color(RED)
-        dot_1 = Dot(color=RED,radius=0.05).move_to((2.5,-1.5+0.45,0))
-        dist_1 = TexMobject(r"d(\mathcal{P})=8.48").move_to((-0.3,1.5,0)).scale(0.8).set_color(RED_E)
-        dot_2 = Dot(color=RED,radius=0.05).move_to((3,-2+1.75,0))
-        dist_2 = TexMobject(r"d(\mathcal{P}')=8.81").move_to((-0.3,1.5,0)).scale(0.8).set_color(RED_E)
+        arrow = Arrow((-1.2,1,0),(0.0,1,0)).set_color(RED)
+        dot_1 = Dot(color=RED,radius=0.05).move_to((2.5-1,-2.0+0.40,0))
+        dist_1 = TexMobject(r"d(\mathcal{P})=7.79").move_to((-0.8,1.5,0)).scale(0.7).set_color(RED_E)
+        dot_2 = Dot(color=RED,radius=0.05).move_to((3-1,-2+1.40,0))
+        dist_2 = TexMobject(r"d(\mathcal{P}')=8.19").move_to((-0.8,1.5,0)).scale(0.7).set_color(RED_E)
         
         ####ANIMACIONES
         self.play(Write(titulo))
@@ -1401,7 +1486,9 @@ class Curvas_Rectificables(GraphScene,Scene):
         self.play(ShowCreation(recta_3pi))
         self.FadeOutWrite(text_17,text_18)
         self.wait(5)
-        self.FadeOutWrite(text_18,text_18_1)
+        self.FadeOutWrite(text_18,text_18_0)
+        self.wait(10)
+        self.FadeOutWrite(text_18_0,text_18_1)
         self.wait(4.6)
         self.play(Write(line_3pi))
         self.play(Write(label_line_3pi))
@@ -1415,8 +1502,13 @@ class Curvas_Rectificables(GraphScene,Scene):
             *[FadeOut(mob)for mob in self.mobjects]
         )
 
-#### Curvas No Rectificables #### Falta agregar el caso del fractal
-class Curvas__No_Rectificables(GraphScene,Scene):
+
+
+######################################################
+##### Curvas no rectificables ########################
+######################################################
+#### Falta agregar el caso del fractal
+class Curvas_No_Rectificables(GraphScene,Scene):
     def setup(self):
         Scene.setup(self)
         GraphScene.setup(self)
@@ -1427,35 +1519,44 @@ class Curvas__No_Rectificables(GraphScene,Scene):
         Grupo_1 = Dot(radius=0)
         numberline_1 = NumberLine(x_min=0,x_max=(2/PI)+0.127,unit_size=6, tick_frequency=(2/(5*PI)),
                                 include_tip=True,number_scale_val=0.6,numbers_with_elongated_ticks=[0,2/PI]).move_to(3.5*RIGHT+0.7*DOWN).set_color(BLUE)
-        for j in range(4,12,1):
+        for j in range(4,12):
             conj_puntos_particion = []
             conj_evaluacion_particion = []
             conj_poligonal_particion = []
-            for i in range(0,j):
+
+            for i in range(0,j-1):
                 punto_dom = Dot(radius=0.05).move_to(numberline_1.get_left()+(1/(PI*(0.5+i)))*6*RIGHT)
                 conj_puntos_particion.append(punto_dom)
                 punto_eval = Dot(radius=0.05).move_to(((1/(PI*(0.5+i)))*4-4.5,1.5*math.sin((PI*(0.5+i)))-0.7,0))
                 conj_evaluacion_particion.append(punto_eval)
-                if i < (j-1):
+                if (i<j-2):
                     linea_poligonal = Line(((1/(PI*(0.5+i)))*4-4.5,1.5*math.sin((PI*(0.5+i)))-0.7,0),((1/(PI*(0.5+i+1)))*4-4.5,1.5*math.sin((PI*(0.5+i+1)))-0.7,0))
-                conj_poligonal_particion.append(linea_poligonal)
+                    conj_poligonal_particion.append(linea_poligonal)
+            
+            ##### Primer elemento de la partición
+            punto_dom = Dot(radius=0.05).move_to(numberline_1.get_left())
+            conj_puntos_particion.append(punto_dom)
+            punto_eval = Dot(radius=0.05).move_to(((-4.5,-0.7,0)))
+            conj_evaluacion_particion.append(punto_eval)
+            linea_poligonal = Line(((1/(PI*(0.5+j-2)))*4-4.5,1.5*math.sin((PI*(0.5+j-2)))-0.7,0),(-4.5,-0.7,0))
+            conj_poligonal_particion.append(linea_poligonal)
+
             ####Conjuntos con elementos
             puntos_particion = VGroup(*conj_puntos_particion)
             puntos_evaluacion_particion = VGroup(*conj_evaluacion_particion)
             poligonal_particion = VGroup(*conj_poligonal_particion)
 
             ####Animaciones con poligonal
-            focus_poligonal_1 = []
-            for i in range(0,j):
-                focus_poligonal_1.append(FadeToColor(poligonal_particion[i],RED,rate_func=there_and_back))
-            focus_poligonal_2 = []
-            for i in range(0,j):
-                focus_poligonal_2.append(FadeToColor(poligonal_particion[i],RED,rate_func=there_and_back))
-            
-            Grupo = VGroup(puntos_particion,puntos_evaluacion_particion,poligonal_particion)
+            focus_poligonal = []
+            for i in range(0,j-1):
+                focus_poligonal.append(FadeToColor(poligonal_particion[i],RED,rate_func=there_and_back))
+
+            Grupo = VGroup(puntos_particion,puntos_evaluacion_particion)
             self.play(ShowCreation(Grupo))
-            Grupo_1 = VGroup(puntos_particion,puntos_evaluacion_particion,poligonal_particion)
-            self.play(LaggedStart(*focus_poligonal_2),run_time=1.5)
+            
+            Grupo_1 = VGroup(puntos_evaluacion_particion,poligonal_particion)
+            self.play(LaggedStart(*focus_poligonal),run_time=2.0)
+            self.play(FadeOut(Grupo_1))
             
     CONFIG = {
         "x_min": -0.25,
@@ -1482,6 +1583,7 @@ class Curvas__No_Rectificables(GraphScene,Scene):
         "default_riemann_end_color": GREEN,
         "area_opacity": 0.8,
         "num_rects": 50,
+        "num_graph_anchor_points": 30000
     }
     def construct(self):
         titulo = TextMobject("Curvas No Rectificables").scale(1.5) 
@@ -1494,20 +1596,25 @@ class Curvas__No_Rectificables(GraphScene,Scene):
                                  es rectificable si $\\forall$  $a,b\\in A, a<b$, \n
                                 $\\sigma$ es rectificable en $[a,b]$''').move_to(3*UP)
         text_3 = TextMobject("Consideremos $A=\\left[ 0,\\dfrac{2}{\\pi} \\right]$").move_to(3*UP)
-        text_4 = TextMobject("Veremos que $\\sigma$ no es rectificable en A").move_to(3*UP)
-        text_5 = TextMobject('''Sea $x_n=\\dfrac{1}{\\pi(1/2+n)}$, $n=0,...,k$,''').move_to(2.5*UP)
-        text_5_2 = TextMobject("donde $\\sin{\\dfrac{1}{x_n}}=(-1)^n$").move_to(3*UP)
+        text_4 = TextMobject("Veremos que $\\sigma$ no es rectificable en $A$").move_to(3*UP)
+
+        text_5 = TextMobject('''Sea $t_n=\\dfrac{1}{\\pi(1/2+k-n)}$, $n=1,...,k$,\n 
+                                con $k\\in\\mathbb{N}$ fijo, y $t_0=0.$''').move_to(2.5*UP)
+        text_5_2 = TextMobject("donde $\\sin{\\dfrac{1}{t_n}}=(-1)^{k-n}$").move_to(3*UP)
         text_5_1 = TextMobject("En el ejemplo, tomamos $k=3$").move_to(3*UP)
-        text_xn = TexMobject(r"x_n=\dfrac{1}{\pi(1/2+n)},n=0,...,k").scale(0.7).move_to(0.75*UP+3.5*RIGHT)
+        text_tn = TexMobject(r"""t_n=\dfrac{1}{\pi(1/2+k-n)},\quad n=1,...,k\\
+                             t_0=0""").scale(0.7).move_to(0.75*UP+3.5*RIGHT)
         text_6 = TextMobject('''Sea $\\mathcal{S}$ una partición de $A$\n 
-                                $\\mathcal{S}:=\\{t_0=x_k,t_1=x_{k-1},...,t_k=x_0\\}$''' ).move_to(3*UP)
+                                $\\mathcal{S}:=\\{t_0,t_1,...,t_k\\}$''' ).move_to(3*UP)
         text_7 = TextMobject('''$\\mathcal{S}$ genera una poligonal $\\mathcal{P}$ con los puntos\n
-                                 $\\sigma_{\\mathcal{P}}:=\\{ \\sigma(t_0)=\\sigma(x_k),...,\\sigma(t_k)=\\sigma(x_0) \\}$''').move_to(3*UP)
-        text_8 = TextMobject('''Obsérvese que $|\\sin{x_n}-\\sin{x_{n-1}}|=2>x_n$, $n=0,...,k$''').move_to(3*UP)
-        text_9 = TextMobject('''Entonces, $|\\sigma(t_n)-\\sigma(t_{n-1})|>\\dfrac{2}{n\\pi}$, $n=0,...,k$''').move_to(3*UP)
-        text_10 = TextMobject('''Por lo tanto, $d(\\mathcal{P})=\\sum_{n=1}^{k}|\\sigma(t_n)-\\sigma(t_{n-1})|>\\dfrac{2}{\\pi}\\sum_{n=1}^k\\dfrac{1}{n}$''').move_to(3*UP)
-        text_11 = TextMobject('''La serie $\\sum_{n=1}^{\\infty}\\dfrac{1}{n}$ diverge, entonces para toda $M>0$, \n
-                                podemos definir una partición $\\mathcal{P}$ de $A$ de k elementos,\n
+                                 $\\sigma_{\\mathcal{P}}:=\\{ \\sigma(t_0),...,\\sigma(t_k) \\}$''').move_to(3*UP)
+        text_8 = TextMobject('''Obsérvese que $\\left|\\sin\\dfrac{1}{t_n}-\\sin\\dfrac{1}{t_{n-1}}\\right|=2$, $n=2,...,k$''').move_to(3*UP)
+        text_9 = TextMobject('''Entonces, $\\left\\Vert \\sigma(t_n)-\\sigma(t_{n-1}) \\right\\Vert > 2$, $n=2,...,k$''').move_to(3*UP)
+        text_10 = TextMobject('''Por lo tanto, \n
+                                $\\text{long}(C)>d(\\mathcal{P})=\\sum_{n=1}^{k}\\left\\Vert\\sigma(t_n)-\\sigma(t_{n-1})\\right\\Vert >\\sum_{n=2}^k 2,$\n
+                                con $C=\\text{Im}(\\sigma).$''').move_to(3.0*UP)
+        text_11 = TextMobject('''La serie $\\sum_{n=2}^{\\infty}2$ diverge, entonces para toda $M>0$, \n
+                                podemos definir una partición $\\mathcal{P}$ de $A$,\n
                                 tal que $d(\\mathcal{P})>M$. ''').move_to(2.7*UP)
         text_13 = TextMobject('''Por lo tanto, decimos que $\\sigma$ no es rectificable en $A$\n
                                 y por ende no es rectificable en $(0,\\infty)$''').move_to(3*UP)
@@ -1541,14 +1648,24 @@ class Curvas__No_Rectificables(GraphScene,Scene):
         conj_puntos_particion = []
         conj_evaluacion_particion = []
         conj_poligonal_particion = []
-        for i in range(0,4):
+        j = 4
+        for i in range(0,j-1):
             punto_dom = Dot(radius=0.05).move_to(numberline_1.get_left()+(1/(PI*(0.5+i)))*6*RIGHT)
             conj_puntos_particion.append(punto_dom)
             punto_eval = Dot(radius=0.05).move_to(((1/(PI*(0.5+i)))*4-4.5,1.5*math.sin((PI*(0.5+i)))-0.7,0))
             conj_evaluacion_particion.append(punto_eval)
-            if i < 3:
+            if (i<j-2):
                 linea_poligonal = Line(((1/(PI*(0.5+i)))*4-4.5,1.5*math.sin((PI*(0.5+i)))-0.7,0),((1/(PI*(0.5+i+1)))*4-4.5,1.5*math.sin((PI*(0.5+i+1)))-0.7,0))
-            conj_poligonal_particion.append(linea_poligonal)
+                conj_poligonal_particion.append(linea_poligonal)
+            
+            ##### Primer elemento de la partición
+        punto_dom = Dot(radius=0.05).move_to(numberline_1.get_left())
+        conj_puntos_particion.append(punto_dom)
+        punto_eval = Dot(radius=0.05).move_to(((-4.5,-0.7,0)))
+        conj_evaluacion_particion.append(punto_eval)
+        linea_poligonal = Line(((1/(PI*(0.5+j-2)))*4-4.5,1.5*math.sin((PI*(0.5+j-2)))-0.7,0),(-4.5,-0.7,0))
+        conj_poligonal_particion.append(linea_poligonal)
+
         ####Conjuntos con elementos
         puntos_particion = VGroup(*conj_puntos_particion)
         puntos_evaluacion_particion = VGroup(*conj_evaluacion_particion)
@@ -1556,15 +1673,15 @@ class Curvas__No_Rectificables(GraphScene,Scene):
 
         ####Animaciones con poligonal
         focus_poligonal_1 = []
-        for i in range(0,3):
+        for i in range(0,j-1):
             focus_poligonal_1.append(FadeToColor(poligonal_particion[i],RED,rate_func=there_and_back))
         focus_poligonal_2 = []
-        for i in range(0,3):
+        for i in range(0,j-1):
             focus_poligonal_2.append(FadeToColor(poligonal_particion[i],RED,rate_func=there_and_back))
 
         ####Etiquetas en particion
         t_0 = TexMobject(r"t_0").scale(0.7).move_to(conj_puntos_particion[3].get_top()+0.4*UP)
-        t_1 = TexMobject(r"t_1").scale(0.7).move_to(conj_puntos_particion[2].get_bottom()+0.4*DOWN)
+        t_1 = TexMobject(r"t_1").scale(0.7).move_to(conj_puntos_particion[2].get_top()+0.4*UP)
         t_2 = TexMobject(r"t_2").scale(0.7).move_to(conj_puntos_particion[1].get_top()+0.4*UP)
         t_3 = TexMobject(r"t_3").scale(0.7).move_to(conj_puntos_particion[0].get_top()+0.4*UP)
         etiquetas_particiones = VGroup(t_0,t_1,t_2,t_3)
@@ -1582,14 +1699,14 @@ class Curvas__No_Rectificables(GraphScene,Scene):
         graph = self.get_graph(
             f, 
             color = YELLOW,
-            x_min = 0.0001,
+            x_min = 0.00005,
             x_max = 1
         )
 
         self.play(Write(graph),run_time=3)
         self.wait()
         self.play(Write(text_2))
-        self.wait(13.25)
+        self.wait(13.75)
         self.FadeOutWrite(text_2,text_3)
         self.wait(5)
         self.play(Write(punto_dom_1))
@@ -1599,30 +1716,30 @@ class Curvas__No_Rectificables(GraphScene,Scene):
         self.FadeOutWrite(text_3,text_4)
         self.wait(5)
         self.FadeOutWrite(text_4,text_5)
-        self.wait(8.75)
+        self.wait(11.25)
         self.play(ShowCreation(puntos_particion))
-        self.play(ReplacementTransform(text_5,text_xn))
+        self.play(ReplacementTransform(text_5,text_tn))
         self.play(Write(text_5_2))
-        self.wait(5.375)
+        self.wait(6.875)
         self.FadeOutWrite(text_5_2,text_5_1)
         self.wait(4.6)
         self.FadeOutWrite(text_5_1,text_6)
-        self.wait(11)
+        self.wait(6.125)
         self.play(Write(etiquetas_particiones))
         self.FadeOutWrite(text_6,text_7)
-        self.wait(11)
+        self.wait(7.25)
         self.play(ShowCreation(puntos_evaluacion_particion))
         self.play(Write(poligonal_particion),run_time=3)
         self.play(FadeOut(graph))
         self.wait()
         self.play(FadeIn(graph))
         self.FadeOutWrite(text_7,text_8)
-        self.wait(9.5)
+        self.wait(9.875)
         self.play(ShowCreation(recta_vert))
         self.play(ShowCreation(recta_hor_1))
         self.play(ShowCreation(recta_hor_2))
         self.FadeOutWrite(text_8,text_9)
-        self.wait(9.5)
+        self.wait(15.5)
         self.play(Succession(*focus_poligonal_2),run_time=3)
         self.FadeOutWrite(text_9,text_10)
         self.wait(12.5)
@@ -1638,7 +1755,6 @@ class Curvas__No_Rectificables(GraphScene,Scene):
         self.play(
             *[FadeOut(mob)for mob in self.mobjects]
         )
-
 
 ######################################################
 ##### Derivabilidad, velocidad y rápidez #########
