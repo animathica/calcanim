@@ -26,7 +26,7 @@ class superficie_2(ParametricSurface):
         "u_min": 0,
         "u_max": 2*np.pi,
         "v_min": 0,
-        "v_max": 2*np.pi,
+        "v_max": np.pi,
         "checkerboard_colors": [BLUE_E]
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
@@ -40,7 +40,7 @@ class superficie_3(ParametricSurface):
         "u_min": 0,
         "u_max": 2*np.pi,
         "v_min": 0,
-        "v_max": 2*np.pi,
+        "v_max": np.pi,
         "checkerboard_colors": [BLUE_E]
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
@@ -56,7 +56,7 @@ class superficie_4(ParametricSurface):
         "u_min": 0,
         "u_max": 2*np.pi,
         "v_min": 0,
-        "v_max": 2*np.pi,
+        "v_max": np.pi,
         "checkerboard_colors": [BLUE_E]
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
@@ -156,8 +156,8 @@ class superficie_6_2(ParametricSurface):
 
 class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
     def construct (self):
-        titulo=TextMobject('''Traslaciones y homotecias \n
-                                en superficies''')
+        titulo=TextMobject('''TRASLACIONES Y HOMOTECIAS \n
+                                EN SUPERFICIES''', size=1.5)
         #Cambiar función de superficie
         text1=TextMobject('''Tomemos $f(x,y)=(0.2\sin(7*(x+y)))$''')
         text2=TextMobject('''Una translación vertical de la superficie es de \n
@@ -170,13 +170,14 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
                                 del dominio $xy$''').move_to(3*UP)
         text7=TextMobject('''Si $k=2$, la gráfica se estira verticalmente \n
                                 alejando los puntos del plano $xy$ ''').move_to(3*UP)
-        text8=TextMobject('''También podemos reflejar superficies.''').move_to(3*UP)
-        text8_1=TextMobject('''Si $k=-1$, la gráfica de $kf(x,y)$ es la reflexión de la gráfica \n
-                                de $f$ respecto al plano $xy$. ''').move_to(3*UP)
-        text9=TextMobject('''Para reflejar respecto al plano $yz$, ''').move_to(3*UP)
-        text9_1=TextMobject('''tomamos la función $f(x,-y)$.''').move_to(text9.get_center()+0.5*DOWN)
-        text10=TextMobject('''Mientras que la gráfica de $f(-x,-y)$ es una \n
-                                    reflexión respecto al eje vertical. ''').move_to(3*UP)
+        text8=TextMobject('''También podemos reflejar superficies.\n
+                            Sea $f_0(x,y)=sin(3*(x+y))+y)*0.3$''').move_to(3*UP)
+        text8_1=TextMobject('''Si $k=-1$, la gráfica de $kf_0(x,y)$ es la reflexión de la gráfica \n
+                                de $f_0$ respecto al plano $xy$. ''').move_to(3*UP)
+        text9=TextMobject('''Si tomamos $f_1(x,y)=f_0(x,-y)$, la gráfica de $f_1$''').move_to(3*UP)
+        text9_1=TextMobject('''es la reflexión de la gráfica de $f_0$ respecto al plano $yz$.''').move_to(text9.get_center()+0.5*DOWN)
+        text10=TextMobject('''Mientras que la gráfica de $f_2(x,y)=f_1(x,-y)$ es una \n
+                                    reflexión de la gráfica de $f_1$ respecto al eje vertical. ''').move_to(3*UP)
         text11=TextMobject('''¿Qué pasa con $f(k(x,y))$, con $k\\in\\mathbb{R}$? ''')
         text12=TextMobject('''También podemos hacer traslaciones horizontales. Por ejemplo:''').move_to(3*UP)
         text13=TextMobject('''$g(x,y)=x^{2}+y^{2}\\sin^{2}(y)$''').move_to(3*DOWN)
