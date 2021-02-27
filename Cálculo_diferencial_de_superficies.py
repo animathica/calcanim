@@ -1028,3 +1028,253 @@ class super3 (ThreeDScene):
         self.parte4()
         self.parte5()
 
+        
+
+#####################################################################################
+################################  Derivada parciales ################################
+#####################################################################################
+
+# Función definida para la superficie.
+class sup_1(ParametricSurface):
+
+    def __init__(self, **kwargs):
+        kwargs = {
+        "u_min": -3,
+        "u_max": 3,
+        "v_min": -3,
+        "v_max": 3,
+        "checkerboard_colors": [BLUE_E]
+        }
+        ParametricSurface.__init__(self, self.func, **kwargs)
+    def func(self, u, v):
+        return np.array([u,v,(u**2 - v**2)/4])
+
+# Función definida para el corte
+class sup_2(ParametricSurface):
+
+    def __init__(self, **kwargs):
+        kwargs = {
+        "u_min": 0.1,
+        "u_max": 0,
+        "v_min": -3,
+        "v_max": 3,
+        "checkerboard_colors": [BLUE_E]
+        }
+        ParametricSurface.__init__(self, self.func2, **kwargs)
+    def func2(self, u, v):
+        return np.array([u,v,(u**2 - v**2)/4])
+
+# Función definida para el plano usado para el corte
+class sup_3(ParametricSurface):
+
+    def __init__(self, **kwargs):
+        kwargs = {
+        "u_min": -3,
+        "u_max": 3,
+        "v_min": -3,
+        "v_max": 3,
+        "checkerboard_colors": [BLUE_E]
+        }
+        ParametricSurface.__init__(self, self.func3, **kwargs)
+    def func3(self, u, v):
+        return np.array([v,0,u])
+
+
+class derivadas_parciales (ThreeDScene):
+
+    def func2(self,t):
+        return [t,0,(t**2 - 0**2)/4]
+    def helicoide(self,t):
+        return [t,np.cos(5*t),np.sin(5*t)]
+    def func4(self,t):
+        return [t, 0, 0]
+
+    def construct(self):
+
+        title = TextMobject('''Derivadas Parciales''').scale(1.5)
+
+        text1 = TextMobject('''Sea $f:U \\subset \\mathbb{R}^2 \\to \\mathbb{R}$, \n
+                               fijémonos en un punto $\\vec{x}_0\\in U^\\circ$ \n
+                               y el respectivo valor para $f(\\vec{x}_0)$''').move_to(3*UP)
+        funcion = TextMobject(''' $f(x)=\\frac{x^2 - y^2}{4}$ ''').move_to(3*DOWN)
+        text2 = TextMobject('''Para trabajar con las derivadas direccionales \n
+                               de $f$ en $x_0$ se puede usar una multitud de direcciones.''').move_to(3*UP)
+        text3 = TextMobject('''De entre las derivadas direccionales \n
+                               nos podemos fijar en aquellas en las que se utiliza \n
+                               una dirección canónica, dada por $e_1$ o $e_2$.''').move_to(3*UP)
+        text4 = TextMobject('''Tomemos la derivada direccional en dirección $e_1$.''').move_to(3*UP)
+        text5 = TextMobject('''A esta la podemos ver de la forma:''').move_to(1*UP)
+        text6 = TextMobject('''$ D_{e_1}(f) = \\lim_{h \\to 0}\\dfrac{f(\\vec{x}_0+h \\ \\ e_1 \\ \\ )-f(\\vec{x_0})}{h}$''').next_to(text5,2*DOWN)
+        text6_1 = TextMobject('''$ D_{e_1}(f) = \\lim_{h\\to0}\\dfrac{f(\\vec{x}_0+h(1,0))-f(\\vec{x_0})}{h}$''').next_to(text5,2*DOWN)
+        text6_2 = TextMobject('''$ D_{e_1}(f) = \\lim_{h\\to0}\\dfrac{f(\\vec{x}_0+(h,0))-f(\\vec{x_0})}{h}$''').next_to(text5,2*DOWN)
+        text7 = TextMobject('''Recordando que $e_1=(1,0)$:''').move_to(1*UP)
+        text8 = TextMobject('''A este caso particular de la derivada direccional \n
+                               se le conoce como derivada parcial de $f$ respecto a $x$.''').move_to(1*UP)
+        text9 = TextMobject('''Se representa de la forma:''').move_to(1*UP)
+        text9_1 = TextMobject('''$\\dfrac{\\partial f}{\\partial x}(x_0)=\\lim_{h\\to0}\dfrac{f(x_0+he_1)-f(x_0)}{h}$''').next_to(text9,2*DOWN)
+        text10 = TextMobject('''De la misma forma tenemos:''').move_to(1*UP)
+        text10_1 = TextMobject('''$\\dfrac{\\partial f}{\\partial y}(x_0)=\\lim_{h\\to0}\\dfrac{f(x_0+he_2 )-f(x_0)}{h}$''').next_to(text10,2*DOWN)
+        text11 = TextMobject('''Y de manera general, sea \n
+                                $f:U\subset \\mathbb{R}^n \\to \\mathbb{R}$, $\\vec{x}_0\in U^\\circ$, $\\forall i \\in \\{1,...,n\\}$ se tiene:''').move_to(1*UP)
+        text11_1 = TextMobject('''$\\dfrac{\\partial f}{\\partial x_i}(x_0)=\\lim_{h\\to0}\\dfrac{f(x_0+he_i )-f(x_0)}{h}$''').next_to(text11,2*DOWN)
+        text12 = TextMobject('''Al vector $\\left(\\frac{\\partial f}{\\partial x_1}(x_0),...,\\frac{\\partial f}{\\partial x_n}(x_0)\\right)$ \n 
+                                se le llama gradiente de $f$ en $x_0$, \n 
+                                representado como $\\nabla f(x_0)$.''')
+        text13 = TextMobject('''$\\frac{\\partial f}{\\partial x_i}$ es la pendiente \n
+                                de la recta tengente a $f$ en $x_0$ \n
+                                en la i-ésima dirección canónica.''').move_to(3*UP)
+        text14 = TextMobject('''De esta forma se puede ver a \n 
+                                $\\frac{\\partial f}{\\partial x_i}$ como la derivada de $f$ \n 
+                                en el i-ésimo corte canónico.''').move_to(3*UP)
+
+
+        axis_config = {
+        "dimension": 3,
+        "x_min": -3.5,
+        "x_max": 3.5,
+        "y_min": -3.5,
+        "y_max": 3.5,
+        "z_axis_config": {},
+        "z_min": -3,
+        "z_max": 3,
+        "z_normal": DOWN,
+        "num_axis_pieces": 20,
+        "light_source": 9 * DOWN + 7 * LEFT + 10 * OUT,
+    }
+
+        axes=ThreeDAxes(**axis_config)
+
+        # La superficie y su función.
+        sup1 = sup_1().set_shade_in_3d(True)
+        def f1(x,y):
+            return(np.sin(x) - y**2)
+
+        # El punto x_0 sobre el que se trabaja.
+        x1 = 0
+        y1 = 0
+        Dot1=Dot(color=YELLOW).move_to([x1,y1,f1(x1,y1)]).set_shade_in_3d(True)
+
+        # El círculo para las derivadas direccionales.
+        Circle1=Circle(radius=0.01,color=WHITE).move_to(Dot1.get_center())
+
+        # Función para cambiar cambiar tamaño del círculo.
+        rad = ValueTracker(0.01)
+        def upd_for_circle(obj):
+            c = obj
+            new_c = Circle(radius=rad.get_value(),color=WHITE).move_to(Dot1.get_center())
+            c.become(new_c)
+
+        # Las flechas para las derivadas direccionales.
+        Dir1 = Arrow((0,0,0),(1/np.sqrt(2),-1/np.sqrt(2),0), buff = 0.075)
+        Dir2 = Arrow((0,0,0),(1/np.sqrt(2),1/np.sqrt(2),0), buff = 0.075)
+        Dir3 = Arrow((0,0,0),(0,-1,0), buff = 0.075)
+        Dir4 = Arrow((0,0,0),(-1/np.sqrt(2),-1/np.sqrt(2),0), buff = 0.075)
+        Dir5 = Arrow((0,0,0),(-1/np.sqrt(2),1/np.sqrt(2),0), buff = 0.075)
+        Dir6 = Arrow((0,0,0),(-1,0,0), buff = 0.075)
+        Direc = VGroup(Dir1,Dir2,Dir3,Dir4,Dir5,Dir6)
+
+        # Las flechas en direcciones canónicas.
+        DirC1 = Arrow((0,0,0),(1,0,0), buff = 0.075)
+        DirC1R = DirC1.copy().set_color(RED)
+        DirC1G = DirC1.copy().set_color(GOLD)
+        DirC2 = Arrow((0,0,0),(0,1,0), buff = 0.075)
+        DirC2R = DirC2.copy().set_color(RED)
+        Dirs = VGroup(Direc,DirC1,DirC2)
+
+        # La función usada para el corte.
+        sup2 = ParametricFunction(self.func2,t_min=-3,t_max=3,color=BLUE)
+
+        # El plano del corte vertical.
+        sup3 = sup_3().set_color(RED).set_shade_in_3d(True)
+
+        # La derivada parcial vista en el corte.
+        sup4 = ParametricFunction(self.func4,t_min=-3,t_max=3,color=PURPLE)
+
+
+        ########## Escena ##########
+
+        self.play(Write(title))
+        self.wait()
+        self.play(FadeOut(title))
+        self.set_camera_orientation(0.7*np.pi/2, 0.25*np.pi,distance=6)
+        self.play(ShowCreation(axes))
+        self.play(ShowCreation(sup1)) 
+        self.add_fixed_in_frame_mobjects(text1)
+        self.play(Write(text1))
+        self.add_fixed_in_frame_mobjects(funcion)
+        self.play(Write(funcion))
+        self.play(ShowCreation(Dot1))
+        self.wait(9)
+        self.play(FadeOut(text1))
+        self.add_fixed_in_frame_mobjects(text2)
+        self.play(Write(text2))
+        self.play(ShowCreation(Circle1))
+        Circle1.add_updater(upd_for_circle)
+        self.play(rad.set_value,1,rate_func=linear)
+        self.play(ShowCreation(Dirs))
+        self.wait(6)
+        self.play(FadeOut(text2))
+        self.add_fixed_in_frame_mobjects(text3)
+        self.play(Write(text3))
+        self.play(FadeOut(Direc),ReplacementTransform(DirC1,DirC1R),ReplacementTransform(DirC2,DirC2R))
+        self.wait(9)
+        self.play(FadeOut(text3))
+        self.add_fixed_in_frame_mobjects(text4)
+        self.play(Write(text4))
+        self.play(FadeOut(DirC2R),ReplacementTransform(DirC1R,DirC1G))
+        self.wait(3)
+        self.play(FadeOut(text4))
+        self.play( *[FadeOut(mob)for mob in self.mobjects] )
+
+
+        self.set_camera_orientation(phi = 0, theta = -90*DEGREES, distance = 5)
+        self.play(Write(text5))
+        self.wait(3.5)
+        self.play(Write(text6))
+        self.wait(2)
+        self.play(ReplacementTransform(text5,text7))
+        self.wait(3.5)
+        self.play(ReplacementTransform(VGroup(text6[0][20],text6[0][21]),VGroup(text6_1[0][20],text6_1[0][21],text6_1[0][22],text6_1[0][23],text6_1[0][24])))
+        self.wait(2)
+        self.play(ReplacementTransform(VGroup(text6[0][19],text6_1[0][20],text6_1[0][21],text6_1[0][22],text6_1[0][23],text6_1[0][24]),VGroup(text6_2[0][19],text6_2[0][20],text6_2[0][21],text6_2[0][22],text6_2[0][23])))
+        self.wait(2)
+        self.play( *[FadeOut(mob)for mob in self.mobjects] )
+        self.play(Write(text8))
+        self.wait(8)
+        self.play(FadeOut(text8))
+        self.play(Write(text9),Write(text9_1))
+        self.wait(7)
+        self.play(FadeOut(text9),FadeOut(text9_1))
+        self.play(Write(text10),Write(text10_1))
+        self.wait(7)
+        self.play(FadeOut(text10),FadeOut(text10_1))
+        self.play(Write(text11),Write(text11_1))
+        self.wait(12)
+        self.play(FadeOut(text11),FadeOut(text11_1))
+        self.play(Write(text12))
+        self.wait(7.5)
+        self.play(FadeOut(text12))
+
+
+        self.set_camera_orientation(0.7*np.pi/2, 0.25*np.pi,distance=6)
+        self.play(ShowCreation(axes))
+        self.play(ShowCreation(sup1),ShowCreation(DirC1G)) 
+        self.add_fixed_in_frame_mobjects(text13)
+        self.play(Write(text13))
+        self.wait(9)
+        self.play(ShowCreation(sup3))
+        self.wait()
+        self.play(ShowCreation(sup2),FadeOut(sup1))
+        self.wait()
+        self.move_camera(phi=90*DEGREES,theta=90*DEGREES,gamma=0*DEGREES,distance=4,frame_center=(0,0,0),run_time=2)
+        self.wait()
+        self.play(ShowCreation(sup4))
+        self.wait()
+        self.play(FadeOut(text13))
+        self.add_fixed_in_frame_mobjects(text14)
+        self.play(Write(text14))
+        self.wait(8)
+        self.play(FadeOut(text14))
+        self.play( *[FadeOut(mob)for mob in self.mobjects] )
+        
+        
