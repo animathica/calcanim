@@ -413,8 +413,7 @@ class Reparametrizacion_y_regla_de_la_cadena2 (ThreeDScene):
 #O para visualizar como se dibujan las curvas dependiendo de la parametrización
  
 def gota(t):
-    #return  [(1-np.sin(t))*np.cos(t),np.sin(t)-1,0]
-    return [np.cos(t),(np.sin(t)-1)*np.sin(t)-np.cos(t)**2-2,0]
+    return [t**3 - 4*t,t**2 - 4,0]
 def lemniscata(t):
     return  [(2)*np.cos(t),2*np.sin(2*t),0]
 def abs(t):
@@ -688,8 +687,8 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
         text18_1.bg = SurroundingRectangle(text18_1,color=WHITE,fill_color=BLACK,fill_opacity=1)
         text18_1.group = VGroup(text18_1.bg,text18_1)
         text19=TextMobject('''Tomemos la siguiente parametrización''',
-                                    '''$$f:\\left[\\frac{\\pi}{2},\\frac{5\\pi}{2}\\right]\\rightarrow\\mathbb{R}^{2}$$''','''\n
-                                             $f(t)$''','''$=(cos(t),(sen(t)-1)sen(t)-cos^{2}(t)-2)$''').move_to(2*UP)
+                                    '''$$f:\\left[-2,2\\right]\\rightarrow\\mathbb{R}^{2}$$''','''\n
+                                             $f(t)$''','''$=(t^3 -4t, t^2 -4)$''').move_to(2*UP)
         text19[-2].set_color(RED)
         text19_0bg = SurroundingRectangle(text19[0],color=WHITE,fill_color=BLACK,fill_opacity=1)
         text19_0group = VGroup(text19_0bg,text19[0])
@@ -769,8 +768,8 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
         xmax=4
         ##
         fabs = ParametricFunction(abs,t_min=-4,t_max=4,color=BLUE_C)
-        tmin = np.pi/2
-        tmax = 5*np.pi/2
+        tmin = -2
+        tmax = 2
         tmin1 = 0
         tmax1 = 2*np.pi
         fgota = ParametricFunction(gota,t_min=tmin,t_max=tmax,color=RED)
@@ -809,29 +808,24 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
         #Movimiento para la gota
         s1_1=ValueTracker(tmin)
         si=tmin
-        #derivada_gota=Arrow(((1-np.sin(si))*np.cos(si),np.sin(si)-1,0),((1-np.sin(si))*np.cos(si)+np.sin(si)**2-np.cos(si)**2,np.cos(si)+np.sin(si)-1,0),buff=0)#.shift(d,buff=0)
-        punto_gota = Dot(color=YELLOW,fill_opacity=1).move_to([(1-np.sin(si))*np.cos(si),np.sin(si)-1,0])
+        punto_gota = Dot(color=YELLOW,fill_opacity=1).move_to([si**3 - 4*si,si**2 - 4,0])
+        punto_gota 
         def Dgota(obj):
             s = s1_1.get_value()
-            #x=np.array([(1-np.sin(s))*np.cos(s),np.sin(s)-1,0])
-            x = np.array([np.cos(s),(np.sin(s)-1)*np.sin(s)-np.cos(s)**2-2,0])
+            x = np.array([s**3 - 4*s,s**2 - 4,0])
             punto_gota.become(Dot(color=YELLOW,fill_opacity=1).move_to(x))
         #para mover el punto
         punto_gota.add_updater(Dgota)
 
         #Para generar el movimiento de la derivada
         s1_2=ValueTracker(tmin)
-        #derivada_gota=Arrow(((1-np.sin(si))*np.cos(si),np.sin(si)-1,0),((1-np.sin(si))*np.cos(si)+np.sin(si)**2-np.cos(si)**2,np.cos(si)+np.sin(si)-1,0),buff=0).set_color(YELLOW)#.shift(d,buff=0)
-        derivada_gota=Arrow((np.cos(si),(np.sin(si)-1)*np.sin(si)-np.cos(si)**2-2,0),(np.cos(si)+np.sin(si)**2-np.cos(si)**2,np.cos(si)+(np.sin(si)-1)*np.sin(si)-np.cos(si)**2-2,0),buff=0).set_color(YELLOW)#.shift(d,buff=0)
-        #punto_gota1 = Dot(color=YELLOW,fill_opacity=1).move_to([(1-np.sin(si))*np.cos(si),np.sin(si)-1,0])
-        punto_gota1 = Dot(color=YELLOW,fill_opacity=1).move_to([np.cos(si),(np.sin(si)-1)*np.sin(si)-np.cos(si)**2,0])
+        derivada_gota=Arrow((si**3 - 4*si,si**2 - 4,0),(si**3 - 4*si + 3*(si**2) - 4*si,si**2 - 4 +2*si,0),buff=0).set_color(YELLOW)
+        punto_gota1 = Dot(color=YELLOW,fill_opacity=1).move_to([si**3 - 4*si,si**2 - 4,0])
         def Dgota(obj):
             s = s1_2.get_value()
-            #x=np.array([(1-np.sin(s))*np.cos(s),np.sin(s)-1,0])
-            x = np.array([np.cos(s),(np.sin(s)-1)*np.sin(s)-np.cos(s)**2-2,0])
+            x=np.array([s**3 - 4*s,s**2 - 4,0])
             punto_gota1.become(Dot(color=YELLOW,fill_opacity=1).move_to(x))
-            #derivada_gota.become(Arrow(((1-np.sin(s))*np.cos(s),np.sin(s)-1,0),((1-np.sin(s))*np.cos(s)+np.sin(s)**2-np.cos(s)**2,np.cos(s)+np.sin(s)-1,0),buff=0)).set_color(YELLOW)#.shift(d,buff=0)
-            derivada_gota.become(Arrow((np.cos(s),(np.sin(s)-1)*np.sin(s)-np.cos(s)**2-2,0),(np.cos(s)-np.sin(s),(4*np.sin(s)-1)*np.cos(s)+(np.sin(s)-1)*np.sin(s)-np.cos(s)**2-2,0),buff=0)).set_color(YELLOW)#.shift(d,buff=0)
+            derivada_gota.become(Arrow((s**3 - 4*s,s**2 - 4,0),(s**3 - 4*s + 3*(s**2) - 4,s**2 - 4 +2*s,0),buff=0)).set_color(YELLOW)#.shift(d,buff=0)
         #mover el vector
         derivada_gota.add_updater(Dgota)
         #para mover el punto
@@ -902,12 +896,19 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
         self.play(FadeOut(text20.group),FadeOut(punto_gota))
         self.play(Write(text21.group))
         self.wait(8)
+        self.play(FadeOut(text21.group))
         #Animación del vector tangente
+        self.play(
+        # Nuevo ancho
+            self.camera_frame.set_width,fondo.get_width()*5,
+            # Nueva posición
+            self.camera_frame.move_to,ORIGIN)
         self.play(ShowCreation(punto_gota1),ShowCreation(derivada_gota))
-        self.play(s1_2.set_value, tmax-0.1,run_time=10)
+        self.play(s1_2.set_value, tmax-0.0001,run_time=10)
+        self.play(Restore(self.camera_frame))
         self.wait()
         ###
-        self.play(FadeOut(text21.group),FadeOut(axes),FadeOut(fgota),FadeOut(punto_gota1),FadeOut(derivada_gota))
+        self.play(FadeOut(axes),FadeOut(fgota),FadeOut(punto_gota1),FadeOut(derivada_gota))
         self.play(Write(VGroup(text22[0],text22[1],text22[2])))
         self.wait(8)
         self.play(Write(VGroup(text22[3],text22[4],text22[5])))
@@ -964,7 +965,7 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
         self.play(FadeOut(text33),FadeOut(fcicliode))
         self.play(Write(text34))
         self.wait(7)
-        self.play(FadeOut(text34))         
+        self.play(FadeOut(text34))           
       
   
 ########################
