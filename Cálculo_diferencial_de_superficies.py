@@ -316,7 +316,7 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
 
 
 #####################################################################################
-#######################  Límite de cocientes de dos variables #######################
+#############  Límite de cocientes de funciones de dos variables ####################
 #####################################################################################
 
 
@@ -519,7 +519,7 @@ class super3 (ThreeDScene):
         self.play(Write(text1[0]))
         self.wait(3.5)
         self.play(Write(text1[1]))
-        self.wait(4)
+        self.wait(3)
         self.play(Write(text1[2]))
         self.wait(4)
         self.wait(3)
@@ -527,7 +527,7 @@ class super3 (ThreeDScene):
         self.play(Write(text2[0]))
         self.wait(5)
         self.play(Write(text2[1]))
-        self.wait(4)
+        self.wait(3)
         self.play(Write(text2[2]))
         self.wait(3.5)
         self.wait(3)
@@ -542,7 +542,7 @@ class super3 (ThreeDScene):
     def parte1 (self):
         text5=TextMobject('''Sea $f:\\mathbb{R}^{2}-{\\vec{0}}\\rightarrow\\mathbb{R}$''',''' $$f(x,y)=\\frac{1}{xy}$$ ''')
         text5_1=TextMobject('''$$f(x,y)=\\frac{1}{xy}$$''').move_to(3*UP)
-        text6=TextMobject('''Si nos acercamos a la función por la dirección \n
+        text6=TextMobject('''Si nos acercamos al origen en la dirección \n
                                 dada por la recta identidad, la función \n
                                 diverge a $\\infty$.''' ).move_to(3*DOWN)
         text6_1=TextMobject('''El límite con una sucesión. ''').move_to(3*UP)
@@ -945,7 +945,7 @@ class super3 (ThreeDScene):
         text19=TextMobject('''Por ejemplo $f:\\mathbb{R}^{2}-{\\vec{0}}\\rightarrow\\mathbb{R}$\n
                                  $f(x,y)=\\frac{1}{(x+y)^{2}}$''').move_to(3*DOWN)
         text20=TextMobject('''Cuando nos vamos acercando a $\\vec{0}$, \n
-                                esta función diverge.''').move_to(3.5*DOWN)
+                                esta función diverge.''').move_to(3*DOWN)
         text21=TextMobject('''Sin embargo no nos pasa \n
                                 como en el primer ejemplo, ''','''\n
                                 que la función diverge\n
@@ -957,10 +957,10 @@ class super3 (ThreeDScene):
                                 dificultad porque el numerador es una \n
                                 constante y el denominador tiende a \n
                                 cero con valores positivos.''')
-        text22=TextMobject('''Ahora piensa en la función $f(x,y)=\\frac{|x-y|}{(x+y)^2}$''')
+        text22=TextMobject('''Ahora piensa en la función $f(x,y)=\\frac{|x+y|}{(x+y)^2}$''')
         text23=TextMobject('''Tiende a infinito en el origen,''',''' porque el cuadrado en el \n
                                  denominador afecta a las dos variables,''',''' lo que nos da \n
-                                 una valor mucho más pequeño que $|x-y|$ conforme ambas \n
+                                 una valor mucho más pequeño que $|x+y|$ conforme ambas \n
                                   variables tienden a cero.''')#.move_to(2*DOWN)
 
         axes=ThreeDAxes()
