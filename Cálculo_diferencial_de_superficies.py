@@ -500,7 +500,7 @@ class super3 (ThreeDScene):
     ### Parte 1 de la animación
     def parte0 (self):
         titulo=TextMobject('''Límite de cocientes \n
-                                de dos variables''').scale(2.5)
+                                de funciones de dos variables''').scale(2)
         text1=TextMobject(''' Cuando trabajamos con límites en funciones de $\\mathbb{R}^{2}\\rightarrow\\mathbb{R}$ ''','''\n
                                 la cosa se pone interesante debido a que en este''','''\n
                                   caso tenemos diversas maneras de analizar  \n
@@ -546,6 +546,8 @@ class super3 (ThreeDScene):
                                 dada por la recta identidad, la función \n
                                 diverge a $\\infty$.''' ).move_to(3*DOWN)
         text6_1=TextMobject('''El límite con una sucesión. ''').move_to(3*UP)
+        text6_1_1=TextMobject('''Coordenadas iguales y positivas. ''').move_to(2.5*UP)
+        text6_1_2=TextMobject('''Ahora con coordenadas iguales y negativas. ''').move_to(2.5*UP)
         text6_2=TextMobject('''Con límite direccional. ''').move_to(3*UP)
 
         #objetos
@@ -625,11 +627,13 @@ class super3 (ThreeDScene):
         self.play(Write(text6))
         self.wait(11)
         self.play(FadeOut(text6))
-        self.add_fixed_in_frame_mobjects(text6_1)        
+        self.add_fixed_in_frame_mobjects(text6_1)
         self.play(Write(text6_1))
+        self.add_fixed_in_frame_mobjects(text6_1_1)
+        self.play(Write(text6_1_1))
         self.play(ShowCreation(Elementos11), run_time=10)
         self.wait()
-        self.play(FadeOut(Elementos11),FadeOut(text6_1))
+        self.play(FadeOut(Elementos11),FadeOut(text6_1),FadeOut(text6_1_1))
         #Con limite direccional
         self.add_fixed_in_frame_mobjects(text6_2)        
         self.play(Write(text6_2))
@@ -638,11 +642,13 @@ class super3 (ThreeDScene):
         self.wait()     
         self.play(FadeOut(text6_2),FadeOut(punto_convergencia1))
         self.move_camera(0.7*np.pi/2, 0*np.pi,distance=12)
-        self.add_fixed_in_frame_mobjects(text6_1)        
+        self.add_fixed_in_frame_mobjects(text6_1)
         self.play(Write(text6_1))
+        self.add_fixed_in_frame_mobjects(text6_1_2)
+        self.play(Write(text6_1_2))
         self.play(ShowCreation(Elementos12), run_time=10)
         self.wait()
-        self.play(FadeOut(Elementos12),FadeOut(text6_1))
+        self.play(FadeOut(Elementos12),FadeOut(text6_1),FadeOut(text6_1_2))
         self.add_fixed_in_frame_mobjects(text6_2)        
         self.play(Write(text6_2))
         self.add(punto_convergencia2)
@@ -655,6 +661,8 @@ class super3 (ThreeDScene):
         text7=TextMobject('''Sin embargo, si nos acercamos por la recta menos \n
                                 identidad, la función diverge a $-\\infty$.''')
         text7_1=TextMobject('''El límite con una sucesión. ''').move_to(3*UP)
+        text7_1_1=TextMobject('''Primera coordenada positiva y segunda negativa. ''').move_to(2.5*UP)
+        text7_1_2=TextMobject('''Primera coordenada negativa y segunda positiva. ''').move_to(2.5*UP)
         text7_2=TextMobject('''Con límite direccional. ''').move_to(3*UP)
  
         
@@ -721,9 +729,11 @@ class super3 (ThreeDScene):
         self.play(ShowCreation(superficie))
         self.add_fixed_in_frame_mobjects(text7_1)
         self.play(Write(text7_1))
+        self.add_fixed_in_frame_mobjects(text7_1_1)
+        self.play(Write(text7_1_1))
         self.play(ShowCreation(Elementos13), run_time=10)
         self.wait()
-        self.play(FadeOut(Elementos13),FadeOut(text7_1))
+        self.play(FadeOut(Elementos13),FadeOut(text7_1),FadeOut(text7_1_1))
         self.add_fixed_in_frame_mobjects(text7_2)
         self.play(Write(text7_2))
         self.add(punto_convergencia1)
@@ -732,6 +742,8 @@ class super3 (ThreeDScene):
         self.move_camera(0.7*np.pi/2, 1.35*np.pi,distance=12)
         self.add_fixed_in_frame_mobjects(text7_1)
         self.play(Write(text7_1))
+        self.add_fixed_in_frame_mobjects(text7_1_2)
+        self.play(Write(text7_1_2))
         self.play(ShowCreation(Elementos14), run_time=10)
         self.wait()
         self.play(FadeOut(Elementos14),FadeOut(text7_1))
@@ -739,7 +751,7 @@ class super3 (ThreeDScene):
         self.play(Write(text7_2))
         self.add(punto_convergencia2)
         self.play(t1_2.set_value, t1_2f,run_time=10)
-        self.play(FadeOut(punto_convergencia2),FadeOut(text7_2),
+        self.play(FadeOut(punto_convergencia2),FadeOut(text7_2),FadeOut(text7_1_2),
                 FadeOut(axes),FadeOut(superficie))
         self.wait()
 
