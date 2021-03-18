@@ -1276,5 +1276,173 @@ class derivadas_parciales (ThreeDScene):
         self.wait(8)
         self.play(FadeOut(text14))
         self.play( *[FadeOut(mob)for mob in self.mobjects] )
+
+
+#############################################################
+############## Planos y su inclinación #####################
+###########################################################
+#anexado el 17/03/2021
+
+
+class Planos(ThreeDScene):
+    def l_1(self, t):
+        return np.array([t, 0,5*t])
+    def l_2(self, t):
+        return np.array([0,t,3*t])
+    def Plano(self,x,y):
+        return np.array([x,y,5*x+ 3*y])
+
+
+    def construct(self):
+    
+        ###Texto
+        titulo = TextMobject('''Planos y su inclinación''')
+        t_1 = TextMobject('''En $\\mathbb{R}^3$ un plano puede ser descrito como \n 
+        una superficie lisa, sin subidas ni bajadas. ''')
+        t_2 = TextMobject('''Algunos planos son gráficas de funciones de $\\mathbb{R}^2$ en $\\mathbb{R},$''')
+        t_3 = TextMobject('''$ f(x,y) = ax + by  \\mbox{ con } a,b \\in \\mathbb{R},$''')
+        t_4 = TextMobject('''Cualquier plano no vertical intersecta  \n
+        a los planos $xz$ y $yz$ en dos rectas, ''')
+        t_5 = TextMobject('''cada una en los planos respectivos \n 
+        son de pendiente $a$ y $b$.''')
+        t_6 = TextMobject('''Veamos a que nos referimos con esto gráficamente.''')
+        t_7 = TextMobject('''Tomemos una recta ''', '''$\\mathcal{L}_1$''', ''' en el plano $xz$ de pediente 5 ''')
+        t_7.set_color_by_tex_to_color_map({'''$\\mathcal{L}_1$''': TEAL})
+        t_8 = TextMobject('''y otra recta ''','''$\\mathcal{L}_2$''', ''' en el plano $yz$ de pendiente 3.''')
+        t_8.set_color_by_tex_to_color_map({'''$\\mathcal{L}_2$''': RED})
+        t_9 = TextMobject('''Ahora observemos que el plano \n 
+        $f(x,y) = 5x + 3x$ \n
+        contiene a ambas rectas.''')
+        t_10 = TextMobject('''Este plano es el único que contiene \n 
+        ambas rectas y por lo tanto ''')
+        t_11 = TextMobject('''este plano queda totalmente \n
+        caracterizado por estas.''')
+        t_12 = TextMobject(''' En particular la inclinación \n
+        del plano queda determinada  \n 
+        por el vector ''','''$(5,3)$''',''',''')
+        t_12.set_color_by_tex_to_color_map({'''$(5,3)$''': GREEN})
+        t_13 = TextMobject('''es decir por la \n 
+        inclinación de las rectas. ''')
+        t_14 = TextMobject('''Se puede demostrar que $f:\\mathbb{R}^2\\rightarrow\\mathbb{R}$ es lineal \n 
+        si y sólo si $f(x,y)=ax+by=(a,b)\\cdot (x,y)$. ''')
+        t_15 = TextMobject('''Las gráficas de estas funciones corresponden a todos los \n
+        planos no verticales en $\\mathbb{R}^3$ que pasan por el origen.''')
+        t_16 = TextMobject('''¿Qué pasa con los planos que no pasan por el origen?''')
+        t_17 = TextMobject('''¿Cómo aplica este concepto de inclinación \n
+         para el caso de un plano tangente?''')
+
+        
+        t_7.to_corner(UL)
+        t_8.to_corner(UL)
+        t_9.to_corner(UL)
+        t_10.to_corner(UL)
+        t_11.to_corner(UL)
+        t_12.to_corner(UL)
+        t_13.to_corner(UL)
+    
+
+        
+        
+        ### Objetos
+
+        axes = ThreeDAxes(x_min = -4, x_max = 4, y_min = -4, y_max=4, z_min=-4, z_max=4 ,num_axis_pieces= 4)
+        recta_1 = ParametricFunction(self.l_1, color=TEAL, t_min= -2,t_max=2)
+        recta_2 = ParametricFunction(self.l_2, color=RED, t_min=-2,t_max=2)
+        plano = ParametricSurface(self.Plano, fill_color=PURPLE_E, checkerboard_colors= [PURPLE_D, PURPLE_E], fill_opacity=0.6 ,u_min=-2, u_max =2,v_min=-2, v_max=2)
+        inclinacion=Vector(direction=[5,3,0], color=GREEN)
+        
+
+
+       
+        ###Grupos
+       
+        Group_1 = VGroup(recta_1)
+        Group_2 = VGroup(recta_2)
+        Group_3 = VGroup(plano)
+              
+
+
+        ### Animaciones
+        self.begin_ambient_camera_rotation(rate=0.2)
+        self.add_fixed_in_frame_mobjects(titulo)
+        self.play(Write(titulo))
+        self.wait(1)
+        self.play(FadeOut(titulo))
+        self.add_fixed_in_frame_mobjects(t_1)
+        self.play(Write(t_1))
+        self.wait(5)
+        self.play(FadeOut(t_1))
+        self.add_fixed_in_frame_mobjects(t_2)
+        self.play(Write(t_2))
+        self.wait(3)
+        self.play(FadeOut(t_2))
+        self.add_fixed_in_frame_mobjects(t_3)
+        self.play(Write(t_3))
+        self.wait(1.5)
+        self.play(FadeOut(t_3))
+        self.add_fixed_in_frame_mobjects(t_4)
+        self.play(Write(t_4))
+        self.wait(4)
+        self.play(FadeOut(t_4))
+        self.add_fixed_in_frame_mobjects(t_5)
+        self.play(Write(t_5))
+        self.wait(3)
+        self.play(FadeOut(t_5))
+        self.add_fixed_in_frame_mobjects(t_6)
+        self.play(Write(t_6))
+        self.wait(2)
+        self.play(ApplyMethod(t_6.shift, 3.5*UP))
+        self.set_camera_orientation(phi=45*DEGREES,theta=55*DEGREES)
+        self.play(LaggedStart(ShowCreation(axes)))
+        self.play(FadeOut(t_6))
+        self.add_fixed_in_frame_mobjects(t_7)
+        self.play(Write(t_7))
+        self.play(LaggedStart(ShowCreation(Group_1)))
+        self.play(FadeOut(t_7))
+        self.wait(3)
+        self.add_fixed_in_frame_mobjects(t_8)
+        self.play(Write(t_8))
+        self.play(LaggedStart(ShowCreation(Group_2)))
+        self.play(FadeOut(t_8))
+        self.wait(2.5)
+        self.add_fixed_in_frame_mobjects(t_9)
+        self.play(Write(t_9))
+        self.play(LaggedStart(ShowCreation(Group_3)))
+        self.play(FadeOut(t_9))
+        self.wait(4)
+        self.add_fixed_in_frame_mobjects(t_10)
+        self.play(Write(t_10))
+        self.wait(4)
+        self.play(FadeOut(t_10))
+        self.add_fixed_in_frame_mobjects(t_11)
+        self.play(Write(t_11))
+        self.wait(2.5)
+        self.play(FadeOut(t_11))
+        self.add_fixed_in_frame_mobjects(t_12)
+        self.play(Write(t_12))
+        self.play(FadeIn(inclinacion))
+        self.wait(4)
+        self.play(FadeOut(t_12))
+        self.add_fixed_in_frame_mobjects(t_13)
+        self.play(Write(t_13))
+        self.wait(3)
+        self.play(FadeOut(t_13))
+        self.play(FadeOut(Group_1), FadeOut(Group_2), FadeOut(Group_3), FadeOut(axes), FadeOut(inclinacion))
+        self.add_fixed_in_frame_mobjects(t_14)
+        self.play(Write(t_14))
+        self.wait(5.5)
+        self.play(FadeOut(t_14))
+        self.add_fixed_in_frame_mobjects(t_15)
+        self.play(Write(t_15))
+        self.wait(7)
+        self.play(FadeOut(t_15))
+        self.add_fixed_in_frame_mobjects(t_16)
+        self.play(Write(t_16))
+        self.wait(3)
+        self.play(FadeOut(t_16))
+        self.add_fixed_in_frame_mobjects(t_17)
+        self.play(Write(t_17))
+        self.wait(4)
+        self.play(FadeOut(t_17))
         
         
