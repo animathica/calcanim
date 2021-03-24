@@ -540,7 +540,7 @@ class super3 (ThreeDScene):
         self.play(FadeOut(text4))
         self.wait()
     def parte1 (self):
-        text5=TextMobject('''Sea $f:\\mathbb{R}^{2}-{\\vec{0}}\\rightarrow\\mathbb{R}$''',''' $$f(x,y)=\\frac{1}{xy}$$ ''')
+        text5=TextMobject('''Sea $f:\\mathbb{R}^{2}-\\{(x,y)\\in \\mathbb{R}^{2}:x=0\\ \\text{ó}\\ y=0\\}\\rightarrow\\mathbb{R}$''',''' $$f(x,y)=\\frac{1}{xy}$$ ''')
         text5_1=TextMobject('''$$f(x,y)=\\frac{1}{xy}$$''').move_to(3*UP)
         text6=TextMobject('''Si nos acercamos al origen en la dirección \n
                                 dada por la recta identidad, la función \n
@@ -860,9 +860,9 @@ class super3 (ThreeDScene):
                                 si encontramos dos direcciones donde el \n
                                 límite difiere, entonces podemos concluir \n
                                     que el límite no existe.''')
-        text15=TextMobject('''Puede ocurrir que si nos acercamos al punto del\n
+        text15=TextMobject('''Es posible que si nos acercamos al punto del\n
                                  dominio en cualquier dirección, el límite sea\n
-                                 el mismo, pero la función no tener límite. ''')
+                                 el mismo, pero puede que la función no tenga límite. ''')
         text15_1=TextMobject('''Por ejemplo, $f(x,y)=1$ si $y=x^3$ y $f(x,y)=0$ en otro caso''').move_to(3*UP)
         text15_2=TextMobject(''' $f$ no tiene límite en $\\vec{0}$, aunque sí existen \n
                                 todos los límites direccionales en el punto.''').move_to(3*UP)
