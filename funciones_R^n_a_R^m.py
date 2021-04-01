@@ -508,8 +508,11 @@ class superficies_parametrizadas (ThreeDScene, Scene):
         texto_9 = TextMobject(''' Definimos $\\dfrac{\\partial \\sigma}{\\partial x}(\\hat{x}_0) \\times \\dfrac{\\partial \\sigma}{\\partial y}(\\hat{x}_0)$ como el vector normal a la\n
                                 superficie en $\\sigma(\\hat{x}_0)$, inducida por la parametrización $\\sigma$ ''').move_to(3*UP)
         texto_10 = TextMobject(''' Este vector genera un plano tangente a la superficie en $\\sigma(\\hat{x}_0)$ ''').move_to(3*UP)
-        texto_11 = TextMobject(''' Si $\\hat{x}_0$ corresponde a un punto crítico de $\\sigma$, entonces\n
-                                $\\dfrac{\\partial \\sigma}{\\partial x}(\\hat{x}_0) =\\vec{0}= \\dfrac{\\partial \\sigma}{\\partial y}(\\hat{x}_0)$ y no hay vector normal a la superficie ''').move_to(3*UP)
+        texto_11 = TextMobject(''' Si $\\hat{x}_0$ corresponde a un punto crítico de $\\sigma$, puede ocurrir que\n
+                                $\\dfrac{\\partial \\sigma}{\\partial x}(\\hat{x}_0) =\\vec{0}= \\dfrac{\\partial \\sigma}{\\partial y}(\\hat{x}_0)$ y entonces la superficie no tiene\n
+                                plano tangente definido en el punto. ''').move_to(2.5*UP)
+        texto_12 = TextMobject('''Lo mismo ocurre si las parciales son linealmente dependientes.\n
+Nuestro ejemplo no tiene puntos críticos.''').move_to(3*UP)
         etiqueta_1 = TexMobject(r"""\dfrac{\partial \sigma}{\partial x}(\hat{x}_0)=\begin{pmatrix} 1 \\ 0 \\ -0.74 \end{pmatrix} """).scale(0.75).set_color(PINK).move_to(4*RIGHT)
         etiqueta_2 = TexMobject(r"""\dfrac{\partial \sigma}{\partial y}(\hat{x}_0)=\begin{pmatrix} 0 \\ 1 \\ -0.74 \end{pmatrix} """).scale(0.75).set_color(YELLOW_E).next_to(etiqueta_1,DOWN)
         #EJES
@@ -591,6 +594,8 @@ class superficies_parametrizadas (ThreeDScene, Scene):
         self.FadeOutWrite3D(texto_10,texto_11)
         self.play(FadeIn(punto_critico))
         self.wait(11)
+        self.FadeOutWrite3D(texto_11, texto_12)
+        self.wait(5.6)
         self.play(
             *[FadeOut(mob)for mob in self.mobjects]
         )
