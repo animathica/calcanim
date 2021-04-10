@@ -4,86 +4,94 @@ from manimlib.imports import *
 ##### Reparametrizacion y regla de la cadena #########
 #######################################################
 
-#Esta animación está en creada en partes, uniendo las animaciones al final del código
- 
-def curva1p(t):
-    return [t,np.cos(4*t),np.sin(4*t)] 
-def curva2p(s):
-    return [-s**3,np.cos(-4*s**3),np.sin(-4*s**3)]
+# Esta animación está en creada en partes, uniendo las animaciones al final del código
 
-class Reparametrizacion_y_regla_de_la_cadena1 (ThreeDScene):    
-    def textos1 (self):
+def curva1p(t):
+    return [t, np.cos(4 * t), np.sin(4 * t)]
+
+
+def curva2p(s):
+    return [-s ** 3, np.cos(-4 * s ** 3), np.sin(-4 * s ** 3)]
+
+
+class Reparametrizacion_y_regla_de_la_cadena1(ThreeDScene):
+    def textos1(self):
         axis_config = {
-            "x_min" : -8,
-            "x_max" : 8,
-            "y_min" : -8,
-            "y_max" : 8,
-            "z_min" : -8,
-            "z_max" : 8,
+            "x_min": -8,
+            "x_max": 8,
+            "y_min": -8,
+            "y_max": 8,
+            "z_min": -8,
+            "z_max": 8,
         }
-        titulo=TextMobject('''Reparametrización de curvas \n
-                            y regla de la cadena''')
-        text=TextMobject("Tomemos la siguiente curva").move_to(3*UP)
-        text1=TextMobject('''$\\gamma(t)=(t,\\cos(4t),\\sin(4t))$ \n''',
-                               '''y considera $C=Im(\gamma)$ ''').move_to(3*UP)
-        text2=TextMobject('''Tomando $f(s)=-s^{3}$''').move_to(3*UP)
-        text3=TextMobject('''Entonces
-                            $\\xi(s)=(\\gamma\\circ f)(s)=(-s^{3},\\cos(-4s^{3}),\\sin(-4s^{3}))$''' ).move_to(3*UP)
-        text4=TextMobject('''Como $Im(\\gamma)=Im(\\xi)=C$ decimos $\\xi$ \n
-                                es una reparametrización de $C$.''').move_to(3*UP)
-        text5=TextMobject(''' Tomemos un punto en la curva y veamos como se mueve \n
-                                 al comparar ambas parametrizaciones.''').move_to(3*UP)
-        axes = ThreeDAxes( **axis_config)
+        titulo = TextMobject('''Reparametrización de \n
+                             Curvas  y Regla \n
+                             de la Cadena''').scale(1.5)
+        text = TextMobject("Tomemos la siguiente curva").to_edge(UP)
+        text1 = TextMobject('''$\\gamma(t)=(t,\\cos(4t),\\sin(4t))$ \n''',
+                            '''y considera $C=Im(\gamma)$ ''').move_to(3 * UP)
+        text1.set_color_by_tex_to_color_map({
+            "$C$": BLUE,
+        })
+        text2 = TextMobject('''Tomando $f(s)=-s^{3}$''').move_to(3 * UP)
+        text3 = TextMobject('''Entonces
+                            $\\xi(s)=(\\gamma\\circ f)(s)=(-s^{3},\\cos(-4s^{3}),\\sin(-4s^{3}))$''').move_to(3 * UP)
+        text4 = TextMobject('''Como $Im(\\gamma)=Im(\\xi)=C$ decimos $\\xi$ \n
+                                es una reparametrización de $C$.''').move_to(3 * UP)
+        text5 = TextMobject(''' Tomemos un punto en la curva y veamos como se mueve \n
+                                 al comparar ambas parametrizaciones.''').move_to(3 * UP)
+        axes = ThreeDAxes(**axis_config)
 
         tmin = -8
         tmax = 8
-        vs=tmax**(1/3)
-        f = ParametricFunction(curva1p,t_min=tmin,t_max=tmax,color=RED)
-        g = ParametricFunction(curva1p,t_min=tmin,t_max=tmax,color=BLUE_C)
-        self.play(Write(titulo))
+        vs = tmax ** (1 / 3)
+        f = ParametricFunction(curva1p, t_min=tmin, t_max=tmax, color=RED)
+        g = ParametricFunction(curva1p, t_min=tmin, t_max=tmax, color=BLUE_C)
+        self.play(Write(titulo.scale(1.5)))
         self.wait(5)
         self.play(FadeOut(titulo))
-        self.set_camera_orientation(0.8*np.pi/2, -0.25*np.pi,distance=20)           
+        self.set_camera_orientation(0.8 * np.pi / 2, -0.25 * np.pi, distance=20)
         self.play(ShowCreation(axes))
         self.add_fixed_in_frame_mobjects(text)
-        self.play(Write(text))      
-        self.wait(2)
+        self.play(Write(text))
+        self.wait(3)
         self.play(FadeOut(text))
         self.add_fixed_in_frame_mobjects(text1[0])
         self.play(Write(text1[0]))
+        self.wait()
+        self.play(ShowCreation(f), run_time=2)
         self.wait(4)
         self.add_fixed_in_frame_mobjects(text1[1])
         self.play(Write(text1[1]))
-        self.play(ShowCreation(f),run_time=2)
-        self.wait(3)
+        self.wait(5)
         self.play(FadeOut(text1))
         self.add_fixed_in_frame_mobjects(text2)
         self.play(Write(text2))
-        self.wait(3)
+        self.wait(5.7)
         self.play(FadeOut(text2))
         self.add_fixed_in_frame_mobjects(text3)
         self.play(Write(text3))
-        self.play(ReplacementTransform(f,g),runtime=2)
-        self.wait(5)
+        self.play(ReplacementTransform(f, g), runtime=2)
+        self.wait(11.25)
         self.play(FadeOut(text3))
         self.add_fixed_in_frame_mobjects(text4)
         self.play(Write(text4))
-        self.wait(6)
+        self.wait(7.6)
         self.play(FadeOut(text4))
         self.add_fixed_in_frame_mobjects(text5)
         self.play(Write(text5))
-        self.wait(9)
+        self.wait(8.5)
         self.play(FadeOut(text5))
 
-    def mov_particula (self):
-        #Se puede modificar t0 para cambiar la longitud de los number lines
-        t0=7
+    def mov_particula(self):
+        # Se puede modificar t0 para cambiar la longitud de los number lines
+        t0 = 7
         line_config = {
-            "x_min" : -t0+0.1,
-            "x_max" : t0+0.1,
+            "x_min": -t0 + 0.1,
+            "x_max": t0 + 0.1,
             "unit_size": 0.3,
             "include_numbers": True,
-            #"numbers_to_show": None,
+            # "numbers_to_show": None,
             ##"longer_tick_multiple": 2,
             "number_at_center": 0,
             "number_scale_val": 0.5,
@@ -95,11 +103,11 @@ class Reparametrizacion_y_regla_de_la_cadena1 (ThreeDScene):
 
         }
         line_config2 = {
-            "x_min" : -(t0**(1/3))+0.2,
-            "x_max" : t0**(1/3)+0.2,
+            "x_min": -(t0 ** (1 / 3)) + 0.2,
+            "x_max": t0 ** (1 / 3) + 0.2,
             "unit_size": 1.1,
             "include_numbers": True,
-            #"numbers_to_show": None,
+            # "numbers_to_show": None,
             ##"longer_tick_multiple": 2,
             "number_at_center": 0,
             "number_scale_val": 0.5,
@@ -110,107 +118,112 @@ class Reparametrizacion_y_regla_de_la_cadena1 (ThreeDScene):
             "tip_height": 0.25,
 
         }
-        number_line= NumberLine( **line_config).move_to(2*DOWN+(3-0.5)*LEFT)
+        number_line = NumberLine(**line_config).move_to(2 * DOWN + (3 - 0.5) * LEFT)
 
         ##Movimiento para una partícula en la primera parametrización
         t1 = ValueTracker(-t0)
-        p_1=Sphere(radius=0.1,color=RED,fill_opacity=1).move_to([(-t0,np.cos(4*(-t0)),np.sin(4*(-t0)))])
+        p_1 = Sphere(radius=0.1, color=RED, fill_opacity=1).move_to([(-t0, np.cos(4 * (-t0)), np.sin(4 * (-t0)))])
+
         def mov_1(obj):
             t = t1.get_value()
-            p_1.become(Sphere(radius=0.1,color=RED,fill_opacity=1).move_to([(t,np.cos(4*t),np.sin(4*t))]))
+            p_1.become(Sphere(radius=0.1, color=RED, fill_opacity=1).move_to([(t, np.cos(4 * t), np.sin(4 * t))]))
+
         p_1.add_updater(mov_1)
 
-        p_t=Sphere(radius=0.1,color=RED,fill_opacity=1).move_to(number_line.number_to_point(t0))
-        pt_label=TextMobject("t").next_to(p_t,UP,buff=0.1)
+        p_t = Sphere(radius=0.1, color=RED, fill_opacity=1).move_to(number_line.number_to_point(t0))
+        pt_label = TextMobject("t").next_to(p_t, UP, buff=0.1)
 
         def mov_t(obj):
             tn = t1.get_value()
-            p_t.become(Sphere(radius=0.1,color=RED,fill_opacity=1).move_to(number_line.number_to_point(tn)))
-            pt_label.become(TextMobject("t").next_to(p_t,UP,buff=0.1))
-        
-        Movimiento_1=VGroup(p_t,pt_label)
+            p_t.become(Sphere(radius=0.1, color=RED, fill_opacity=1).move_to(number_line.number_to_point(tn)))
+            pt_label.become(TextMobject("t").next_to(p_t, UP, buff=0.1))
+
+        Movimiento_1 = VGroup(p_t, pt_label)
         Movimiento_1.add_updater(mov_t)
 
+        # movimiento para la esfera en la parametrización
 
-        #movimiento para la esfera en la parametrización
+        s1 = ValueTracker(-(t0 ** (1 / 3)))
+        p_2 = Sphere(radius=0.1).move_to(
+            [(-(-(t0 ** (1 / 3))) ** 3, np.cos(-4 * (-(t0 ** (1 / 3))) ** 3), np.sin(-4 * (-(t0 ** (1 / 3))) ** 3))])
 
-        s1=ValueTracker(-(t0**(1/3)))
-        p_2 = Sphere(radius=0.1).move_to([(-(-(t0**(1/3)))**3,np.cos(-4*(-(t0**(1/3)))**3),np.sin(-4*(-(t0**(1/3)))**3))])
         def mov_2(obj):
             s = s1.get_value()
-            p_2.become(Sphere(radius=0.1).move_to([(-s**3,np.cos(-4*s**3),np.sin(-4*s**3))]))
-        
+            p_2.become(Sphere(radius=0.1).move_to([(-s ** 3, np.cos(-4 * s ** 3), np.sin(-4 * s ** 3))]))
+
         p_2.add_updater(mov_2)
 
-        number_line2= NumberLine(**line_config2).next_to(number_line,DOWN,buff=1)
-        s=Dot(color=BLUE_C).move_to(number_line2.number_to_point(-(t0**(1/3))))#,UP,buff=0)#.scale(0.5)
-        s_label=TextMobject("s").next_to(s,UP,buff=0.1)
+        number_line2 = NumberLine(**line_config2).next_to(number_line, DOWN, buff=1)
+        s = Dot(color=BLUE_C).move_to(number_line2.number_to_point(-(t0 ** (1 / 3))))  # ,UP,buff=0)#.scale(0.5)
+        s_label = TextMobject("s").next_to(s, UP, buff=0.1)
+
         def mov_s(obj):
             sn = s1.get_value()
-            s.become(Dot(color=BLUE_C).move_to(number_line2.number_to_point(sn)))#,UP,buff=0)#.scale(0.5)
-            s_label.become(TextMobject("s").next_to(s,UP,buff=0.1))
+            s.become(Dot(color=BLUE_C).move_to(number_line2.number_to_point(sn)))  # ,UP,buff=0)#.scale(0.5)
+            s_label.become(TextMobject("s").next_to(s, UP, buff=0.1))
+
         s.add_updater(mov_s)
         s_label.add_updater(mov_s)
-        Movimiento_2=VGroup(s,s_label)
-    
-        fondo2=Circle(radius=20,color=BLACK, fill_opacity=1,fill_color=BLACK)
+        Movimiento_2 = VGroup(s, s_label)
+
+        fondo2 = Circle(radius=20, color=BLACK, fill_opacity=1, fill_color=BLACK)
         self.add(p_1)
         self.add_fixed_in_frame_mobjects(number_line)
         self.add_fixed_in_frame_mobjects(Movimiento_1)
-        self.play(ShowCreation(number_line),ShowCreation(Movimiento_1))
-        self.play(t1.set_value, t0,run_time=20) 
-        #mov para la reparametrizacion
+        self.play(ShowCreation(number_line), ShowCreation(Movimiento_1))
+        self.play(t1.set_value, t0, run_time=20)
+        # mov para la reparametrizacion
         self.add_fixed_in_frame_mobjects(number_line2)
         self.add_fixed_in_frame_mobjects(Movimiento_2)
-        self.play(ShowCreation(number_line2),ShowCreation(Movimiento_2),ShowCreation(p_2))
-        self.play(s1.set_value, t0**(1/3),run_time=20) 
+        self.play(ShowCreation(number_line2), ShowCreation(Movimiento_2), ShowCreation(p_2))
+        self.play(s1.set_value, t0 ** (1 / 3), run_time=20)
         self.wait()
-        self.play(FadeOut(p_1),FadeOut(number_line),FadeOut(number_line2),
-                    FadeOut(p_2),FadeOut(Movimiento_1),FadeOut(Movimiento_2))
-        self.add_fixed_in_frame_mobjects(fondo2)       
+        self.play(FadeOut(p_1), FadeOut(number_line), FadeOut(number_line2),
+                  FadeOut(p_2), FadeOut(Movimiento_1), FadeOut(Movimiento_2))
+        self.add_fixed_in_frame_mobjects(fondo2)
         self.play(GrowFromCenter(fondo2))
-   
-    def textos2 (self):
+
+    def textos2(self):
         axis_config = {
-            "x_min" : -8,
-            "x_max" : 8,
-            "y_min" : -8,
-            "y_max" : 8,
-            "z_min" : -8,
-            "z_max" : 8,
+            "x_min": -8,
+            "x_max": 8,
+            "y_min": -8,
+            "y_max": 8,
+            "z_min": -8,
+            "z_max": 8,
         }
-        text6=TextMobject('''El punto recorre de una manera diferente a la curva \n
+        text6 = TextMobject('''El punto recorre de una manera diferente a la curva \n
                                 dependiendo de la parametrización.''')
-        text7=TextMobject('''Formalmente. \n
+        text7 = TextMobject('''Formalmente. \n
                                Sea $C\\in\mathbb{R}^{n}$ una curva y $\\gamma:I\\subset\\mathbb{R}\\rightarrow\\mathbb{R}^{n}$ \n
                                         una parametrización de C. \n ''',
-                               ''' \n Si $f:A\\subset\\mathbb{R}\\rightarrow I\\subset\\mathbb{R}$ es sobreyectiva,\n
-                                entonces \n
-                                $\\rho=\\gamma\\circ f:A\\rightarrow\\mathbb{R}^{n}$ parametriza a $C$ \n
-                                y es llamada una reparametrización de la curva.''')
-        text7_1=TextMobject('''Además, decimos que las reparametrizaciones conservan el sentido si''','''\n
+                            ''' \n Si $f:A\\subset\\mathbb{R}\\rightarrow I\\subset\\mathbb{R}$ es sobreyectiva,\n
+                           entonces \n
+                           $\\rho=\\gamma\\circ f:A\\rightarrow\\mathbb{R}^{n}$ parametriza a $C$ \n
+                           y es llamada una reparametrización de la curva.''')
+        text7_1 = TextMobject('''Además, decimos que las reparametrizaciones conservan el sentido si''', '''\n
                                 estas empiezan y terminanen los mismos puntos que la \n
-                                 parametrización.''','''Por otro lado,\n
+                                 parametrización.''', '''Por otro lado,\n
                                     tienen sentido contrario si con al reparametrización \n
                                     empiezan y terminan al revés. ''')
-        text7_2=TextMobject('''¿Entonces la reparametrización del ejemplo conserva el sentido\n
+        text7_2 = TextMobject('''¿Entonces la reparametrización del ejemplo conserva el sentido\n
                                          o lo cambia? ''')
-        text8=TextMobject('''La regla de la cadena nos dice que la derivada de una función \n
-                                 reparametrizada es: \n
+        text8 = TextMobject('''La regla de la cadena nos dice que la derivada  \n
+                                 de una función reparametrizada es: \n
                                     $\\rho'(t)=(f'\\cdot(\gamma'\\circ f))(t)$''')
-        text9=TextMobject(''' Veamos como se aplica lo anterior en la \n
+        text9 = TextMobject(''' Veamos como se aplica lo anterior en la \n
                                      curva presentada al inicio.''')
-        text10=TextMobject(''' La derivada de la reparametrización es: \n''',
-                                '''$\\xi'(s)=-3s^{2}(1,-4\\sin(-4s^{3}),4\\cos(-4s^{3})) $''').move_to(3*UP)
-        text11=TextMobject("Veamos como cambia $\\xi'$ conforme cambia t").move_to(DOWN*UP)
-       
-        axes = ThreeDAxes( **axis_config)
+        text10 = TextMobject(''' La derivada de la reparametrización es: \n''',
+                             '''$\\xi'(s)=-3s^{2}(1,-4\\sin(-4s^{3}),4\\cos(-4s^{3})) $''').move_to(3 * UP)
+        text11 = TextMobject("Veamos como cambia $\\xi'$ conforme cambia s").move_to(DOWN * UP)
+
+        axes = ThreeDAxes(**axis_config)
         tmin = -7
         tmax = 7
-        vs=tmax**(1/3)
-        f = ParametricFunction(curva1p,t_min=tmin,t_max=tmax,color=RED)
-        g = ParametricFunction(curva1p,t_min=tmin,t_max=tmax,color=BLUE_C)
-        fondo=Rectangle(HEIGHT=FRAME_HEIGHT,WIDHT=FRAME_WIDTH,color=BLACK,fill_opacity=1 )
+        vs = tmax ** (1 / 3)
+        f = ParametricFunction(curva1p, t_min=tmin, t_max=tmax, color=RED)
+        g = ParametricFunction(curva1p, t_min=tmin, t_max=tmax, color=BLUE_C)
+        fondo = Rectangle(HEIGHT=FRAME_HEIGHT, WIDHT=FRAME_WIDTH, color=BLACK, fill_opacity=1)
         self.add_fixed_in_frame_mobjects(text6)
         self.play(Write(text6))
         self.wait(8)
@@ -218,10 +231,9 @@ class Reparametrizacion_y_regla_de_la_cadena1 (ThreeDScene):
         ###FadeOutATODO
         self.add_fixed_in_frame_mobjects(text7[0])
         self.play(Write(text7[0]))
-        self.wait(9)
         self.add_fixed_in_frame_mobjects(text7[1])
         self.play(Write(text7[1]))
-        self.wait(15)
+        self.wait(25)
         self.play(FadeOut(text7))
         self.add_fixed_in_frame_mobjects(text8)
         self.play(Write(text8))
@@ -233,36 +245,34 @@ class Reparametrizacion_y_regla_de_la_cadena1 (ThreeDScene):
         self.play(FadeOut(text9))
         self.add_fixed_in_frame_mobjects(text10)
         self.play(Write(text10))
-        self.wait(4)
+        self.wait(13.2)
         self.play(FadeOut(text10[0]))
-        self.play(text10[1].shift, 0.5*UP, runtime=3)
         self.add_fixed_in_frame_mobjects(text11)
         self.play(Write(text11))
-        self.wait(7)
-        self.play(FadeOut(text11),FadeOut(text10[1]))
- 
-    
+        self.wait(6)
+        self.play(FadeOut(text11), FadeOut(text10[1]))
+
     def construct(self):
-        
-        #Unión de las animaciones, siempre se pueden comentar algunas para que el proceso de compilación sea más corto
-        #Presenta la primera parte de la animación
+        # Unión de las animaciones, siempre se pueden comentar algunas para que el proceso de compilación sea más corto
+        # Presenta la primera parte de la animación
         self.textos1()
         self.wait()
-        #Presenta el movimiento de una partícula con las dos parametrizaciones
+        # Presenta el movimiento de una partícula con las dos parametrizaciones
         self.mov_particula()
         self.wait()
-        #Presenta la segunda parte de los textos
+        # Presenta la segunda parte de los textos
         self.textos2()
-        
-class Reparametrizacion_y_regla_de_la_cadena2 (ThreeDScene):
+
+
+class Reparametrizacion_y_regla_de_la_cadena2(ThreeDScene):
     def construct(self):
-        t0=7
+        t0 = 7
         line_config = {
-            "x_min" : -t0+0.1,
-            "x_max" : t0+0.1,
+            "x_min": -t0 + 0.1,
+            "x_max": t0 + 0.1,
             "unit_size": 0.3,
             "include_numbers": True,
-            #"numbers_to_show": None,
+            # "numbers_to_show": None,
             ##"longer_tick_multiple": 2,
             "number_at_center": 0,
             "number_scale_val": 0.5,
@@ -274,11 +284,11 @@ class Reparametrizacion_y_regla_de_la_cadena2 (ThreeDScene):
 
         }
         line_config2 = {
-            "x_min" : -(t0**(1/3))+0.2,
-            "x_max" : t0**(1/3)+0.2,
+            "x_min": -(t0 ** (1 / 3)) - 0.2,
+            "x_max": t0 ** (1 / 3) + 0.2,
             "unit_size": 1.1,
             "include_numbers": True,
-            #"numbers_to_show": None,
+            # "numbers_to_show": None,
             ##"longer_tick_multiple": 2,
             "number_at_center": 0,
             "number_scale_val": 0.3,
@@ -290,118 +300,142 @@ class Reparametrizacion_y_regla_de_la_cadena2 (ThreeDScene):
 
         }
         axis_config = {
-            "x_min" : -8,
-            "x_max" : 8,
-            "y_min" : -8,
-            "y_max" : 8,
-            "z_min" : -8,
-            "z_max" : 8,
+            "x_min": -8,
+            "x_max": 8,
+            "y_min": -8,
+            "y_max": 8,
+            "z_min": -8,
+            "z_max": 8,
         }
-        text15=TextMobject('''Derivada de la parametrización''').move_to(3*UP)
-        text16=TextMobject('''Derivada con la reparametrización''').move_to(3*UP)
-        text12=TextMobject('''Hay otra forma de saber si la reparetrización\n
-                             cambia el sentido. Si la derivada de la función que \n
-                                 induce una reparametrización es positiva,''',''' \n
-                                conserva el signo, si es negativo cambia el sentido ''')
-        text13=TextMobject('''¿Se te ocurre cómo saber cuál es el sentido \n
-                                    de una curva suave cerrada? ''')
-        text14=TextMobject('''Modifica el código para crear más ejemplos.''')
-        axes = ThreeDAxes( **axis_config)
+
+        text15 = TextMobject('''Derivada de la parametrización''').to_edge(UP)
+        text16 = TextMobject('''Derivada con la reparametrización''').to_edge(UP)
+        text12 = TextMobject('''Hay otra forma de saber si la reparametrización\n
+        cambia el sentido. Si la derivada de la función que \n
+        induce una reparametrización es positiva, \n
+        no cambia el sentido; si es negativa, sí cambia. ''')
+        text13 = TextMobject('''¿Se te ocurre cómo saber cuál es el sentido \n
+                                    de una curva simple cerrada? ''')
+        text14 = TextMobject('''Modifica el código para crear más ejemplos.''')
+        axes = ThreeDAxes(**axis_config)
         tmin = -5
         tmax = 5
-        vs=tmax**(1/3)
-        g = ParametricFunction(curva1p,t_min=-t0,t_max=t0,color=BLUE_C)
-        
-        t2 = ValueTracker(tmin)
-        number_line= NumberLine( **line_config).move_to(2*DOWN+(3-0.5)*LEFT)
-        number_line3= NumberLine(**line_config2).move_to(2*DOWN+(3-0.5)*LEFT)
-        #Movimiento para la parametrización
-        p_parametrizacion = Sphere(radius=0.1,color=RED,fill_opacity=1).move_to([tmin,np.cos(4*tmin),np.sin(4*tmin)])
-        d_parametrizacion=Arrow( (tmin,np.cos(4*tmin),np.sin(4*tmin)),(tmin+1,np.cos(4*tmin)-np.sin(4*tmin)*4,np.sin(4*tmin)+np.cos(4*tmin)*4)  ,buff=0 )
+        vs = tmax ** (1 / 3)
+        g = ParametricFunction(curva1p, t_min=-t0, t_max=t0, color=BLUE_C)
 
+        t2 = ValueTracker(tmin)
+        number_line = NumberLine(**line_config).move_to(2 * DOWN + (3 - 0.5) * LEFT)
+        
+        # Movimiento para la parametrización
+        p_parametrizacion = Sphere(radius=0.1, color=RED, fill_opacity=1).move_to(
+            [tmin, np.cos(4 * tmin), np.sin(4 * tmin)])
+        d_parametrizacion = Arrow((tmin, np.cos(4 * tmin), np.sin(4 * tmin)), (
+        tmin + 1, np.cos(4 * tmin) - np.sin(4 * tmin) * 4, np.sin(4 * tmin) + np.cos(4 * tmin) * 4), buff=0)
 
         def mov_parametrizacion(obj):
             tp = t2.get_value()
-            x=[tp,np.cos(4*tp),np.sin(4*tp)]
-            p_parametrizacion.become(Sphere(radius=0.1,color=RED,fill_opacity=1).move_to([tp,np.cos(4*tp),np.sin(4*tp)]))
-            d_parametrizacion.become(Arrow( (tp,np.cos(4*tp),np.sin(4*tp)),(tp+1,np.cos(4*tp)-np.sin(4*tp)*4,np.sin(4*tp)+np.cos(4*tp)*4)  ,buff=0 ))
-        cjto1=VGroup(p_parametrizacion,d_parametrizacion)
+            x = [tp, np.cos(4 * tp), np.sin(4 * tp)]
+            p_parametrizacion.become(
+                Sphere(radius=0.1, color=RED, fill_opacity=1).move_to([tp, np.cos(4 * tp), np.sin(4 * tp)]))
+            d_parametrizacion.become(Arrow((tp, np.cos(4 * tp), np.sin(4 * tp)), (
+            tp + 1, np.cos(4 * tp) - np.sin(4 * tp) * 4, np.sin(4 * tp) + np.cos(4 * tp) * 4), buff=0))
+
+        cjto1 = VGroup(p_parametrizacion, d_parametrizacion)
         cjto1.add_updater(mov_parametrizacion)
-            
-            
-        #el movimiento en el number plane
-        t=Dot(color=BLUE_C).move_to(number_line.number_to_point(tmin))#,UP,buff=0)#.scale(0.5)
-        t_label=TextMobject("t").next_to(t,UP,buff=0.1)
+
+        # el movimiento en el number plane
+        t = Dot(color=BLUE_C).move_to(number_line.number_to_point(tmin))  # ,UP,buff=0)#.scale(0.5)
+        t_label = TextMobject("t").next_to(t, UP, buff=0.1)
 
         def mov_plane1(obj):
             tn = t2.get_value()
             t.become(Dot(color=BLUE_C).move_to(number_line.number_to_point(tn)))
-            t_label.become(TextMobject("t").next_to(t,UP,buff=0.1))
-            
-        cjto1_1=VGroup(t,t_label)
+            t_label.become(TextMobject("t").next_to(t, UP, buff=0.1))
+
+        cjto1_1 = VGroup(t, t_label)
         cjto1_1.add_updater(mov_plane1)
 
-#Derivada para la reparametrización  
-        t1 = ValueTracker(-vs)
-        n=0.6#reescalamentiento de la derivada
-        p_reparametrizacion = Sphere(radius=0.1,color=RED,fill_opacity=1).move_to([-(-vs)**3,np.cos(-4*(-vs)**3),np.sin(-4*(-vs)**3)])
-        d_reparametrizacion=Arrow( (-(-vs)**3,np.cos(-4*(-vs)**3),np.sin(-4*(-vs)**3)),(-(-vs)**3-3*(-vs)**2*n,np.cos(-4*(-vs)**3)-np.sin(-4*(-vs)**3)*(-12*(-vs)**2)*n,np.sin(-4*(-vs)**3)+np.cos(-4*(-vs)**3)*(-12*(-vs)**2)*n),buff=0 )
+        # Derivada para la reparametrización
+        s1 = ValueTracker(-(t0 ** (1 / 3)))
+        n = 0.6  # reescalamentiento de la derivada
+        p_reparametrizacion = Sphere(radius=0.1, color=RED, fill_opacity=1).move_to(
+            [-(-vs) ** 3, np.cos(-4 * (-vs) ** 3), np.sin(-4 * (-vs) ** 3)])
+        d_reparametrizacion = Arrow((-(-vs) ** 3, np.cos(-4 * (-vs) ** 3), np.sin(-4 * (-vs) ** 3)), (
+        -(-vs) ** 3 - 3 * (-vs) ** 2 * n, np.cos(-4 * (-vs) ** 3) - np.sin(-4 * (-vs) ** 3) * (-12 * (-vs) ** 2) * n,
+        np.sin(-4 * (-vs) ** 3) + np.cos(-4 * (-vs) ** 3) * (-12 * (-vs) ** 2) * n), buff=0)
 
-        
         def mov_reparametrizacion(obj):
-            s = t1.get_value()
-            p_reparametrizacion.become(Sphere(radius=0.1,color=RED,fill_opacity=1).move_to([-s**3,np.cos(-4*s**3),np.sin(-4*s**3)]))
-            d_reparametrizacion.become(Arrow( (-s**3,np.cos(-4*s**3),np.sin(-4*s**3)),(-s**3-3*s**2*n,np.cos(-4*s**3)-np.sin(-4*s**3)*(-12*s**2)*n,np.sin(-4*s**3)+np.cos(-4*s**3)*(-12*s**2)*n),buff=0 ))
- 
-        cjto2=VGroup(p_reparametrizacion,d_reparametrizacion)
+            s = s1.get_value()
+            p_reparametrizacion.become(Sphere(radius=0.1, color=RED, fill_opacity=1).move_to(
+                [-s ** 3, np.cos(-4 * s ** 3), np.sin(-4 * s ** 3)]))
+            d_reparametrizacion.become(Arrow((-s ** 3, np.cos(-4 * s ** 3), np.sin(-4 * s ** 3)), (
+            -s ** 3 - 3 * s ** 2 * n, np.cos(-4 * s ** 3) - np.sin(-4 * s ** 3) * (-12 * s ** 2) * n,
+            np.sin(-4 * s ** 3) + np.cos(-4 * s ** 3) * (-12 * s ** 2) * n), buff=0))
+
+        cjto2 = VGroup(p_reparametrizacion, d_reparametrizacion)
         cjto2.add_updater(mov_reparametrizacion)
 
-        sp=Dot(color=BLUE_C).move_to(number_line3.number_to_point((-vs)))#,UP,buff=0)#.scale(0.5)
-        sp_label=TextMobject("s").next_to(sp,UP,buff=0.1)
 
+
+        number_line2 = NumberLine(**line_config2).move_to(2 * DOWN + (3 - 0.5) * LEFT)
+        s = Dot(color=BLUE_C).move_to(number_line2.number_to_point(-(t0 ** (1 / 3))))  # ,UP,buff=0)#.scale(0.5)
+        s_label = TextMobject("s").next_to(s, UP, buff=0.1)
+        t0=7
+        
         def move_plane2(obj):
-            sn = t1.get_value()
-            sp.become(Dot(color=BLUE_C).move_to(number_line3.number_to_point(sn)))#,UP,buff=0)#.scale(0.5)
-            sp_label.become(TextMobject("s").next_to(sp,UP,buff=0.1))
-        cjto2_1=VGroup(sp,sp_label)
+            sn = s1.get_value()
+            s.become(Dot(color=BLUE_C).move_to(number_line2.number_to_point(sn)))  # ,UP,buff=0)#.scale(0.5)
+            s_label.become(TextMobject("s").next_to(s, UP, buff=0.1))
+
+        
+       
+        cjto2_1 = VGroup(s, s_label)
         cjto2_1.add_updater(move_plane2)
 
-        self.set_camera_orientation(0.8*np.pi/2, -0.25*np.pi,distance=20)           
+
+        self.set_camera_orientation(0.8 * np.pi / 2, -0.25 * np.pi, distance=20)
         self.play(ShowCreation(axes))
         self.play(ShowCreation(g))
         self.add_fixed_in_frame_mobjects(text15)
         self.play(Write(text15))
         self.wait(3)
-        #Parte para la derivada de la parametrización
+        # Parte para la derivada de la parametrización
         self.add_fixed_in_frame_mobjects(number_line)
         self.add_fixed_in_frame_mobjects(cjto1_1)
-        self.play(ShowCreation(cjto1),ShowCreation(number_line),ShowCreation(cjto1_1))
-        self.play(t2.set_value, tmax,run_time=20) 
+        self.play(ShowCreation(cjto1), ShowCreation(number_line), ShowCreation(cjto1_1))
+        self.play(t2.set_value, tmax, run_time=20)
         self.wait()
-        self.play(FadeOut(text15),FadeOut(cjto1),FadeOut(number_line),FadeOut(cjto1_1))
+
+        self.play(FadeOut(text15), FadeOut(cjto1), FadeOut(number_line), FadeOut(cjto1_1))
         self.add_fixed_in_frame_mobjects(text16)
         self.play(Write(text16))
-        self.wait(3)
-        #Movimiento para la reparametrizacion
-        self.add_fixed_in_frame_mobjects(number_line3)
+        self.wait(3.2)
+        # Movimiento para la reparametrizacion
+        self.add_fixed_in_frame_mobjects(number_line2)
         self.add_fixed_in_frame_mobjects(cjto2_1)
-        self.play(ShowCreation(cjto2),ShowCreation(number_line3),ShowCreation(cjto2_1))
-        self.play(t1.set_value, vs,run_time=20) 
+        self.play(ShowCreation(cjto2), ShowCreation(number_line2), ShowCreation(cjto2_1))
+        self.play(s1.set_value, t0 ** (1 / 3), run_time=20)
         self.wait()
-        self.play(FadeOut(axes),FadeOut(cjto2),FadeOut(g),FadeOut(text16),FadeOut(number_line3),FadeOut(cjto2_1))
-        #termina movimiento de la segunda reparametrizacion
+        self.play(FadeOut(axes), FadeOut(cjto2), FadeOut(g), FadeOut(text16), FadeOut(number_line2), FadeOut(cjto2_1))
+        # termina movimiento de la segunda reparametrizacion
+
         self.add_fixed_in_frame_mobjects(text12)
         self.play(Write(text12))
-        self.wait(15)
+        self.wait(16.6)
         self.play(FadeOut(text12))
         self.add_fixed_in_frame_mobjects(text13)
         self.play(Write(text13))
-        self.wait(7)
+        self.wait(7.2)
         self.play(FadeOut(text13))
         self.add_fixed_in_frame_mobjects(text14)
         self.play(Write(text14))
         self.wait(5)
-        self.play(FadeOut(text14))  
+        self.play(FadeOut(text14))
+
+    ########################################
+
+
+    
 
 
 ########################################
@@ -490,9 +524,8 @@ class Curvas_suaves_y_cruces_1 (MovingCameraScene,Scene):
         self.wait(3.5)
         self.play(FadeOut(titulo))
         self.play(Write(VGroup(text[0],text[1],text[2])))
-        self.wait(3.6)
         self.play(Write(VGroup(text[3],text[4],text[5])))
-        self.wait(4)
+        self.wait(7.6)
         self.play(FadeOut(text))
         self.play(Write(text1[0]))
         self.wait()
@@ -500,22 +533,17 @@ class Curvas_suaves_y_cruces_1 (MovingCameraScene,Scene):
         self.wait(7)
         self.play(FadeOut(text1))
         self.play(Write(VGroup(text2[0],text2[1],text2[2],text2[3],text2[4])))
-        self.wait(6)
         self.play(Write(VGroup(text2[5],text2[6],text2[7])))
-        self.wait(5)
+        self.wait(11)
         self.play(Write(text2[-1]))
         self.wait(3)
         self.play(FadeOut(text2))
         self.play(Write(text3[0]))
-        self.wait(3)
         self.play(Write(VGroup(text3[1],text3[2],text3[3])))
-        self.wait(5)
         self.play(Write(text3[4]))
-        self.wait(2)
         self.play(Write(text3[5]))
-        self.wait(4)
         self.play(Write(VGroup(text3[6],text3[7])))
-        self.wait(4)
+        self.wait(17)
         self.play(FadeOut(text3))
         self.play(ShowCreation(f1))
         self.play(ShowCreation(f2))
@@ -595,8 +623,8 @@ class Curvas_suaves_y_cruces_2 (ThreeDScene):
         t1=ValueTracker(tmin)
         ti=tmin
         n=((3*ti**2)**2+np.exp(ti)**2+(10*np.sin(10*ti))**2)**(1/2)
-        deriv=Line( (ti**3,np.exp(ti),np.cos(10*ti)), (ti**3+((3*ti**2))/n ,np.exp(ti)+(np.exp(ti))/n ,np.cos(10*ti)-(10*np.sin(10*ti))/n),buff=0).set_color(BLUE_D)
-        derivArrowTip = ArrowTip(start_angle=deriv.get_angle()).next_to(deriv.get_end(),buff=0).set_color(BLUE_D)
+        deriv=Arrow( (ti**3,np.exp(ti),np.cos(10*ti)), (ti**3+((3*ti**2))/n ,np.exp(ti)+(np.exp(ti))/n ,np.cos(10*ti)-(10*np.sin(10*ti))/n),buff=0).set_color(BLUE_D)
+        #derivArrowTip = ArrowTip(start_angle=deriv.get_angle()).next_to(deriv.get_end(),buff=0).set_color(BLUE_D)
 
         def moving_dot():
             t = t1.get_value()
@@ -606,8 +634,8 @@ class Curvas_suaves_y_cruces_2 (ThreeDScene):
         dd = always_redraw(moving_dot)     
         def derivada (obj):
             t = t1.get_value()
-            deriv.become(Line( (t**3,np.exp(t),np.cos(10*t)), (t**3+((3*t**2))*(1/((3*t**2)**2+np.exp(t)**2+(10*np.sin(10*t))**2)**(1/2)) ,np.exp(t)+(np.exp(t))*(1/((3*t**2)**2+np.exp(t)**2+(10*np.sin(10*t))**2)**(1/2)) ,np.cos(10*t)-(10*np.sin(10*t))*(1/((3*t**2)**2+np.exp(t)**2+(10*np.sin(10*t))**2)**(1/2))),buff=0)).set_color(BLUE_D)
-            derivArrowTip.become(ArrowTip(start_angle=deriv.get_angle())).next_to(deriv.get_end(),buff=0).set_color(BLUE_D)
+            deriv.become(Arrow( (t**3,np.exp(t),np.cos(10*t)), (t**3+((3*t**2))*(1/((3*t**2)**2+np.exp(t)**2+(10*np.sin(10*t))**2)**(1/2)) ,np.exp(t)+(np.exp(t))*(1/((3*t**2)**2+np.exp(t)**2+(10*np.sin(10*t))**2)**(1/2)) ,np.cos(10*t)-(10*np.sin(10*t))*(1/((3*t**2)**2+np.exp(t)**2+(10*np.sin(10*t))**2)**(1/2))),buff=0)).set_color(BLUE_D)
+            #derivArrowTip.become(ArrowTip(start_angle=deriv.get_angle())).next_to(deriv.get_end(),buff=0).set_color(BLUE_D)
 
         deriv.add_updater(derivada)
 
@@ -627,11 +655,11 @@ class Curvas_suaves_y_cruces_2 (ThreeDScene):
         self.wait(6.7)
         self.play(FadeOut(text10.group))
         #Animación de la derivada normalizada
-        self.play(ShowCreation(dd),ShowCreation(deriv),ShowCreation(derivArrowTip))
+        self.play(ShowCreation(dd),ShowCreation(deriv))#,ShowCreation(derivArrowTip))
         self.play(t1.set_value, tmax,run_time=30,rate_func=linear)
         self.wait()
         self.stop_ambient_camera_rotation()
-        self.play(FadeOut(axes),FadeOut(f1),FadeOut(dd),FadeOut(deriv),FadeOut(derivArrowTip))
+        self.play(FadeOut(axes),FadeOut(f1),FadeOut(dd),FadeOut(deriv))#,FadeOut(derivArrowTip))
         ##
         self.add_fixed_in_frame_mobjects(text11)
         self.play(Write(text11))
@@ -909,20 +937,14 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
         self.wait()
         ###
         self.play(FadeOut(axes),FadeOut(fgota),FadeOut(punto_gota1),FadeOut(derivada_gota))
-        self.play(Write(VGroup(text22[0],text22[1],text22[2])))
-        self.wait(8)
-        self.play(Write(VGroup(text22[3],text22[4],text22[5])))
-        self.wait(3)
         self.play(Write(text22))
-        self.wait(8)
+        self.wait(13)
         self.play(FadeOut(text22))
         self.play(Write(text23))
         self.wait(8)
         self.play(FadeOut(text23))
-        self.play(Write(VGroup(text24[0],text24[1],text24[2],text24[3],text24[4])))
-        self.wait(11)
         self.play(Write(text24))
-        self.wait(7)
+        self.wait(16)
         self.play(ReplacementTransform(text24,text25))
         self.wait(7)
         self.play(ReplacementTransform(text25,text26))
@@ -965,8 +987,9 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
         self.play(FadeOut(text33),FadeOut(fcicliode))
         self.play(Write(text34))
         self.wait(7)
-        self.play(FadeOut(text34))           
-      
+        self.play(FadeOut(text34))    
+    
+    
   
 ########################
 ### Curvas regulares ###
@@ -995,7 +1018,7 @@ class Regulares_y_picos(Scene):
     def construct(self):
 
         ## Textos
-        Title = TextMobject("Curvas regulares y picos")
+        Title = TextMobject("Curvas Regulares y Picos").scale(1.5)
         t1 = TextMobject('''Sabes hasta ahora lo que es una parametrización, definiremos \n 
                             entonces la regularidad de una curva a partir de su parametrización.''').scale(0.8)
         t2 = TextMobject('''Sea $\\gamma:A\\subseteq\\mathbb{R}\\to\\mathbb{R}^n$, decimos que \n 
@@ -1018,7 +1041,7 @@ class Regulares_y_picos(Scene):
         t13 = TextMobject('''Una posible parametrización para esta curva es''').scale(0.9).to_edge(UP)
         t14 = TexMobject(r"\gamma(t)=(t,|t|)\text{ con } t\in[-1,1]").scale(0.9).next_to(t13,DOWN)
         t15 = TextMobject('''Como no es derivable, entonces no puede ser regular''').to_edge(UP)
-        t16 = TextMobject('''Ahora considera la parametrización $\\gamma(t)=(t,|t|^3)$ con $t\\in[-1,1]$''').scale(0.8).to_edge(UP)
+        t16 = TextMobject('''Ahora considera la parametrización $\\gamma(t)=(t^3,|t|^3)$ con $t\\in[-1,1]$''').scale(0.8).to_edge(UP)
         t17 = TextMobject('''Verifica que $\\gamma$ es derivable, y que $\\gamma'(0)=(0,0)$''').scale(0.8).next_to(t16,DOWN)
         t18 = TextMobject('''Se puede demostrar que cualquier parametrización de esta\n
                             curva es no regular, ya sea por no ser derivable o porque \n
@@ -1160,9 +1183,8 @@ class Regulares_y_picos(Scene):
         self.play(Write(t8))
         self.wait(11)
         self.play(ReplacementTransform(t8,t9))
-        self.wait(9.2)
         self.play(Write(t10))
-        self.wait(6.5)
+        self.wait(15)
         self.play(FadeOut(Group1))
         self.play(Write(t11))
         self.play(ApplyMethod(t11.to_edge,UP))
@@ -1873,13 +1895,14 @@ class Curvas_No_Rectificables(GraphScene,Scene):
 #######################################################
 
 class Velocidad_y_rapidez(ThreeDScene):
-    def cur(self, t):
+     def cur(self, t):
         return np.array([-np.exp(t/12)*np.cos(t), -np.exp(t/12)*np.sin(t),0])
 
     def construct(self):
     
         ###Texto
-        titulo = TextMobject('Derivabilidad de curvas, vector velocidad y rapidez')
+        titulo = TextMobject('''Derivabilidad de Curvas, \n
+                                Vector Velocidad y Rapidez''').scale(1.5)
         t_1 = TextMobject('''Sea $\\gamma : I \\subset \\mathbb{R} \\rightarrow \\mathbb{R}^n$, con $I$ un intervalo.''')
         t_2 = TextMobject('''Por ejemplo considera que la siguiente función \n
         describe el movimiento de un objeto respecto al tiempo''')
