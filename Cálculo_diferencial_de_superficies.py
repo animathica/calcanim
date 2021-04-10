@@ -156,8 +156,8 @@ class superficie_6_2(ParametricSurface):
 
 class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
     def construct (self):
-        titulo=TextMobject('''TRASLACIONES Y HOMOTECIAS \n
-                                EN SUPERFICIES''', size=1.5)
+        titulo=TextMobject('''Traslaciones y Homotecias \n
+                                en Superficies''').scale(1.5)
         #Cambiar función de superficie
         text1=TextMobject('''Tomemos $f(x,y)=(0.2\sin(7*(x+y)))$''')
         text2=TextMobject('''Una translación vertical de la superficie es de \n
@@ -183,7 +183,7 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         text13=TextMobject('''$g(x,y)=x^{2}+y^{2}\\sin^{2}(y)$''').move_to(3*DOWN)
         text14=TextMobject('''La gráfica de $g((x,y)+(2,0))$ se ve: ''').move_to(3*DOWN)
         text15=TextMobject('''Pero la de $g((x,y)+(0,2))$: ''').move_to(3*DOWN)
-        text16=TextMobject('''Modifica el código para crear más ejemplos''')
+        text16=TextMobject('''Modifica el código para crear más ejemplos.''')
 
         axes=ThreeDAxes()
         #Superficies
@@ -499,8 +499,8 @@ class superficie2_4_4(ParametricSurface):
 class super3 (ThreeDScene):
     ### Parte 1 de la animación
     def parte0 (self):
-        titulo=TextMobject('''Límite de cocientes \n
-                                de funciones de dos variables''').scale(2)
+        titulo=TextMobject('''Límite de Cocientes \n
+                                de Funciones de Dos Variables''').scale(1.5)
         text1=TextMobject(''' Cuando trabajamos con límites en funciones de $\\mathbb{R}^{2}\\rightarrow\\mathbb{R}$ ''','''\n
                                 la cosa se pone interesante debido a que en este''','''\n
                                   caso tenemos diversas maneras de analizar  \n
@@ -517,20 +517,14 @@ class super3 (ThreeDScene):
         self.wait(5)
         self.play(FadeOut(titulo))
         self.play(Write(text1[0]))
-        self.wait(3.5)
         self.play(Write(text1[1]))
-        self.wait(3)
         self.play(Write(text1[2]))
-        self.wait(4)
-        self.wait(3)
+        self.wait(11)
         self.play(FadeOut(text1))
         self.play(Write(text2[0]))
-        self.wait(5)
         self.play(Write(text2[1]))
-        self.wait(3)
         self.play(Write(text2[2]))
-        self.wait(3.5)
-        self.wait(3)
+        self.wait(13.5)
         self.play(FadeOut(text2))
         self.play(Write(text3))
         self.wait(10)
@@ -939,18 +933,15 @@ class super3 (ThreeDScene):
                     FadeOut(f1),FadeOut(puntos))
         self.add_fixed_in_frame_mobjects(text16)
         self.play(Write(text16))
-        self.wait(7)
         self.add_fixed_in_frame_mobjects(text16_1)
         self.play(Write(text16_1))
-        self.wait(8)
         self.add_fixed_in_frame_mobjects(text17)
         self.play(Write(text17))
-        self.wait(7)
         self.add_fixed_in_frame_mobjects(text18)
         self.play(Write(text18))
         self.add_fixed_in_frame_mobjects(text18_1)
         self.play(Write(text18_1))
-        self.wait(9)
+        self.wait(15)
         self.play(FadeOut(text17),FadeOut(text16),FadeOut(text16_1),FadeOut(text18),FadeOut(text18_1))
 
     def parte5 (self):
@@ -1008,13 +999,11 @@ class super3 (ThreeDScene):
         self.play(FadeOut(punto2),FadeOut(text20),FadeOut(axes),FadeOut(superficie))
         self.add_fixed_in_frame_mobjects(text21[0])
         self.play(Write(text21[0]))
-        self.wait(7)
         self.add_fixed_in_frame_mobjects(text21[1])
         self.play(Write(text21[1]))
-        self.wait(8)
         self.add_fixed_in_frame_mobjects(text21[2])
         self.play(Write(text21[2]))
-        self.wait(17)
+        self.wait(20)
         self.play(FadeOut(text21))
         self.add_fixed_in_frame_mobjects(text22)
         self.play(Write(text22))
@@ -1022,13 +1011,11 @@ class super3 (ThreeDScene):
         self.play(FadeOut(text22))
         self.add_fixed_in_frame_mobjects(text23[0])
         self.play(Write(text23[0]))
-        self.wait(5.5)
         self.add_fixed_in_frame_mobjects(text23[1])
         self.play(Write(text23[1]))
-        self.wait(7)
         self.add_fixed_in_frame_mobjects(text23[2])
         self.play(Write(text23[2]))
-        self.wait(12)
+        self.wait(17)
         self.play(FadeOut(text23))
         
     def construct (self):    
@@ -1040,10 +1027,8 @@ class super3 (ThreeDScene):
         self.parte4()
         self.parte5()
 
-        
-
 #####################################################################################
-################################  Derivada parciales ################################
+################################  Derivadas parciales ################################
 #####################################################################################
 
 # Función definida para la superficie.
@@ -1092,7 +1077,7 @@ class sup_3(ParametricSurface):
         return np.array([v,0,u])
 
 
-class derivadas_parciales (ThreeDScene):
+class derivadas_parciales(ThreeDScene):
 
     def func2(self,t):
         return [t,0,(t**2 - 0**2)/4]
@@ -1288,7 +1273,7 @@ class derivadas_parciales (ThreeDScene):
         self.wait(8)
         self.play(FadeOut(text14))
         self.play( *[FadeOut(mob)for mob in self.mobjects] )
-
+        
 
 #############################################################
 ############## Planos y su inclinación #####################
@@ -1297,6 +1282,7 @@ class derivadas_parciales (ThreeDScene):
 
 
 class Planos(ThreeDScene):
+
     def l_1(self, t):
         return np.array([t, 0,5*t])
     def l_2(self, t):
@@ -1308,7 +1294,7 @@ class Planos(ThreeDScene):
     def construct(self):
     
         ###Texto
-        titulo = TextMobject('''Planos y su inclinación''')
+        titulo = TextMobject('''Planos y Su Inclinación''').scale(1.5)
         t_1 = TextMobject('''En $\\mathbb{R}^3$ un plano puede ser descrito como \n 
         una superficie lisa, sin subidas ni bajadas. ''')
         t_2 = TextMobject('''Algunos planos son gráficas de funciones de $\\mathbb{R}^2$ en $\\mathbb{R},$''')
@@ -1318,23 +1304,30 @@ class Planos(ThreeDScene):
         t_5 = TextMobject('''cada una en los planos respectivos \n 
         son de pendiente $a$ y $b$.''')
         t_6 = TextMobject('''Veamos a que nos referimos con esto gráficamente.''')
-        t_7 = TextMobject('''Tomemos una recta ''', '''$\\mathcal{L}_1$''', ''' en el plano $xz$ de pediente 5 ''')
+        t_7 = TextMobject('''Tomemos una recta ''', '''$\\mathcal{L}_1$''', ''' en el plano $xz$ de pediente 5 ''').to_edge(UP)
         t_7.set_color_by_tex_to_color_map({'''$\\mathcal{L}_1$''': TEAL})
-        t_8 = TextMobject('''y otra recta ''','''$\\mathcal{L}_2$''', ''' en el plano $yz$ de pendiente 3.''')
+        t_7_bg = SurroundingRectangle(t_7, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        t_8 = TextMobject('''y otra recta ''','''$\\mathcal{L}_2$''', ''' en el plano $yz$ de pendiente 3.''').to_edge(UP)
         t_8.set_color_by_tex_to_color_map({'''$\\mathcal{L}_2$''': RED})
+        t_8_bg = SurroundingRectangle(t_8, color=WHITE, fill_color=BLACK, fill_opacity=1)
         t_9 = TextMobject('''Ahora observemos que el plano \n 
         $f(x,y) = 5x + 3x$ \n
-        contiene a ambas rectas.''')
+        contiene a ambas rectas.''').to_edge(UP)
+        t_9_bg = SurroundingRectangle(t_9, color=WHITE, fill_color=BLACK, fill_opacity=1)
         t_10 = TextMobject('''Este plano es el único que contiene \n 
-        ambas rectas y por lo tanto ''')
+        ambas rectas y por lo tanto ''').to_edge(UP)
+        t_10_bg = SurroundingRectangle(t_10, color=WHITE, fill_color=BLACK, fill_opacity=1)
         t_11 = TextMobject('''este plano queda totalmente \n
-        caracterizado por estas.''')
+        caracterizado por estas.''').to_edge(UP)
+        t_11_bg = SurroundingRectangle(t_11, color=WHITE, fill_color=BLACK, fill_opacity=1)
         t_12 = TextMobject(''' En particular la inclinación \n
         del plano queda determinada  \n 
-        por el vector ''','''$(5,3)$''',''',''')
+        por el vector ''','''$(5,3)$''',''',''').to_edge(UP)
+        t_12_bg = SurroundingRectangle(t_12, color=WHITE, fill_color=BLACK, fill_opacity=1)
         t_12.set_color_by_tex_to_color_map({'''$(5,3)$''': GREEN})
         t_13 = TextMobject('''es decir por la \n 
-        inclinación de las rectas. ''')
+        inclinación de las rectas. ''').to_edge(UP)
+        t_13_bg = SurroundingRectangle(t_13, color=WHITE, fill_color=BLACK, fill_opacity=1)
         t_14 = TextMobject('''Se puede demostrar que $f:\\mathbb{R}^2\\rightarrow\\mathbb{R}$ es lineal \n 
         si y sólo si $f(x,y)=ax+by=(a,b)\\cdot (x,y)$. ''')
         t_15 = TextMobject('''Las gráficas de estas funciones corresponden a todos los \n
@@ -1344,13 +1337,7 @@ class Planos(ThreeDScene):
          para el caso de un plano tangente?''')
 
         
-        t_7.to_corner(UL)
-        t_8.to_corner(UL)
-        t_9.to_corner(UL)
-        t_10.to_corner(UL)
-        t_11.to_corner(UL)
-        t_12.to_corner(UL)
-        t_13.to_corner(UL)
+        
     
 
         
@@ -1402,43 +1389,42 @@ class Planos(ThreeDScene):
         self.play(FadeOut(t_5))
         self.add_fixed_in_frame_mobjects(t_6)
         self.play(Write(t_6))
-        self.wait(2)
-        self.play(ApplyMethod(t_6.shift, 3.5*UP))
+        self.wait(5)
+        self.play(FadeOut(t_6))
         self.set_camera_orientation(phi=45*DEGREES,theta=55*DEGREES)
         self.play(LaggedStart(ShowCreation(axes)))
-        self.play(FadeOut(t_6))
-        self.add_fixed_in_frame_mobjects(t_7)
-        self.play(Write(t_7))
+        self.add_fixed_in_frame_mobjects(t_7_bg, t_7)
+        self.play(Write(t_7_bg), Write(t_7))
         self.play(LaggedStart(ShowCreation(Group_1)))
-        self.play(FadeOut(t_7))
-        self.wait(3)
-        self.add_fixed_in_frame_mobjects(t_8)
-        self.play(Write(t_8))
+        self.play(FadeOut(t_7), FadeOut(t_7_bg))
+        self.wait(5)
+        self.add_fixed_in_frame_mobjects(t_8_bg, t_8)
+        self.play(Write(t_8_bg), Write(t_8))
         self.play(LaggedStart(ShowCreation(Group_2)))
-        self.play(FadeOut(t_8))
-        self.wait(2.5)
-        self.add_fixed_in_frame_mobjects(t_9)
-        self.play(Write(t_9))
+        self.play(FadeOut(t_8), FadeOut(t_8_bg))
+        self.wait(5.5)
+        self.add_fixed_in_frame_mobjects(t_9_bg, t_9)
+        self.play(Write(t_9_bg), Write(t_9))
         self.play(LaggedStart(ShowCreation(Group_3)))
-        self.play(FadeOut(t_9))
-        self.wait(4)
-        self.add_fixed_in_frame_mobjects(t_10)
-        self.play(Write(t_10))
-        self.wait(4)
-        self.play(FadeOut(t_10))
-        self.add_fixed_in_frame_mobjects(t_11)
-        self.play(Write(t_11))
-        self.wait(2.5)
-        self.play(FadeOut(t_11))
-        self.add_fixed_in_frame_mobjects(t_12)
-        self.play(Write(t_12))
+        self.play(FadeOut(t_9), FadeOut(t_9_bg))
+        self.wait(5)
+        self.add_fixed_in_frame_mobjects(t_10_bg, t_10)
+        self.play(Write(t_10_bg), Write(t_10))
+        self.wait(6)
+        self.play(FadeOut(t_10), FadeOut(t_10_bg))
+        self.add_fixed_in_frame_mobjects(t_11_bg, t_11)
+        self.play(Write(t_11_bg), Write(t_11))
+        self.wait(5.5)
+        self.play(FadeOut(t_11), FadeOut(t_11_bg))
+        self.add_fixed_in_frame_mobjects(t_12_bg, t_12)
+        self.play(Write(t_12_bg), Write(t_12))
         self.play(FadeIn(inclinacion))
-        self.wait(4)
-        self.play(FadeOut(t_12))
-        self.add_fixed_in_frame_mobjects(t_13)
-        self.play(Write(t_13))
-        self.wait(3)
-        self.play(FadeOut(t_13))
+        self.wait(5)
+        self.play(FadeOut(t_12), FadeOut(t_12_bg))
+        self.add_fixed_in_frame_mobjects(t_13_bg, t_13)
+        self.play(Write(t_13_bg), Write(t_13))
+        self.wait(5)
+        self.play(FadeOut(t_13), FadeOut(t_13_bg))
         self.play(FadeOut(Group_1), FadeOut(Group_2), FadeOut(Group_3), FadeOut(axes), FadeOut(inclinacion))
         self.add_fixed_in_frame_mobjects(t_14)
         self.play(Write(t_14))
@@ -1450,11 +1436,11 @@ class Planos(ThreeDScene):
         self.play(FadeOut(t_15))
         self.add_fixed_in_frame_mobjects(t_16)
         self.play(Write(t_16))
-        self.wait(3)
+        self.wait(5)
         self.play(FadeOut(t_16))
         self.add_fixed_in_frame_mobjects(t_17)
         self.play(Write(t_17))
-        self.wait(4)
+        self.wait(5)
         self.play(FadeOut(t_17))
-        
+
         
