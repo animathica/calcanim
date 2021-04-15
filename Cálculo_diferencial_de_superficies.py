@@ -16,10 +16,10 @@ class superficie_1(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, u, v):
-        #Se puede modificar para cambiar el radio de la esfera 
+        #Se puede modificar para cambiar el radio de la esfera
         r=0.2
-        return np.array([u,v,r*np.sin(7*(v+u))]) 
-        
+        return np.array([u,v,r*np.sin(7*(v+u))])
+
 class superficie_2(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -31,9 +31,9 @@ class superficie_2(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, u, v):
-        #Se puede modificar para cambiar el radio de la esfera 
+        #Se puede modificar para cambiar el radio de la esfera
         r=1
-        return np.array([r*np.cos(u)*np.cos(v),r*np.cos(v)*np.sin(u),r*np.sin(v)]) 
+        return np.array([r*np.cos(u)*np.cos(v),r*np.cos(v)*np.sin(u),r*np.sin(v)])
 class superficie_3(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -45,11 +45,11 @@ class superficie_3(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, u, v):
-        #Se puede modificar para cambiar el radio de la esfera 
+        #Se puede modificar para cambiar el radio de la esfera
         r=1
         #Se puede modificar para cambiar la transformación
         k=0.1
-        return np.array([r*np.cos(u)*np.cos(v),r*np.cos(v)*np.sin(u),k*r*np.sin(v)]) 
+        return np.array([r*np.cos(u)*np.cos(v),r*np.cos(v)*np.sin(u),k*r*np.sin(v)])
 class superficie_4(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -61,11 +61,11 @@ class superficie_4(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, u, v):
-        #Se puede modificar para cambiar el radio de la esfera 
+        #Se puede modificar para cambiar el radio de la esfera
         r=1
         #Se puede modificar para cambiar la transformación
         k=2
-        return np.array([r*np.cos(u)*np.cos(v),r*np.cos(v)*np.sin(u),k*r*np.sin(v)]) 
+        return np.array([r*np.cos(u)*np.cos(v),r*np.cos(v)*np.sin(u),k*r*np.sin(v)])
 #### segundo ejemplo
 
 class superficie_5(ParametricSurface):
@@ -91,7 +91,7 @@ class superficie_5_reflejada(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
-        return np.array([x,y,(np.sin(3*(x-y))-y)*0.3]) 
+        return np.array([x,y,(np.sin(3*(x-y))-y)*0.3])
 class superficie_5_reflejada1(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -103,7 +103,7 @@ class superficie_5_reflejada1(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
-        return np.array([x,y,(np.sin(3*(-x+y))+y)*0.3]) 
+        return np.array([x,y,(np.sin(3*(-x+y))+y)*0.3])
 
 #### tercer ejemplo
 class superficie_6(ParametricSurface):
@@ -120,7 +120,7 @@ class superficie_6(ParametricSurface):
         #Se puede cambiar a y b para modificar la translación
         a=0
         b=0
-        return np.array([x+a,y+b,x**2+(y**2*(np.sin(y)**2))]) 
+        return np.array([x+a,y+b,x**2+(y**2*(np.sin(y)**2))])
 class superficie_6_1(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -208,7 +208,7 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         superficie11=superficie_6_2()
 
 
-    
+
         self.play(Write(titulo))
         self.wait(6)
         self.play(FadeOut(titulo))
@@ -218,20 +218,20 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         self.wait(4)
         self.play(text1.shift,3*UP,runtime=3)
         self.play(ShowCreation(axes))
-        self.play(ShowCreation(superficie1)) 
-        self.wait(3)       
+        self.play(ShowCreation(superficie1))
+        self.wait(3)
         self.play(FadeOut(text1))
         self.add_fixed_in_frame_mobjects(text2)
         self.play(Write(text2))
         self.wait(8)
         self.play(FadeOut(text2))
-        self.add_fixed_in_frame_mobjects(text3)        
+        self.add_fixed_in_frame_mobjects(text3)
         self.play(Write(text3))
         self.wait(5)
         self.play(ReplacementTransform(superficie1,superficie2))
         self.wait(5)
         self.play(FadeOut(text3))
-        self.add_fixed_in_frame_mobjects(text4)        
+        self.add_fixed_in_frame_mobjects(text4)
         self.play(Write(text4))
         #Movimiento de superficie
         self.wait(5)
@@ -239,43 +239,43 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         self.wait(6)
         self.play(FadeOut(text4))
         self.play(FadeOut(superficie3))
-        self.add_fixed_in_frame_mobjects(text5)        
+        self.add_fixed_in_frame_mobjects(text5)
         self.play(Write(text5))
         self.wait(7)
         self.play(ShowCreation(superficie4))
         self.wait(4)
         self.play(FadeOut(text5))
-        self.add_fixed_in_frame_mobjects(text6)        
+        self.add_fixed_in_frame_mobjects(text6)
         self.play(Write(text6))
         self.wait(6)
         self.play(ReplacementTransform(superficie4,superficie5))
         self.wait(6)
         self.play(FadeOut(text6))
-        self.add_fixed_in_frame_mobjects(text7)        
+        self.add_fixed_in_frame_mobjects(text7)
         self.play(Write(text7))
         self.wait(9)
         self.play(ReplacementTransform(superficie5,superficie6))
         self.wait(5)
         self.play(FadeOut(text7))
         self.play(FadeOut(superficie6))
-        self.add_fixed_in_frame_mobjects(text8)        
+        self.add_fixed_in_frame_mobjects(text8)
         self.play(Write(text8))
         self.wait(4)
         ##Superficie reflejada
         self.play(ShowCreation(superficie7))
         self.wait()
         self.play(FadeOut(text8))
-        self.add_fixed_in_frame_mobjects(text9)        
+        self.add_fixed_in_frame_mobjects(text9)
         self.play(Write(text9))
         self.wait(5)
         #Superficie reflejada 2
-        self.add_fixed_in_frame_mobjects(text9_1)        
+        self.add_fixed_in_frame_mobjects(text9_1)
         self.play(Write(text9_1))
         self.wait(3)
         self.play(ReplacementTransform(superficie7,superficie7_reflejadayz))
         self.wait(4)
         self.play(FadeOut(text9),FadeOut(text9_1))
-        self.add_fixed_in_frame_mobjects(text10)        
+        self.add_fixed_in_frame_mobjects(text10)
         self.play(Write(text10))
         self.wait(11)
         self.play(ReplacementTransform(superficie7_reflejadayz,superficie8))
@@ -283,33 +283,33 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         self.play(FadeOut(text10))
         self.play(FadeOut(superficie8))
         self.add_fixed_in_frame_mobjects(fondo)
-        self.add_fixed_in_frame_mobjects(text11)        
+        self.add_fixed_in_frame_mobjects(text11)
         self.play(Write(text11),ShowCreation(fondo))
         self.wait(8)
         self.play(FadeOut(text11),FadeOut(fondo))
-        self.add_fixed_in_frame_mobjects(text12)        
+        self.add_fixed_in_frame_mobjects(text12)
         self.play(Write(text12))
         self.wait(7)
         self.play(FadeOut(text12))
-        self.add_fixed_in_frame_mobjects(text13)        
+        self.add_fixed_in_frame_mobjects(text13)
         self.play(Write(text13))
         self.wait(6)
         self.play(ShowCreation(superficie9))
         self.wait(5)
         self.play(FadeOut(text13))
-        self.add_fixed_in_frame_mobjects(text14)        
+        self.add_fixed_in_frame_mobjects(text14)
         self.play(Write(text14))
         self.wait(7)
         self.play(ReplacementTransform(superficie9,superficie10))
         self.wait(5)
         self.play(FadeOut(text14))
-        self.add_fixed_in_frame_mobjects(text15)        
+        self.add_fixed_in_frame_mobjects(text15)
         self.play(Write(text15))
         self.wait(6)
         self.play(ReplacementTransform(superficie10,superficie11))
         self.wait(5)
         self.play(FadeOut(text15),FadeOut(axes),FadeOut(superficie11))
-        self.add_fixed_in_frame_mobjects(text16)        
+        self.add_fixed_in_frame_mobjects(text16)
         self.play(Write(text16))
         self.wait(8)
         self.play(FadeOut(text16))
@@ -370,7 +370,7 @@ class superficie2_1_4(ParametricSurface):
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
         return np.array([x,y,1/(x*y)])
-#Segunda superficie del video       
+#Segunda superficie del video
 ##############
 class superficie2_2_1(ParametricSurface):
     def __init__(self, **kwargs):
@@ -439,7 +439,7 @@ class superficie2_3(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
-      
+
         return np.array([x,y,0])
 def curva(t):
     return np.array([t**3,t,1])
@@ -457,7 +457,7 @@ class superficie2_4_1(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
-       return np.array([x,y,1/(2*x)**2]) 
+       return np.array([x,y,1/(2*x)**2])
 class superficie2_4_2(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -469,7 +469,7 @@ class superficie2_4_2(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
-       return np.array([x,y,1/(2*x)**2])    
+       return np.array([x,y,1/(2*x)**2])
 class superficie2_4_3(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -481,7 +481,7 @@ class superficie2_4_3(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
-       return np.array([x,y,((x-y)**2)**(1/2)/(x+y)**2])    
+       return np.array([x,y,((x-y)**2)**(1/2)/(x+y)**2])
 
 class superficie2_4_4(ParametricSurface):
     def __init__(self, **kwargs):
@@ -494,7 +494,7 @@ class superficie2_4_4(ParametricSurface):
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
-       return np.array([x,y,((x-y)**2)**(1/2)/(x+y)**2])    
+       return np.array([x,y,((x-y)**2)**(1/2)/(x+y)**2])
 
 class super3 (ThreeDScene):
     ### Parte 1 de la animación
@@ -508,7 +508,7 @@ class super3 (ThreeDScene):
         text2=TextMobject('''Así, para argumentar que existe o no el límite,''','''\n
                                  esto se complica, en comparación con el caso''','''\n
                                     en que la variable es real.''')
-        text3=TextMobject('''Pero no todo está perdido, hay diversos detalles \n 
+        text3=TextMobject('''Pero no todo está perdido, hay diversos detalles \n
                                 con los que podemos argumentar si el \n
                                  límite existe o no.''')
         text4=TextMobject('''Ilustremos esto con algunos ejemplos.''')
@@ -580,13 +580,13 @@ class super3 (ThreeDScene):
         Elementos1_2 = [Dot(color=RED).set_color(RED_E).move_to(i) for i in cjto1_2]
         Elementos12 = VGroup(*Elementos1_2)
 
-        
-        
-        ## 
+
+
+        ##
         #Con limite direccional
         t1_1=ValueTracker(-3)
         punto_convergencia1=Sphere(radius=0.05, fill_opacity=1, fill_color = RED).move_to([-3,-3,1/(9)])
-        t1_1f=-0.45  
+        t1_1f=-0.45
         def mov_sup1 (obj):
             t = t1_1.get_value()
             punto_convergencia1.become(Sphere(radius=0.05, fill_opacity=1, fill_color = RED).move_to([t,t,t**(-2)]))##Puede cambiarse el conjunto de puntos a una forma general (x,y,1/(x*y))
@@ -597,7 +597,7 @@ class super3 (ThreeDScene):
         #Movimiento del punto en la recta identidad parte positiva
         t1_2=ValueTracker(3)
         punto_convergencia2=Sphere(radius=0.05, fill_opacity=1, fill_color = RED).move_to([3,3,1/(9)])
-        t1_2f=0.3  
+        t1_2f=0.3
         def mov_sup2 (obj):
             t = t1_2.get_value()
             punto_convergencia2.become(Sphere(radius=0.05, fill_opacity=1, fill_color = RED).move_to([t,t,t**(-2)]))##Puede cambiarse el conjunto de puntos a una forma general (x,y,1/(x*y))
@@ -613,11 +613,11 @@ class super3 (ThreeDScene):
         self.set_camera_orientation(0.7*np.pi/2, 1*np.pi,distance=12)
         self.play(ShowCreation(axes))
         self.play(ShowCreation(superficie))
-        self.add_fixed_in_frame_mobjects(text5_1)        
+        self.add_fixed_in_frame_mobjects(text5_1)
         self.play(Write(text5_1))
         self.wait(4)
         self.play(FadeOut(text5_1))
-        self.add_fixed_in_frame_mobjects(text6)        
+        self.add_fixed_in_frame_mobjects(text6)
         self.play(Write(text6))
         self.wait(11)
         self.play(FadeOut(text6))
@@ -629,11 +629,11 @@ class super3 (ThreeDScene):
         self.wait()
         self.play(FadeOut(Elementos11),FadeOut(text6_1),FadeOut(text6_1_1))
         #Con limite direccional
-        self.add_fixed_in_frame_mobjects(text6_2)        
+        self.add_fixed_in_frame_mobjects(text6_2)
         self.play(Write(text6_2))
         self.add(punto_convergencia1)
         self.play(t1_1.set_value, t1_1f,run_time=10)
-        self.wait()     
+        self.wait()
         self.play(FadeOut(text6_2),FadeOut(punto_convergencia1))
         self.move_camera(0.7*np.pi/2, 0*np.pi,distance=12)
         self.add_fixed_in_frame_mobjects(text6_1)
@@ -643,11 +643,11 @@ class super3 (ThreeDScene):
         self.play(ShowCreation(Elementos12), run_time=10)
         self.wait()
         self.play(FadeOut(Elementos12),FadeOut(text6_1),FadeOut(text6_1_2))
-        self.add_fixed_in_frame_mobjects(text6_2)        
+        self.add_fixed_in_frame_mobjects(text6_2)
         self.play(Write(text6_2))
         self.add(punto_convergencia2)
         self.play(t1_2.set_value, t1_2f,run_time=10)
-        self.wait()     
+        self.wait()
         self.play(FadeOut(superficie),FadeOut(axes),
                     FadeOut(text6_2),FadeOut(punto_convergencia2))
         self.wait()
@@ -658,8 +658,8 @@ class super3 (ThreeDScene):
         text7_1_1=TextMobject('''Primera coordenada positiva y segunda negativa. ''').move_to(2.5*UP)
         text7_1_2=TextMobject('''Primera coordenada negativa y segunda positiva. ''').move_to(2.5*UP)
         text7_2=TextMobject('''Con límite direccional. ''').move_to(3*UP)
- 
-        
+
+
         #objetos
         axes=ThreeDAxes()
         #Definimos la superficies por partes por la discontinuidad
@@ -688,7 +688,7 @@ class super3 (ThreeDScene):
             if i>17:
                 x = 3-(0.1*17)-((i-17)*0.06)
             cjto1_4.append((x,-x,-1/(x**2)))
-        
+
         Elementos1_3 = [Dot(color=RED).set_color(RED_E).move_to(i) for i in cjto1_3]
         Elementos13 = VGroup(*Elementos1_3)
         Elementos1_4 = [Dot(color=RED).set_color(RED_E).move_to(i) for i in cjto1_4]
@@ -697,7 +697,7 @@ class super3 (ThreeDScene):
         #Con limite direccional
         t1_1=ValueTracker(-3)
         punto_convergencia1=Sphere(radius=0.05, fill_opacity=1, fill_color = RED).move_to([-3,-3,1/(9)])
-        t1_1f=-0.45  
+        t1_1f=-0.45
         def mov_sup1 (obj):
             t = t1_1.get_value()
             punto_convergencia1.become(Sphere(radius=0.05, fill_opacity=1, fill_color = RED).move_to([t,-t,-t**(-2)]))
@@ -707,14 +707,14 @@ class super3 (ThreeDScene):
         #Movimiento del punto en la recta identidad parte positiva
         t1_2=ValueTracker(3)
         punto_convergencia2=Sphere(radius=0.05, fill_opacity=1, fill_color = RED).move_to([3,3,1/(9)])
-        t1_2f=0.3  
+        t1_2f=0.3
         def mov_sup2 (obj):
             t = t1_2.get_value()
             punto_convergencia2.become(Sphere(radius=0.05, fill_opacity=1, fill_color = RED).move_to([t,-t,-t**(-2)]))
         punto_convergencia2.add_updater(mov_sup2)
 
         #Animación
-        self.add_fixed_in_frame_mobjects(text7)        
+        self.add_fixed_in_frame_mobjects(text7)
         self.play(Write(text7))
         self.wait(10)
         self.play(FadeOut(text7))
@@ -755,7 +755,7 @@ class super3 (ThreeDScene):
                                 $f(x,y)=\\frac{2xy}{x^2+y^2}$''').move_to(3*UP)
         text10=TextMobject('''Notemos que si nos aproximamos al origen en el \n
                                 dominio en las direcciones canónicas entonces \n
-                                el límite es 0.''').move_to(3*DOWN)      
+                                el límite es 0.''').move_to(3*DOWN)
         text11=TextMobject('''Ahora tomemos la dirección dada por la recta \n
                                 identidad y veamos qué ocurre.''').move_to(3*UP)
         text12=TextMobject('''Notamos que en este caso el límite es diferente \n
@@ -764,7 +764,7 @@ class super3 (ThreeDScene):
         #Puede cambiarse t1_t y t1_1f para cambiar el intervalo donde se obtendrá la derivada direccional
         t1_1=ValueTracker(-3)
         punto_convergencia1=Sphere(radius=0.05, fill_opacity=1, fill_color = RED).move_to([-3,-3,1/(9)])
-        t1_1f=-0.45  
+        t1_1f=-0.45
         def mov_sup1 (obj):
             t = t1_1.get_value()
             punto_convergencia1.become(Sphere(radius=0.05, fill_opacity=1, fill_color = RED).move_to([t,t,t**(-2)]))
@@ -791,13 +791,13 @@ class super3 (ThreeDScene):
             y=0
             cjto1_2.append((x1,y1,2*x1*y1/(x1**2+y1**2)))
             cjto1_1.append((x,y,2*x*y/(x**2+y**2)))
-        
+
         #Con sucesiones
         Elementos1_1 = [Dot(color=RED).set_color(RED_E).move_to(i) for i in cjto1_1]
         Elementos1_2 = [Dot(color=RED).set_color(RED_E).move_to(i) for i in cjto1_2]
         Elementos1 = VGroup(*Elementos1_1,*Elementos1_2)
 
-        
+
         #Con sucesiones
         Elementos1_1 = [Dot(color=RED).set_color(RED_E).move_to(i) for i in cjto1_1]
         Elementos1_2 = [Dot(color=RED).set_color(RED_E).move_to(i) for i in cjto1_2]
@@ -816,7 +816,7 @@ class super3 (ThreeDScene):
         Elementos1_4 = [Dot(color=RED).set_color(RED_E).move_to(i) for i in cjto1_4]
         Elementos2 = VGroup(*Elementos1_3,*Elementos1_4)
 
-        
+
         #Animación
         self.add_fixed_in_frame_mobjects(text8)
         self.play(Write(text8))
@@ -867,7 +867,7 @@ class super3 (ThreeDScene):
         text18=TextMobject('''Podemos analizar los órdenes de magnitud de los''').move_to(1*DOWN)
         text18_1=TextMobject('''términos de la función''').move_to(2*DOWN)
 
-        
+
         axes=ThreeDAxes()
         superficie=superficie2_3()
         f = ParametricFunction(curva,t_min=-(3**(1/3)),t_max=3**(1/3),color=BLUE_D)
@@ -882,7 +882,7 @@ class super3 (ThreeDScene):
         punto5=Dot(radius=0.1, fill_opacity=1, fill_color = RED).move_to([3,-3,0])
         punto6=Dot(radius=0.1, fill_opacity=1, fill_color = RED).move_to([-3,3,0])
 
-       
+
         def mov_sup1 (obj):
             t = t1_1.get_value()
             punto1.become(Dot(radius=0.1, fill_opacity=1, fill_color = RED).move_to([0,t,0]))
@@ -969,7 +969,7 @@ class super3 (ThreeDScene):
         axes=ThreeDAxes()
         superficie21=superficie2_4_1()#superficie2_4_1()
         superficie22=superficie2_4_2()
-        
+
         superficie=VGroup(superficie21,superficie22).rotate(-1.25*np.pi,axis=IN)
 
         t1_1=ValueTracker(-2)
@@ -1017,8 +1017,8 @@ class super3 (ThreeDScene):
         self.play(Write(text23[2]))
         self.wait(17)
         self.play(FadeOut(text23))
-        
-    def construct (self):    
+
+    def construct (self):
         ### ANIMACIÓN PARA LAS DIFERENTES PARTES ###
         self.parte0()
         self.parte1()
@@ -1053,8 +1053,8 @@ class sup_2(ParametricSurface):
         kwargs = {
         "u_min": 0.1,
         "u_max": 0,
-        "v_min": -3,
-        "v_max": 3,
+        "v_min": -2.7,
+        "v_max": 2.7,
         "checkerboard_colors": [BLUE_E]
         }
         ParametricSurface.__init__(self, self.func2, **kwargs)
@@ -1066,10 +1066,10 @@ class sup_3(ParametricSurface):
 
     def __init__(self, **kwargs):
         kwargs = {
-        "u_min": -3,
-        "u_max": 3,
-        "v_min": -3,
-        "v_max": 3,
+        "u_min": -2.7,
+        "u_max": 2,
+        "v_min": -2.7,
+        "v_max": 2.7,
         "checkerboard_colors": [BLUE_E]
         }
         ParametricSurface.__init__(self, self.func3, **kwargs)
@@ -1077,7 +1077,7 @@ class sup_3(ParametricSurface):
         return np.array([v,0,u])
 
 
-class derivadas_parciales(ThreeDScene):
+class derivadas_parciales (ThreeDScene):
 
     def func2(self,t):
         return [t,0,(t**2 - 0**2)/4]
@@ -1093,7 +1093,7 @@ class derivadas_parciales(ThreeDScene):
         text1 = TextMobject('''Sea $f:U \\subset \\mathbb{R}^2 \\to \\mathbb{R}$, \n
                                fijémonos en un punto $\\vec{x}_0\\in U^\\circ$ \n
                                y el respectivo valor para $f(\\vec{x}_0)$''').move_to(3*UP)
-        funcion = TextMobject(''' $f(x)=\\frac{x^2 - y^2}{4}$ ''').move_to(3*DOWN)
+        funcion = TextMobject(''' $f(x)=\\frac{x^2 - y^2}{4}$ ''').move_to(2.5*DOWN-3.2*RIGHT)
         text2 = TextMobject('''Para trabajar con las derivadas direccionales \n
                                de $f$ en $x_0$ se puede usar una multitud de direcciones.''').move_to(3*UP)
         text3 = TextMobject('''De entre las derivadas direccionales \n
@@ -1112,18 +1112,30 @@ class derivadas_parciales(ThreeDScene):
         text10 = TextMobject('''De la misma forma tenemos:''').move_to(1*UP)
         text10_1 = TextMobject('''$\\dfrac{\\partial f}{\\partial y}(x_0)=\\lim_{h\\to0}\\dfrac{f(x_0+he_2 )-f(x_0)}{h}$''').next_to(text10,2*DOWN)
         text11 = TextMobject('''Y de manera general, sea \n
-                                $f:U\subset \\mathbb{R}^n \\to \\mathbb{R}$, $\\vec{x}_0\in U^\\circ$, $\\forall i \\in \\{1,...,n\\}$ se tiene:''').move_to(1*UP)
+                                $f:U\subset \\mathbb{R}^n \\to \\mathbb{R}$, $\\vec{x}_0\in D^\\circ$, $\\forall i \\in \\{1,...,n\\}$ se tiene:''').move_to(1*UP)
         text11_1 = TextMobject('''$\\dfrac{\\partial f}{\\partial x_i}(x_0)=\\lim_{h\\to0}\\dfrac{f(x_0+he_i )-f(x_0)}{h}$''').next_to(text11,2*DOWN)
-        text12 = TextMobject('''Al vector $\\left(\\frac{\\partial f}{\\partial x_1}(x_0),...,\\frac{\\partial f}{\\partial x_n}(x_0)\\right)$ \n 
-                                se le llama gradiente de $f$ en $x_0$, \n 
+        text12 = TextMobject('''Al vector $\\left(\\frac{\\partial f}{\\partial x_1}(x_0),...,\\frac{\\partial f}{\\partial x_n}(x_0)\\right)$ \n
+                                se le llama gradiente de $f$ en $x_0$, \n
                                 representado como $\\nabla f(x_0)$.''')
         text13 = TextMobject('''$\\frac{\\partial f}{\\partial x_i}$ es la pendiente \n
                                 de la recta tengente a $f$ en $x_0$ \n
                                 en la i-ésima dirección canónica.''').move_to(3*UP)
-        text14 = TextMobject('''De esta forma se puede ver a \n 
-                                $\\frac{\\partial f}{\\partial x_i}$ como la derivada de $f$ \n 
+        text14 = TextMobject('''De esta forma se puede ver a \n
+                                $\\frac{\\partial f}{\\partial x_i}$ como la derivada de $f$ \n
                                 en el i-ésimo corte canónico.''').move_to(3*UP)
-
+        # Recuadros para el texto
+        text1.bg = SurroundingRectangle(text1, color=WHITE, fill_color=BLACK,fill_opacity=1)
+        gpo_1 = VGroup(text1.bg, text1)
+        text2.bg = SurroundingRectangle(text2, color=WHITE, fill_color=BLACK,fill_opacity=1)
+        gpo_2 = VGroup(text2.bg, text2)
+        text3.bg = SurroundingRectangle(text3, color=WHITE, fill_color=BLACK,fill_opacity=1)
+        gpo_3 = VGroup(text3.bg, text3)
+        text4.bg = SurroundingRectangle(text4, color=WHITE, fill_color=BLACK,fill_opacity=1)
+        gpo_4 = VGroup(text4.bg, text4)
+        text13.bg = SurroundingRectangle(text13, color=WHITE, fill_color=BLACK,fill_opacity=1)
+        gpo_13 = VGroup(text13.bg, text13)
+        text14.bg = SurroundingRectangle(text14, color=WHITE, fill_color=BLACK,fill_opacity=1)
+        gpo_14 = VGroup(text14.bg, text14)
 
         axis_config = {
         "dimension": 3,
@@ -1195,32 +1207,32 @@ class derivadas_parciales(ThreeDScene):
         self.play(FadeOut(title))
         self.set_camera_orientation(0.7*np.pi/2, 0.25*np.pi,distance=6)
         self.play(ShowCreation(axes))
-        self.play(ShowCreation(sup1)) 
-        self.add_fixed_in_frame_mobjects(text1)
-        self.play(Write(text1))
+        self.play(ShowCreation(sup1))
+        self.add_fixed_in_frame_mobjects(gpo_1)
+        self.play(Write(gpo_1))
         self.add_fixed_in_frame_mobjects(funcion)
         self.play(Write(funcion))
         self.play(ShowCreation(Dot1))
         self.wait(9)
-        self.play(FadeOut(text1))
-        self.add_fixed_in_frame_mobjects(text2)
-        self.play(Write(text2))
+        self.play(FadeOut(gpo_1))
+        self.add_fixed_in_frame_mobjects(gpo_2)
+        self.play(Write(gpo_2))
         self.play(ShowCreation(Circle1))
         Circle1.add_updater(upd_for_circle)
         self.play(rad.set_value,1,rate_func=linear)
         self.play(ShowCreation(Dirs))
         self.wait(6)
-        self.play(FadeOut(text2))
-        self.add_fixed_in_frame_mobjects(text3)
-        self.play(Write(text3))
+        self.play(FadeOut(gpo_2))
+        self.add_fixed_in_frame_mobjects(gpo_3)
+        self.play(Write(gpo_3))
         self.play(FadeOut(Direc),ReplacementTransform(DirC1,DirC1R),ReplacementTransform(DirC2,DirC2R))
         self.wait(9)
-        self.play(FadeOut(text3))
-        self.add_fixed_in_frame_mobjects(text4)
-        self.play(Write(text4))
+        self.play(FadeOut(gpo_3))
+        self.add_fixed_in_frame_mobjects(gpo_4)
+        self.play(Write(gpo_4))
         self.play(FadeOut(DirC2R),ReplacementTransform(DirC1R,DirC1G))
         self.wait(3)
-        self.play(FadeOut(text4))
+        self.play(FadeOut(gpo_4))
         self.play( *[FadeOut(mob)for mob in self.mobjects] )
 
 
@@ -1255,9 +1267,9 @@ class derivadas_parciales(ThreeDScene):
 
         self.set_camera_orientation(0.7*np.pi/2, 0.25*np.pi,distance=6)
         self.play(ShowCreation(axes))
-        self.play(ShowCreation(sup1),ShowCreation(DirC1G)) 
-        self.add_fixed_in_frame_mobjects(text13)
-        self.play(Write(text13))
+        self.play(ShowCreation(sup1),ShowCreation(DirC1G))
+        self.add_fixed_in_frame_mobjects(gpo_13)
+        self.play(Write(gpo_13))
         self.wait(9)
         self.play(ShowCreation(sup3))
         self.wait()
@@ -1267,13 +1279,12 @@ class derivadas_parciales(ThreeDScene):
         self.wait()
         self.play(ShowCreation(sup4))
         self.wait()
-        self.play(FadeOut(text13))
-        self.add_fixed_in_frame_mobjects(text14)
-        self.play(Write(text14))
+        self.play(FadeOut(gpo_13))
+        self.add_fixed_in_frame_mobjects(gpo_14)
+        self.play(Write(gpo_14))
         self.wait(8)
-        self.play(FadeOut(text14))
+        self.play(FadeOut(gpo_14))
         self.play( *[FadeOut(mob)for mob in self.mobjects] )
-        
 
 #############################################################
 ############## Planos y su inclinación #####################
@@ -1292,16 +1303,16 @@ class Planos(ThreeDScene):
 
 
     def construct(self):
-    
+
         ###Texto
         titulo = TextMobject('''Planos y Su Inclinación''').scale(1.5)
-        t_1 = TextMobject('''En $\\mathbb{R}^3$ un plano puede ser descrito como \n 
+        t_1 = TextMobject('''En $\\mathbb{R}^3$ un plano puede ser descrito como \n
         una superficie lisa, sin subidas ni bajadas. ''')
         t_2 = TextMobject('''Algunos planos son gráficas de funciones de $\\mathbb{R}^2$ en $\\mathbb{R},$''')
         t_3 = TextMobject('''$ f(x,y) = ax + by  \\mbox{ con } a,b \\in \\mathbb{R},$''')
         t_4 = TextMobject('''Cualquier plano no vertical intersecta  \n
         a los planos $xz$ y $yz$ en dos rectas, ''')
-        t_5 = TextMobject('''cada una en los planos respectivos \n 
+        t_5 = TextMobject('''cada una en los planos respectivos \n
         son de pendiente $a$ y $b$.''')
         t_6 = TextMobject('''Veamos a que nos referimos con esto gráficamente.''')
         t_7 = TextMobject('''Tomemos una recta ''', '''$\\mathcal{L}_1$''', ''' en el plano $xz$ de pediente 5 ''').to_edge(UP)
@@ -1310,25 +1321,25 @@ class Planos(ThreeDScene):
         t_8 = TextMobject('''y otra recta ''','''$\\mathcal{L}_2$''', ''' en el plano $yz$ de pendiente 3.''').to_edge(UP)
         t_8.set_color_by_tex_to_color_map({'''$\\mathcal{L}_2$''': RED})
         t_8_bg = SurroundingRectangle(t_8, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        t_9 = TextMobject('''Ahora observemos que el plano \n 
+        t_9 = TextMobject('''Ahora observemos que el plano \n
         $f(x,y) = 5x + 3x$ \n
         contiene a ambas rectas.''').to_edge(UP)
         t_9_bg = SurroundingRectangle(t_9, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        t_10 = TextMobject('''Este plano es el único que contiene \n 
+        t_10 = TextMobject('''Este plano es el único que contiene \n
         ambas rectas y por lo tanto ''').to_edge(UP)
         t_10_bg = SurroundingRectangle(t_10, color=WHITE, fill_color=BLACK, fill_opacity=1)
         t_11 = TextMobject('''este plano queda totalmente \n
         caracterizado por estas.''').to_edge(UP)
         t_11_bg = SurroundingRectangle(t_11, color=WHITE, fill_color=BLACK, fill_opacity=1)
         t_12 = TextMobject(''' En particular la inclinación \n
-        del plano queda determinada  \n 
+        del plano queda determinada  \n
         por el vector ''','''$(5,3)$''',''',''').to_edge(UP)
         t_12_bg = SurroundingRectangle(t_12, color=WHITE, fill_color=BLACK, fill_opacity=1)
         t_12.set_color_by_tex_to_color_map({'''$(5,3)$''': GREEN})
-        t_13 = TextMobject('''es decir por la \n 
+        t_13 = TextMobject('''es decir por la \n
         inclinación de las rectas. ''').to_edge(UP)
         t_13_bg = SurroundingRectangle(t_13, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        t_14 = TextMobject('''Se puede demostrar que $f:\\mathbb{R}^2\\rightarrow\\mathbb{R}$ es lineal \n 
+        t_14 = TextMobject('''Se puede demostrar que $f:\\mathbb{R}^2\\rightarrow\\mathbb{R}$ es lineal \n
         si y sólo si $f(x,y)=ax+by=(a,b)\\cdot (x,y)$. ''')
         t_15 = TextMobject('''Las gráficas de estas funciones corresponden a todos los \n
         planos no verticales en $\\mathbb{R}^3$ que pasan por el origen.''')
@@ -1336,12 +1347,12 @@ class Planos(ThreeDScene):
         t_17 = TextMobject('''¿Cómo aplica este concepto de inclinación \n
          para el caso de un plano tangente?''')
 
-        
-        
-    
 
-        
-        
+
+
+
+
+
         ### Objetos
 
         axes = ThreeDAxes(x_min = -4, x_max = 4, y_min = -4, y_max=4, z_min=-4, z_max=4 ,num_axis_pieces= 4)
@@ -1349,16 +1360,16 @@ class Planos(ThreeDScene):
         recta_2 = ParametricFunction(self.l_2, color=RED, t_min=-2,t_max=2)
         plano = ParametricSurface(self.Plano, fill_color=PURPLE_E, checkerboard_colors= [PURPLE_D, PURPLE_E], fill_opacity=0.6 ,u_min=-2, u_max =2,v_min=-2, v_max=2)
         inclinacion=Vector(direction=[5,3,0], color=GREEN)
-        
 
 
-       
+
+
         ###Grupos
-       
+
         Group_1 = VGroup(recta_1)
         Group_2 = VGroup(recta_2)
         Group_3 = VGroup(plano)
-              
+
 
 
         ### Animaciones
@@ -1442,5 +1453,3 @@ class Planos(ThreeDScene):
         self.play(Write(t_17))
         self.wait(5)
         self.play(FadeOut(t_17))
-
-        
