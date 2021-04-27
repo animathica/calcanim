@@ -8,215 +8,239 @@ from manimlib.imports import *
 class superficie_1(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
-        "u_min": -2,
-        "u_max": 2,
-        "v_min": -2,
-        "v_max": 2,
-        "checkerboard_colors": [BLUE_E]
+            "u_min": -2,
+            "u_max": 2,
+            "v_min": -2,
+            "v_max": 2,
+            "checkerboard_colors": [BLUE_E]
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
+
     def func(self, u, v):
-        #Se puede modificar para cambiar el radio de la esfera
-        r=0.2
-        return np.array([u,v,r*np.sin(7*(v+u))])
+        # Se puede modificar para cambiar el radio de la esfera
+        r = 0.2
+        return np.array([u, v, r * np.sin(7 * (v + u))])
+
 
 class superficie_2(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
-        "u_min": 0,
-        "u_max": 2*np.pi,
-        "v_min": 0,
-        "v_max": np.pi,
-        "checkerboard_colors": [BLUE_E]
+            "u_min": 0,
+            "u_max": 2 * np.pi,
+            "v_min": 0,
+            "v_max": np.pi,
+            "checkerboard_colors": [BLUE_E]
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
+
     def func(self, u, v):
-        #Se puede modificar para cambiar el radio de la esfera
-        r=1
-        return np.array([r*np.cos(u)*np.cos(v),r*np.cos(v)*np.sin(u),r*np.sin(v)])
+        # Se puede modificar para cambiar el radio de la esfera
+        r = 1
+        return np.array([r * np.cos(u) * np.cos(v), r * np.cos(v) * np.sin(u), r * np.sin(v)])
+
+
 class superficie_3(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
-        "u_min": 0,
-        "u_max": 2*np.pi,
-        "v_min": 0,
-        "v_max": np.pi,
-        "checkerboard_colors": [BLUE_E]
+            "u_min": 0,
+            "u_max": 2 * np.pi,
+            "v_min": 0,
+            "v_max": np.pi,
+            "checkerboard_colors": [BLUE_E]
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
+
     def func(self, u, v):
-        #Se puede modificar para cambiar el radio de la esfera
-        r=1
-        #Se puede modificar para cambiar la transformación
-        k=0.1
-        return np.array([r*np.cos(u)*np.cos(v),r*np.cos(v)*np.sin(u),k*r*np.sin(v)])
+        # Se puede modificar para cambiar el radio de la esfera
+        r = 1
+        # Se puede modificar para cambiar la transformación
+        k = 0.1
+        return np.array([r * np.cos(u) * np.cos(v), r * np.cos(v) * np.sin(u), k * r * np.sin(v)])
+
+
 class superficie_4(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
-        "u_min": 0,
-        "u_max": 2*np.pi,
-        "v_min": 0,
-        "v_max": np.pi,
-        "checkerboard_colors": [BLUE_E]
+            "u_min": 0,
+            "u_max": 2 * np.pi,
+            "v_min": 0,
+            "v_max": np.pi,
+            "checkerboard_colors": [BLUE_E]
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
+
     def func(self, u, v):
-        #Se puede modificar para cambiar el radio de la esfera
-        r=1
-        #Se puede modificar para cambiar la transformación
-        k=2
-        return np.array([r*np.cos(u)*np.cos(v),r*np.cos(v)*np.sin(u),k*r*np.sin(v)])
-#### segundo ejemplo
+        # Se puede modificar para cambiar el radio de la esfera
+        r = 1
+        # Se puede modificar para cambiar la transformación
+        k = 2
+        return np.array([r * np.cos(u) * np.cos(v), r * np.cos(v) * np.sin(u), k * r * np.sin(v)])
+    #### segundo ejemplo
+
 
 class superficie_5(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
-        "u_min": -2.5,
-        "u_max": 2.5,
-        "v_min": -2.5,
-        "v_max": 2.5,
-        "checkerboard_colors": [BLUE_E]
+            "u_min": -2.5,
+            "u_max": 2.5,
+            "v_min": -2.5,
+            "v_max": 2.5,
+            "checkerboard_colors": [BLUE_E]
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
+
     def func(self, x, y):
-        return np.array([x,y,(np.sin(3*(x+y))+y)*0.3])
+        return np.array([x, y, (np.sin(3 * (x + y)) + y) * 0.3])
+
+
 class superficie_5_reflejada(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
-        "u_min": -2.5,
-        "u_max": 2.5,
-        "v_min": -2.5,
-        "v_max": 2.5,
-        "checkerboard_colors": [BLUE_E]
+            "u_min": -2.5,
+            "u_max": 2.5,
+            "v_min": -2.5,
+            "v_max": 2.5,
+            "checkerboard_colors": [BLUE_E]
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
+
     def func(self, x, y):
-        return np.array([x,y,(np.sin(3*(x-y))-y)*0.3])
+        return np.array([x, y, (np.sin(3 * (x - y)) - y) * 0.3])
+
+
 class superficie_5_reflejada1(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
-        "u_min": -2.5,
-        "u_max": 2.5,
-        "v_min": -2.5,
-        "v_max": 2.5,
-        "checkerboard_colors": [BLUE_E]
+            "u_min": -2.5,
+            "u_max": 2.5,
+            "v_min": -2.5,
+            "v_max": 2.5,
+            "checkerboard_colors": [BLUE_E]
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
-    def func(self, x, y):
-        return np.array([x,y,(np.sin(3*(-x+y))+y)*0.3])
 
-#### tercer ejemplo
+    def func(self, x, y):
+        return np.array([x, y, (np.sin(3 * (-x + y)) + y) * 0.3])
+
+    #### tercer ejemplo
+
+
 class superficie_6(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
-        "u_min": -1.5,
-        "u_max": 1.5,
-        "v_min": -1.5,
-        "v_max": 1.5,
-        "checkerboard_colors": [BLUE_E]
+            "u_min": -1.5,
+            "u_max": 1.5,
+            "v_min": -1.5,
+            "v_max": 1.5,
+            "checkerboard_colors": [BLUE_E]
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
+
     def func(self, x, y):
-        #Se puede cambiar a y b para modificar la translación
-        a=0
-        b=0
-        return np.array([x+a,y+b,x**2+(y**2*(np.sin(y)**2))])
+        # Se puede cambiar a y b para modificar la translación
+        a = 0
+        b = 0
+        return np.array([x + a, y + b, x ** 2 + (y ** 2 * (np.sin(y) ** 2))])
+
+
 class superficie_6_1(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
-        "u_min": -1.5,
-        "u_max": 1.5,
-        "v_min": -1.5,
-        "v_max": 1.5,
-        "checkerboard_colors": [BLUE_E]
+            "u_min": -1.5,
+            "u_max": 1.5,
+            "v_min": -1.5,
+            "v_max": 1.5,
+            "checkerboard_colors": [BLUE_E]
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
+
     def func(self, x, y):
-        #Se puede cambiar a y b para modificar la translación
-        a=2
-        b=0
-        return np.array([x+a,y+b,x**2+(y**2*(np.sin(y)**2))])
+        # Se puede cambiar a y b para modificar la translación
+        a = 2
+        b = 0
+        return np.array([x + a, y + b, x ** 2 + (y ** 2 * (np.sin(y) ** 2))])
+
 
 class superficie_6_2(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
-        "u_min": -1.5,
-        "u_max": 1.5,
-        "v_min": -1.5,
-        "v_max": 1.5,
-        "checkerboard_colors": [BLUE_E]
+            "u_min": -1.5,
+            "u_max": 1.5,
+            "v_min": -1.5,
+            "v_max": 1.5,
+            "checkerboard_colors": [BLUE_E]
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
+
     def func(self, x, y):
-         #Se puede cambiar a y b para modificar la translación
-        a=0
-        b=2
-        return np.array([x+a,y+b,x**2+(y**2*(np.sin(y)**2))])
+        # Se puede cambiar a y b para modificar la translación
+        a = 0
+        b = 2
+        return np.array([x + a, y + b, x ** 2 + (y ** 2 * (np.sin(y) ** 2))])
 
 
 class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
-    def construct (self):
-        titulo=TextMobject('''Traslaciones y Homotecias \n
+    def construct(self):
+        titulo = TextMobject('''Traslaciones y Homotecias \n
                                 en Superficies''').scale(1.5)
-        #Cambiar función de superficie
-        text1=TextMobject('''Tomemos $f(x,y)=(0.2\sin(7*(x+y)))$''')
-        text2=TextMobject('''Una translación vertical de la superficie es de \n
-                            la forma: $f(x,y)+k$''').move_to(3*UP)
-        text3=TextMobject('''Por ejemplo: $f(x,y)-2$ ''').move_to(3*UP)
-        text4=TexMobject(r"f(x,y)+3").move_to(3*UP)
-        text5=TextMobject('''También podemos multiplicar superficies por un escalar, \n
-                                    es decir: $kf(x,y)$.''').move_to(3*UP)
-        text6=TextMobject('''Si $k=0.1$, la gráfica se encoje verticalmente hacia el plano \n
-                                del dominio $xy$''').move_to(3*UP)
-        text7=TextMobject('''Si $k=2$, la gráfica se estira verticalmente \n
-                                alejando los puntos del plano $xy$ ''').move_to(3*UP)
-        text8=TextMobject('''También podemos reflejar superficies.\n
-                            Sea $f_0(x,y)=sin(3*(x+y))+y)*0.3$''').move_to(3*UP)
-        text8_1=TextMobject('''Si $k=-1$, la gráfica de $kf_0(x,y)$ es la reflexión de la gráfica \n
-                                de $f_0$ respecto al plano $xy$. ''').move_to(3*UP)
-        text9=TextMobject('''Si tomamos $f_1(x,y)=f_0(x,-y)$, la gráfica de $f_1$''').move_to(3*UP)
-        text9_1=TextMobject('''es la reflexión de la gráfica de $f_0$ respecto al plano $yz$.''').move_to(text9.get_center()+0.5*DOWN)
-        text10=TextMobject('''Mientras que la gráfica de $f_2(x,y)=f_1(x,-y)$ es una \n
-                                    reflexión de la gráfica de $f_1$ respecto al eje vertical. ''').move_to(3*UP)
-        text11=TextMobject('''¿Qué pasa con $f(k(x,y))$, con $k\\in\\mathbb{R}$? ''')
-        text12=TextMobject('''También podemos hacer traslaciones horizontales. Por ejemplo:''').move_to(3*UP)
-        text13=TextMobject('''$g(x,y)=x^{2}+y^{2}\\sin^{2}(y)$''').move_to(3*DOWN)
-        text14=TextMobject('''La gráfica de $g((x,y)+(2,0))$ se ve: ''').move_to(3*DOWN)
-        text15=TextMobject('''Pero la de $g((x,y)+(0,2))$: ''').move_to(3*DOWN)
-        text16=TextMobject('''Modifica el código para crear más ejemplos.''')
+        # Cambiar función de superficie
+        text1 = TextMobject('''Tomemos $f(x,y)=(0.2\sin(7*(x+y)))$''')
+        text2 = TextMobject('''Una translación vertical de la superficie es de \n
+                            la forma: $f(x,y)+k$''').move_to(3 * UP)
+        text3 = TextMobject('''Por ejemplo: $f(x,y)-2$ ''').move_to(3 * UP)
+        text4 = TexMobject(r"f(x,y)+3").move_to(3 * UP)
+        text5 = TextMobject('''También podemos multiplicar superficies por un escalar, \n
+                                    es decir: $kf(x,y)$.''').move_to(3 * UP)
+        text6 = TextMobject('''Si $k=0.1$, la gráfica se encoje verticalmente hacia el plano \n
+                                del dominio $xy$''').move_to(3 * UP)
+        text7 = TextMobject('''Si $k=2$, la gráfica se estira verticalmente \n
+                                alejando los puntos del plano $xy$ ''').move_to(3 * UP)
+        text8 = TextMobject('''También podemos reflejar superficies.\n
+                            Sea $f_0(x,y)=sin(3*(x+y))+y)*0.3$''').move_to(3 * UP)
+        text8_1 = TextMobject('''Si $k=-1$, la gráfica de $kf_0(x,y)$ es la reflexión de la gráfica \n
+                                de $f_0$ respecto al plano $yz$. ''').move_to(3 * UP)
+        text9 = TextMobject('''Si tomamos $f_1(x,y)=f_0(x,-y)$, la gráfica de $f_1$''').move_to(3 * UP)
+        text9_1 = TextMobject('''es la reflexión de la gráfica de $f_0$ respecto al plano $yz$.''').move_to(
+            text9.get_center() + 0.5 * DOWN)
+        text10 = TextMobject('''Mientras que la gráfica de $f_2(x,y)=f_1(-x,-y)$ es una \n
+                                    reflexión de la gráfica de $f_1$ respecto al eje vertical. ''').move_to(3 * UP)
+        text11 = TextMobject('''¿Qué pasa con $f(k(x,y))$, con $k\\in\\mathbb{R}$? ''')
+        text12 = TextMobject('''También podemos hacer traslaciones horizontales. Por ejemplo:''').move_to(3 * UP)
+        text13 = TextMobject('''$g(x,y)=x^{2}+y^{2}\\sin^{2}(y)$''').move_to(3 * DOWN)
+        text14 = TextMobject('''La gráfica de $g((x,y)+(2,0))$ se ve: ''').move_to(3 * DOWN)
+        text15 = TextMobject('''Pero la de $g((x,y)+(0,2))$: ''').move_to(3 * DOWN)
+        text16 = TextMobject('''Modifica el código para crear más ejemplos.''')
 
-        axes=ThreeDAxes()
-        #Superficies
-        superficie1=superficie_1()
-        fondo=Rectangle(height=1, width=10,fill_opacity=1,fill_color=BLACK).move_to(text11)
+        axes = ThreeDAxes()
+        # Superficies
+        superficie1 = superficie_1()
+        fondo = Rectangle(height=1, width=10, fill_opacity=1, fill_color=BLACK).move_to(text11)
 
-        #Parámetros que se pueden cambiar
-        k1=-2
-        superficie2=superficie_1().move_to([0,0,k1])
-        k2=3
-        superficie3=superficie_1().move_to([0,0,k2])
-        superficie4=superficie_2()
-        superficie5=superficie_3()
-        superficie6=superficie_4()
+        # Parámetros que se pueden cambiar
+        k1 = -2
+        superficie2 = superficie_1().move_to([0, 0, k1])
+        k2 = 3
+        superficie3 = superficie_1().move_to([0, 0, k2])
+        superficie4 = superficie_2()
+        superficie5 = superficie_3()
+        superficie6 = superficie_4()
 
-        superficie7=superficie_5()
-        superficie7_reflejadayz=superficie_5_reflejada()
-        superficie8=superficie_5_reflejada1()
+        superficie7 = superficie_5()
+        superficie7_reflejadayz = superficie_5_reflejada()
+        superficie8 = superficie_5_reflejada1()
 
-        superficie9=superficie_6()
-        superficie10=superficie_6_1()
-        superficie11=superficie_6_2()
-
-
+        superficie9 = superficie_6()
+        superficie10 = superficie_6_1()
+        superficie11 = superficie_6_2()
 
         self.play(Write(titulo))
         self.wait(6)
         self.play(FadeOut(titulo))
-        self.set_camera_orientation(0.7*np.pi/2, 0.25*np.pi,distance=12)
+        self.set_camera_orientation(0.7 * np.pi / 2, 0.25 * np.pi, distance=12)
         self.add_fixed_in_frame_mobjects(text1)
         self.play(Write(text1))
         self.wait(4)
-        self.play(text1.shift,3*UP,runtime=3)
+        self.play(text1.shift, 3 * UP, runtime=3)
         self.play(ShowCreation(axes))
         self.play(ShowCreation(superficie1))
         self.wait(3)
@@ -228,14 +252,14 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         self.add_fixed_in_frame_mobjects(text3)
         self.play(Write(text3))
         self.wait(5)
-        self.play(ReplacementTransform(superficie1,superficie2))
+        self.play(ReplacementTransform(superficie1, superficie2))
         self.wait(5)
         self.play(FadeOut(text3))
         self.add_fixed_in_frame_mobjects(text4)
         self.play(Write(text4))
-        #Movimiento de superficie
+        # Movimiento de superficie
         self.wait(5)
-        self.play(ReplacementTransform(superficie2,superficie3))
+        self.play(ReplacementTransform(superficie2, superficie3))
         self.wait(6)
         self.play(FadeOut(text4))
         self.play(FadeOut(superficie3))
@@ -248,13 +272,13 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         self.add_fixed_in_frame_mobjects(text6)
         self.play(Write(text6))
         self.wait(6)
-        self.play(ReplacementTransform(superficie4,superficie5))
+        self.play(ReplacementTransform(superficie4, superficie5))
         self.wait(6)
         self.play(FadeOut(text6))
         self.add_fixed_in_frame_mobjects(text7)
         self.play(Write(text7))
         self.wait(9)
-        self.play(ReplacementTransform(superficie5,superficie6))
+        self.play(ReplacementTransform(superficie5, superficie6))
         self.wait(5)
         self.play(FadeOut(text7))
         self.play(FadeOut(superficie6))
@@ -268,25 +292,25 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         self.add_fixed_in_frame_mobjects(text9)
         self.play(Write(text9))
         self.wait(5)
-        #Superficie reflejada 2
+        # Superficie reflejada 2
         self.add_fixed_in_frame_mobjects(text9_1)
         self.play(Write(text9_1))
         self.wait(3)
-        self.play(ReplacementTransform(superficie7,superficie7_reflejadayz))
+        self.play(ReplacementTransform(superficie7, superficie7_reflejadayz))
         self.wait(4)
-        self.play(FadeOut(text9),FadeOut(text9_1))
+        self.play(FadeOut(text9), FadeOut(text9_1))
         self.add_fixed_in_frame_mobjects(text10)
         self.play(Write(text10))
         self.wait(11)
-        self.play(ReplacementTransform(superficie7_reflejadayz,superficie8))
+        self.play(ReplacementTransform(superficie7_reflejadayz, superficie8))
         self.wait(5)
         self.play(FadeOut(text10))
         self.play(FadeOut(superficie8))
         self.add_fixed_in_frame_mobjects(fondo)
         self.add_fixed_in_frame_mobjects(text11)
-        self.play(Write(text11),ShowCreation(fondo))
+        self.play(Write(text11), ShowCreation(fondo))
         self.wait(8)
-        self.play(FadeOut(text11),FadeOut(fondo))
+        self.play(FadeOut(text11), FadeOut(fondo))
         self.add_fixed_in_frame_mobjects(text12)
         self.play(Write(text12))
         self.wait(7)
@@ -300,15 +324,15 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         self.add_fixed_in_frame_mobjects(text14)
         self.play(Write(text14))
         self.wait(7)
-        self.play(ReplacementTransform(superficie9,superficie10))
+        self.play(ReplacementTransform(superficie9, superficie10))
         self.wait(5)
         self.play(FadeOut(text14))
         self.add_fixed_in_frame_mobjects(text15)
         self.play(Write(text15))
         self.wait(6)
-        self.play(ReplacementTransform(superficie10,superficie11))
+        self.play(ReplacementTransform(superficie10, superficie11))
         self.wait(5)
-        self.play(FadeOut(text15),FadeOut(axes),FadeOut(superficie11))
+        self.play(FadeOut(text15), FadeOut(axes), FadeOut(superficie11))
         self.add_fixed_in_frame_mobjects(text16)
         self.play(Write(text16))
         self.wait(8)
@@ -1285,6 +1309,8 @@ class derivadas_parciales (ThreeDScene):
         self.wait(8)
         self.play(FadeOut(gpo_14))
         self.play( *[FadeOut(mob)for mob in self.mobjects] )
+
+
 
 #############################################################
 ############## Planos y su inclinación #####################
