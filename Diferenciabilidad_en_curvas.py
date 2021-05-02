@@ -1399,8 +1399,8 @@ class Curvas_Rectificables(GraphScene,Scene):
         text_9 = TextMobject("Obsérvese que en el ejemplo, $\\gamma(t_0)=\\gamma(t_m)$").move_to(3*UP)
         text_10 = TextMobject('''A partir de $\gamma_{\mathcal{S}}$ se define una poligonal\n
                                  $\\mathcal{P}$ con vértices en cada punto de $\\gamma_{\\mathcal{S}}$''').move_to(3.2*UP)
-        text_11 = TextMobject('''La longitud $d(\\mathcal{P})$ de la poligonal se define\n
-                                     como la suma de cada segmento de recta:''').move_to(3.2*UP)
+        text_11 = TextMobject('''La longitud $d(\\mathcal{P})$ de la poligonal se define como la\n
+                                    suma de las longitudes de cada segmento de recta:''').move_to(3.2*UP)
         text_12 = TexMobject(r'''d(\mathcal{P})=\sum_{i=1}^m \left\Vert \gamma(t_i)-\gamma(t_{i-1}) \right\Vert''').move_to(3.2*UP)
         text_12_1 = TextMobject('''En el ejemplo, para esta partición, $d(\\mathcal{P})=7.79$ ''').move_to(3.2*UP)
         text_13 = TextMobject('''Consideremos un refinamiento $\\mathcal{S}'$ de la partición $\\mathcal{S}$  ''').move_to(3.2*UP)
