@@ -1895,7 +1895,7 @@ class Curvas_No_Rectificables(GraphScene,Scene):
 #######################################################
 
 class Velocidad_y_rapidez(ThreeDScene):
-     def cur(self, t):
+    def cur(self, t):
         return np.array([-np.exp(t/12)*np.cos(t), -np.exp(t/12)*np.sin(t),0])
 
     def construct(self):
