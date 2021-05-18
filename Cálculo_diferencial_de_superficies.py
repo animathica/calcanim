@@ -1479,3 +1479,243 @@ class Planos(ThreeDScene):
         self.play(Write(t_17))
         self.wait(5)
         self.play(FadeOut(t_17))
+
+##############################################################################
+########################  Derivadas direccionales ############################
+##############################################################################
+#Fecha 17/05/2021
+# Clase definida para la superficie.
+class Superficie(ParametricSurface):
+
+    def __init__(self, **kwargs):
+        kwargs = {"u_min": 0,
+                  "u_max": 3,
+                  "v_min": 0,
+                  "v_max": 2*np.pi,
+                  "checkerboard_colors": [BLUE_E]}
+        ParametricSurface.__init__(self, self.func, **kwargs)
+    
+    # Parametrización de la superficie.
+    def func(self, r, theta):
+        u, v = r*np.cos(theta), r*np.sin(theta)
+        return np.array([u, v, -(u**2+v**2)/3+2])
+
+# Clase definida para el plano usado para el corte.
+class Plano(ParametricSurface):
+
+    def __init__(self, **kwargs):
+        kwargs = {"u_min": -1,
+                  "u_max": 3,
+                  "v_min": -1,
+                  "v_max": 1.5,
+                  "checkerboard_colors": [BLUE_E]}
+        ParametricSurface.__init__(self, self.func, **kwargs)
+    
+    # Parametrización del plano.
+    def func(self, u, v):
+        return np.array([u, 2-u, v])
+
+# Clase principal.
+class Derivadas_direccionales(ThreeDScene):
+    
+    # Función que se quiere derivar.
+    def func1(self, x, y):
+        return(-(x**2+y**2)/3+2)
+
+    # Función paramétrica de la curva resultante del corte.
+    def func2(self, t):
+        return (t, 2-t, self.func1(t, 2-t))
+    
+    # Función paramétrica de la recta tangente a la curva en el punto de derivación.
+    def func3(self,t):
+        return (t/np.sqrt(2), 2-t/np.sqrt(2), 2/3+2*t*np.sqrt(2)/3)
+
+    def construct(self):
+        
+        # Textos que aparecen en escena.
+        
+        title = TextMobject('''Derivadas direccionales''').scale(1.5)
+
+        text1 = TextMobject('''Considera una función $f$ definida sobre un \n
+                               conjunto abierto y conexo $U \\subset \\mathbb{R}^{n}$ \n
+                               y que toma valores en $\\mathbb{R}$.''').move_to(3*UP)
+        
+        funcion = TextMobject('''$f(x,y)=-\\frac{x^2 + y^2}{3}+2$''').move_to(3*DOWN-3.5*RIGHT)
+        
+        text2 = TextMobject('''Ahora, toma $\\vec{x}_{0} \\in U$ y \n
+                            $\\vec{u} \\in \\mathbb{R}^{n}$ tal que $||\\vec{u}|| = 1$.''').move_to(3.2*UP)
+        
+        punto_text = TextMobject('''$\\vec{x}_{0}=(0,2)$''').move_to(2.5*DOWN-3.2*RIGHT)
+        
+        direc_text = TextMobject('''$\\vec{u}=\\left(-\\frac{1}{\\sqrt{2}},\\frac{1}{\\sqrt{2}}\\right)$''').next_to(punto_text, 1.5*DOWN)
+                            
+        text3 = TextMobject('''La función $f$ es derivable en el punto $\\vec{x}_{0}$ \n 
+                            en la dirección del vector $\\vec{u}$, si
+                            $$\\lim_{h\\to 0} \\frac{f(\\vec{x}_{0}+h\\vec{u})-f(\\vec{x}_{0})}{h}$$ existe.''').move_to(UP)
+                            
+        text4 = TextMobject('''Al valor de dicho límite se le denota por $D_{\\vec{u}}f(\\vec{x_{0}})$.''').next_to(text3, 3*DOWN)
+        
+        text5 = TextMobject('''¿Qué similitudes y diferencias encuentras entre \n
+                            la definición anterior y la definición de derivabilidad \n
+                            para funciones de $\\mathbb{R}$ en $\\mathbb{R}$?''')
+        
+        text6 = TextMobject('''En general, $D_{\\vec{u}}f(\\vec{x_{0}})$ es una medida \n
+                            de la razón de cambio de la función $f$, partiendo del \n
+                            vector $\\vec{x}_{0}$ y en la dirección de $\\vec{u}$.''')
+                            
+        text7 = TextMobject('''En nuestro ejemplo, la derivada direccional \n
+                            tiene una interpretación geométrica útil.''')
+        
+        text8 = TextMobject('''La función $f$ es derivable en el punto $(0, 2)$ \n
+                            en la dirección $\\left(-\\frac{1}{\\sqrt{2}},\\frac{1}{\\sqrt{2}}\\right)$.''').move_to(3*UP)
+                            
+        text9 = TextMobject('''Al intersecar la gráfica de $f$ con el plano perpendicular a $XY$ \n
+                            que contiene a la recta $\\vec{x}_{0}+h\\vec{u} = (0,2)+h\\left(-\\frac{1}{\\sqrt{2}},\\frac{1}{\\sqrt{2}}\\right)$, \n
+                            $h\\in\\mathbb{R}$, se obtiene una curva.''').move_to(2.7*UP)
+
+        text10 = TextMobject('''$D_{\\left(-\\frac{1}{\\sqrt{2}},\\frac{1}{\\sqrt{2}}\\right)}f(0,2)=-\\frac{2\\sqrt{2}}{3}$ es la pendiente de \n
+                             la recta tangente a la curva en el punto $\\left(0,2,\\frac{2}{3}\\right)$.''').move_to(3*UP) 
+        
+        text11 = TextMobject('''Es decir, la derivada direccional en $\mathbb{R}^{2}$ coincide con \n
+                             la pendiente de la recta tangente en el corte correspondiente.''')
+                             
+        text12 = TextMobject('''Muchas de las propiedades que cumplen \n
+                             las derivadas de funciones de $\mathbb{R}$ en $\mathbb{R}$, \n 
+                             las conservan de cierta forma las derivadas direccionales, \n
+                             como las relacionadas con la aritmética de funciones.''')
+        
+        # Recuadros para algunos textos.
+        
+        text1.bg = SurroundingRectangle(text1, color = WHITE, fill_color = BLACK, fill_opacity = 1)
+        gpo_1 = VGroup(text1.bg, text1)
+        
+        text2.bg = SurroundingRectangle(text2, color = WHITE, fill_color = BLACK, fill_opacity = 1)
+        gpo_2 = VGroup(text2.bg, text2)
+        
+        text8.bg = SurroundingRectangle(text8, color = WHITE, fill_color = BLACK, fill_opacity = 1)
+        gpo_8 = VGroup(text8.bg, text8)
+        
+        text9.bg = SurroundingRectangle(text9, color = WHITE, fill_color = BLACK, fill_opacity = 1)
+        gpo_9 = VGroup(text9.bg, text9)
+        
+        text10.bg = SurroundingRectangle(text10, color = WHITE, fill_color = BLACK, fill_opacity = 1)
+        gpo_10 = VGroup(text10.bg, text10)
+        
+        # Ejes utilizados en la escena.
+        
+        axis_config = {"dimension": 3,
+                        "x_min": -4,
+                        "x_max": 4,
+                        "y_min": -4,
+                        "y_max": 4,
+                        "z_min": -1,
+                        "z_max": 3,
+                        "light_source": 9*DOWN + 7*LEFT + 10*OUT}
+
+        axes = ThreeDAxes(**axis_config)
+
+        # Superficie dada por la función que se quiere derivar.
+        superficie = Superficie().set_shade_in_3d(True)
+
+        # Punto de derivación.
+        x_0, y_0 = 0, 2
+        z_0 = self.func1(x_0, y_0)
+        punto = Dot(color = ORANGE).move_to([x_0, y_0, 0]).set_shade_in_3d(True)
+        
+        # Dirección en la que se quiere derivar.
+        direc = Vector(direction = [-1/np.sqrt(2), 1/np.sqrt(2), 0], buff = 0.075)
+        
+        # Plano que interseca a la superficie.
+        plano = Plano().set_color(RED).set_shade_in_3d(True)
+
+        # Curva resultante de la intersección entre la superficie y el plano.
+        curva = ParametricFunction(self.func2, t_min = 1-np.sqrt(7)/np.sqrt(2), t_max = 1+np.sqrt(7)/np.sqrt(2), color = BLUE_E)
+
+        # Recta tangente a la curva resultante del corte.
+        tangente = ParametricFunction(self.func3, t_min = -np.sqrt(2), t_max = 5/(4*np.sqrt(2)), color = PURPLE)
+        
+        ########## Escena ##########
+
+        self.play(Write(title))
+        self.wait()
+        self.play(FadeOut(title))
+
+        self.set_camera_orientation(0.7*np.pi/2, 0.25*np.pi)
+        self.play(ShowCreation(axes))
+        self.wait()
+        self.add_fixed_in_frame_mobjects(gpo_1)
+        self.play(Write(gpo_1))
+        self.wait(10)
+        self.add_fixed_in_frame_mobjects(funcion)
+        self.play(Write(funcion))
+        self.wait()
+        self.play(ShowCreation(superficie))
+        self.wait()
+        
+        self.play(FadeOut(gpo_1), FadeOut(funcion), FadeOut(superficie))       
+        self.add_fixed_in_frame_mobjects(gpo_2)
+        self.play(Write(gpo_2))
+        self.wait(7)
+        self.add_fixed_in_frame_mobjects(punto_text)
+        self.play(Write(punto_text))
+        self.wait()
+        self.play(ShowCreation(punto))
+        self.add_fixed_in_frame_mobjects(direc_text)
+        self.play(Write(direc_text))
+        self.wait()
+        self.play(ShowCreation(direc))
+        self.wait()
+        self.play(*[FadeOut(mob)for mob in self.mobjects])
+        
+        self.set_camera_orientation(phi = 0, theta = -90*DEGREES)
+        self.play(Write(text3))
+        self.wait(11)
+        self.play(Write(text4))
+        self.wait(6)
+        self.play(FadeOut(text3), FadeOut(text4))
+        self.play(Write(text5))
+        self.wait(8)
+        self.play(FadeOut(text5))
+        self.play(Write(text6))
+        self.wait(10)
+        self.play(FadeOut(text6))
+        self.play(Write(text7))
+        self.wait(6)
+        self.play(FadeOut(text7))
+        
+        self.set_camera_orientation(0.7*np.pi/2, 0.25*np.pi)
+        self.play(ShowCreation(axes))
+        self.wait()
+        self.add_fixed_in_frame_mobjects(funcion)
+        self.play(Write(funcion))
+        self.wait()
+        self.play(ShowCreation(punto), ShowCreation(direc))
+        self.play(ApplyMethod(punto.move_to, [x_0, y_0, self.func1(x_0, y_0)]))
+        self.play(ApplyMethod(direc.move_to, [x_0-1/(2*np.sqrt(2)), y_0+1/(2*np.sqrt(2)), self.func1(x_0, y_0)]))
+        self.play(ShowCreation(superficie))
+        self.add_fixed_in_frame_mobjects(gpo_8)
+        self.play(Write(gpo_8))
+        self.wait(8)
+
+        self.play(FadeOut(gpo_8))
+        self.add_fixed_in_frame_mobjects(gpo_9)
+        self.play(Write(gpo_9))
+        self.wait(16)
+        self.play(FadeOut(direc), ShowCreation(plano))
+        self.play(ShowCreation(curva), FadeOut(superficie))
+        self.move_camera(phi=90*DEGREES,theta=45*DEGREES,frame_center=(0,0,0),run_time=2)
+        self.play(FadeOut(gpo_9))
+        self.wait()
+        self.add_fixed_in_frame_mobjects(gpo_10)
+        self.play(Write(gpo_10))
+        self.wait(10)
+        self.play(ShowCreation(tangente))
+        self.wait()
+        self.play(*[FadeOut(mob)for mob in self.mobjects])
+        
+        self.set_camera_orientation(phi = 0, theta = -90*DEGREES)
+        self.play(Write(text11))
+        self.wait(9)
+        self.play(FadeOut(text11))
+        self.play(Write(text12))
+        self.wait(13)
