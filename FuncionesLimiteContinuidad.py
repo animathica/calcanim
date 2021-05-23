@@ -780,10 +780,9 @@ class Proyeccion (ThreeDScene):
         self.wait(2)
         self.play(FadeOut(text5))
 
-#######################
-#######################
-####LIMITES DE R a R2
-
+################################################################
+##### Existencia del límite de funciones de R^n a R^m en x0 ####
+################################################################
 class ExitenciaLimites(ThreeDScene):
     def cur(self, t):
         return np.array([t, t**2, t**3])
@@ -1026,7 +1025,9 @@ class ExitenciaLimites(ThreeDScene):
         self.wait(2)
         self.play(FadeOut(t_14))
 
-
+####################################################################
+#### Divergencia a infinito de funciones de R a R^n en infinito ####
+####################################################################
 class Limites_Al_Infinito(ThreeDScene):
     def cur_1(self, t):
         return np.array([t, t*np.sin(5*t), -np.exp(t/2)*np.cos(5*t)])
@@ -1053,7 +1054,9 @@ class Limites_Al_Infinito(ThreeDScene):
         t_7[1].set_color(YELLOW)
         t_8 = TextMobject('''¿Qué crees que sucede cuando $t \\rightarrow - \\infty$?''')
 
-
+#############################################################################################################
+######## Divergencia a infinito de funciones de \n $\\mathbb{R}\\rightarrow\\mathbb{R}^{n}$ en un punto $t_0 ####
+#############################################################################################################
 class Divergencia_A_Infinito(ThreeDScene):
     def cur_1(self, t):
         return np.array([t, 1/(1-t), t**2])
