@@ -714,6 +714,10 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
         text18_1.set_color_by_tex_to_color_map({"derivada":TEAL, "regular":MAROON,"pico":GREEN_D,"suave":PURPLE_B})
         text18_1.bg = SurroundingRectangle(text18_1,color=WHITE,fill_color=BLACK,fill_opacity=1)
         text18_1.group = VGroup(text18_1.bg,text18_1)
+        text18_2=TextMobject('''Revisa el video ''' ,'''\emph{Curvas regulares y picos}''',''' para más detalles. ''').move_to(3*UP)
+        text18_2[1].set_color(BLUE)
+        text18_2.bg=SurroundingRectangle(text18_2,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text18_2.group=VGroup(text18_2.bg,text18_2)
         text19=TextMobject('''Tomemos la siguiente parametrización''',
                                     '''$$f:\\left[-2,2\\right]\\rightarrow\\mathbb{R}^{2}$$''','''\n
                                              $f(t)$''','''$=(t^3 -4t, t^2 -4)$''').move_to(2*UP)
@@ -905,6 +909,9 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
         self.play(FadeOut(text18.group),Write(text18_1.group))
         self.wait(7)
         self.play(FadeOut(fabs),FadeOut(text18_1.group))
+        self.play(Write(text18_2.group))
+        self.wait(5)
+        self.play(FadeOut(text18_2.group))
         self.play(Write(text19_0group))
         self.wait(3)
         self.play(Write(text19_1group))
@@ -987,8 +994,7 @@ class Curvas_suaves_y_cruces_3 (MovingCameraScene,Scene):
         self.play(FadeOut(text33),FadeOut(fcicliode))
         self.play(Write(text34))
         self.wait(7)
-        self.play(FadeOut(text34))    
-    
+        self.play(FadeOut(text34))      
     
   
 ########################
