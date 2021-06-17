@@ -6,6 +6,10 @@ from manimlib.imports import *
 # 14/10/2020​
 
 
+#######################################################
+### TEOREMA DE OPERACIONES PARA FUNCIONES CONTINUAS ###
+#######################################################
+
 class Operaciones_continuidad(ThreeDScene):
     def acomodar_textos(self,objeto):
         self.add_fixed_in_frame_mobjects(objeto)
@@ -256,7 +260,9 @@ class Operaciones_continuidad(ThreeDScene):
         self.remove_foreground_mobjects(reglafpuntog)
 
 
-
+##################################
+### CONTINUIDAD CON SUCESIONES ###
+##################################
 class Continuidad_con_sucesiones(ThreeDScene):
 
     CONFIG = {
@@ -600,7 +606,7 @@ class Continuidad_con_sucesiones(ThreeDScene):
         self.play(FadeOut(t_15))
         
 ################################################################
-##### Existencia del límite de funciones de R^n a R^m en x0 ####
+##### EXISTENCIA DE LÍMITE DE FUNCIONES DE R^n a R^m EN x0  ####
 ################################################################
 class ExitenciaLimites(ThreeDScene):
     def cur(self, t):
@@ -845,7 +851,7 @@ class ExitenciaLimites(ThreeDScene):
         self.play(FadeOut(t_14))
 
 ####################################################################
-#### Divergencia a infinito de funciones de R a R^n en infinito ####
+#### DIVERGENCIA A INFINITO DE FUNCIONES DE R A R^n EN INFINITO ####
 ####################################################################
 class Limites_Al_Infinito(ThreeDScene):
     def cur_1(self, t):
@@ -1724,7 +1730,9 @@ class LimiteR2aR2(Scene):
         self.wait(2)
         self.play(FadeOut(text5))
 
-###Definición de Gráficas###
+##############################
+### DEFINICIÓN DE GRÁFICAS ###
+##############################
 
 class Definición_Gráficas(GraphScene,Scene):
     def setup(self):
@@ -2963,7 +2971,10 @@ class ConjNiv_R3(ThreeDScene,Scene):
         )
         self.wait(2)
 
-####IMAGEN INVERSA
+######################
+### IMAGEN INVERSA ###
+######################
+
 class ImgInversa(GraphScene):
     def construct(self):
         titulo = TextMobject("Imagen inversa de un conjunto ")
@@ -3145,9 +3156,8 @@ class ImgInversa(GraphScene):
         
 
 
-####
-#### ExtremeValue y Superficies (la que sigue) pertenecen a un mismo video.
-
+#################################
+### TEOREMA DEL VALOR EXTREMO ###
 class ExtremeValue(GraphScene, Scene):
     def setup(self):
         Scene.setup(self)
@@ -3503,7 +3513,11 @@ class FunContinuasEnAbiertos (Scene):
         self.wait(5)
         self.play(FadeOut(textf2))
 
-## Teorema fuerte: Continuas son acotadas en compactos ##
+        
+#########################################################################
+### TEOREMA FUERTE: LAS FUNCIONES CONTINUAS SON ACOTADAS EN COMPACTOS ###
+#########################################################################
+
 
 class Continua_y_acotada(Scene):
     def construct(self):
