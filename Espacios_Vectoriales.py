@@ -939,9 +939,9 @@ class Propiedades_Norma(Scene):
 
         
  
-##################################
-#### DIFERENTES NORMAS EN R^N #####
-##################################
+#####################################
+#### DIFERENTES TIPOS DE NORMAS #####
+#####################################
 
 class Normas(Scene):
     def construct(self):
@@ -1111,9 +1111,9 @@ class Normas(Scene):
         self.play(FadeOut(conclus))
        
         
-##############################
-#### PROD. INTERIOR Y NORMA #####
-##############################
+#######################################
+#### PRODUCTO INTERNO DE VECTORES #####
+#######################################
 
 class Producto_Interior(Scene):
     def construct(self):
@@ -1330,9 +1330,9 @@ class Producto_Interior(Scene):
         self.play(FadeOut(lambda_d), FadeOut(sii), FadeOut(thetaa), FadeOut(esun))
         self.wait()
 
-#######################################
-######### Función proyección  #########
-#######################################
+###################################################
+######### VECTOR PROYECCIÓN DE X SOBRE Y  #########
+###################################################
 
 class Proyeccion (ThreeDScene):
 
