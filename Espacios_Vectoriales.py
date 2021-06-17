@@ -182,9 +182,9 @@ class Opera(Scene):
         self.wait(3)
         self.play(FadeOut(ejem), FadeOut(ejem2))
         
-#########################
-#### CONMUTATIVIDAD #####
-#########################
+######################################
+#### CONMUTATIVIDAD CON VECTORES #####
+######################################
 
 class Conmutatividad(Scene):
     def construct(self):
@@ -269,9 +269,9 @@ class Conmutatividad(Scene):
         self.wait()
 
 
-#########################
-#### ASOCIATIVIDAD #####
-#########################
+####################################
+#### ASOCIATIVIDAD DE VECTORES #####
+####################################
 
 class Asociatividad(Scene):
     def construct(self):
@@ -382,9 +382,9 @@ class Asociatividad(Scene):
         self.wait(2)
        
     
-#####################################
-#### DISTRIBUCION SUMA ESCALARES #####
-#####################################
+#########################################################
+#### PROPIEDAD DISTRIBUTIVA EN UN ESPACIO VECTORIAL #####
+#########################################################
 
 class Distribucion_Suma_Escalares(Scene):
     def construct(self):
@@ -467,9 +467,9 @@ class Distribucion_Suma_Escalares(Scene):
         self.wait(4)
 
        
-#########################
-#### INVERSO ADITIVO #####
-#########################
+#######################################
+#### INVERSO ADITIVO DE UN VECTOR #####
+#######################################
 
 class Inverso_Aditivo(Scene):
     def construct(self):
@@ -560,9 +560,9 @@ class Inverso_Aditivo(Scene):
         self.play(FadeOut(gpo_Fade))
         self.play(Write(gpo_x))
         
-#########################
-#### BASES #####
-#########################
+########################################
+#### BASES DE ESPACIOS VECTORIALES #####
+########################################
 
 class Bases(Scene):
     def construct(self):
