@@ -879,9 +879,9 @@ class Limites_Al_Infinito(ThreeDScene):
         t_7[1].set_color(YELLOW)
         t_8 = TextMobject('''¿Qué crees que sucede cuando $t \\rightarrow - \\infty$?''')
 
-#############################################################################################################
-######## Divergencia a infinito de funciones de \n $\\mathbb{R}\\rightarrow\\mathbb{R}^{n}$ en un punto $t_0 ####
-#############################################################################################################
+##############################################################################
+######## DIVERGENCIA A INFINITO DE FUNCIONES DE R A R^n EN UN PUNTO t_0 ######
+##############################################################################
 class Divergencia_A_Infinito(ThreeDScene):
     def cur_1(self, t):
         return np.array([t, 1/(1-t), t**2])
