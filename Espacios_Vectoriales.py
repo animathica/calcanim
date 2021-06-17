@@ -657,9 +657,9 @@ class Bases(Scene):
         self.play(ReplacementTransform(VGroup(v_1_mov_v_1, grid, v_1), t_13))
         self.wait(3)
 
-##############################
-#### NORMA Y PROPIEDADES #####
-##############################
+############################################
+#### NORMA EUCLIDIANA Y SUS PROPIEDADES ####
+############################################
 
 ### Modifica estos vectores visualizar la primera propiedad, NO se dibujan partiendo del origen
 v1 = np.array([2, 1, 0])
