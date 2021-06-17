@@ -1,9 +1,9 @@
 from manimlib.imports import *
 
 
-#########################
+#############################
 #### CONJUNTOS ABIERTOS #####
-#########################
+#############################
 
 
 class Conjuntos_abiertos(Scene):
@@ -245,9 +245,9 @@ class Conjuntos_abiertos(Scene):
         self.wait()
 
 
-#########################
+#############################
 #### CONJUNTOS CERRADOS #####
-#########################
+#############################
 
 
 class Conjuntos_cerrados(Scene):
@@ -506,9 +506,9 @@ class Conjuntos_cerrados(Scene):
         self.wait()
 
 
-#########################
-#### OBSERVACION CERRADOS/ABIERTOS #####
-#########################
+########################################
+####### NI ABIERTO, NI CERRADO ########
+########################################
 
 
 class ObservacionCerradosAbiertos(Scene):
@@ -759,9 +759,9 @@ class Grid(VGroup):
             )
 
 
-#############################
-#### DISCONEXOS/CONEXOS #####
-#############################
+##########################################
+##### CONJUNTOS CONEXOS Y DISCONEXOS #####
+##########################################
 
 ##Vídeo conjuntos conexos y diconexos
 class ConjuntosConexos(Scene):
@@ -1585,9 +1585,9 @@ class ScreenGrid(VGroup):
         self.add(grid, axes, labels)
 
 
-###################################
-#### PUNTOS AISLADOS/ACUMULACION #####
-###################################
+#############################################################
+#### PUNTOS AISLADOS, DE ACUMULACION Y CONJUNTO DERIVADO ####
+#############################################################
 
 
 class Puntos_Aislado_y_Acumulacion(Scene):
@@ -1790,9 +1790,9 @@ class Puntos_Aislado_y_Acumulacion(Scene):
         self.play(FadeOut(propiedades))
 
 
-########################
-#### CUBIERTAS     #####
-########################
+#################################
+#### CUBIERTA DE UN CONJUNTO ####
+#################################
 
 
 class Cubierta(Scene):
@@ -1950,9 +1950,9 @@ class Cubierta(Scene):
         self.play(FadeOut(Group_4))
 
 
-#########################
-######## Bolas ##########
-#########################
+#####################################
+######## BOLAS Y VECINDADES #########
+#####################################
 
 
 class Bolas(Scene):
@@ -2059,7 +2059,7 @@ class Bolas(Scene):
 
 
 #######################
-### Tipos de puntos ###
+### TIPOS DE PUNTOS ###
 #######################
 
 
@@ -2254,9 +2254,9 @@ class TiposPuntos(Scene):
         self.play(FadeOut(texto_7))
 
 
-#######################
-### Num Lebesgue ######
-#######################
+############################
+### NÚMERO DE LEBESGE ######
+############################
 
 
 class NumLebesgue(Scene):
@@ -2487,9 +2487,9 @@ class ScreenGrid(VGroup):
         self.add(grid, axes, labels)
 
 
-#########################
-#### CERRADURA #####
-#########################
+##################################
+#### CERRADURA DE UN CONJUNTO ####
+##################################
 
 
 class Cerradura(Scene):
@@ -2602,7 +2602,13 @@ class Cerradura(Scene):
         self.play(Write(prop1))
         self.wait(14)
         self.play(FadeOut(text3), FadeOut(prop1))
- 
+
+        
+        
+###########################
+### CONJUNTOS COMPACTOS ###
+###########################
+
 class Compactos(Scene):
     
     def construct(self):
