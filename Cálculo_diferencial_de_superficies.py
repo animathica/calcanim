@@ -520,7 +520,7 @@ class superficie2_4_4(ParametricSurface):
     def func(self, x, y):
        return np.array([x,y,((x-y)**2)**(1/2)/(x+y)**2])
 
-class super3 (ThreeDScene):
+class Limite_de_cocientes_de_dos_variables (ThreeDScene):
     ### Parte 1 de la animación
     def parte0 (self):
         titulo=TextMobject('''Límite de Cocientes \n
