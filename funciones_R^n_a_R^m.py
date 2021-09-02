@@ -855,8 +855,22 @@ class CamposLineales2(Scene):
 ############## Funciones de R^2 en R^3: superficies parametrizadas ########
 ############################################################################
 
-###PARA ESTA CLASE ES NECESARIO APLICAR LA SOLUCION A LOS VECTORES 3D, TAL COMO EN LA SIGUIENTE LIGA ###
-###https://github.com/3b1b/manim/issues/774###
+###PARA ESTA CLASE ES NECESARIO APLICAR LA SOLUCION A LOS VECTORES 3D, TAL COMO SE SIGUE A CONTINUACIÓN ###
+### En el archivo geometry.py (manimlib/mobject/geometry.py) de la biblioteca de manim pegar el siguiente código debajo de ###
+### la definición de tip.rotate() dentro del método position_tip(): ###
+###    angle = angle_of_vector(handle - anchor) + PI/2   ###
+###    a = np.array((np.cos(angle),np.sin(angle),0))     ###
+###    tip.rotate(-phi_of_vector(handle - anchor),a)     ###
+### Además, en el archvio space_ops.py (manimlib/utils/space_ops.py) añadir el siguiente método: ###
+### def phi_of_vector(vector):                           ###
+###    xy = complex(*vector[:2])                         ###
+###    if xy == 0:                                       ###
+###        return 0                                      ###
+###    a = ((vector[:1])**2 + (vector[1:2])**2)**(1/2)   ###
+###    vector[0] = a                                     ###
+###    vector[1] = vector[2]                             ###
+###    return np.angle(complex(*vector[:2]))             ###
+
 class superficies_parametrizadas (ThreeDScene, Scene):
     def setup(self):
         Scene.setup(self)
