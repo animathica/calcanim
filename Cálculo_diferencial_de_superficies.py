@@ -1896,7 +1896,7 @@ class grafica_r4(ThreeDScene):
                              ''','''superficie de nivel''',''' muy conocida:''')
         t_7[1].set_color(ORANGE)
         t_8 = TextMobject('''Es una esfera hueca, compacta, \\\\
-                             con centro en el origen y radio $t$.''')
+                             con centro en el origen y radio $\\sqrt{t}$.''')
         t_9 = TextMobject('''Finalmente juntamos estas ''','''superficies de nivel''',''' \\\\ 
                              en nuestro video y obtenemos la gráfica.\\\\
                              ¡La ''','''gráfica de $f$''',''' es un sólido en $\\mathbb{R}^4$!''')
