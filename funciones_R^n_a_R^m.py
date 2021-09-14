@@ -871,7 +871,7 @@ class CamposLineales2(Scene):
 ###    vector[1] = vector[2]                             ###
 ###    return np.angle(complex(*vector[:2]))             ###
 ### También puedes encontrar los archivos modificados (geometry.py y space_ops.py)  en este branch
-### dentro de la carperta Manim extra,sólo necesitas reemplar los archivos del mismo nombre en las 
+### dentro de la carperta Modificaciones Manim,sólo necesitas reemplar los archivos del mismo nombre en las 
 ### direcciones previamente descritas. 
 
 
