@@ -425,10 +425,12 @@ class Polares_y_Cartesianas(Scene):
         self.parte3()
         self.parte4()
 
+
+
 ##########################################################################
 #################### Campos lineales 2 ##################################
 #########################################################################
-# 09/04/2021
+# 11/10/2021
 class CamposLineales2(Scene):
 
     def parte1(self):
@@ -841,7 +843,6 @@ class CamposLineales2(Scene):
         self.parte2()
         self.parte3()
         self.parte4()
-
 
 
 
