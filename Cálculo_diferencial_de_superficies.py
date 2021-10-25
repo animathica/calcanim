@@ -214,7 +214,7 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         text8_1 = TextMobject('''Si $k=-1$, la gráfica de $kf_0(x,y)$ es la reflexión de la gráfica \n
                                 de $f_0$ respecto al plano $yz$. ''').move_to(3 * UP)
         text9 = TextMobject('''Si tomamos $f_1(x,y)=f_0(x,-y)$, la gráfica de $f_1$ \n
-                                es la reflexión de la gráfica de $f_0$ respecto al plano $yz$.''').move_to(2.5 * UP)
+                                es la reflexión de la gráfica de $f_0$ respecto al plano $xz$.''').move_to(2.5 * UP)
         text9.bg = SurroundingRectangle(text9, color=WHITE, fill_color=BLACK, fill_opacity=1)
         t_9=VGroup(text9.bg,text9)
         text10 = TextMobject('''Mientras que la gráfica de $f_2(x,y)=f_1(-x,-y)$ es una \n
@@ -237,7 +237,10 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         t_15=VGroup(text15.bg,text15)
         text16 = TextMobject('''Modifica el código para crear más ejemplos.''')
 
-        axes = ThreeDAxes()
+        ejes = ThreeDAxes(x_max=4.7,y_max=4.5)
+        eje_x = TexMobject(r"x").move_to(5.1*RIGHT).scale(1.3)
+        eje_y = TexMobject(r"y",fill_color=BLACK).move_to(3*UP).scale(1.3)
+        axes = VGroup(ejes,eje_x,eje_y)
         # Superficies
         superficie1 = superficie_1()
         fondo = Rectangle(height=1, width=10, fill_opacity=1, fill_color=BLACK).move_to(text11)
@@ -250,10 +253,94 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         superficie4 = superficie_2()
         superficie5 = superficie_3()
         superficie6 = superficie_4()
+       
+        
+        #    
+        r1=1
+        k1=2
 
+       
+       
         superficie7 = superficie_5()
+        superficie7_1= ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (np.sin(3 * (u + v)) + v) * 0.3
+            ]),v_min=-2.5,v_max=-1.5,u_min=-2.5,u_max=-1.5,fill_opacity=1,checkerboard_colors=[RED,RED])
+        superficie7_2= ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (np.sin(3 * (u + v)) + v) * 0.3
+            ]),v_min=-2.5,v_max=-1.5,u_min=2.5,u_max=1.5,fill_opacity=1,checkerboard_colors=[TEAL_D,TEAL_D])
+        superficie7_3= ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (np.sin(3 * (u + v)) + v) * 0.3
+            ]),v_min=2.5,v_max=1.5,u_min=-2.5,u_max=-1.5,fill_opacity=1,checkerboard_colors=[PURPLE_E,PURPLE_E])
+        superficie7_4= ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (np.sin(3 * (u + v)) + v) * 0.3
+            ]),v_min=2.5,v_max=1.5,u_min=2.5,u_max=1.5,fill_opacity=1,checkerboard_colors=[PINK,PINK])
+
+
+
         superficie7_reflejadayz = superficie_5_reflejada()
+        superficie7_reflejadayz1= ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (np.sin(3 * (u - v)) - v) * 0.3
+            ]),v_min=-2.5,v_max=-1.5,u_min=-2.5,u_max=-1.5,fill_opacity=1,checkerboard_colors=[PURPLE_E,PURPLE_E])
+        superficie7_reflejadayz2= ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (np.sin(3 * (u - v)) - v) * 0.3
+            ]),v_min=-2.5,v_max=-1.5,u_min=2.5,u_max=1.5,fill_opacity=1,checkerboard_colors=[PINK,PINK])
+        superficie7_reflejadayz3= ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (np.sin(3 * (u - v)) - v) * 0.3
+            ]),v_min=2.5,v_max=1.5,u_min=-2.5,u_max=-1.5,fill_opacity=1,checkerboard_colors=[RED,RED])
+        superficie7_reflejadayz4= ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (np.sin(3 * (u - v)) - v) * 0.3
+            ]),v_min=2.5,v_max=1.5,u_min=2.5,u_max=1.5,fill_opacity=1,checkerboard_colors=[TEAL_D,TEAL_D])
+
+
         superficie8 = superficie_5_reflejada1()
+        superficie7_reflejada1= ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (np.sin(3 * (-u + v)) + v) * 0.3
+            ]),v_min=-2.5,v_max=-1.5,u_min=-2.5,u_max=-1.5,fill_opacity=1,checkerboard_colors=[RED,RED])
+        superficie7_reflejada2= ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (np.sin(3 * (-u + v)) + v) * 0.3
+            ]),v_min=-2.5,v_max=-1.5,u_min=2.5,u_max=1.5,fill_opacity=1,checkerboard_colors=[TEAL_D,TEAL_D])
+        superficie7_reflejada3= ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (np.sin(3 * (-u + v)) + v) * 0.3
+            ]),v_min=2.5,v_max=1.5,u_min=-2.5,u_max=-1.5,fill_opacity=1,checkerboard_colors=[PURPLE_E,PURPLE_E])
+        superficie7_reflejada4= ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (np.sin(3 * (-u + v)) + v) * 0.3
+            ]),v_min=2.5,v_max=1.5,u_min=2.5,u_max=1.5,fill_opacity=1,checkerboard_colors=[PINK,PINK])
 
         superficie9 = superficie_6()
         superficie10 = superficie_6_1()
@@ -312,7 +399,8 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         self.play(Write(t_8))
         self.wait(4)
         ##Superficie reflejada
-        self.play(ShowCreation(superficie7))
+        self.play(ShowCreation(superficie7),ShowCreation(superficie7_1),ShowCreation(superficie7_2),ShowCreation(superficie7_3),
+                                                    ShowCreation(superficie7_4))
         self.wait()
         self.play(FadeOut(t_8))
         self.add_fixed_in_frame_mobjects(t_9)
@@ -320,16 +408,20 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         self.wait(5)
         # Superficie reflejada 2
         self.wait(3)
-        self.play(ReplacementTransform(superficie7, superficie7_reflejadayz))
+        self.play(ReplacementTransform(superficie7, superficie7_reflejadayz),ReplacementTransform(superficie7_1,superficie7_reflejadayz1),
+                    ReplacementTransform(superficie7_2,superficie7_reflejadayz2),ReplacementTransform(superficie7_3,superficie7_reflejadayz3),
+                    ReplacementTransform(superficie7_4,superficie7_reflejadayz4))
         self.wait(4)
         self.play(FadeOut(t_9))
         self.add_fixed_in_frame_mobjects(t_10)
         self.play(Write(t_10))
         self.wait(11)
-        self.play(ReplacementTransform(superficie7_reflejadayz, superficie8))
+        self.play(ReplacementTransform(superficie7_reflejadayz, superficie8),ReplacementTransform(superficie7_reflejadayz1,superficie7_reflejada1),
+                    ReplacementTransform(superficie7_reflejadayz2,superficie7_reflejada2),ReplacementTransform(superficie7_reflejadayz3,superficie7_reflejada3),
+                    ReplacementTransform(superficie7_reflejadayz4,superficie7_reflejada4))
         self.wait(5)
         self.play(FadeOut(t_10))
-        self.play(FadeOut(superficie8))
+        self.play(FadeOut(superficie8),FadeOut(superficie7_reflejada1),FadeOut(superficie7_reflejada2),FadeOut(superficie7_reflejada3),FadeOut(superficie7_reflejada4))
         self.add_fixed_in_frame_mobjects(fondo)
         self.add_fixed_in_frame_mobjects(text11)
         self.play(Write(text11), ShowCreation(fondo))
@@ -361,6 +453,8 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
         self.play(Write(text16))
         self.wait(8)
         self.play(FadeOut(text16))
+
+
 
 #####################################################################################
 #############  Límite de cocientes de funciones de dos variables ####################
