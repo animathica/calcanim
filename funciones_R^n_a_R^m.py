@@ -849,7 +849,7 @@ class CamposLineales2(Scene):
 ##########################################################################
 ############## Funciones de R^2 en R^3: superficies parametrizadas ########
 ############################################################################
-
+#26/10/2021
 ###PARA ESTA CLASE ES NECESARIO APLICAR UNA CORRECCIÓN A LOS VECTORES 3D, TAL COMO SE SIGUE A CONTINUACIÓN ###
 ### En el archivo geometry.py (manimlib/mobject/geometry.py) de la biblioteca de manim pegar el siguiente código debajo de ###
 ### la definición de tip.rotate() dentro del método position_tip(): ###
@@ -865,10 +865,9 @@ class CamposLineales2(Scene):
 ###    vector[0] = a                                     ###
 ###    vector[1] = vector[2]                             ###
 ###    return np.angle(complex(*vector[:2]))             ###
-### También puedes encontrar los archivos modificados (geometry.py y space_ops.py)  en este branch
-### dentro de la carperta Modificaciones Manim,sólo necesitas reemplar los archivos del mismo nombre en las 
-### direcciones previamente descritas. 
-
+############################################################
+### También puedes encontrar los archivos modificados (geometry.py y space_ops.py)  en este branch,
+### sólo necesitas reemplazarr los archivos del mismo nombre en las direcciones previamente descritas. 
 
 class superficies_parametrizadas (ThreeDScene, Scene):
     def setup(self):
@@ -1013,7 +1012,7 @@ Nuestro ejemplo no tiene puntos críticos.''').move_to(3*UP)
         self.play(FadeIn(parcial_y_arrow_tip),FadeIn(parcial_y_1))
         self.wait(3)
         self.acomodar_textos(texto_8)
-        self.wait(7)
+        self.wait(22)
         self.FadeOutWrite3D(texto_8,texto_9)
         self.wait(7)
         self.add_fixed_in_frame_mobjects(vector_normal_arrow_tip)
@@ -1028,7 +1027,7 @@ Nuestro ejemplo no tiene puntos críticos.''').move_to(3*UP)
         self.play(FadeOut(plano),FadeOut(punto))
         self.FadeOutWrite3D(texto_10,texto_11)
         self.play(FadeIn(punto_critico))
-        self.wait(11)
+        self.wait(25)
         self.FadeOutWrite3D(texto_11, texto_12)
         self.wait(5.6)
         self.play(
