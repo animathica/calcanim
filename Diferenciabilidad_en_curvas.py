@@ -313,7 +313,8 @@ class Reparametrizacion_y_regla_de_la_cadena2(ThreeDScene):
         text12 = TextMobject('''Hay otra forma de saber si la reparametrización\n
         cambia el sentido. Si la derivada de la función que \n
         induce una reparametrización es positiva, \n
-        no cambia el sentido; si es negativa, sí cambia. ''')
+        entonces se conserva el sentido; si es negativa, \n
+        sí cambia. ''')
         text13 = TextMobject('''¿Se te ocurre cómo saber cuál es el sentido \n
                                     de una curva simple cerrada? ''')
         text14 = TextMobject('''Modifica el código para crear más ejemplos.''')
