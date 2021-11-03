@@ -1,7 +1,7 @@
 from manimlib.imports import *
 
 ######################################################
-##### Reparametrizacion y regla de la cadena #########
+##### Reparametrizacion de curvas #########
 #######################################################
 
 # Esta animación está en creada en partes, uniendo las animaciones al final del código
