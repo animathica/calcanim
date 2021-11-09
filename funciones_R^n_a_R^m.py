@@ -427,8 +427,9 @@ class Polares_y_Cartesianas(Scene):
 
 
 
-#########################################################################
-################# Campos Lineales y Cambios de Coordenadas ##############
+from manimlib.imports import *
+##########################################################################
+############# Campos lineales y Cambios de Coordenadas ###################
 #########################################################################
 # 11/10/2021
 class CamposLineales2(Scene):
@@ -465,19 +466,19 @@ class CamposLineales2(Scene):
         text4[4].set_color(BLUE_C)
         text4[6].set_color(BLUE_C)
         text5 = TextMobject('''En general, podemos escribir cualquier elemento en \n
-                             las coordenadas canónicas, a las coordenadas ''', '''$\\gamma$''', ''' \n
+                             las coordenadas canónicas, a las coordenadas ''', '''$\\beta$''', ''' \n
                             con la siguiente transformación lineal.''').move_to(1 * UP)
         text5[1].set_color(BLUE_C)
-        text5_1 = TexMobject(r'''f((x,y)_\beta)=\begin{bmatrix}
+        text5_1 = TexMobject(r'''f((x,y)_\gamma)=\begin{bmatrix}
                                 1 & 0\\
                                 1 & 1 
                                 \end{bmatrix}\begin{bmatrix}
                                 x\\
                                 y  
-                                \end{bmatrix}_\beta=\begin{bmatrix}
+                                \end{bmatrix}_\gamma=\begin{bmatrix}
                                 x' \\
                                 y' 
-                                \end{bmatrix}_\gamma  ''').move_to(text5.get_center() + 2 * DOWN)
+                                \end{bmatrix}_\beta  ''').move_to(text5.get_center() + 2 * DOWN)
 
         linea1 = Arrow([0, -1, 0], [1, -1, 0], **ejes_config).set_color(YELLOW_C)
         linea2 = Arrow([0, -1, 0], [0, 0, 0], **ejes_config).set_color(YELLOW_C)
@@ -531,19 +532,19 @@ class CamposLineales2(Scene):
                                  a la función es diferente de 0, la función posee \n
                                  inversa y es biyectiva. ''')
         text8 = TextMobject('''Entonces la función que nos traduce los vectores \n
-                                 descritos con el conjunto ''', '''$\gamma$ ''', '''a la \n
-                                 base canónica es''').move_to(1 * UP)
+                                 descritos con el conjunto ''', '''$\beta$ ''', '''a la \n
+                                 base ($\\gamma$)es''').move_to(1 * UP)
         text8[1].set_color(BLUE_C)
-        text8_1 = TexMobject(r'''f^{-1} ((x,y)_\gamma)=\begin{bmatrix}
+        text8_1 = TexMobject(r'''f^{-1} ((x,y)_\beta)=\begin{bmatrix}
                                                     1 & 0\\
                                                     -1 & 1 
                                                     \end{bmatrix}\begin{bmatrix}
                                                     x\\
                                                     y  
-                                                    \end{bmatrix}_\gamma=\begin{bmatrix}
+                                                    \end{bmatrix}_\beta=\begin{bmatrix}
                                                     x' \\
                                                     y' 
-                                                    \end{bmatrix}_\beta ''').move_to(text8.get_center() + 2 * DOWN)
+                                                    \end{bmatrix}_\gamma ''').move_to(text8.get_center() + 2 * DOWN)
         text9 = TextMobject('''Como habrás notado, en realidad''', ''' $\\gamma$''', ''' es \n
                             una base del plano cartesiano porque \n
                                 a) sus elementos son linealmente independientes y \n
