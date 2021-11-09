@@ -427,7 +427,6 @@ class Polares_y_Cartesianas(Scene):
 
 
 
-from manimlib.imports import *
 ##########################################################################
 ############# Campos lineales y Cambios de Coordenadas ###################
 #########################################################################
