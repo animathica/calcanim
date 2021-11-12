@@ -1214,7 +1214,7 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
 #############################################################
 ############## Planos y su inclinación #####################
 ###########################################################
-#anexado el 17/03/2021
+#anexado el 11/11/2021
 
 
 class Planos(ThreeDScene):
@@ -1233,43 +1233,37 @@ class Planos(ThreeDScene):
         titulo = TextMobject('''Planos y Su Inclinación''').scale(1.5)
         t_1 = TextMobject('''En $\\mathbb{R}^3$ un plano puede ser descrito como \n
         una superficie lisa, sin subidas ni bajadas. ''')
-        t_2 = TextMobject('''Algunos planos son gráficas de funciones de $\\mathbb{R}^2$ en $\\mathbb{R},$''')
-        t_3 = TextMobject('''$ f(x,y) = ax + by  \\mbox{ con } a,b \\in \\mathbb{R},$''')
-        t_4 = TextMobject('''Cualquier plano no vertical intersecta  \n
-        a los planos $xz$ y $yz$ en dos rectas, ''')
-        t_5 = TextMobject('''cada una en los planos respectivos \n
+        t_2 = TextMobject('''Algunos planos son gráficas de funciones de $\\mathbb{R}^2$ en $\\mathbb{R},$ \n
+                            $ f(x,y) = ax + by  \\mbox{ con } a,b \\in \\mathbb{R}.$''')
+        t_3 = TextMobject('''Cualquier plano no vertical intersecta  \n
+        a los planos $xz$ y $yz$ en dos rectas, \n
+        cada una en los planos respectivos \n
         son de pendiente $a$ y $b$.''')
-        t_6 = TextMobject('''Veamos a que nos referimos con esto gráficamente.''')
-        t_7 = TextMobject('''Tomemos una recta ''', '''$\\mathcal{L}_1$''', ''' en el plano $xz$ de pediente 5 ''').to_edge(UP)
-        t_7.set_color_by_tex_to_color_map({'''$\\mathcal{L}_1$''': TEAL})
-        t_7_bg = SurroundingRectangle(t_7, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        t_8 = TextMobject('''y otra recta ''','''$\\mathcal{L}_2$''', ''' en el plano $yz$ de pendiente 3.''').to_edge(UP)
-        t_8.set_color_by_tex_to_color_map({'''$\\mathcal{L}_2$''': RED})
-        t_8_bg = SurroundingRectangle(t_8, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        t_9 = TextMobject('''Ahora observemos que el plano \n
+        t_4 = TextMobject('''Veamos a que nos referimos con esto gráficamente.''')
+        t_5 = TextMobject('''Tomemos una recta ''', '''$\\mathcal{L}_1$''', ''' en el plano $xz$ de pediente 5. ''').to_edge(UP)
+        t_5.set_color_by_tex_to_color_map({'''$\\mathcal{L}_1$''': TEAL})
+        t_5_bg = SurroundingRectangle(t_5, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        t_6 = TextMobject('''Y otra recta ''','''$\\mathcal{L}_2$''', ''' en el plano $yz$ de pendiente 3.''').to_edge(UP)
+        t_6.set_color_by_tex_to_color_map({'''$\\mathcal{L}_2$''': RED})
+        t_6_bg = SurroundingRectangle(t_6, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        t_7 = TextMobject('''Ahora observemos que el plano \n
         $f(x,y) = 5x + 3x$ \n
         contiene a ambas rectas.''').to_edge(UP)
-        t_9_bg = SurroundingRectangle(t_9, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        t_10 = TextMobject('''Este plano es el único que contiene \n
-        ambas rectas y por lo tanto ''').to_edge(UP)
-        t_10_bg = SurroundingRectangle(t_10, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        t_11 = TextMobject('''este plano queda totalmente \n
+        t_7_bg = SurroundingRectangle(t_7, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        t_8 = TextMobject('''Este plano es el único que contiene ambas rectas y \n
+        por lo tanto este plano queda totalmente \n
         caracterizado por estas.''').to_edge(UP)
-        t_11_bg = SurroundingRectangle(t_11, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        t_12 = TextMobject(''' En particular la inclinación \n
-        del plano queda determinada  \n
-        por el vector ''','''$(5,3)$''',''',''').to_edge(UP)
-        t_12_bg = SurroundingRectangle(t_12, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        t_12.set_color_by_tex_to_color_map({'''$(5,3)$''': GREEN})
-        t_13 = TextMobject('''es decir por la \n
-        inclinación de las rectas. ''').to_edge(UP)
-        t_13_bg = SurroundingRectangle(t_13, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        t_14 = TextMobject('''Se puede demostrar que $f:\\mathbb{R}^2\\rightarrow\\mathbb{R}$ es lineal \n
+        t_8_bg = SurroundingRectangle(t_8, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        t_9 = TextMobject(''' En particular la inclinación del plano queda determinada por el \n
+        vector ''','''$(5,3)$''',''', es decir por la inclinación de las rectas. ''').to_edge(UP)
+        t_9_bg = SurroundingRectangle(t_9, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        t_9.set_color_by_tex_to_color_map({'''$(5,3)$''': GREEN})
+        t_10 = TextMobject('''Se puede demostrar que $f:\\mathbb{R}^2\\rightarrow\\mathbb{R}$ es lineal \n
         si y sólo si $f(x,y)=ax+by=(a,b)\\cdot (x,y)$. ''')
-        t_15 = TextMobject('''Las gráficas de estas funciones corresponden a todos los \n
+        t_11 = TextMobject('''Las gráficas de estas funciones corresponden a todos los \n
         planos no verticales en $\\mathbb{R}^3$ que pasan por el origen.''')
-        t_16 = TextMobject('''¿Qué pasa con los planos que no pasan por el origen?''')
-        t_17 = TextMobject('''¿Cómo aplica este concepto de inclinación \n
+        t_12 = TextMobject('''¿Qué pasa con los planos que no pasan por el origen?''')
+        t_13 = TextMobject('''¿Cómo aplica este concepto de inclinación \n
          para el caso de un plano tangente?''')
 
 
@@ -1301,83 +1295,70 @@ class Planos(ThreeDScene):
         self.begin_ambient_camera_rotation(rate=0.2)
         self.add_fixed_in_frame_mobjects(titulo)
         self.play(Write(titulo))
-        self.wait(1)
+        self.wait(5)
         self.play(FadeOut(titulo))
         self.add_fixed_in_frame_mobjects(t_1)
         self.play(Write(t_1))
-        self.wait(5)
+        self.wait(12)
         self.play(FadeOut(t_1))
         self.add_fixed_in_frame_mobjects(t_2)
         self.play(Write(t_2))
-        self.wait(3)
+        self.wait(10)
         self.play(FadeOut(t_2))
         self.add_fixed_in_frame_mobjects(t_3)
         self.play(Write(t_3))
-        self.wait(1.5)
+        self.wait(15)
         self.play(FadeOut(t_3))
         self.add_fixed_in_frame_mobjects(t_4)
         self.play(Write(t_4))
-        self.wait(4)
+        self.wait(8)
         self.play(FadeOut(t_4))
-        self.add_fixed_in_frame_mobjects(t_5)
-        self.play(Write(t_5))
-        self.wait(3)
-        self.play(FadeOut(t_5))
-        self.add_fixed_in_frame_mobjects(t_6)
-        self.play(Write(t_6))
-        self.wait(5)
-        self.play(FadeOut(t_6))
         self.set_camera_orientation(phi=45*DEGREES,theta=55*DEGREES)
         self.play(LaggedStart(ShowCreation(axes)))
+        self.add_fixed_in_frame_mobjects(t_5_bg, t_5)
+        self.play(Write(t_5_bg), Write(t_5))
+        self.play(LaggedStart(ShowCreation(Group_1)))
+        self.wait(8)
+        self.play(FadeOut(t_5), FadeOut(t_5_bg))
+        self.wait(3)
+        self.add_fixed_in_frame_mobjects(t_6_bg, t_6)
+        self.play(Write(t_6_bg), Write(t_6))
+        self.play(LaggedStart(ShowCreation(Group_2)))
+        self.wait(8)
+        self.play(FadeOut(t_6), FadeOut(t_6_bg))
+        self.wait(2)
         self.add_fixed_in_frame_mobjects(t_7_bg, t_7)
         self.play(Write(t_7_bg), Write(t_7))
-        self.play(LaggedStart(ShowCreation(Group_1)))
+        self.play(LaggedStart(ShowCreation(Group_3)))
+        self.wait(15)
         self.play(FadeOut(t_7), FadeOut(t_7_bg))
         self.wait(5)
         self.add_fixed_in_frame_mobjects(t_8_bg, t_8)
         self.play(Write(t_8_bg), Write(t_8))
-        self.play(LaggedStart(ShowCreation(Group_2)))
+        self.wait(18)
         self.play(FadeOut(t_8), FadeOut(t_8_bg))
-        self.wait(5.5)
         self.add_fixed_in_frame_mobjects(t_9_bg, t_9)
         self.play(Write(t_9_bg), Write(t_9))
-        self.play(LaggedStart(ShowCreation(Group_3)))
-        self.play(FadeOut(t_9), FadeOut(t_9_bg))
-        self.wait(5)
-        self.add_fixed_in_frame_mobjects(t_10_bg, t_10)
-        self.play(Write(t_10_bg), Write(t_10))
-        self.wait(6)
-        self.play(FadeOut(t_10), FadeOut(t_10_bg))
-        self.add_fixed_in_frame_mobjects(t_11_bg, t_11)
-        self.play(Write(t_11_bg), Write(t_11))
-        self.wait(5.5)
-        self.play(FadeOut(t_11), FadeOut(t_11_bg))
-        self.add_fixed_in_frame_mobjects(t_12_bg, t_12)
-        self.play(Write(t_12_bg), Write(t_12))
         self.play(FadeIn(inclinacion))
-        self.wait(5)
-        self.play(FadeOut(t_12), FadeOut(t_12_bg))
-        self.add_fixed_in_frame_mobjects(t_13_bg, t_13)
-        self.play(Write(t_13_bg), Write(t_13))
-        self.wait(5)
-        self.play(FadeOut(t_13), FadeOut(t_13_bg))
+        self.wait(18)
+        self.play(FadeOut(t_9), FadeOut(t_9_bg))
         self.play(FadeOut(Group_1), FadeOut(Group_2), FadeOut(Group_3), FadeOut(axes), FadeOut(inclinacion))
-        self.add_fixed_in_frame_mobjects(t_14)
-        self.play(Write(t_14))
-        self.wait(5.5)
-        self.play(FadeOut(t_14))
-        self.add_fixed_in_frame_mobjects(t_15)
-        self.play(Write(t_15))
-        self.wait(7)
-        self.play(FadeOut(t_15))
-        self.add_fixed_in_frame_mobjects(t_16)
-        self.play(Write(t_16))
-        self.wait(5)
-        self.play(FadeOut(t_16))
-        self.add_fixed_in_frame_mobjects(t_17)
-        self.play(Write(t_17))
-        self.wait(5)
-        self.play(FadeOut(t_17))
+        self.add_fixed_in_frame_mobjects(t_10)
+        self.play(Write(t_10))
+        self.wait(10)
+        self.play(FadeOut(t_10))
+        self.add_fixed_in_frame_mobjects(t_11)
+        self.play(Write(t_11))
+        self.wait(10)
+        self.play(FadeOut(t_11))
+        self.add_fixed_in_frame_mobjects(t_12)
+        self.play(Write(t_12))
+        self.wait(8)
+        self.play(FadeOut(t_12))
+        self.add_fixed_in_frame_mobjects(t_13)
+        self.play(Write(t_13))
+        self.wait(10)
+        self.play(FadeOut(t_13))
 
 ###########################################################################
 ############### Teorema de la función implícita ###########################
