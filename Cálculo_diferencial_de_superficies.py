@@ -3465,7 +3465,8 @@ class Plano_tangente(ThreeDScene):
 ##################### Teoremas de diferenciabilidad ##########################
 ##############################################################################
 
-# Anexado el 07 de Julio de 2021.
+# Anexado el 07 de julio de 2021.
+# Corregido el 13 de noviembre de 2021.
     
 class Superficie(ParametricSurface):
 
@@ -3528,7 +3529,7 @@ class Teoremas_diferenciabilidad(ThreeDScene):
         
         text3 = TextMobject('''Teorema 2. ''', '''Si $f$ es diferenciable en un punto $\\vec{x}_{0}$ en el interior\n
                             del dominio, entonces existen todas las derivadas direccionales\n
-                            de $f$ en $\\vec{x}_{0}$. Particularmente existen todas las parciales''').next_to(text2, 2*DOWN)
+                            de $f$ en $\\vec{x}_{0}$. Particularmente existen todas las parciales.''').next_to(text2, 2*DOWN)
         
         text3.set_color_by_tex('''Teorema 2. ''', color = BLUE)
         
@@ -3537,20 +3538,21 @@ class Teoremas_diferenciabilidad(ThreeDScene):
         
         text4.set_color_by_tex('''Teorema 2''', color = BLUE)
         
-        func1 = TextMobject('''$f(x,y)=\\frac{x^{2}y}{x^{4}+y^{2}}$ si $(x, y)\\neq(0,0)$ y''').move_to(3*DOWN)
+        func1 = TextMobject('''$f(x,y)=\\frac{x^{2}y}{x^{4}+y^{2}}$ si $(x, y)\\neq(0,0)$ y''').move_to(2.8*DOWN)
+        
         func1.scale(0.8)
         
-        func2 = TextMobject('''$f(x,y)=0$ si $(x, y)=(0,0)$.''').next_to(func1, DOWN)
+        func2 = TextMobject('''$f(x,y)=0$ si $(x, y)=(0,0)$.''').next_to(func1, 0.8*DOWN)
+        
         func2.scale(0.8)
         
-        text5_1 = TextMobject('''Aplicando la definición de derivada direccional, \n
-                              para cualquier $\\vec{u} = (u_{1}, u_{2})$ tal que $||\\vec{u}|| = 1$,''').move_to(3*DOWN)
+        text5_1 = TextMobject('''Aplicando la definición de derivada direccional, para cualquier $\\vec{u} = (u_{1}, u_{2})$''').move_to(2.7*DOWN)
         
-        text5_1.scale(0.8)
+        text5_1.scale(0.7)
         
-        text5_2 = TextMobject('''$$D_{\\vec{u}}f(0, 0) = \\lim_{h\\to 0} \\frac{f(\\vec{x}_{0}+h\\vec{u})-f(\\vec{x}_{0})}{h} = \\lim_{h\\to 0} \\frac{u_{1}^{2}u_{2}}{h^{2}u_{1}^{4}+u_{2}^{2}}.$$''').move_to(3*DOWN)
+        text5_2 = TextMobject('''$$\\text{tal que }||\\vec{u}|| = 1,\\text{ } D_{\\vec{u}}f(0, 0) = \\lim_{h\\to 0} \\frac{f(\\vec{x}_{0}+h\\vec{u})-f(\\vec{x}_{0})}{h} = \\lim_{h\\to 0} \\frac{u_{1}^{2}u_{2}}{h^{2}u_{1}^{4}+u_{2}^{2}}.$$''').next_to(text5_1, 0.2*DOWN)
         
-        text5_2.scale(0.8)
+        text5_2.scale(0.7)
         
         text6 = TextMobject('''Si $u_{2}\\neq 0$, entonces $D_{\\vec{u}}f(0,0)=\\frac{u_{1}^{2}}{u_{2}}$.''').move_to(3*DOWN)
         
@@ -3564,14 +3566,13 @@ class Teoremas_diferenciabilidad(ThreeDScene):
         
         text8.scale(0.8)
         
-        text9_1 = TextMobject('''Sin embargo, si nos acercamos a $(0,0)$ por los puntos\n
-                              de la forma $(t,t^{2})$ con $t \\in\\mathbb{R}\\backslash{}\\{(0, 0)\\}$, encontraremos que''').move_to(3*DOWN)
+        text9_1 = TextMobject('''Sin embargo, si nos acercamos a $(0,0)$ por los puntos de la forma $(t,t^{2})$ con''').move_to(2.8*DOWN)
         
-        text9_1.scale(0.8)
+        text9_1.scale(0.6)
         
-        text9_2 = TextMobject('''$$\\lim_{(t, t^{2})\\to (0,0)}f(t,t^{2})=\\frac{1}{2}\\text{, por lo que } f \\text{ no es continua en }(0, 0).$$ ''').move_to(3*DOWN)
+        text9_2 = TextMobject('''$$t\\in\\mathbb{R}\\backslash{}\\{(0, 0)\\},\\text{ encontraremos que}\\lim_{(t, t^{2})\\to (0,0)}f(t,t^{2})=\\frac{1}{2},\\text{ por lo que }f\\text{ no es continua en }(0, 0).$$''').next_to(text9_1, 0.2*DOWN)
         
-        text9_2.scale(0.8)
+        text9_2.scale(0.6)
         
         text10 = TextMobject('''Como $f$ no es continua en $(0,0)$, por el ''', '''Teorema 1''', ''',\n
                               $f$ no es diferenciable en $(0, 0)$.''').move_to(3*DOWN)
@@ -3588,14 +3589,10 @@ class Teoremas_diferenciabilidad(ThreeDScene):
         
         text12.scale(0.8)
         
-        text13_1 = TextMobject('''Sin embargo, para cualquier $\\vec{u}=(u_{1},u_{2})$ tal que $||\\vec{u}||=1$, 
-                              $$\\lim_{h\\to 0}\\frac{f(\\vec{x}_{0}+h\\vec{u})-f(\\vec{x}_{0})}{h}=\\lim_{h\\to 0}\\frac{|h|}{h},$$''').move_to(3*DOWN)
+        text13 = TextMobject('''Sin embargo, para cualquier $\\vec{u}=(u_{1},u_{2})$ tal que $||\\vec{u}||=1$, 
+                              $$\\lim_{h\\to 0}\\frac{f(\\vec{x}_{0}+h\\vec{u})-f(\\vec{x}_{0})}{h}=\\lim_{h\\to 0}\\frac{|h|}{h},\\text{ de forma que } D_{\\vec{u}}f(0,0)\\text{ no existe.}$$''').move_to(3*DOWN)
         
-        text13_1.scale(0.8)
-        
-        text13_2 = TextMobject('''de forma que $D_{\\vec{u}}f(0,0)$ no existe.''').move_to(3*DOWN)
-        
-        text13_2.scale(0.8)
+        text13.scale(0.8)
         
         text14 = TextMobject('''Por el ''', '''Teorema 2''', ''', tenemos que $f$ no es diferenciable en $(0,0)$.''').move_to(3*DOWN)
         
@@ -3656,101 +3653,95 @@ class Teoremas_diferenciabilidad(ThreeDScene):
         dashed_curva = DashedVMobject(curva)
         
         # Escena
-        self.play(Write(title))
-        self.wait(2)
+        self.play(Write(title), run_time = 3)
+        self.wait(3)
         self.play(FadeOut(title))
         
-        self.play(Write(text1))
-        self.wait(2)
-        self.play(Write(text2))
-        self.wait(2)
-        self.play(Write(text3))
+        self.play(Write(text1), run_time = 3)
         self.wait(3)
+        self.play(Write(text2), run_time = 3)
+        self.wait(3)
+        self.play(Write(text3), run_time = 6)
+        self.wait(5)
         self.play(*[FadeOut(mob)for mob in self.mobjects])
         
         self.set_camera_orientation(np.pi/4, 0*np.pi)
         self.add_fixed_in_frame_mobjects(gpo_4)
-        self.play(Write(gpo_4))
-        self.play(ShowCreation(axes))
-        self.play(ShowCreation(superficie))
+        self.play(Write(gpo_4), run_time = 3)
+        self.wait(3)
+        self.play(ShowCreation(axes), ShowCreation(superficie), run_time = 2)
+        self.wait()
         self.add_fixed_in_frame_mobjects(func1)
         self.play(Write(func1))
         self.add_fixed_in_frame_mobjects(func2)
         self.play(Write(func2))
-        self.wait(2)
+        self.wait(3)
         self.play(FadeOut(func1), FadeOut(func2))
-        self.add_fixed_in_frame_mobjects(text5_1)
-        self.play(Write(text5_1))
         self.play(ShowCreation(Dirs))
-        self.wait(3)
-        self.play(FadeOut(text5_1))
+        self.add_fixed_in_frame_mobjects(text5_1)
+        self.play(Write(text5_1), run_time = 3)
         self.add_fixed_in_frame_mobjects(text5_2)
-        self.play(Write(text5_2))
-        self.wait(3)
-        self.play(FadeOut(text5_2))
+        self.play(Write(text5_2), run_time = 3)
+        self.wait(5)
+        self.play(FadeOut(text5_1), FadeOut(text5_2))
         self.play(FadeOut(Dir2), FadeOut(Dir4), FadeOut(Dir5), FadeOut(Dir6), FadeOut(Dir8))
         self.add_fixed_in_frame_mobjects(text6)
         self.play(Write(text6))
-        self.wait(2)
+        self.wait(3)
         self.play(FadeOut(text6))
         self.play(FadeOut(Dir1), FadeOut(Dir3), FadeOut(Dir7))
         self.play(ShowCreation(Dir5))
         self.add_fixed_in_frame_mobjects(text7)
-        self.play(Write(text7))
+        self.play(Write(text7), run_time = 3)
         self.wait(3)
         self.play(FadeOut(text7), FadeOut(Dir5))
         self.add_fixed_in_frame_mobjects(text8)
         self.play(Write(text8))
-        self.wait(2)
+        self.wait(3)
         self.play(FadeOut(text8))
         self.play(ShowCreation(dashed_curva))
         self.add_fixed_in_frame_mobjects(text9_1)
-        self.play(Write(text9_1))
-        self.wait(3)
-        self.play(FadeOut(text9_1))
+        self.play(Write(text9_1), run_time = 3)
         self.add_fixed_in_frame_mobjects(text9_2)
-        self.play(Write(text9_2))
-        self.wait(3)
-        self.play(FadeOut(text9_2), FadeOut(dashed_curva))
+        self.play(Write(text9_2), run_time = 4)
+        self.wait(5)
+        self.play(FadeOut(text9_1), FadeOut(text9_2), FadeOut(dashed_curva))
         self.add_fixed_in_frame_mobjects(text10)
-        self.play(Write(text10))
-        self.wait(3)
+        self.play(Write(text10), run_time = 3)
+        self.wait(5)
         self.play(FadeOut(text10))
         self.play(*[FadeOut(mob)for mob in self.mobjects])
         
         self.set_camera_orientation(0.7*np.pi/2, 0.25*np.pi)
         self.add_fixed_in_frame_mobjects(gpo_11)
-        self.play(Write(gpo_11))
+        self.play(Write(gpo_11), run_time = 3)
+        self.wait(3)
         graf_cono = VGroup(axes, cono, Dirs)
         graf_cono.move_to(ORIGIN)
         self.play(ShowCreation(axes), ShowCreation(cono))
-        self.wait(2)
+        self.wait(3)
         self.add_fixed_in_frame_mobjects(text12)
         self.play(Write(text12))
-        self.wait(2)
+        self.wait(3)
         self.play(FadeOut(text12))
         self.play(ShowCreation(Dirs), FadeOut(Dir4))
-        self.add_fixed_in_frame_mobjects(text13_1)
-        self.play(Write(text13_1))
+        self.add_fixed_in_frame_mobjects(text13)
+        self.play(Write(text13), run_time = 4)
         self.wait(5)
-        self.play(FadeOut(text13_1))
-        self.add_fixed_in_frame_mobjects(text13_2)
-        self.play(Write(text13_2))
-        self.wait(2)
-        self.play(FadeOut(text13_2))
+        self.play(FadeOut(text13))
         self.play(FadeOut(Dir1), FadeOut(Dir2), FadeOut(Dir3), FadeOut(Dir5), FadeOut(Dir6), FadeOut(Dir7) ,FadeOut(Dir8) )
         self.add_fixed_in_frame_mobjects(text14)
         self.play(Write(text14))
-        self.wait(2)
+        self.wait(3)
         self.play(FadeOut(text14))
         self.add_fixed_in_frame_mobjects(text15)
         self.play(Write(text15))
-        self.wait(2)
+        self.wait(3)
         self.play(*[FadeOut(mob)for mob in self.mobjects])
         
         self.set_camera_orientation(phi = 0, theta = -90*DEGREES)
         self.play(Write(text16))
-        self.wait(2)
-        self.play(Write(text17))
-        self.wait(10)
+        self.wait(3)
+        self.play(Write(text17), run_time = 8)
+        self.wait(8)
         self.play(*[FadeOut(mob)for mob in self.mobjects])
