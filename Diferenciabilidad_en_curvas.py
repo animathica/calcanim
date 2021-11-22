@@ -446,6 +446,23 @@ class Reparametrizacion_y_regla_de_la_cadena2(ThreeDScene):
 #En esta animación sólo se pueden modificar los intervalos en los que se evaluan las parametrizaciones
 #Sin embargo se puede aconsejar que se analice el código para crear sus propias animaciones sobre derivadas 
 #O para visualizar como se dibujan las curvas dependiendo de la parametrización
+
+###PARA ESTA CLASE ES NECESARIO APLICAR UNA CORRECCIÓN A LOS VECTORES 3D, TAL COMO SE SIGUE A CONTINUACIÓN ###
+### En el archivo geometry.py (manimlib/mobject/geometry.py) de la biblioteca de manim pegar el siguiente código debajo de ###
+### la definición de tip.rotate() dentro del método position_tip(): ###
+###    angle = angle_of_vector(handle - anchor) + PI/2   ###
+###    a = np.array((np.cos(angle),np.sin(angle),0))     ###
+###    tip.rotate(-phi_of_vector(handle - anchor),a)     ###
+### Además, en el archvio space_ops.py (manimlib/utils/space_ops.py) añadir el siguiente método: ###
+### def phi_of_vector(vector):                           ###
+###    xy = complex(*vector[:2])                         ###
+###    if xy == 0:                                       ###
+###        return 0                                      ###
+###    a = ((vector[:1])**2 + (vector[1:2])**2)**(1/2)   ###
+###    vector[0] = a                                     ###
+###    vector[1] = vector[2]                             ###
+###    return np.angle(complex(*vector[:2]))             ###
+############################################################
  
 def gota(t):
     return [t**3 - 4*t,t**2 - 4,0]
