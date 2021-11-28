@@ -246,7 +246,7 @@ class integral_volumen (ThreeDScene, Scene):
         self.play(FadeIn(gpo_prismas_sup))
         self.begin_ambient_camera_rotation(rate=0.15)
         self.acomodar_textos(nota_1)
-        self.wait(8)
+        self.wait(10)
         self.play(FadeOut(nota_1))
         self.stop_ambient_camera_rotation()
         self.move_camera(phi=85 * DEGREES,theta=30*DEGREES,frame_center=(0,0,2))
