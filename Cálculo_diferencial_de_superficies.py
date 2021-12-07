@@ -1,9 +1,10 @@
 from manimlib.imports import *
 
-###########################################################
-###### Translaciones y Homotecias en Superficies ##########
-###########################################################
-#05/12/2021
+
+#####################################################################################
+###### Composición de una superficie con funciones lineales y traslaciones ##########
+#####################################################################################
+
 ##########esferas
 class superficie_1(ParametricSurface):
     def __init__(self, **kwargs):
