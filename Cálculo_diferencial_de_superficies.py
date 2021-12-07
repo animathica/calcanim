@@ -1368,7 +1368,6 @@ class Planos(ThreeDScene):
 ###########################################################################
 ############### Teorema de la función implícita ###########################
 ###########################################################################
-#11/10/2021
 #Las siguientes funciones se utilizan dentro de la clase Teorema_de_la_funcion_implicita
 def coord(x,y,z=0):
             return np.array([x,y,z])
@@ -1656,16 +1655,16 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         self.add_fixed_in_frame_mobjects(objeto)
         self.play(Write(objeto))
     def Primera_escena(self):
-        titulo = TextMobject('''Teorema de la función \n
+        titulo=TextMobject('''Teorema de la función \n
                                 implícita en funciones de \n 
                                 $\\mathbb{R}^2\\to\\mathbb{{R}}$''').scale(2)
-        text1 = TextMobject('''Sea $f:D \\subset \\mathbb{R}^2\\to \\mathbb{R}$, $D$ abierto y $f \\in C^1_D$.\n
+        text1=TextMobject('''Sea $f:D \\subset \\mathbb{R}^2\\to \\mathbb{R}$, $D$ abierto y $f \\in C^1_D$.\n
                                 Sea $(x_0,y_0)\\in D$ y $f(x_0,y_0)=k$ para alguna $k\\in \\mathbb{R}$ y\n
                                 $\\frac{\\partial f}{\\partial y}(x_0,y_0) \\neq 0$, entonces para alguna $\\epsilon>0$ \n
                                 $\\exists !$ tal que $g:V_\\epsilon(x_0)\\to \\mathbb{R}$ es acotada, $g\\in C^1_{V_\\epsilon(x_0)}$ y \n
                                 $f(x,g(x))=k$ para toda $x\\in V_\\epsilon(x_0)$.\n
                                 Además $$g'(x)=\\frac{-\\frac{\\partial f}{\\partial x}  (x,g(x))}{\\frac{\\partial f}{\\partial y} (x,g(x))}.$$''')
-        text1_1 = TextMobject('''Este teorema nos dice que en estas condiciones \n
+        text1_1=TextMobject('''Este teorema nos dice que en estas condiciones \n
                                     el conjunto de nivel que corresponde \n
                                     a ''','''$k=f(x_0,y_0)$''',''' es localmente una curva \n
                                     suave dada por la gráfica de ''','''$g$''',''' y además la \n
@@ -1675,32 +1674,33 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
             '''$g$''': YELLOW,
             ''' $f$''': ORANGE
         })
-        text2 = TextMobject('''Considera la función''',''' $f(x,y)=x^2-y$ ''','''y su ''','''curva de nivel 0''','''. ''').move_to(-3.5*UP)
+        text2=TextMobject('''Considera la función''',''' $f(x,y)=x^2-y$ ''','''y su ''','''curva de nivel 0''','''. ''').move_to(-3.5*UP)
         text2.set_color_by_tex_to_color_map({
             '''' $f(x,y)=x^2-y$ ''': PURPLE_C,
             '''curva de nivel 0''': TEAL_E
         })
-        text2.bg = SurroundingRectangle(text2,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text3 = TextMobject('''Nota que \n
+        text2.bg=SurroundingRectangle(text2,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text3=TextMobject('''Nota que \n
                              $\\frac{\\partial f}{\\partial y}(x,y)=-1 $ ''').move_to(-3*UP)
-        text3.bg = SurroundingRectangle(text3,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text4 = TextMobject('''Puedes comprobar que en cualquier punto se cumplen\n
+        text3.bg=SurroundingRectangle(text3,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text4=TextMobject('''Puedes comprobar que en cualquier punto se cumplen\n
                                  las condiciones del ''','''teorema de la  \n
                                  función implícita.''').move_to(-2.5*UP)
+        #######
         text4.set_color_by_tex_to_color_map({
             '''teorema de la  \n
                                  función implícita.''': ORANGE
         })
-        
-        text4.bg = SurroundingRectangle(text4,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text5 = TextMobject('''Observa que la ''','''curva de nivel''',''', en términos de \n
+        ####
+        text4.bg=SurroundingRectangle(text4,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text5=TextMobject('''Observa que la ''','''curva de nivel''',''', en términos de \n
                                 la variable $x$, queda descrita como ''','''$y(x)=g(x)=x^2$''','''.''').move_to(-3*UP)
         text5.set_color_by_tex_to_color_map({
             '''$y(x)=g(x)=x^2$''':  TEAL_E,
             '''curva de nivel''': TEAL_E,
         })
-        text5.bg = SurroundingRectangle(text5,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text6 = TextMobject(''' Sin embargo, no siempre se puede encontrar \n
+        text5.bg=SurroundingRectangle(text5,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text6=TextMobject(''' Sin embargo, no siempre se puede encontrar \n
                                 explícitamente a la función ''','''$g$''',''', porque no \n
                                 siempre se puede despejar la $y$ en términos \n
                                 de la $x$ en la ecuación ''','''$f(x,y)=k$''','''. ''')
@@ -1711,9 +1711,9 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         
         
         ejes = ThreeDAxes(y_max=3)
-        eje_x = TexMobject(r"x").move_to(6*RIGHT).scale(1.5)
-        eje_y = TexMobject(r"y").move_to(3.5*UP).scale(1.5)
-        axes = VGroup(ejes,eje_x,eje_y)
+        eje_x=TexMobject(r"x").move_to(6*RIGHT).scale(1.5)
+        eje_y=TexMobject(r"y").move_to(3.5*UP).scale(1.5)
+        axes=VGroup(ejes,eje_x,eje_y)
         superficie1 = ParametricSurface(
             lambda u, v: np.array([
                 u,
@@ -1721,7 +1721,7 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
                 u**2-v
             ]),v_min=-3,v_max=2,u_min=-3,u_max=2,fill_opacity=0.75,checkerboard_colors=[PURPLE_A,PURPLE_A])#.resolution=(50, 50)
             
-        curva1 = ParametricFunction(
+        curva1=ParametricFunction(
                 lambda u : np.array([
                 u,
                 u**2,
@@ -1766,55 +1766,55 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         self.play(FadeOut(text6))
     
     def Segunda_escena(self):
-        text8_1 = TextMobject('''Por ejemplo; sea ''','''$D=\\{(x,y)\\in\\mathbb{R}^2|x> 0, \\ y> 0\\}$''',''' y \n
+        text8_1=TextMobject('''Por ejemplo; sea ''','''$D=\\{(x,y)\\in\\mathbb{R}^2|x> 0, \\ y> 0\\}$''',''' y \n
                                  $f:D \\to\\mathbb{R}$, ''','''$f(x,y)=x^y+y^{xy}$ ''').move_to(3*DOWN)
         text8_1.set_color_by_tex_to_color_map({
             '''$f(x,y)=x^y+y^{xy}$ ''': BLUE_D,
             '''$D=\\{(x,y)\\in\\mathbb{R}^2|x> 0, \\ y> 0\\}$''': ORANGE
         })
-        text8_1.bg = SurroundingRectangle(text8_1,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text8_2 = TextMobject('''Puedes comprobar que dicha función es de clase ''','''$C^1_D$''','''. ''').move_to(3*DOWN)
+        text8_1.bg=SurroundingRectangle(text8_1,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text8_2=TextMobject('''Puedes comprobar que dicha función es de clase ''','''$C^1_D$''','''. ''').move_to(3*DOWN)
         text8_2.set_color_by_tex_to_color_map({
             '''$C^1_D$''': YELLOW
         })
-        text8_2.bg = SurroundingRectangle(text8_2,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text8_3 = TextMobject('''Así mismo considera la ''','''curva de nivel 2''',''' y el punto ''','''(1,1)''',''' \n
+        text8_2.bg=SurroundingRectangle(text8_2,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text8_3=TextMobject('''Así mismo considera la ''','''curva de nivel 2''',''' y el punto ''','''(1,1)''',''' \n
                                  que pertenece a ella. ''').move_to(3*DOWN)
         text8_3.set_color_by_tex_to_color_map({
             '''curva de nivel 2''': ORANGE,
             '''(1,1)''': PINK
         })
-        text8_3.bg = SurroundingRectangle(text8_3,color=WHITE,fill_color=BLACK,fill_opacity=1)                        
-        text8_4 = TextMobject('''La parcial con respecto a $y$ de dicha función es
+        text8_3.bg=SurroundingRectangle(text8_3,color=WHITE,fill_color=BLACK,fill_opacity=1)                        
+        text8_4=TextMobject('''La parcial con respecto a $y$ de dicha función es
                                 $$\\frac{\\partial (x^y+y^{xy})}{\\partial y}=x^ylog(x)+xy^{xy}(log(y)+1)$$ ''').move_to(2*DOWN)
-        text8_4.bg = SurroundingRectangle(text8_4,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text8_5 = TextMobject(''' La cual al evaluarse en el punto ''','''(1,1)''',''' es diferente de 0.''').move_to(3*DOWN)
+        text8_4.bg=SurroundingRectangle(text8_4,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text8_5=TextMobject(''' La cual al evaluarse en el punto ''','''(1,1)''',''' es diferente de 0.''').move_to(3*DOWN)
         text8_5.set_color_by_tex_to_color_map({
             '''(1,1)''':PINK
         })
-        text8_5.bg = SurroundingRectangle(text8_5,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text8_6 = TextMobject('''Debido a lo anterior se cumplen las condiciones del \n
+        text8_5.bg=SurroundingRectangle(text8_5,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text8_6=TextMobject('''Debido a lo anterior se cumplen las condiciones del \n
                                 ''','''teorema de la función implícita''',''' para el punto ''','''(1,1)''','''.''').move_to(3*DOWN)
         text8_6.set_color_by_tex_to_color_map({
             '''teorema de la función implícita''':YELLOW,
             '''(1,1)''':PINK
         })
-        text8_6.bg = SurroundingRectangle(text8_6,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text8_7 = TextMobject('''Entonces se puede describir la ''','''curva de nivel 2''',''', \n
+        text8_6.bg=SurroundingRectangle(text8_6,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text8_7=TextMobject('''Entonces se puede describir la ''','''curva de nivel 2''',''', \n
                                     alrededor del punto ''','''(1,1)''',''', como una función ''','''g(x)=y''','''. ''').move_to(3*DOWN)
         text8_7.set_color_by_tex_to_color_map({
             '''curva de nivel 2''':ORANGE,
             '''(1,1)''':PINK,
             '''g(x)=y''':ORANGE
         })
-        text8_7.bg = SurroundingRectangle(text8_7,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text8_8 = TextMobject(''' Sin embargo no es posible despejar la variable $y$ \n
+        text8_7.bg=SurroundingRectangle(text8_7,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text8_8=TextMobject(''' Sin embargo no es posible despejar la variable $y$ \n
                                     de la ecuación ''','''$x^y+y^{xy}=2$''').move_to(3*DOWN)
         text8_8.set_color_by_tex_to_color_map({
             '''$x^y+y^{xy}=2$''': ORANGE
         })
-        text8_8.bg = SurroundingRectangle(text8_8,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text8_9 = TextMobject('''Con el ejemplo anterior apreciamos que existen funciones \n
+        text8_8.bg=SurroundingRectangle(text8_8,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text8_9=TextMobject('''Con el ejemplo anterior apreciamos que existen funciones \n
                                  en las cuales no es posible despejar la variable $y$ de \n
                                  la ecuación ''','''$f(x,y)=k$''',''', pero con el ''','''teorema de \n
                                     la función implícita podemos asegurar que dicha curva \n
@@ -1823,20 +1823,23 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
             '''$f(x,y)=k$''':BLUE_D,
             
         })
-
-        ejes = ThreeDAxes(y_min=-2,y_max=3,x_max=3,x_min=-2,z_max=2.5)
-        eje_x = TexMobject(r"x").move_to(3.5*RIGHT).scale(1.5)
-        eje_y = TexMobject(r"y").move_to(3.5*UP).scale(1.5)
-        axes = VGroup(ejes,eje_x,eje_y)
-        superficie8 = ParametricSurface(
+        #text8_9.bg=SurroundingRectangle(text8_9,fill_color=BLACK, stroke_color=BLACK,fill_opacity=1)
+        ejes=ThreeDAxes(y_min=-2,y_max=3,x_max=3,x_min=-2,z_max=2.5)
+        eje_x=TexMobject(r"x").move_to(3.5*RIGHT).scale(1.5)
+        eje_y=TexMobject(r"y").move_to(3.5*UP).scale(1.5)
+        axes=VGroup(ejes,eje_x,eje_y)
+        superficie8=ParametricSurface(
             lambda u, v: np.array([
                 u,
                 v,
                 (u**v)+(v**(u*v))
             ]),v_min=0.08,v_max=2.15,u_min=0.08,u_max=2,fill_opacity=0.75,checkerboard_colors=[BLUE_D,BLUE_D])
-        punto_1 = Dot(radius=0.1,color=PINK).move_to([1,1,2])
-        punto_2 = Dot(radius=0.1,color=PINK).move_to([1,1,2])
+        punto_1=Dot(radius=0.1,color=PINK).move_to([1,1,2])
+        punto_2=Dot(radius=0.1,color=PINK).move_to([1,1,2])
         
+
+       
+        #curva_nivel= SVGMobject("desmos-graph2.svg",color=BLACK,stroke_color=BLUE).scale(2.3).move_to([2.3,2.5,2])
         curva_nivel_label=TexMobject(r"g(x)=y",color=ORANGE).move_to([2,1.5,0]).scale(0.8)
         rectangulo = ParametricSurface(
             lambda u, v: np.array([
@@ -1844,24 +1847,25 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
                 v,
                 2
             ]),v_min=0,v_max=3,u_min=0,u_max=2,fill_color=RED,fill_opacity=0.7, checkerboard_colors=[RED,RED])
-
-        ###Se crea la superficie de nivel 
-        VALORES_OBJ = []
+        ############# Para anexar los puntos
+        VALORES_OBJ=[]
         for i in VALORES:
             punto_i = Dot(point=i, radius=0.05,color=ORANGE)
             VALORES_OBJ.append(punto_i)
 
         
-        grafica = VGroup(*VALORES_OBJ)
+        grafica=VGroup(*VALORES_OBJ)
+
         path = VMobject()
         path.set_points_smoothly([*[coord(x,y) for x in xx for y in yy]])
-
         self.set_camera_orientation(phi=75 * DEGREES,theta=-80*DEGREES,distance=4)
+        #self.set_camera_orientation(phi=75 * DEGREES,theta=-160*DEGREES,distance=4)
         self.play(ShowCreation(axes))
         self.acomodar_textos(text8_1.bg)
         self.acomodar_textos(text8_1)
         self.wait()
         self.play(ShowCreation(superficie8))
+       
         self.wait(26)
         self.play(FadeOut(text8_1),FadeOut(text8_1.bg))
         self.acomodar_textos(text8_2.bg)
@@ -1873,6 +1877,7 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         self.play(ShowCreation(grafica))
         self.wait()
         self.play(ShowCreation(punto_1))
+        #self.play(ShowCreation(rectangulo))
         self.wait(8)
         self.play(FadeOut(text8_3),FadeOut(text8_3.bg))
         self.acomodar_textos(text8_4.bg)
@@ -1891,6 +1896,7 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         self.acomodar_textos(text8_7)
         self.play(FadeOut(superficie8),FadeOut(rectangulo),FadeOut(punto_1),ShowCreation(punto_2))
         self.move_camera(phi= 0 * DEGREES,theta=-90*DEGREES,distance=100,run_time=2)
+        
         self.play(FadeOut(punto_2))
         self.play(ShowCreation(punto_2))
         self.acomodar_textos(curva_nivel_label)
@@ -1900,6 +1906,7 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         self.acomodar_textos(text8_8)
         self.wait(15)
         self.play(FadeOut(axes),FadeOut(text8_8),FadeOut(text8_8.bg),FadeOut(grafica),FadeOut(punto_2),FadeOut(curva_nivel_label))
+        
         self.acomodar_textos(text8_9)
         self.wait(28)
         self.play(FadeOut(text8_9))
@@ -1909,30 +1916,30 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
     
     def Tercera_escena(self):
         
-        text9 = TextMobject('''Veamos otro ejemplo.''')
-        text10 = TextMobject(''' Considera ''','''$f(x,y)=y^3-x^9$''',''' y su ''','''curva de nivel 0''','''.''').move_to(3*UP)
+        text9=TextMobject('''Veamos otro ejemplo.''')
+        text10=TextMobject(''' Considera ''','''$f(x,y)=y^3-x^9$''',''' y su ''','''curva de nivel 0''','''.''').move_to(3*UP)
         text10.set_color_by_tex_to_color_map({
             '''$f(x,y)=y^3-x^9$''': BLUE_D,
             '''curva de nivel 0''': ORANGE
         })
-        text10.bg = SurroundingRectangle(text10,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text11 = TextMobject(''' Si bien $\\frac{\\partial f}{\\partial y}(x,y)=3y^2$ y \n
+        text10.bg=SurroundingRectangle(text10,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text11=TextMobject(''' Si bien $\\frac{\\partial f}{\\partial y}(x,y)=3y^2$ y \n
                                  $\\frac{\\partial f}{\\partial y}(0,0)=0$, puedes observar \n 
                                  que la expresión ''','''$g(x)=y(x)=x^3$''',''' describe a la ''','''curva de nivel''','''.''').move_to(-2.7*UP)
         text11.set_color_by_tex_to_color_map({
             '''$g(x)=y(x)=x^3$''': ORANGE,
             '''curva de nivel''': ORANGE
         })
-        text11.bg = SurroundingRectangle(text11,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text12 = TextMobject('''Lo que nos dice que no se vale el regreso del ''','''Teorema''','''.''')
+        text11.bg=SurroundingRectangle(text11,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text12=TextMobject('''Lo que nos dice que no se vale el regreso del ''','''Teorema''','''.''')
         text12.set_color_by_tex_to_color_map({
             '''Teorema''': YELLOW
         })
 
-        ejes = ThreeDAxes(y_max=3,y_min=-3)
-        eje_x = TexMobject(r"x").move_to(6*RIGHT).scale(1.5)
-        eje_y = TexMobject(r"y").move_to(3.5*UP).scale(1.5)
-        axes = VGroup(ejes,eje_x,eje_y)
+        ejes=ThreeDAxes(y_max=3,y_min=-3)
+        eje_x=TexMobject(r"x").move_to(6*RIGHT).scale(1.5)
+        eje_y=TexMobject(r"y").move_to(3.5*UP).scale(1.5)
+        axes=VGroup(ejes,eje_x,eje_y)
 
         superficie3 = ParametricSurface(
             lambda u, v: np.array([
@@ -1941,7 +1948,7 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
                 v**3-u**9
             ]),v_min=-2,v_max=2,u_min=-1.6,u_max=1.6,fill_opacity=0.75,checkerboard_colors=[BLUE_D,BLUE_D])
             
-        curva3 = ParametricFunction(
+        curva3=ParametricFunction(
                 lambda u : np.array([
                 u,
                 u**3,
@@ -1973,40 +1980,40 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         self.play(FadeOut(text12))
 
     def Cuarta_escena(self):
-        text13 = TextMobject('''Ahora considera la función ''','''$\gamma(x,y)=xy$''','''. ''').move_to(3*UP)
+        text13=TextMobject('''Ahora considera la función ''','''$\gamma(x,y)=xy$''','''. ''').move_to(3*UP)
         text13.set_color_by_tex_to_color_map({
             '''$\gamma(x,y)=xy$''': MAROON_B
         })
-        text13.bg = SurroundingRectangle(text13,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text14 = TextMobject('''Notarás que la ''','''curva de nivel 0''',''' de la función corresponde \n
+        text13.bg=SurroundingRectangle(text13,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text14=TextMobject('''Notarás que la ''','''curva de nivel 0''',''' de la función corresponde \n
                                         a los ejes $x$ y $y$.''').move_to(3*DOWN)
         text14.set_color_by_tex_to_color_map({
             '''curva de nivel 0''': BLUE_D
         })
-        text14.bg = SurroundingRectangle(text14,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text15 = TextMobject('''Además debido a que \n
+        text14.bg=SurroundingRectangle(text14,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text15=TextMobject('''Además debido a que \n
                                 $\\frac{\\partial \\gamma}{\\partial y}=x. $''').move_to(3*UP)
-        text15.bg = SurroundingRectangle(text15,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text16 = TextMobject('''En los puntos de la ''','''curva de nivel''',''' en el eje $y$ la parcial \n
+        text15.bg=SurroundingRectangle(text15,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text16=TextMobject('''En los puntos de la ''','''curva de nivel''',''' en el eje $y$ la parcial \n
                                 se anula y no es posible aplicar el''',''' teorema de \n
                                 la función implícita''','''.''').move_to(2.5*UP)
         text16.set_color_by_tex_to_color_map({
             '''curva de nivel''': BLUE_D,
             '''teorema de la función implícita''': YELLOW
         })
-        text16.bg = SurroundingRectangle(text16,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text17 = TextMobject('''¿Qué ocurre si $\\frac{\\partial f}{\\partial x}(x,y)\\neq 0$?''',''' \n
+        text16.bg=SurroundingRectangle(text16,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text17=TextMobject('''¿Qué ocurre si $\\frac{\\partial f}{\\partial x}(x,y)\\neq 0$?''',''' \n
                                 Enuncia el Teorema de la función implícita correspondiente.''')
-        text18 = TextMobject('''Observa que en el caso del ejemplo ''','''$\\gamma(x,y)=xy$''',''', \n
+        text18=TextMobject('''Observa que en el caso del ejemplo ''','''$\\gamma(x,y)=xy$''',''', \n
                                 en el origen tenemos un ''','''punto crítico,''',''' por el cual  \n
                                 pasa ''','''la curva de nivel $0$''',''' de ''','''$\\gamma$.''').move_to(-2.7*DOWN)
-        text18_2 = TextMobject(''' Dicha ''','''curva de nivel 0''',''' es la intersección de dos \n
+        text18_2=TextMobject(''' Dicha ''','''curva de nivel 0''',''' es la intersección de dos \n
                                   rectas: una vertical y una horizontal.''').move_to(3*DOWN)
         text18_2.set_color_by_tex_to_color_map({
             '''curva de nivel''': BLUE_D
         })
         
-        text18_2.bg = SurroundingRectangle(text18_2,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text18_2.bg=SurroundingRectangle(text18_2,color=WHITE,fill_color=BLACK,fill_opacity=1)
         text18.set_color_by_tex_to_color_map({
             '''$\\gamma(x,y)=xy$''': MAROON_B,
             '''punto crítico''': RED,
@@ -2014,19 +2021,19 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
             '''$\\gamma$.''': MAROON_B
 
         })
-        text18.bg = SurroundingRectangle(text18,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text18_1 = TextMobject('''Y no se puede describir la ''','''curva de nivel''',''' \n
+        text18.bg=SurroundingRectangle(text18,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text18_1=TextMobject('''Y no se puede describir la ''','''curva de nivel''',''' \n
                                 como la gráfica de una función de ninguna de las variables \n
                                 en términos de la otra.''').move_to(3*DOWN)
         text18_1.set_color_by_tex_to_color_map({
             '''curva de nivel''': BLUE_D
 
         })
-        text18_1.bg = SurroundingRectangle(text18_1,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        ejes = ThreeDAxes()
-        eje_x = TexMobject(r"x").move_to(6*RIGHT).scale(1.5)
-        eje_y = TexMobject(r"y").move_to(6*UP).scale(1.5)
-        axes = VGroup(ejes,eje_x,eje_y)
+        text18_1.bg=SurroundingRectangle(text18_1,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        ejes=ThreeDAxes()
+        eje_x=TexMobject(r"x").move_to(6*RIGHT).scale(1.5)
+        eje_y=TexMobject(r"y").move_to(6*UP).scale(1.5)
+        axes=VGroup(ejes,eje_x,eje_y)
         
         superficie4 = ParametricSurface(
             lambda u, v: np.array([
@@ -2034,22 +2041,23 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
                 v,
                 u*v
             ]),v_min=-3,v_max=3,u_min=-3,u_max=3,fill_opacity=0.75,checkerboard_colors=[MAROON_B,MAROON_B])
-        curva4_1 = ParametricFunction(
+        curva4_1=ParametricFunction(
                 lambda u : np.array([
                 u,
                 0,
                 0
             ]),color=BLUE_D,t_min=-3,t_max=3,
             )
-        curva4_2 = ParametricFunction(
+        curva4_2=ParametricFunction(
                 lambda u : np.array([
                 0,
                 u,
                 0
             ]),color=BLUE_D,t_min=-3,t_max=3,
             )    
-        curva4 = VGroup(curva4_1,curva4_2)
-        punto_critico = Dot(radius=0.2,color=RED).move_to([0,0,0])
+        curva4=VGroup(curva4_1,curva4_2)
+        
+        punto_critico=Dot(radius=0.2,color=RED).move_to([0,0,0])
 
         self.set_camera_orientation(phi=75 * DEGREES,theta=-45*DEGREES,distance=100)
         self.play(ShowCreation(axes))
@@ -2084,28 +2092,29 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         self.acomodar_textos(text18.bg)
         self.acomodar_textos(text18)
         self.play(ShowCreation(curva4))
+        #acomodar tiempos
         self.play(ShowCreation(punto_critico))
         self.wait(10)
         self.acomodar_textos(text18_2.bg)
         self.acomodar_textos(text18_2)
-        self.wait(8)
+        self.wait(12)
         self.play(FadeOut(text18_2),FadeOut(text18_2.bg),FadeOut(text18),FadeOut(text18.bg))
         self.acomodar_textos(text18_1.bg)
         self.acomodar_textos(text18_1)
         self.wait(15)
-        self.play(FadeOut(text18),FadeOut(text18.bg),FadeOut(axes),FadeOut(superficie4),FadeOut(punto_critico),FadeOut(curva4),FadeOut(text18_1),FadeOut(text18_1.bg))
+        self.play(FadeOut(axes),FadeOut(superficie4),FadeOut(punto_critico),FadeOut(curva4),FadeOut(text18_1),FadeOut(text18_1.bg))
         
     def Quinta_escena(self):
-        text18_0 = TextMobject('''Geométricamente el teorema de la función implícita \n
+        text18_0=TextMobject('''Geométricamente el teorema de la función implícita \n
                              dice que si ''','''$\\nabla f(x_0,y_0)$''',''' no es horizontal, \n
                              $\\frac{\\partial f}{\\partial y}(x_0,y_0)\\neq 0$''',''',''')
         text18_0.set_color_by_tex_to_color_map({
             '''$\\nabla f(x_0,y_0)$''': ORANGE
         })
         text18_0.move_to(3*UP).scale(0.8)
-        text18_0.bg = SurroundingRectangle(text18_0,color=WHITE,fill_color=BLACK,fill_opacity=1)  
+        text18_0.bg=SurroundingRectangle(text18_0,color=WHITE,fill_color=BLACK,fill_opacity=1)  
 
-        text18_1 = TextMobject('''es decir no es paralelo al eje $x$ entonces podemos \n
+        text18_1=TextMobject('''es decir no es paralelo al eje $x$ entonces podemos \n
                              describir un sector de la ''','''curva de nivel $k$''',''',\n
                               alrededor de ''','''$(x_0,y_0)$''','''  como la gráfica de una \n
                               función de la forma ''','''$y=g(x)$.''')  
@@ -2114,10 +2123,11 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
             '''$y=g(x)$.''': PINK,
             '''$(x_0,y_0)$''':YELLOW})
         text18_1.move_to(2.5*DOWN).scale(0.8)
-        text18_1.bg = SurroundingRectangle(text18_1,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text18 = VGroup(text18_0,text18_1)
-        text18.bg = VGroup(text18_0.bg,text18_1.bg)
-        text19 = TextMobject('''Y si el vector ''','''$\\nabla f(x_0',y_0')$''',''' no es vertical, entonces
+        text18_1.bg=SurroundingRectangle(text18_1,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text18=VGroup(text18_0,text18_1)
+        text18.bg=VGroup(text18_0.bg,text18_1.bg)
+
+        text19=TextMobject('''Y si el vector ''','''$\\nabla f(x_0',y_0')$''',''' no es vertical, entonces
                                 $\\frac{\\partial f}{\\partial x}(x_0',y_0')\\neq 0$, \n
                                 es decir no es paralelo al eje $y$, entonces un sector de la\n
                                 ''','''curva de nivel $k$''',''' de $f$ alrededor del punto ''','''$(x_0',y_0')$''',''' se\n
@@ -2128,8 +2138,8 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
             '''$(x_0',y_0')$''': YELLOW,
             '''$x=h(y).$''':PURPLE_C
         })
-        text19.bg = SurroundingRectangle(text19,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text20 = TextMobject('''Un corolario del ''','''Teorema de la función implícita''',''' es \n
+        text19.bg=SurroundingRectangle(text19,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text20=TextMobject('''Un corolario del ''','''Teorema de la función implícita''',''' es \n
                                 que el gradiente es ortogonal a la ''','''curva de nivel''','''.''').move_to(3*DOWN)
         text20.set_color_by_tex_to_color_map({
             '''Teorema de la función implícita''':TEAL_B
@@ -2137,20 +2147,21 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         text20.set_color_by_tex_to_color_map({
             '''Teorema de la función implícita''': YELLOW
         })
-        text20.bg = SurroundingRectangle(text20,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text21 = TextMobject('''Con los ejemplos anteriores sólo se consideró el Teorema de \n
+        text20.bg=SurroundingRectangle(text20,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text21=TextMobject('''Con los ejemplos anteriores sólo se consideró el Teorema de \n
                                  la función implícita en funciones de $\\mathbb{R}^2\\to\\mathbb{R}$, \n
                                  sin embargo el teorema es generalizable a \n
                                  funciones de $\\mathbb{R}^n\\to\\mathbb{R}$.''')
         
         
-        ejes = ThreeDAxes(x_max=4.8,y_max=3,x_min=-4.8,y_min=-4.8)
-        eje_x = TexMobject(r"x").move_to(5*RIGHT).scale(1)
-        eje_y = TexMobject(r"y").move_to(3.5*UP).scale(1.5)
-        axes = VGroup(ejes,eje_x,eje_y)
+        ejes=ThreeDAxes(x_max=4.8,y_max=3,x_min=-4.8,y_min=-4.8)
+        eje_x=TexMobject(r"x").move_to(5*RIGHT).scale(1)
+        eje_y=TexMobject(r"y").move_to(3.5*UP).scale(1.5)
+        axes=VGroup(ejes,eje_x,eje_y)
+
 
         #Objetos para el primer ejemplo
-        curva = ParametricFunction(
+        curva=ParametricFunction(
                 lambda u : np.array([
                 u,
                 1.5*np.cos(u/2)**(1/3),
@@ -2158,76 +2169,76 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
             ]),color=TEAL_C,t_min=-4.5,t_max=4.5,
             )    
          
-        curva_ejem1 = DashedVMobject(curva,y_tick_frequency=0.02, x_tick_frequency=0.02)
-        curva_ejem1_label = TexMobject(r"f(x,y)=k").move_to(1*UP+4*LEFT).scale(0.7).set_color(TEAL_C)
+        curva_ejem1=DashedVMobject(curva,y_tick_frequency=0.02, x_tick_frequency=0.02)
+        curva_ejem1_label=TexMobject(r"f(x,y)=k").move_to(1*UP+4*LEFT).scale(0.7).set_color(TEAL_C)
 
         
         #Se puede modificar los parámetros a y b para modificar el punto (a,b)=(x0,y0)
-        a = 1
-        b = 1.5*np.cos(a/2)**(1/3)
-        x0 = np.array([a,b,0])
-        x0_dot = Dot(color=YELLOW).move_to(x0)
-        x0_dot_label = TexMobject(r"(x_0,y_0)").set_color(YELLOW).scale(0.5).next_to(x0_dot,0.9*RIGHT+DOWN,buff=0.1)
-        x0_group = VGroup(x0_dot,x0_dot_label)
-        grad1_vec = Arrow([a,b,0],[(-0.25*np.sin(a/2))/(np.cos(a/2)**(2/3))     ,-1,0],buff=0,color=ORANGE)
-        grad1_label = TexMobject(r"\nabla f(x_0,y_0)").next_to(grad1_vec,0.7*DOWN+0.1*LEFT,buff=-0.3).set_color(ORANGE).scale(0.7)
-        grad1 = VGroup(grad1_vec,grad1_label)
+        a=1
+        b=1.5*np.cos(a/2)**(1/3)
+        x0=np.array([a,b,0])
+        x0_dot=Dot(color=YELLOW).move_to(x0)
+        x0_dot_label=TexMobject(r"(x_0,y_0)").set_color(YELLOW).scale(0.5).next_to(x0_dot,0.9*RIGHT+DOWN,buff=0.1)
+        x0_group=VGroup(x0_dot,x0_dot_label)
+        grad1_vec=Arrow([a,b,0],[(-0.25*np.sin(a/2))/(np.cos(a/2)**(2/3))     ,-1,0],buff=0,color=ORANGE)
+        grad1_label=TexMobject(r"\nabla f(x_0,y_0)").next_to(grad1_vec,0.7*DOWN+0.1*LEFT,buff=-0.3).set_color(ORANGE).scale(0.7)
+        grad1=VGroup(grad1_vec,grad1_label)
         
         #Se puede modificar el parámetro v para tener una vecidad diferente y con ello cambiar la longitud de la funcion
         #g(x) en el ejemplo
-        v = 1.5
-        curva_1 = ParametricFunction(
+        v=1.5
+        curva_1=ParametricFunction(
                 lambda u : np.array([
                 u,
                 1.5*np.cos(u/2)**(1/3),
                 0
             ]),color=PURPLE_C,t_min=a-v,t_max=a+v,
             )   
-        curva1_label = TexMobject(r"g(x)").next_to(curva_1,UP,buff=0.1).set_color(PINK).scale(0.8)
-        curva1 = VGroup(curva_1,curva1_label)
+        curva1_label=TexMobject(r"g(x)").next_to(curva_1,UP,buff=0.1).set_color(PINK).scale(0.8)
+        curva1=VGroup(curva_1,curva1_label)
 
         
         #Objetos para el segundo ejemplo
         #Se pueden modificar los parámetroa a2 y b2 para cambiar el punto (x0,y0) del segundo ejemplo
-        a2 = 2.5
-        b2 = 1.5*np.cos(a2/2)**(1/3)
-        x02 = np.array([a2,b2,0])
-        x02_dot = Dot(color=YELLOW).move_to(x02)
-        x02_dot_label = TexMobject(r"(x_0',y_0')").scale(0.5).next_to(x02_dot,RIGHT+UP,buff=0.1).set_color(YELLOW)
-        x02_group = VGroup(x02_dot,x02_dot_label)
-        grad2_vec = Arrow([a2,b2,0],[(-0.25*np.sin(a2/2))/(np.cos(a2/2)**(2/3))     ,-1,0],buff=0,color=ORANGE)
-        grad2_label = TexMobject(r"\nabla f(x_0',y_0')").next_to(grad2_vec,DOWN+LEFT,buff=-0.3).set_color(ORANGE).scale(0.7)
-        grad2 = VGroup(grad2_vec,grad2_label)
+        a2=2.5
+        b2=1.5*np.cos(a2/2)**(1/3)
+        x02=np.array([a2,b2,0])
+        x02_dot=Dot(color=YELLOW).move_to(x02)
+        x02_dot_label=TexMobject(r"(x_0',y_0')").scale(0.5).next_to(x02_dot,RIGHT+UP,buff=0.1).set_color(YELLOW)
+        x02_group=VGroup(x02_dot,x02_dot_label)
+        grad2_vec=Arrow([a2,b2,0],[(-0.25*np.sin(a2/2))/(np.cos(a2/2)**(2/3))     ,-1,0],buff=0,color=ORANGE)
+        grad2_label=TexMobject(r"\nabla f(x_0',y_0')").next_to(grad2_vec,DOWN+LEFT,buff=-0.3).set_color(ORANGE).scale(0.7)
+        grad2=VGroup(grad2_vec,grad2_label)
     
         #Se puede moficar v2 para modificar el la longitud en x de la curva h(y)
-        v2 = 1.3
-        curva_2 = ParametricFunction(
+        v2=1.3
+        curva_2=ParametricFunction(
                 lambda u : np.array([
                 u,
                 1.5*np.cos(u/2)**(1/3),
                 0
             ]),color=PURPLE_E,t_min=a2-v2,t_max=a2+v2,
             )   
-        curva2_label = TexMobject(r"h(y)").next_to(curva_2,RIGHT,buff=0.3).set_color(PURPLE_E).scale(0.8)
-        curva2 = VGroup(curva_2,curva2_label)
+        curva2_label=TexMobject(r"h(y)").next_to(curva_2,RIGHT,buff=0.3).set_color(PURPLE_E).scale(0.8)
+        curva2=VGroup(curva_2,curva2_label)
 
         #Visualicación del corolario
-        curva_3 = ParametricFunction(
+        curva_3=ParametricFunction(
                 lambda u : np.array([
                 u,
                 np.cos(u**2),
                 0
             ]),color=TEAL_B,t_min=-4,t_max=4,
             )   
-        curva_3_nombre = TexMobject(r"f(x,y)=\cos(x^2)-y=0").set_color(TEAL_B).move_to(3.5*UP+4*LEFT).scale(0.8)
+        curva_3_nombre=TexMobject(r"f(x,y)=\cos(x^2)-y=0").set_color(TEAL_B).move_to(3.5*UP+4*LEFT).scale(0.8)
         #Se pueden modificar los parámetros x1 y x2, para cambiar donde se evalua inicialmente el gradiente, 
         #ambos valores deben ser iguales
-        x1 = ValueTracker(-1.5)
-        x2 = -1.5
-        y1 = np.cos(x2**2)
-        punto = Dot(color=RED).move_to([x2,y1,0])
-        gradiente1 = Arrow([x2,y1,0],[2*x2*np.sin(x2**2)+x2,1+y1,0],buff=0,color=RED)
-        gradiente1_label = TexMobject(r"\nabla(f(x,y)=0)").set_color(RED).next_to(gradiente1,LEFT+UP,buff=-0.3).scale(0.7)
+        x1=ValueTracker(-1.5)
+        x2=-1.5
+        y1=np.cos(x2**2)
+        punto=Dot(color=RED).move_to([x2,y1,0])
+        gradiente1=Arrow([x2,y1,0],[2*x2*np.sin(x2**2)+x2,1+y1,0],buff=0,color=RED)
+        gradiente1_label=TexMobject(r"\nabla(f(x,y)=0)").set_color(RED).next_to(gradiente1,LEFT+UP,buff=-0.3).scale(0.7)
         def GRADIENTE(obj):
             x=x1.get_value()
             y=np.cos(x**2)
@@ -2251,6 +2262,7 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         self.play(ShowCreation(curva1))
         self.wait(28)
         self.play(FadeOut(curva1),FadeOut(grad1),FadeOut(x0_group),FadeOut(text18),FadeOut(text18.bg))
+
         self.acomodar_textos(text19.bg)
         self.acomodar_textos(text19)
         self.wait()
@@ -2274,40 +2286,38 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         self.acomodar_textos(text21)
         self.wait(18)
         self.play(FadeOut(text21))
-
     def Sexta_escena(self):
-        text22 = TextMobject('''Veamos un ejemplo de ello.''')
-        text23 = TextMobject('''Considera la función ''','''$\\beta(x,y,z)=x^2+y+z$''','''.''').move_to(-1*DOWN)
+        text22=TextMobject('''Veamos un ejemplo de ello.''')
+        text23=TextMobject('''Considera la función ''','''$\\beta(x,y,z)=x^2+y+z$''','''.''').move_to(-1*DOWN)
         text23.set_color_by_tex_to_color_map({
             '''$\\beta(x,y,z)=x^2+y+z$''':BLUE_D
         })
-        text24 = TextMobject('''Como seguramente sabrás, es complicado graficar \n
+        text24=TextMobject('''Como seguramente sabrás, es complicado graficar \n
                                 en 4 dimensiones, así que limitémonos a graficar \n
                                     ''','''la superficie de nivel 0''','''.''').next_to(text23,DOWN,buff=0.1)
         text24.set_color_by_tex_to_color_map({
             '''la superficie de nivel 0''':GOLD_E
         })
-        text24_1 = TexMobject(r"\beta(x,y,z)=x^2+y+z=0").move_to(3*UP).set_color(GOLD_E)
+        text24_1=TexMobject(r"\beta(x,y,z)=x^2+y+z=0").move_to(3*UP).set_color(GOLD_E)
         text24_1.bg=SurroundingRectangle(text24_1,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text25 = TextMobject('''Podemos describir la superficie de nivel con \n
+        text25=TextMobject('''Podemos describir la superficie de nivel con \n
                                 la función $z=-x^2-y$.''').move_to(3*DOWN)
-        text25.bg = SurroundingRectangle(text25,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text26 = TextMobject('''Incluso podemos dejar la superficie de \n
+        text25.bg=SurroundingRectangle(text25,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text26=TextMobject('''Incluso podemos dejar la superficie de \n
                                     nivel en términos de $y$.''').move_to(-3.3*DOWN)
-        text26.bg = SurroundingRectangle(text26,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text27 = TextMobject('''Con esto, notamos que el teorema de la función \n
+        text26.bg=SurroundingRectangle(text26,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text27=TextMobject('''Con esto, notamos que el teorema de la función \n
                                     implícita nos permite afirmar cuándo podemos describir el \n
                                 conjunto de nivel $k$ de una función en términos de algunas \n
                                 variables de la función en puntos no críticos.''')
         
-        axes = ThreeDAxes()
+        axes=ThreeDAxes()
         superficie1 = ParametricSurface(
             lambda u, v: np.array([
                 u,
                 v,
                 -u**2-v
             ]),v_min=-3,v_max=3,u_min=-3,u_max=3,fill_opacity=0.75,checkerboard_colors=[GOLD_E,GOLD_E])
-
         self.acomodar_textos(text22)
         self.wait(6)
         self.play(FadeOut(text22))
@@ -2318,6 +2328,7 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         self.play(FadeOut(text24), FadeOut(text23))
         self.acomodar_textos(text24_1.bg)
         self.acomodar_textos(text24_1)
+        
         self.play(ShowCreation(axes))
         self.play(ShowCreation(superficie1))
         self.begin_ambient_camera_rotation(rate=0.03)
@@ -2340,7 +2351,6 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         self.Cuarta_escena()
         self.Quinta_escena()
         self.Sexta_escena()
-
 
 #############################
 ###### ¿GRÁFICAS EN R4? #######
