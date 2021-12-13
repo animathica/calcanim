@@ -2499,12 +2499,12 @@ class Curvas(GraphScene):
 		self.wait(2)
         
 ##############################################################################
-#################### Curvas simples y cerradas simples #######################
+################# Tipos de Curvas: simples y simples cerradas ################
 ##############################################################################
 
-# Anexado el 27 de julio de 2021.
+# Anexado 13/12/2021.
 
-class TiposCurvas(Scene):
+class TiposCurvas(MovingCameraScene):
     
     def curva1(self, t):
             return [t, t, 0]
@@ -2517,39 +2517,33 @@ class TiposCurvas(Scene):
     
     def construct(self):
 
+        self.camera_frame.set_width(20) #entre mas grande mas pequeña la imagen
+
         # Textos de la animación.
-        title = TextMobject('''Tipos de curvas''').scale(1.5)
+        title = TextMobject('''Tipos de Curvas: simples \n
+                                 simples cerradas''').scale(2)
         
-        text1 = TextMobject('''Consideremos $C$ una curva en $\\mathbb{R}^n$ y $\\gamma(t):I\\subseteq\\mathbb{R}\\to\\mathbb{R}^n$\n
-                            su parametrización, $I$ es un intervalo.''').move_to(UP)
+        text1 = TextMobject('''Consideremos $C$ una curva en $\\mathbb{R}^n$ y $\\gamma(t):I\\subseteq\\mathbb{R}\\to\\mathbb{R}^n$\n su parametrización, $I$ es un intervalo.''').move_to(UP)
                             
-        text2 = TextMobject('''Decimos que $C$ y $\\gamma$ son simples si $\\gamma$ es inyectiva.''').next_to(text1, 3*DOWN)
+        text2 = TextMobject("Decimos que $C$ y $\\gamma$ son simples si $\\gamma$ es inyectiva.").next_to(text1, 3*DOWN)
         
-        text3 = TextMobject('''Considera $\\gamma(t)=(t,t)$ con $t\\in[0,1]$, entonces $\\gamma$ es\n
-                            simple y su imagen $C$ es una curva simple.''').move_to(3*UP)
+        text3 = TextMobject("Considera $\\gamma(t)=(t,t)$ con $t\\in[0,1]$, entonces $\\gamma$ es\n simple y su imagen $C$ es una curva simple.").move_to(3*UP)
                             
-        text4_1 = TextMobject('''Ahora considera $\\rho(t)=(sen(t),sen(t))$\n
-                              con $t\\in[0,\\pi]$, entonces $\\rho$ no es simple.''').move_to(3*UP)
+        text4_1 = TextMobject("Ahora considera $\\rho(t)=(sen(t),sen(t))$\n con $t\\in[0,\\pi]$, entonces $\\rho$ no es simple.").move_to(3*UP)
                             
-        text4_2 = TextMobject('''Observa que $Im(\\gamma)=Im(\\rho)=C$. ¿$C$ es simple o no?''').move_to(3*DOWN)
+        text4_2 = TextMobject("Observa que $Im(\\gamma)=Im(\\rho)=C$ ¿$C$ es simple o no?").move_to(3*DOWN)
                             
-        text5 = TextMobject('''Como una misma curva puede tener más de una \n
-                            parametrización, decimos que $C$ es simple si tiene\n
-                            alguna parametrización simple, o sea, inyectiva.''')
+        text5 = TextMobject("Como una misma curva puede tener más de una \n parametrización, decimos que $C$ es simple si tiene\n alguna parametrización simple, o sea, inyectiva.")
         
-        text6 = TextMobject('''Decimos que $\\gamma:[a,b]\\subseteq\\mathbb{R}\\rightarrow\\mathbb{R}^n$ parametriza\n
-                            una curva simple cerrada $C$ si esta función es\n
-                            inyectiva en $[a,b)$ y $f(a)=f(b)$.''')
+        text6 = TextMobject("Decimos que $\\gamma:[a,b]\\subseteq\\mathbb{R}\\rightarrow\\mathbb{R}^n$ parametriza\n una curva simple cerrada $C$ si esta función es\n inyectiva en $[a,b)$ y $f(a)=f(b)$.")
                                                                                  
-        text7 = TextMobject('''Visualmente, esto significa que la curva no tiene\n
-                            intersecciones con ella misma mas que en los extremos.''').move_to(3*UP)
+        text7 = TextMobject("Visualmente, esto significa que la curva no tiene\n intersecciones con ella misma más que en los extremos.").move_to(3*UP)
         
-        gamma_curva3 = TextMobject('''$\\gamma(t)=(cos(t),sen(t))$ con $t\\in[0,2\\pi]$''').move_to(2.5*DOWN)
+        gamma_curva3 = TextMobject("$\\gamma(t)=(cos(t),sen(t))$ con $t\\in[0,2\\pi]$").move_to(2.5*DOWN)
         
         gamma_curva3.scale(0.8)
         
-        text8 = TextMobject('''Intuitivamente esto es que sus extremos estén unidos\n
-                            para formar un "lazo". No olvides que $\\gamma$ es continua.''').move_to(3*UP)
+        text8 = TextMobject("Intuitivamente esto es que sus extremos estén unidos\n para formar un \"lazo\". No olvides que $\\gamma$ es continua.").move_to(3*UP)
        
         text3.bg = SurroundingRectangle(text3, color = WHITE, fill_color = BLACK, fill_opacity = 1)
         gpo_3 = VGroup(text3.bg, text3)
@@ -2579,7 +2573,7 @@ class TiposCurvas(Scene):
         
         # Escena
         self.play(Write(title))
-        self.wait()
+        self.wait(3)
         self.play(FadeOut(title))
         
         self.play(Write(text1))
@@ -2617,4 +2611,8 @@ class TiposCurvas(Scene):
         self.wait(3)
         self.play(FadeOut(gpo_7))
         self.play(Write(gpo_8))
-        self.wait(6)
+        self.wait(3)
+        self.play(FadeOut(gpo_8,run_time=2))
+        self.play(FadeOut(curva3),FadeOut(ejes))
+        self.play(FadeOut(gamma_curva3))
+        
