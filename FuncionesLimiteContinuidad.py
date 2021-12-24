@@ -1432,233 +1432,6 @@ class ConjNiv_R3(ThreeDScene,Scene):
         )
         self.wait(2)
 
-
-#######################                       TO DO                               ########################################
-##De esta animación, si el equipo de correcciones tiene ganas, recomiendo que al                                        ##
-##definir los objetos y los updaters, las superficies_i_j se defina una función                                         ## 
-##dicha funcion es la que va de R^2 a R y al definir ésta se generen en el código dos funciones automáticamente para las##
-##curvas de intersección ésto para que el estudiante solamente tenga que cmabiar la función.                            ## 
-##########################################################################################################################
-class LimitesDireccionales(ThreeDScene):
-    def construct(self):
-        ejes = ThreeDAxes(x_min = -6, x_max = 6, y_min = -6, y_max = 6)
-        #limites direccionales, continuos:
-        #texto:
-        t_1_1 = TextMobject('Límites Direccionales').scale(1.5)
-        t_1_2 = TextMobject(""" Sea $f:D\\subseteq \\mathbb{R}^n\\rightarrow \\mathbb{R}^m$, $x_0\\in Int(D)$ \n
-                             y $u\\in \\mathbb{R}^n\\setminus\\{\\overline{0}\\}$. El límite direccional de \n
-                            $f$ en $x_0$ en la dirección de $u$ es  \n
-                            $\\lim_{h\\rightarrow 0}f(x_0+hu)$, $h\in\mathbb{R}$.""")
-        t_1_3 = TextMobject("""Teorema. Si existe el límite de $f$ en $x_0$, entonces \n
-                            existen todos los límites direccionales y son iguales.""")
-        t_1_4 = TextMobject("No se vale el regreso.")
-        t_1_41= TextMobject('''Pero, ¿qué significa que para cualquier dirección \n
-                            exista y sea lo mismo?''')
-        t_1_42=TextMobject("Veamos un ejemplo.")
-        t_1_5 = TextMobject("""Sea la función: $f:\\mathbb{R}^2\\rightarrow\\mathbb{R}$ \\
-                               dada por $f(x,y) = x^2+y^2$""")
-        t_1_6 = TextMobject("""Es intuitivo notar que la función \n
-                               tiene límite en $(0,0)$ \n
-                               y de hecho el límite vale 0.""")
-        t_1_7 = TextMobject("""Pero... ¿Qué tendría que hacer alguien para probar\n
-                               que el límite existe y vale 0?""")
-        t_1_8 = TextMobject("""¡OJO! No caigas en el error de querer probar la existencia \n
-                                de un  límite utilizando que todos los límites direccionales\n
-                                existen y vale lo mismo.""")
-        t_1_81=TextMobject("""Para ver por qué no vale el regreso del teorema de \n
-                            límites direccionales, considera la función \n
-                            característica $\\chi:\\mathbb{R}^2\\rightarrow\\mathbb{R}$ de la curva\n
-                            $y = x^2$ (vale 1 en estos puntos y 0 en lo demás).""")
-        t_1_9 = TextMobject("""Observa ahora cómo realmente para toda \n
-                                dirección la curva amarilla siempre converge a 0 \n
-                                cuando tomamos el límite acercándose a (0,0)""").scale(0.6)\
-                                                                                .move_to(np.array([-3.5, 3, 0]))
-        t_1_9_rec=VGroup(SurroundingRectangle(t_1_9, color=WHITE, fill_color=BLACK, fill_opacity=1), t_1_9)
-        ##objetos anim
-        #escribimos:
-        a = VGroup(t_1_1, t_1_2, t_1_3, t_1_4, t_1_5, t_1_6, t_1_7, t_1_8)
-        self.play(Write(t_1_1))
-        self.wait(3)
-        self.play(ReplacementTransform(t_1_1, t_1_2))
-        self.wait(11.25)
-        self.play(ReplacementTransform(t_1_2, t_1_3))
-        self.wait(6.75)
-        self.play(ReplacementTransform(t_1_3, t_1_4))
-        self.wait(2)
-        self.play(ReplacementTransform(t_1_4, t_1_41))
-        self.wait(4.5)
-        self.play(ReplacementTransform(t_1_41, t_1_42))
-        self.wait(2)
-        self.play(ReplacementTransform(t_1_42, t_1_5))
-        self.wait(6.375)
-        self.play(ReplacementTransform(t_1_5, t_1_6))
-        self.wait(6.375)
-        self.play(ReplacementTransform(t_1_6, t_1_7))
-        self.wait(5.675)
-        self.play(ReplacementTransform(t_1_7, t_1_8))
-        self.wait(9.375)
-        self.play(ReplacementTransform(t_1_8, t_1_81))
-        self.wait(11.675)
-        self.play(FadeOut(t_1_81))
-        #creamos el value tracker
-        t = ValueTracker(0)
-        t_1 = ValueTracker(0)
-        #graficas
-        graf_i = ParametricFunction(lambda x: np.array([np.cos(0)*x, np.sin(0)*x, x**2]), t_min = -5, t_max = 5).set_color(YELLOW)
-        superficie_1_1 = ParametricSurface(
-            lambda u, v: np.array([
-                u,
-                v,
-                u**2+v**2
-            ]),v_min=-3,v_max=3,u_min=-3,u_max=3,checkerboard_colors=[RED_A, RED_B],
-            resolution=(15, 64), fill_opacity = 2)
-        superficie_1_2 = ParametricSurface(
-            lambda u, v: np.array([
-                u,
-                0,
-                v
-            ]),v_min=-4,v_max=4,u_min=-4,u_max=4,checkerboard_colors=[GREEN_A, GREEN_B],
-            resolution=(15, 64))
-        piso_i = ParametricFunction(lambda x: np.array([np.cos(0)*x, np.sin(0)*x, 0]), t_min = -5, t_max = 5).set_color(ORANGE)
-        self.play(Write(superficie_1_1), Write(superficie_1_2), Write(ejes))
-        #funciones actualizadoras:
-        def act_gr_plano(grafica):
-            te = t.get_value()
-            superficie_1_2.become(ParametricSurface(
-            lambda u, v: np.array([
-                np.cos(te)*u,
-                np.sin(te)*u,
-                v
-            ]),v_min=-4,v_max=4,u_min=-4,u_max=4,checkerboard_colors=[GREEN_A, GREEN_B],
-            resolution=(15, 64)))
-        #añadimos updaters
-        superficie_1_2.add_updater(act_gr_plano)
-        #animaciones:
-        self.add(superficie_1_2)
-        self.bring_to_back(superficie_1_2)
-        self.move_camera(phi=np.pi/2,theta=-np.pi/2) 
-        self.play(Write(t_1_9_rec))
-        self.play(t.increment_value, 2*np.pi, run_time = 5)
-        self.play(FadeOut(superficie_1_2))
-        #nuevos updaters:
-        #removemos el updater:
-        superficie_1_2.remove_updater(act_gr_plano)
-        #nuevos ups
-        self.play(Write(graf_i),Write(piso_i))
-        def act_gr(grafica):
-            te_1 = t_1.get_value()
-            grafica.become(ParametricFunction(lambda x: np.array([np.cos(te_1)*x, np.sin(te_1)*x, x**2]), t_min = -5, t_max = 5)).set_color(YELLOW)
-        def act_gr_piso(grafica):
-            te_1 = t_1.get_value()
-            piso_i.become(ParametricFunction(lambda x: np.array([np.cos(te_1)*x, np.sin(te_1)*x, 0]), t_min = -5, t_max = 5)).set_color(ORANGE)
-        #los damos
-        graf_i.add_updater(act_gr)
-        piso_i.add_updater(act_gr_piso)
-        #añadimos:
-        self.add(graf_i)
-        self.add(piso_i)
-        #animamos:
-        self.add_fixed_in_frame_mobjects(t_1_9_rec)
-        self.play(t_1.increment_value, 2*np.pi, run_time = 6)
-        self.wait(7.5)
-        self.play(FadeOut(graf_i),
-        FadeOut(piso_i),
-        FadeOut(superficie_1_1), FadeOut(t_1_9_rec))
-        self.remove(ejes)
-        self.wait()
-        #nuevos objetos
-        #nuevos textos para no existencia
-        t_2_1 = TextMobject(""" Pero $\chi (1/n,1/n^2)=1$ para todo $n$ natural. \n
-                                Por el Teorema de límite de funciones con sucesiones, \n
-                                la función no tiene límite. """)
-        t_2_2 = TextMobject("""Propongamos la siguiente función: \n
-                                $f(x,y) = \\dfrac{xy}{x^2+y^2}$""")
-        t_2_21 = TextMobject("""De hecho existen dos límites direccionales diferentes, \n
-                            entonces no existe el límite.""")
-        t_2_3 = TextMobject("""Veamos la intuición geométrica de que no \n
-                             existe dicho límite en (0,0).""")
-        t_2_4 = TextMobject("""Vamos a intersectar planos verticales con la superficie y \n
-                                veamos las curvas que resultan.""")
-        t_2_5 = TextMobject("""Nota cómo hay una infinidad de valores \n
-                             distintos de límites direccionales.""").scale(0.6)\
-                                                                 .move_to(np.array([0, 3, 0]))
-        t_2_5_rec=VGroup(SurroundingRectangle(t_2_5, color=WHITE, fill_color=BLACK, fill_opacity=1), t_2_5)
-        self.move_camera(phi=0,theta=-np.pi/2)
-        #escribimos:
-        self.play(Write(t_2_1))
-        self.wait(9.375)
-        self.play(ReplacementTransform(t_2_1, t_2_2))
-        self.wait(5.25)
-        self.play(ReplacementTransform(t_2_2, t_2_21))
-        self.wait(4.5)
-        self.play(ReplacementTransform(t_2_21, t_2_3))
-        self.wait(5)
-        self.play(ReplacementTransform(t_2_3, t_2_4))
-        self.wait(5.25)
-        self.play(FadeOut(t_2_4))
-        #nuevas superficies:
-        t_2 = ValueTracker(0)
-        superficie_2_1 = ParametricSurface(
-            lambda u, v: np.array([
-                u,
-                v,
-                u*v/(u**2+v**2)
-            ]),v_min=-3,v_max=3,u_min=-3,u_max=3,checkerboard_colors=[RED_A, RED_B],
-            resolution=(15,64), fill_opacity = 2)
-        superficie_2_2 = ParametricSurface(
-            lambda u, v: np.array([
-                u,
-                0,
-                v
-            ]),v_min=-4,v_max=4,u_min=-4,u_max=4,checkerboard_colors=[GREEN_A, GREEN_B],
-            resolution=(15, 64))
-        graf_i_1 = ParametricFunction(lambda x: np.array([np.cos(0)*x, np.sin(0)*x, np.cos(0)*np.sin(0)]), t_min = -5, t_max = 5, color = YELLOW).set_color(YELLOW)
-        piso_i_1 = ParametricFunction(lambda x: np.array([np.cos(0)*x, np.sin(0)*x, 0]), t_min = -5, t_max = 5).set_color(ORANGE)
-        self.move_camera(phi=np.pi/4,theta=np.pi/6)
-        self.play(ShowCreation(superficie_2_1), ShowCreation(superficie_2_2), ShowCreation(graf_i_1), ShowCreation(piso_i_1))
-        #creamos updaters:
-        def act_gr_1(graf):
-            te_2 = t_2.get_value()
-            graf_i_1.become(ParametricFunction(lambda x: np.array([np.cos(te_2)*x, np.sin(te_2)*x, np.cos(te_2)*np.sin(te_2)]), t_min = -5, t_max = 5)).set_color(YELLOW)
-        def act_gr_2(graf):
-            te_2 = t_2.get_value()
-            piso_i_1.become(ParametricFunction(lambda x: np.array([np.cos(te_2)*x, np.sin(te_2)*x, 0]), t_min = -5, t_max = 5)).set_color(ORANGE)
-        def act_gr_3(graf):
-            te_2 = t_2.get_value()
-            superficie_2_2.become(ParametricSurface(
-            lambda u, v: np.array([
-                np.cos(te_2)*u,
-                np.sin(te_2)*u,
-                v
-            ]),v_min=-4,v_max=4,u_min=-4,u_max=4,checkerboard_colors=[GREEN_A, GREEN_B],
-            resolution=(15, 64)))
-        #añadimso los updaters
-        superficie_2_2.add_updater(act_gr_3)
-        graf_i_1.add_updater(act_gr_1)
-        piso_i_1.add_updater(act_gr_2)
-        #añadimso a la pantalla
-        self.play(Write(ejes))
-        self.add(superficie_2_2)
-        self.add(graf_i_1)
-        self.add(piso_i_1)
-        self.bring_to_back(superficie_2_2)
-        #animamos:
-        self.move_camera(phi=+np.pi/4,theta=-np.pi) 
-        self.play(t_2.increment_value, np.pi, run_time = 6, rate_func = there_and_back)
-        self.wait()
-        self.move_camera(phi=np.pi/2,theta=-np.pi)
-        self.add_fixed_in_frame_mobjects(t_2_5_rec)
-        self.play(t_2.increment_value, np.pi, run_time = 6)
-        self.wait(4.125)
-        #fin de anim:
-        t_3_1 = TextMobject("""¿Podemos usar los límites direccionales \n
-                            si $x_0$ está en la frontera del dominio?""")
-        self.move_camera(phi=0,theta=-np.pi/2)
-        self.play(FadeOut(ejes), FadeOut(superficie_2_2), FadeOut(graf_i_1), FadeOut(piso_i_1), FadeOut(t_2_5_rec), FadeOut(superficie_2_1))
-        self.play(Write(t_3_1))
-        self.wait(5)
-        self.play(FadeOut(t_3_1))
-
 #######################
 #######################
 ####LIMITES DE R a R2
@@ -4686,458 +4459,261 @@ class TeoValorIntermedio_3 (ThreeDScene):
 ###################################
 ###### LIMITES DIRECCIONALES ######
 ###################################
-#08/07/2021
-class Limites_direccionales(ThreeDScene):
+
+class LimitesDireccionales(ThreeDScene):
+    def rectangulo_texto(self,objeto):
+        rect = SurroundingRectangle(objeto,color=WHITE, fill_color=BLACK, fill_opacity=1)
+        grupo = VGroup(rect,objeto)
+        return grupo
+    
     def acomodar_textos(self,objeto):
         self.add_fixed_in_frame_mobjects(objeto)
         self.play(Write(objeto))
-    def parte1(self):
-        titulo=TextMobject('''Límites direccionales''').scale(2)
-        text1=TextMobject('''Sea $f:D\\subseteq \\mathbb{R}^n \\rightarrow \\mathbb{R}^m$, \n
-                             $x_0\\in Int(D)$ y $u\\in \\mathbb{R}^n-\\{\\overline{0}\\}$. \n
-                             El límite direccional de $f$ en $x_0$ en la dirección de $u$ es \n
-                              $\\lim_{h\\rightarrow 0}f(x_0+hu)$, \n
-                               $h\\in\\mathbb{R}$.''')
-        text2=TextMobject('''Recordemos que en $\\mathbb{R}$, para obtener el \n
-                                límite sólo podemos aproximarnos por ''la derecha'' \n
-                                 y ''la izquierda'' a $x_0$.''').move_to(3*UP)
-        text2.bg=SurroundingRectangle(text2,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text3=TextMobject(''' Sin embargo, al analizar espacios $\\mathbb{R}^n$,  \n
-                                con $n>1$, ya no sólo poseemos una dirección para \n
-                                aproximarnos a un punto, sino que tenemos una \n
-                                infinidad de ellas.''').move_to(2.8*UP)
-        text3.bg=SurroundingRectangle(text3,color=WHITE,fill_color=BLACK,fill_opacity=1)
-                
-        Ejes=ThreeDAxes(y_min=-3,y_max=2.5)
-        x_label=TexMobject(r"x").move_to(6*RIGHT).scale(2)
-        y_label=TexMobject(r"y").move_to(3*UP).scale(2)
-        axes=VGroup(Ejes,x_label,y_label)
-        curva1=ParametricFunction(
-                lambda u : np.array([
-                u,
-                np.sin(u**2),
-                0
-                ]),color=PURPLE,t_min=-3,t_max=3,
+
+    def Introduccion(self):
+        ### TEXTOS
+
+        t_1 = TextMobject('Límites Direccionales').scale(1.3)
+        t_2 = TextMobject('''Sea $f:D\\subseteq \\mathbb{R}^n\\rightarrow \\mathbb{R}^m$, $x_0\\in Int(D)$ \n
+                            y $u\\in \\mathbb{R}^n\\setminus\\{\\overline{0}\\}$. El límite direccional de \n
+                            $f$ en $x_0$ en la dirección $u$ es  \n
+                            $\\lim_{h\\rightarrow 0}f(x_0+hu)$, $h\in\mathbb{R}$.''')
+        t_3 = TextMobject('''Recordemos que en $\mathbb{R}$, para obtener el límite sólo podemos \n
+                             aproximarnos por ``la derecha'' y ``la izquierda'' a $x_0$.''')
+        t_4 = TextMobject('''Sin embargo, al analizar funciones en $\mathbb{R}^n$, con $n>1$, \n
+                             ya no sólo poseemos una dirección para aproximarnos a un\n
+                             punto, sino que tenemos una infinidad de ellas.''')
+        t_5 = TextMobject('''Veamos un teorema relacionado con las derivadas direccionales.''')
+        t_6 = TextMobject('''Teorema: Si existe el límite de $f$ en $x_0$, entonces \n
+                            existen todos los límites direccionales y son iguales.''')
+        t_7= TextMobject('''Pero, ¿qué significa que para cualquier dirección el límite \n
+                            exista y sea el mismo?''')
+
+        ### ANIMACION
+
+        self.play(Write(t_1))
+        self.wait(3)
+        self.play(ReplacementTransform(t_1,t_2))
+        self.wait(11.25)
+        self.play(ReplacementTransform(t_2,t_3))
+        self.wait(6.75)
+        self.play(ReplacementTransform(t_3,t_4))
+        self.wait(9)
+        self.play(ReplacementTransform(t_4,t_5))
+        self.wait(5)
+        self.play(ReplacementTransform(t_5,t_6))
+        self.wait(6)
+        self.play(ReplacementTransform(t_6,t_7))
+        self.wait(4)
+        self.play(*[FadeOut(obj) for obj in self.mobjects])
+
+    def Ejemplo_Teo(self):
+        # Para los updaters
+        def act_gr_plano(grafica):
+            te = t.get_value()
+            plano_i.become(
+                ParametricSurface(
+                lambda u, v: np.array([
+                    np.cos(te)*u,
+                    np.sin(te)*u,
+                    v
+                ]),u_min=-4, u_max=4,v_min=-0.5,v_max=4,checkerboard_colors=[GREEN_A, GREEN_B],resolution=(15, 64),fill_opacity=0.6
+                )
+            )
+        def act_gr_par(grafica):
+            te = t.get_value()
+            parabola_i.become(
+                ParametricFunction(lambda x: np.array([np.cos(te)*x,np.sin(te)*x,x**2]),t_min=-1.5,t_max=1.5,color=YELLOW,opacity=0.6)
+            )
+        def act_vec_direc(vector):
+            te = t.get_value()
+            direcu.become(
+                Arrow(start=(0,0,0),end=(np.cos(te),np.sin(te),0),color=YELLOW,buff=0)
                 )
 
-        x0=1
-        x0_punto=Dot(color=RED).move_to([x0,np.sin(x0**2),0])
-        x0_puntolabel=TexMobject(r"x_0").next_to(x0_punto,UP,buff=0.1)
-        d=ValueTracker(2.5)
-        derecha=Dot(color=BLUE_E).move_to([2.5,np.sin(2.5**2),0])
-        izquierda=Dot(color=PINK).move_to([-2.5,np.sin((-2.5)**2),0])
-        #UPDATER PARA EL LÍMITE
-        def limite(obj):
-            x=d.get_value()
-            y=np.sin(x**2)
-            y2=np.sin((-x+2)**2)
-            derecha.become(Dot(color=BLUE).move_to([x,y,0]))
-            izquierda.become(Dot(color=BLUE).move_to([-x+2,y2,0]))
-        derecha.add_updater(limite)
-        izquierda.add_updater(limite)
+        ### TEXTOS
 
-        superficie=ParametricSurface(
-            lambda u, v: np.array([
+        t_1 = TextMobject('''Considera la función $f:\\mathbb{R}^2\\rightarrow\\mathbb{R}$ \n
+                               dada por $f(x,y) = x^2+y^2$''')
+        t_2 = TextMobject('''Podemos notar que la función tiene límite en $(0,0)$ \n
+                               y de hecho el límite vale 0.''')
+        t_3 = TextMobject('''Considera el vector director en $\\mathbb{R}^2$ $u=(1,0)$''').to_edge(UP).scale(0.7)
+        gpot3 = self.rectangulo_texto(t_3)
+        t_4 = TextMobject('''Y el plano en $\mathbb{R}^3$ que contiene a $u$ y es ortogonal \n
+                             al plano $xy$''').to_edge(UP).scale(0.7)
+        gpot4 = self.rectangulo_texto(t_4)
+        t_5 = TextMobject('''La intersección del plano anterior y la superficie dada por $f$\n
+                             es una curva, y sobre esta curva nos aproximamos al punto en el \n
+                             que queremos conocer el límite, comprobando que el límite \n
+                             direccional en la dirección $u$ converge a 0.''').to_corner(RIGHT+DOWN).scale(0.6)
+        gpot5 = self.rectangulo_texto(t_5)
+        t_6 = TextMobject('''Puedes observar que por cualquier dirección que te aproximes\n
+                             a $(0,0)$, el límite direccional es $0$.''').to_corner(RIGHT+DOWN).scale(0.6)
+        gpot6 = self.rectangulo_texto(t_6)
+
+        ### OBJETOS-GRAFICAS
+
+        axes = ThreeDAxes(x_min = -5, x_max = 5, y_min = -5, y_max = 5,z_min=-1,z_max=5)
+        x_label = TexMobject(r"x").scale(0.75).move_to((5.5,0.3,0))
+        y_label = TexMobject(r"y").scale(0.75).move_to((0.3,5.5,0))
+        ejes = VGroup(axes,x_label,y_label)
+        direcu = Arrow(start=(0,0,0),end=(1,0,0),color=YELLOW,buff=0)
+        parabola_i = ParametricFunction(lambda x: np.array([np.cos(0)*x,np.sin(0)*x,x**2]),t_min=-1.5,t_max=1.5,color=YELLOW,opacity=0.6)
+        plano_i = ParametricSurface(
+            lambda u,v: np.array([
                 u,
-                v,
-                (u**2-v**2)*2
-            ]),v_min=-2,v_max=2,u_min=-2,u_max=2,fill_opacity=0.75,checkerboard_colors=[GOLD_E,GOLD_E])
-
-
-        punto=Dot(radius=0.1,color=RED).move_to([0,0,0])
-
-        punto_1=Dot(radius=0.1,color=RED).move_to([-2,-2,0])
-        punto_2=Dot(radius=0.1,color=RED).move_to([-2,2,0])
-        punto_3=Dot(radius=0.1,color=RED).move_to([2,2,0])
-        punto_4=Dot(radius=0.1,color=RED).move_to([2,-2,0])
-
-        punto_5=Dot(radius=0.1,color=RED).move_to([-2,0,8])
-        punto_6=Dot(radius=0.1,color=RED).move_to([2,0,8])
-        punto_7=Dot(radius=0.1,color=RED).move_to([0,-2,-8])
-        punto_8=Dot(radius=0.1,color=RED).move_to([0,2,-8])
-        
-        direcciones=VGroup(punto_1,punto_2,punto_3,punto_4,punto_5,punto_6,punto_7,punto_8)
-
-        t1=ValueTracker(-2)
-        def limite2(obj):
-            t1_1=t1.get_value()
-            punto_1.become(Dot(radius=0.1,color=RED).move_to([t1_1,t1_1,0]))
-            punto_2.become(Dot(radius=0.1,color=RED,point=[t1_1,-t1_1,0]))
-            punto_3.become(Dot(radius=0.1,color=RED,point=[-t1_1,-t1_1,0]))
-            punto_4.become(Dot(radius=0.1,color=RED,point=[-t1_1,t1_1,0]))
-
-            punto_5.become(Dot(radius=0.1,color=RED).move_to([t1_1,0,2*(t1_1**2)]))
-            punto_6.become(Dot(radius=0.1,color=RED).move_to([-t1_1,0,2*(t1_1**2)]))
-            punto_7.become(Dot(radius=0.1,color=RED).move_to([0,t1_1,-2*(t1_1**2)]))
-            punto_8.become(Dot(radius=0.1,color=RED).move_to([0,-t1_1,-2*(t1_1**2)]))
-
-        punto_1.add_updater(limite2)
-        punto_2.add_updater(limite2)
-        punto_3.add_updater(limite2)
-        punto_4.add_updater(limite2)
-        
-        punto_5.add_updater(limite2)
-        punto_6.add_updater(limite2)
-        punto_7.add_updater(limite2)
-        punto_8.add_updater(limite2)
-
-        
-
-            
-        self.acomodar_textos(titulo)
-        self.wait(5)
-        self.play(FadeOut(titulo))
-        self.acomodar_textos(text1)
-        self.wait(15)
-        self.play(FadeOut(text1))
-        self.set_camera_orientation(phi= 0 * DEGREES,theta=-90*DEGREES,distance=200)
-        self.play(ShowCreation(axes))
-        self.acomodar_textos(text2.bg)
-        self.acomodar_textos(text2)
-        self.play(ShowCreation(curva1))
-        self.play(ShowCreation(x0_punto),Write(x0_puntolabel))
-        self.play(ShowCreation(derecha),ShowCreation(izquierda))
-        self.play(d.set_value,1,run_time=3)
-        self.wait(5)
-        self.play(FadeOut(curva1),FadeOut(text2),FadeOut(text2.bg),FadeOut(x0_puntolabel),FadeOut(x0_punto),FadeOut(derecha),FadeOut(izquierda))#,FadeOut(axes))
-        self.move_camera(phi=75 * DEGREES,theta=-80*DEGREES,run_time=2.5)
-        self.play(ShowCreation(superficie))
-        self.acomodar_textos(text3.bg)
-        self.acomodar_textos(text3)
-        self.play(ShowCreation(punto))
-        self.play(ShowCreation(direcciones))
-        self.wait(2)
-        self.play(t1.set_value,0,run_time=10)
-        self.wait(2)
-        self.play(FadeOut(text3),FadeOut(text3.bg),FadeOut(superficie),FadeOut(direcciones),FadeOut(axes),FadeOut(punto))
-        
-
-    def parte2(self):
-        text4=TextMobject('''Veamos un teorema relacionado con las derivadas \n
-                                 direccionales.''')
-        text5=TextMobject('''Teorema: Si existe el límite de $f$ en $x_0$, entonces \n
-                                 existen todos los límites direccionales y son iguales. ''')
-        text6=TextMobject(''' Pero, ¿qué significa que para cualquier dirección el \n
-                                límite exista y sea el mismo?''')
-        text7=TextMobject('''Considera la función: \n
-                            $f:\\mathbb{R}^2\\rightarrow\\mathbb{R}$ \n
-                            dada por''',''' \n $f(x,y) = x^2+y^2$''').move_to(-3*UP)
-        text7.bg=SurroundingRectangle(text7,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text8=TextMobject('''Podemos notar que la función tiene límite en \n
-                                $(0,0)$ y de hecho el límite vale 0.''').move_to(3*DOWN)
-        text8.bg=SurroundingRectangle(text8,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text9=TextMobject(''' Además, puedes observar que por cualquier dirección \n
-                             que te aproximes a (0,0), el límite direccional es 0.''').move_to(3*DOWN)
-        text9.bg=SurroundingRectangle(text9,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text10=TextMobject('''¿Se vale el regreso del teorema?''','''\n 
-                                No''')
-        Ejes=ThreeDAxes()
-        x_label=TexMobject(r"x").move_to(6*RIGHT).scale(2)
-        y_label=TexMobject(r"y").move_to(6*UP).scale(2)
-        axes=VGroup(Ejes,x_label,y_label)
-        superficie1 = ParametricSurface(
-            lambda u, v: np.array([
+                0,
+                v
+            ]),u_min=-4, u_max=4,v_min=-0.5,v_max=4,checkerboard_colors=[GREEN_A, GREEN_B],resolution=(15, 64),fill_opacity=0.6
+        )
+        superficie = ParametricSurface(
+            lambda u,v: np.array([
                 u,
                 v,
                 u**2+v**2
-            ]),v_min=-2,v_max=2,u_min=-2,u_max=2,fill_opacity=0.75,checkerboard_colors=[GOLD_E,GOLD_E])
-            
-        punto=Dot(radius=0.1,color=RED,point=[0,0,0])
-        punto_2=Dot(radius=0.1,color=RED).move_to([-2,2,8])
-        punto_3=Dot(radius=0.1,color=RED).move_to([2,2,8])
-        punto_4=Dot(radius=0.1,color=RED).move_to([2,-2,8])
-        punto_5=Dot(radius=0.1,color=RED).move_to([-2,0,4])
-        punto_6=Dot(radius=0.1,color=RED).move_to([2,0,4])
-        punto_8=Dot(radius=0.1,color=RED).move_to([0,2,4])
-        
-        direcciones=VGroup(punto_4,punto_5,punto_6,punto_2,punto_3,punto_8)
+            ]),u_min=-1.5,u_max=1.5,v_min=-1.5,v_max=1.5,checkerboard_colors=[RED_A, RED_B],resolution=(15, 64)
+        )
+        t = ValueTracker(0)
 
-        t1=ValueTracker(-2)
-        def limite2(obj):
-            t1_1=t1.get_value()
-            punto_4.become(Dot(radius=0.1,color=RED,point=[-t1_1,t1_1,(t1_1**2)*2]))
-            punto_5.become(Dot(radius=0.1,color=RED).move_to([t1_1,0,(t1_1**2)]))
-            punto_6.become(Dot(radius=0.1,color=RED).move_to([-t1_1,0,(t1_1**2)]))
+        ### ANIMACION
 
-        punto_4.add_updater(limite2)
-        punto_5.add_updater(limite2)
-        punto_6.add_updater(limite2)
-
-        t2=ValueTracker(-2)
-        def limite3(obj):
-            t1_1=t2.get_value()
-            punto_2.become(Dot(radius=0.1,color=RED,point=[t1_1,-t1_1,(t1_1**2)*2]))
-            punto_3.become(Dot(radius=0.1,color=RED,point=[-t1_1,-t1_1,(t1_1**2)*2]))
-            punto_8.become(Dot(radius=0.1,color=RED).move_to([0,-t1_1,(t1_1**2)]))
-
-        punto_2.add_updater(limite3)
-        punto_3.add_updater(limite3)
-        punto_8.add_updater(limite3)
-        
-
-
-        self.acomodar_textos(text4)
-        self.wait(7)
-        self.play(FadeOut(text4))
-        self.acomodar_textos(text5)
-        self.wait(12)
-        self.play(FadeOut(text5))
-        self.acomodar_textos(text6)
-        self.wait(8)
-        self.play(FadeOut(text6))
-        self.acomodar_textos(text7.bg)
-        self.acomodar_textos(text7)
-        self.set_camera_orientation(phi=75 * DEGREES,theta=-45*DEGREES,distance=200)
-        self.play(ShowCreation(axes))
-        self.play(ShowCreation(superficie1))
-        self.wait(8)
-        self.play(FadeOut(text7),FadeOut(text7.bg))
-        self.acomodar_textos(text8.bg)
-        self.acomodar_textos(text8)
-        #se muestra animación de límite 
-        self.play(ShowCreation(punto))
-        self.wait(8)
-        self.play(FadeOut(text8),FadeOut(text8.bg))
-        self.acomodar_textos(text9.bg)
-        self.acomodar_textos(text9)
-        self.play(ShowCreation(punto_5),ShowCreation(punto_4),ShowCreation(punto_6))
-        self.play(t1.set_value,0,run_time=10)
-        self.move_camera(phi=75 * DEGREES,theta=80*DEGREES,run_time=6)
-        self.play(ShowCreation(punto_2),ShowCreation(punto_3),ShowCreation(punto_8))
-        self.play(t2.set_value,0,run_time=10)
-        self.wait(2)
-        self.play(FadeOut(text9),FadeOut(text9.bg),FadeOut(axes),FadeOut(superficie1),FadeOut(punto),FadeOut(direcciones))
-        self.acomodar_textos(text10[0])
-        self.wait(3)
-        self.acomodar_textos(text10[1])
-        self.wait(5)
-        self.play(FadeOut(text10))
-    
-    def parte3(self):
-        text11=TextMobject(''' Considera la función característica \n
-                                $\\chi:\\mathbb{R}^2\\rightarrow\\mathbb{R}$
-                                de la curva $y = x^2$''').move_to(3*UP)
-        text11.bg=SurroundingRectangle(text11,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        nota=TextMobject('''Vale 1 en estos puntos y 0 en lo demás. ''').move_to(3*DOWN).scale(0.8)
-        # (vale 1 en estos puntos y 0 en lo demás).
-        nota.bg=SurroundingRectangle(nota,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text12=TextMobject('''Observa ahora cómo realmente para toda dirección \n
-                            la curva amarilla siempre converge a 0 cuando \n
-                            tomamos el límite acercándose a (0,0)''').move_to(-2.8*UP)
-        text12.bg=SurroundingRectangle(text12,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text13=TextMobject('''Pero $\\chi (1/n,1/n^2)=1$ para todo $n$ natural. \n
-                            Por el Teorema de límite de funciones con sucesiones, \n
-                            la función no tiene límite.''').move_to(3*DOWN)
-        text13.bg=SurroundingRectangle(text13,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text14=TextMobject('''Sabiendo lo anterior, no caigas en el error de \n
-                             querer probar la existencia de un límite utilizando \n
-                             que todos los límites direccionales existen y \n
-                             vale lo mismo.''')
-        
-        Ejes=ThreeDAxes()
-        x_label=TexMobject(r"x").move_to(6*RIGHT).scale(2)
-        y_label=TexMobject(r"y").move_to(6*UP).scale(2)
-        axes=VGroup(Ejes,x_label,y_label)
-        #definimos los objetos para la superficie
-        plano=Rectangle(height=8,width=10,color=PURPLE,fill_color=PURPLE,fill_opacity=0.5,stroke_opacity=0)
-        curva1=ParametricFunction(
-                lambda u : np.array([
-                u,
-                u**2,
-                1
-                ]),color=PURPLE,t_min=-2,t_max=2,
-                )
-    
-        curva2=ParametricFunction(
-                lambda u : np.array([
-                u,
-                u**2,
-                0
-                ]),color=BLACK,t_min=-3,t_max=3,
-                )
-        superifice=VGroup(plano,curva1,curva2)
-        curva3=ParametricFunction(
-                lambda u : np.array([
-                u,
-                u**2,
-                1
-                ]),color=YELLOW,t_min=-2,t_max=2,
-                )
-        superifice2=VGroup(curva2,curva3,plano)
-        self.set_camera_orientation(phi=75 * DEGREES,theta=-45*DEGREES,distance=200)
-        self.play(ShowCreation(axes))
-        self.acomodar_textos(text11.bg)
-        self.acomodar_textos(text11)
-        self.acomodar_textos(nota.bg)
-        self.acomodar_textos(nota)
-        self.wait(8)
-        self.play(ShowCreation(superifice))
-        self.wait()
-        self.play(FadeOut(text11),FadeOut(nota),FadeOut(nota.bg),FadeOut(text11.bg))
-        self.acomodar_textos(text12.bg)
-        self.acomodar_textos(text12)
-        self.wait(3)
-        self.play(ReplacementTransform(curva1,curva3))
-        self.wait(6)
-        ## Animación de punto moviendose en la curva
-        self.play(FadeOut(text12),FadeOut(text12.bg))
-        self.acomodar_textos(text13.bg)
-        self.acomodar_textos(text13)
-        self.wait(13)
-        self.play(FadeOut(text13),FadeOut(text13.bg),FadeOut(plano),FadeOut(axes),FadeOut(curva1),FadeOut(curva3),FadeOut(curva2))
-        self.acomodar_textos(text14)
-        self.wait(15)
-        self.play(FadeOut(text14))
-    
-    def parte4(self):
-        text15=TextMobject('''Ahora considera la función \n
-                                $f(x,y) = \dfrac{xy}{x^2+y^2}$''').move_to(3*UP)
-        text15.bg=SurroundingRectangle(text15,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text15_group=VGroup(text15,text15.bg)
-        text16=TextMobject('''Nota que para el punto (0,0) existen dos \n
-                            límites direccionales diferentes, \n
-                            entonces podemos concluir que no existe el límite.''').move_to(3*UP)
-        text16.bg=SurroundingRectangle(text16,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text16_group=VGroup(text16,text16.bg)
-        text17=TextMobject('''Veamos la intuición geométrica de que \n
-                            no existe dicho límite en (0,0).''').move_to(3*UP)
-        text17.bg=SurroundingRectangle(text17,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text17_group=VGroup(text17,text17.bg)
-        #text18=TextMobject('''Vamos a intersectar planos verticales con \n
-         #                   la superficie y veamos las curvas que resultan.''').move_to(3*UP)
-        text18=TextMobject('''Vamos a intersectar planos verticales con \n
-                            la superficie y veamos la convergencia de la función \n
-                            tomando las direcciones dadas por dichos planos.''').move_to(3*UP)
-        text18.bg=SurroundingRectangle(text18,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text18_group=VGroup(text18,text18.bg)
-        #text19=TextMobject('''Nota cómo hay una infinidad de valores distintos \n
-         #                        de límites direccionales.''').move_to(3*UP)
-        text19=TextMobject('''Nota cómo hay una múltiples valores distintos \n
-                                 de límites direccionales.''').move_to(3*UP)
-        text19.bg=SurroundingRectangle(text19,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text19_group=VGroup(text19,text19.bg)
-        text20=TextMobject('''¿Podemos usar los límites direccionales si $x_0$ \n 
-                                está en la frontera del dominio?''')
-
-        Ejes=ThreeDAxes()
-        x_label=TexMobject(r"x").move_to(6*RIGHT).scale(2)
-        y_label=TexMobject(r"y").move_to(6*UP).scale(2)
-        axes=VGroup(Ejes,x_label,y_label)
-        superficie_1=ParametricSurface(
-            lambda u, v: np.array([
-                u,
-                v,
-                (u*v)/(u**2+v**2)
-            ]),v_min=-3,v_max=-0.005,u_min=-3,u_max=-0.005,fill_opacity=0.75,checkerboard_colors=[GOLD_E,GOLD_E])
-        superficie_2=ParametricSurface(
-            lambda u, v: np.array([
-                u,
-                v,
-                (u*v)/(u**2+v**2)
-            ]),v_min=-3,v_max=-0.005,u_min=0.005,u_max=3,fill_opacity=0.75,checkerboard_colors=[GOLD_E,GOLD_E])
-        superficie_3=ParametricSurface(
-            lambda u, v: np.array([
-                u,
-                v,
-                (u*v)/(u**2+v**2)
-            ]),v_min=0.005,v_max=3,u_min=-3,u_max=-0.005,fill_opacity=0.75,checkerboard_colors=[GOLD_E,GOLD_E])
-        superficie_4=ParametricSurface(
-            lambda u, v: np.array([
-                u,
-                v,
-                (u*v)/(u**2+v**2)
-            ]),v_min=0.005,v_max=3,u_min=0.005,u_max=3,fill_opacity=0.75,checkerboard_colors=[GOLD_E,GOLD_E])
-        superficie=VGroup(superficie_1,superficie_2,superficie_3,superficie_4)
-
-        plano1=Rectangle(height=5,width=8,color=PURPLE,fill_color=PURPLE,fill_opacity=0.3,stroke_opacity=0).rotate(90*DEGREES,axis=RIGHT)
-        plano1.rotate(90*DEGREES,axis=IN)
-        plano2=Rectangle(height=5,width=8,color=PURPLE,fill_color=PURPLE,fill_opacity=0.3,stroke_opacity=0).rotate(90*DEGREES,axis=RIGHT)
-        plano2.rotate(45*DEGREES,axis=IN)
-        plano3=Rectangle(height=5,width=8,color=PURPLE,fill_color=PURPLE,fill_opacity=0.3,stroke_opacity=0).rotate(90*DEGREES,axis=RIGHT)
-        plano3.rotate(0*DEGREES,axis=IN)
-        plano4=Rectangle(height=5,width=8,color=PURPLE,fill_color=PURPLE,fill_opacity=0.3,stroke_opacity=0).rotate(90*DEGREES,axis=RIGHT)
-        plano4.rotate(135*DEGREES,axis=IN)
-        plano5=Rectangle(height=5,width=8,color=PURPLE,fill_color=PURPLE,fill_opacity=0.3,stroke_opacity=0).rotate(90*DEGREES,axis=RIGHT)
-        plano5.rotate(0*DEGREES,axis=IN)
-        PLANOS=VGroup(plano1,plano2,plano3,plano4)#,plano5)
-        
-        
-        #límites
-        punto_1=Dot(radius=0.1,color=BLUE,point=[-3,3,-9/(9*2)])
-        punto_2=Dot(radius=0.1,color=BLUE).move_to([3,3,9/(9*2)])
-        punto_3=Dot(radius=0.1,color=BLUE).move_to([3,-3,-9/(9*2)])
-        punto_4=Dot(radius=0.1,color=BLUE).move_to([-3,-3,9/(9*2)])
-        
-        punto_5=Dot(radius=0.1,color=BLUE).move_to([-3,0,-3/(9)])
-        punto_6=Dot(radius=0.1,color=BLUE).move_to([3,0,3/(9)])
-        punto_7=Dot(radius=0.1,color=BLUE).move_to([0,-3,-3/(9)])
-        punto_8=Dot(radius=0.1,color=BLUE).move_to([0,3,3/(9)])
-
-        t1=ValueTracker(-3)
-
-        def limite4(obj):
-            t=t1.get_value()
-            punto_1.become(Dot(radius=0.1,color=RED,point=[t,-t,-t**2/(2*(t**2))]))
-            punto_2.become(Dot(radius=0.1,color=RED,point=[-t,-t,t**2/(2*(t**2))]))
-            punto_3.become(Dot(radius=0.1,color=RED,point=[-t,t,-t**2/(2*(t**2))]))
-            punto_4.become(Dot(radius=0.1,color=RED,point=[t,t,t**2/(9*2)]))
-            
-            punto_5.become(Dot(radius=0.1,color=RED).move_to([t,0,0]))
-            punto_6.become(Dot(radius=0.1,color=RED).move_to([-t,0,0]))
-            punto_7.become(Dot(radius=0.1,color=RED).move_to([0,t,0]))
-            punto_8.become(Dot(radius=0.1,color=RED).move_to([0,-t,0]))
-
-        punto_1.add_updater(limite4)
-        punto_2.add_updater(limite4)
-        punto_3.add_updater(limite4)
-        punto_4.add_updater(limite4)
-
-        punto_5.add_updater(limite4)
-        punto_6.add_updater(limite4)
-        punto_7.add_updater(limite4)
-        punto_8.add_updater(limite4)
-
-        puntos=VGroup(punto_1,punto_2,punto_3,punto_4,punto_5,punto_6,punto_7,punto_8)
-        self.set_camera_orientation(phi=75 * DEGREES,theta=-45*DEGREES,distance=200)
-        self.play(ShowCreation(axes))
-        self.acomodar_textos(text15.bg)
-        self.acomodar_textos(text15)
-        self.wait()
-        self.play(ShowCreation(superficie))
-        self.wait(5)
-        self.play(FadeOut(text15),FadeOut(text15.bg))
-        self.acomodar_textos(text16.bg)
-        self.acomodar_textos(text16)
-        self.wait(12)
-        self.play(FadeOut(text16),FadeOut(text16.bg))
-        self.acomodar_textos(text17.bg)
-        self.acomodar_textos(text17)
-        self.wait(7)
-        self.play(FadeOut(text17),FadeOut(text17.bg))
-        self.acomodar_textos(text18.bg)
-        self.acomodar_textos(text18)
+        self.play(Write(t_1))
         self.wait(4)
-        #animación de los planos
-        self.play(ShowCreation(PLANOS))
-        self.play(ShowCreation(puntos))
-        self.play(t1.set_value,-0.05,run_time=10)
-        self.begin_ambient_camera_rotation(rate=0.08)
-        self.wait(5)
-        #self.set_camera_orientation(phi= 0 * DEGREES,theta=-90*DEGREES,distance=200)
-        self.play(FadeOut(text18),FadeOut(text18.bg))
-        self.acomodar_textos(text19.bg)
-        self.acomodar_textos(text19)
-        self.wait(7)
-        self.play(FadeOut(text19),FadeOut(text19.bg),FadeOut(axes),FadeOut(superficie),FadeOut(PLANOS),FadeOut(puntos))
-        self.acomodar_textos(text20)
-        self.wait(8)
-        self.play(FadeOut(text20))
+        self.play(ReplacementTransform(t_1,t_2))
+        self.wait(4)
+        self.play(FadeOut(t_2))
+        self.acomodar_textos(gpot3)
+        self.play(Write(ejes))
+        self.play(ShowCreation(direcu))
+        self.play(FadeOut(gpot3))
+        self.move_camera(phi=80*DEGREES,theta=30*DEGREES,frame_center=(0,0,2))
+        self.acomodar_textos(gpot4)
+        self.play(ShowCreation(plano_i))
+        self.wait(2)
+        self.play(ShowCreation(superficie))
+        self.wait(2)
+        self.play(FadeOut(gpot4))
+        self.acomodar_textos(gpot5)
+        self.play(Write(parabola_i))
+        self.remove(gpot5)
+        self.add(gpot5)
+        self.wait(6)
+        self.play(FadeOut(gpot5))
+        self.acomodar_textos(gpot6)
 
+        self.remove(plano_i)
+        self.remove(parabola_i)
+        self.remove(direcu)
+        plano_i.add_updater(act_gr_plano)
+        parabola_i.add_updater(act_gr_par)
+        direcu.add_updater(act_vec_direc)
+        self.add(plano_i)
+        self.add(parabola_i)
+        self.add(direcu)
+        self.bring_to_back(plano_i)
+        self.bring_to_back(parabola_i)
+        self.bring_to_back(direcu)
+        self.play(t.increment_value, 2*np.pi,run_time=4)
+        plano_i.remove_updater(act_gr_plano)
+        parabola_i.remove_updater(act_gr_par)
+        direcu.remove_updater(act_vec_direc)
 
+        self.play(*[FadeOut(obj) for obj in self.mobjects])
 
+    def Regreso(self):
+        def act_gr_direc(linea):
+            te = t.get_value()
+            direc.become(
+                ParametricFunction(lambda x: np.array([np.cos(te)*x,np.sin(te)*x,0]),t_min=-4,t_max=4).set_color(YELLOW)
+            )
+        ### TEXTOS
         
+        t_1 = TextMobject('''¿Se vale el regreso del teorema?\n
+                             NO''')
+        t_2 = TextMobject('''Considera la función característica $\\chi:\\mathbb{R}^2\\rightarrow\\mathbb{R}$ \n
+                             de la curva $y = x^2$ (vale 1 en los puntos de la curva \n
+                             y 0 en lo demás).''').to_edge(UP).scale(0.7)
+        gpot2 = self.rectangulo_texto(t_2)
+        t_3 = TextMobject('''Observa ahora cómo, para toda dirección, la curva amarilla\n
+                             siempre converge a 0 cuando tomamos el límite en (0,0).''').scale(0.6)\
+                                                                                        .move_to((0,3,0))#agregar rectangulo
+        gpot3 = self.rectangulo_texto(t_3)
+        t_4 = TextMobject('''Pero al aproximarnos a (0,0) sobre la curva dada por\n
+                             $y=x^2$, el límite resulta 1. Debido a esto, la función \n
+                             no tiene límite en (0,0).''').scale(0.6)\
+                                                          .move_to((0,3,0))#agregar rectangulo
+        gpot4 = self.rectangulo_texto(t_4)
+        t_5 = TextMobject('''Sabiendo lo anterior, no caigas en el error de querer\n
+                             probar la existencia de un límite utilizando que todos \n
+                             los límites direccionales existen y valen lo mismo.''')
+
+        ### OBJETOS-GRAFICAS
+        
+        axes = ThreeDAxes(x_min = -5, x_max = 5, y_min = -5, y_max = 5,z_min=-1,z_max=4)
+        x_label = TexMobject(r"x").scale(0.75).move_to((5.5,0.3,0))
+        y_label = TexMobject(r"y").scale(0.75).move_to((0.3,5.5,0))
+        ejes = VGroup(axes,x_label,y_label)
+        para_1 = ParametricFunction(lambda x: np.array([x,x**2,1]),t_min=-2,t_max=2).set_color(RED_A)
+        para_2 = ParametricFunction(lambda x: np.array([x,x**2,0]),t_min=-2,t_max=2).set_color(BLACK)
+        func = ParametricSurface(
+            lambda u,v: np.array([
+                u,
+                v,
+                0
+            ]),u_min=-4, u_max=4,v_min=-4,v_max=4,checkerboard_colors=[RED_A, RED_B],resolution=(15, 64),fill_opacity=0.6 
+        )
+        direc = ParametricFunction(lambda x: np.array([np.cos(0)*x,np.sin(0)*x,0]),t_min=-4,t_max=4).set_color(YELLOW)
+        t = ValueTracker(0)
+
+        ### ANIMACION
+        
+        self.play(Write(t_1))
+        self.wait(2)
+        self.play(FadeOut(t_1))
+        self.move_camera(phi=70*DEGREES,theta=30*DEGREES,frame_center=(0,0,1))
+        self.play(Write(ejes))
+        self.acomodar_textos(gpot2)
+        self.play(ShowCreation(func),ShowCreation(para_1),ShowCreation(para_2))
+        self.wait(2)
+        self.play(FadeOut(gpot2))
+        self.acomodar_textos(gpot3)
+
+        self.remove(direc)
+        direc.add_updater(act_gr_direc)
+        self.add(direc)
+        self.play(t.increment_value, 2*np.pi,run_time=4)
+        direc.remove_updater(act_gr_direc)
+
+        self.play(FadeOut(gpot3),FadeOut(direc))
+        self.acomodar_textos(gpot4)
+        self.wait(3)
+        self.remove(para_1)
+        para_1.set_color(YELLOW)
+        self.add(para_1)
+        self.wait(2)
+        self.play(*[FadeOut(obj) for obj in self.mobjects])
+        self.move_camera(phi=0 * DEGREES,theta=-90*DEGREES,frame_center=(0,0,0))
+        self.play(Write(t_5))
+        self.wait(5)
+        self.play(FadeOut(t_5))
+
+    def Ejemplo_regreso(self):
+        ### TEXTOS
+
+        t_6 = TextMobject('''Ahora considera la función \n
+                             $f(x,y) = \\dfrac{xy}{x^2+y^2}$''')
+        t_7 = TextMobject('''Y toma los vectores directores $u=(1,0)$ y $v=(1,1)$ \n
+                             para ver el límite en $x_0=(0,0)$''').next_to(t_19,DOWN)
+        t_8 = TextMobject('''Vemos que para $u$ se tiene\n
+                             $$\\lim_{h\\rightarrow 0}f(x_0+hu)=0$$''')#agregar rectangulo
+        t_9 = TextMobject('''Mientras que para $v$ se tiene\n
+                             $$\\lim_{h\\rightarrow 0}f(x_0+hv)=\frac{1}{2}$$''')#agregar rectangulo
+        t_10= TextMobject('''Con lo que puedes concluir que el límite de\n
+                             $f$ en $(0,0)$ no existe.''')
+        t_11= TextMobject('''¿Podemos usar los límites direccionales \n
+                            si $x_0$ está en la frontera del dominio?''')
+
     def construct(self):
-        self.parte1()
-        self.parte2()
-        self.parte3()
-        self.parte4()
+        #self.Introduccion()
+        #self.Ejemplo_Teo()
+        self.Regreso()
