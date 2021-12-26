@@ -175,9 +175,9 @@ class Definicion_Sucesiones(Scene):
         self.wait(3.5)
         self.play(FadeOut(grid),FadeOut(Elementos_g_Y))
     
-###################################
-#### DEF LÍMITE DE SUCESIONES #####
-###################################
+#############################################
+#### DEFiNICIÓN DE LÍMITE DE SUCESIONES #####
+##############################################
 
 class Definicion_Limite_Sucesiones(MovingCameraScene, Scene):
     def setup(self):
@@ -496,9 +496,9 @@ class Ejemplos_Sucesiones(Scene):
         self.play(FadeOut(preg_2))
 
 
-###################################
-####     TEOREMA PUENTE      #####
-###################################
+#########################################
+####  TEOREMA PUENTE DE SUCESIONES  #####
+#########################################
 
 class Teo_Puente(Scene):
     def construct(self):
@@ -1012,9 +1012,9 @@ class Subsucesiones(MovingCameraScene,Scene):
         self.play(ReplacementTransform(text8.group,text9.group))
         self.wait(16)
 
-###################################
-#### TEOREMA RECTÁNGULOS ANIDADOS #####
-###################################
+##########################################
+#### TEOREMA DE RECTÁNGULOS ANIDADOS #####
+##########################################
 
 #Definimos un Dot con métodos específicos para la escena de RectangulosAnidados
 class BCustomDot(Dot):
@@ -1148,9 +1148,9 @@ class RectangulosAnidados(Scene):
         self.wait(2)
         self.play(FadeOut(puedes),FadeOut(otra_pregunta))
 
-###################################
-#### TEOREMA BOLZANO WEIERSTRASS #####
-###################################
+#########################################
+#### TEOREMA DE BOLZANO WEIERSTRASS #####
+#########################################
 
 #Definimos un Dot con métodos específicos para la escena de BolzanoWeierstrass
 class CCustomDot(Dot):

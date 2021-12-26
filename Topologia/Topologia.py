@@ -1,9 +1,9 @@
 from manimlib.imports import *
 
 
-#########################
+#############################
 #### CONJUNTOS ABIERTOS #####
-#########################
+#############################
 
 
 class Conjuntos_abiertos(Scene):
@@ -245,9 +245,9 @@ class Conjuntos_abiertos(Scene):
         self.wait()
 
 
-#########################
+#############################
 #### CONJUNTOS CERRADOS #####
-#########################
+#############################
 
 
 class Conjuntos_cerrados(Scene):
@@ -506,9 +506,9 @@ class Conjuntos_cerrados(Scene):
         self.wait()
 
 
-#########################
-#### OBSERVACION CERRADOS/ABIERTOS #####
-#########################
+########################################
+####### NI ABIERTO, NI CERRADO ########
+########################################
 
 
 class ObservacionCerradosAbiertos(Scene):
@@ -759,9 +759,9 @@ class Grid(VGroup):
             )
 
 
-#############################
-#### DISCONEXOS/CONEXOS #####
-#############################
+##########################################
+##### CONJUNTOS CONEXOS Y DISCONEXOS #####
+##########################################
 
 ##Vídeo conjuntos conexos y diconexos
 class ConjuntosConexos(Scene):
@@ -1585,9 +1585,9 @@ class ScreenGrid(VGroup):
         self.add(grid, axes, labels)
 
 
-###################################
-#### PUNTOS AISLADOS/ACUMULACION #####
-###################################
+#############################################################
+#### PUNTOS AISLADOS, DE ACUMULACION Y CONJUNTO DERIVADO ####
+#############################################################
 
 
 class Puntos_Aislado_y_Acumulacion(Scene):
@@ -1790,9 +1790,9 @@ class Puntos_Aislado_y_Acumulacion(Scene):
         self.play(FadeOut(propiedades))
 
 
-########################
-#### CUBIERTAS     #####
-########################
+#################################
+#### CUBIERTA DE UN CONJUNTO ####
+#################################
 
 
 class Cubierta(Scene):
@@ -1950,9 +1950,9 @@ class Cubierta(Scene):
         self.play(FadeOut(Group_4))
 
 
-#########################
-######## Bolas ##########
-#########################
+#####################################
+######## BOLAS Y VECINDADES #########
+#####################################
 
 
 class Bolas(Scene):
@@ -2059,7 +2059,7 @@ class Bolas(Scene):
 
 
 #######################
-### Tipos de puntos ###
+### TIPOS DE PUNTOS ###
 #######################
 
 
@@ -2254,9 +2254,9 @@ class TiposPuntos(Scene):
         self.play(FadeOut(texto_7))
 
 
-#######################
-### Num Lebesgue ######
-#######################
+############################
+### NÚMERO DE LEBESGE ######
+############################
 
 
 class NumLebesgue(Scene):
@@ -2487,9 +2487,9 @@ class ScreenGrid(VGroup):
         self.add(grid, axes, labels)
 
 
-#########################
-#### CERRADURA #####
-#########################
+##################################
+#### CERRADURA DE UN CONJUNTO ####
+##################################
 
 
 class Cerradura(Scene):
@@ -2603,7 +2603,231 @@ class Cerradura(Scene):
         self.wait(14)
         self.play(FadeOut(text3), FadeOut(prop1))
 
-    # 2 in construct
-    # 3 uno de los dispositivos conectados al sistema no funciona ----meter chcp 1252/chcp 65001
-    # del 3 quite los math-algo y nada
-    # acentos y ? debi quitar
+        
+        
+###########################
+### CONJUNTOS COMPACTOS ###
+###########################
+
+class Compactos(Scene):
+    
+    def construct(self):
+
+        ### Texto 
+        titulo = TextMobject("Conjuntos Compactos").scale(1.5)
+        t_1 = TextMobject("Sean ", "$K$", "$\\subset \\mathbb{R}^n$").move_to(3*UP)
+        t_1[1].set_color(PURPLE)
+        t_2 = TextMobject("y $\\mathcal{U} = \\{U_{\\alpha} \\subset \\mathbb{R}^n | \\alpha \\in I\\}$ una cubierta abierta de ", "$K$",".").move_to(3*UP)
+        t_2[1].set_color(PURPLE)
+        t_3 = TextMobject("Decimos que ", "$K$", " es ", "compacto", " si toda cubierta abierta $\\mathcal{U}$  de ", "$K$", ",").move_to(3*UP)
+        t_3[1].set_color(PURPLE) 
+        t_3[3].set_color(ORANGE)
+        t_3[5].set_color(PURPLE)
+        t_4 = TextMobject("tiene una subcubierta finita, es decir,").move_to(3*UP)
+        t_5 = TextMobject("si existen $\\alpha_1, ... , \\alpha_n \in I$ tales que ").move_to(3*UP)
+        t_6 = TextMobject("$K$", " $\\subset U_{\\alpha_1} \\cup ... \\cup U_{\\alpha_n}$").move_to(3*UP)
+        t_6[0].set_color(PURPLE)
+        t_7 = TextMobject("Se puede demostrar que un conjunto ", "compacto", " es cerrado").move_to(3*UP)
+        t_7[1].set_color(ORANGE)
+        t_8 = TextMobject("Veamos esto gráficamente").move_to(3*UP)
+        t_9 = TextMobject("Consideremos ", "$K$",  " compacto", " y $x \\in $", "$K$", "$^{c}$").move_to(3*UP)
+        t_9[1].set_color(PURPLE)
+        t_9[2].set_color(ORANGE)
+        t_9[4].set_color(PURPLE)
+        t_9_2 = TextMobject('''Sea $\\mathcal{V}:=\\{ B_{r_k}(k)|k\\in K \\}$ con $r:=\\dfrac{1}{2}d(k,x)$''').move_to(3*UP)
+        t_9_3 = TextMobject("una cubierta abierta de ", "K").next_to(t_9_2,DOWN)
+        t_9_3[1].set_color(PURPLE)
+        t_9_1 = VGroup(t_9_2,t_9_3)
+        t_10 = TextMobject("Tomemos una subcubierta finita de $N$ bolas abiertas").move_to(3*UP)
+        t_11 = TextMobject('''$\\mathcal{U} = \\{B_{r_i}(k_i) | k_i \\in K\\}$ \n 
+        con $r_i := \\frac{1}{2}d(k_i,x)$\n
+        y $i \\in\\{1,..,N\\}$''').move_to(4.6*LEFT) 
+        t_12 = TextMobject("Tomamos ", "$r_{min}$", "$ = \\text{min}\\{r_i| i \\in\\{1,..,N\\}\\}$").move_to(3*UP)
+        t_12[1].set_color(TEAL)
+        t_13 = TextMobject("En el ejemplo, ", "$r_{min}$", "$=r_4$").move_to(3*UP)
+        t_13[1].set_color(TEAL)
+        t_14 = TextMobject("Notamos que $B$","$_{r_{min}}$","$(x) \\cap B_{r_i}(k_i) = \\emptyset$, $\\forall i \\in \\{1,...,N\\}$").move_to(3*UP)
+        t_14[1].set_color(TEAL)
+        t_15 = TextMobject("En otras palabras, $\\forall x \\in $", "$K$", "$^{c}$ existe una bola centrada en $x$").move_to(3*UP)
+        t_15[1].set_color(PURPLE)
+        t_16 = TextMobject("que está contenida en ", "$K$", "$^{c}$").move_to(3*UP)
+        t_16[1].set_color(PURPLE)
+        t_17 = TextMobject("Por lo tanto, ", "$K$", "$^{c}$ es abierto y ", "$K$", " es cerrado.").move_to(3*UP)
+        t_17[1].set_color(PURPLE)
+        t_17[3].set_color(PURPLE)
+        t_18 = TextMobject("Ahora, fijamos $x_0 \\in$", "$K$").move_to(3*UP)
+        t_18[1].set_color(PURPLE)
+        t_18_1 = TextMobject("Sea $\\mathcal{V}:=\\{B_m(x_0)|m\\in\\mathbb{N}\\}$ una cubierta abierta de ", "K").move_to(3*UP)
+        t_18_1[1].set_color(PURPLE)
+        ######FALTA ESPECIFICAR LA SUBCUBIERTA
+        t_19 = TextMobject("Tomamos una subcubierta finita de N bolas centradas en $x_0$").move_to(3*UP)
+        t_20 = TextMobject('''$\\mathcal{U} := \\{B_{m_i}(x_0) | i\\in \\{1,...,N\\}\\}$''').move_to(4.2*LEFT+1.5*UP).scale(0.8) 
+        t_21 = TextMobject("Consideramos ", "$r_{max}$", "$ = \\text{max}\\{ m_i | i \\in\\{1,..,N\\}\\}$").move_to(3*UP)
+        t_21[1].set_color(TEAL)
+        t_21_1 = TextMobject("En el ejemplo, ", "$r_{max}$", "$=m_4$").move_to(3*UP)
+        t_21_1[1].set_color(TEAL)
+        t_23 = TextMobject("Notamos que ", "$K$", "$ \\subset B$","$_{r_{max}}$","$(x_0)$").move_to(3*UP)
+        t_23[1].set_color(PURPLE)
+        t_23[3].set_color(TEAL)
+        t_24 = TextMobject("y por lo tanto, ", "$K$", " es acotado").move_to(3*UP)
+        t_24[1].set_color(PURPLE)
+        t_25 = TextMobject("En general que un conjunto sea cerrado y acotado").move_to(1*UP)
+        t_26 = TextMobject("no implica que sea ", "compacto", ", pero en $\\mathbb{R}^n$ \\textbf{sí}, ").next_to(t_25, DOWN)
+        t_26[1].set_color(ORANGE)
+        t_27 = TextMobject("¿puedes probarlo?").next_to(t_26, DOWN)
+
+        ###Objetos 
+
+        x = TextMobject("$x$").move_to(3*RIGHT+0.2*UP)
+        dot = Dot((0,0,0), color = WHITE, radius = 0.05).move_to(3*RIGHT)
+        centro_1 = Dot((0,0,0), color = WHITE, radius = 0.05).move_to(2*DOWN+LEFT)
+        bola_1 = Circle(radius=np.linalg.norm(2*DOWN+LEFT-3*RIGHT)/2,fill_color=RED,color=RED,fill_opacity=0.3).move_to(2*DOWN+LEFT).set_stroke(RED,0.3)
+        centro_2 = Dot((0,0,0), color = WHITE, radius = 0.05).move_to(0.6*UP+0.4*LEFT)
+        bola_2 = Circle(radius=np.linalg.norm(0.6*UP+0.4*LEFT-3*RIGHT)/2,fill_color=GREEN,color=GREEN,fill_opacity=0.3).move_to(0.6*UP+0.4*LEFT).set_stroke(GREEN,0.3)
+        centro_3 = Dot((0,0,0), color = WHITE, radius = 0.05).move_to(1.2*RIGHT+ 1.4*DOWN)
+        bola_3 = Circle(radius=np.linalg.norm(1.2*RIGHT+ 1.4*DOWN-3*RIGHT)/2,fill_color=YELLOW,color=YELLOW,fill_opacity=0.3).move_to(1.2*RIGHT+ 1.4*DOWN).set_stroke(YELLOW,0.3)
+        centro_4 = Dot((0,0,0), color = WHITE, radius = 0.05).move_to(1.5*RIGHT+ 0.08*UP)
+        bola_4 = Circle(radius=np.linalg.norm(1.5*RIGHT+ 0.08*UP-3*RIGHT)/2,fill_color=TEAL,color=TEAL,fill_opacity=0.3).move_to(1.5*RIGHT+ 0.08*UP).set_stroke(TEAL,0.3)
+
+        bola_5 = Circle(radius=np.linalg.norm(1.5*RIGHT+ 0.08*UP-3*RIGHT)/2,fill_color=WHITE,color=WHITE,fill_opacity=0.3).move_to(3*RIGHT).set_stroke(WHITE,0.3)
+        line=Line(np.array([1.5/2,0.08/2,0]),np.array([3/2,0,0])).move_to((7.5/4,0.24/4,0)).set_color(TEAL)
+        brace = Brace(line, 0.2*UP)
+        r = TextMobject('$r_{min}$').next_to(brace, 0.5*UP).set_color(TEAL)
+
+        
+        dot_2 = Dot((0,0,0), color = WHITE, radius = 0.05).move_to(0.5*RIGHT+ 0.5*DOWN)
+        x_0 = TextMobject("$x_0$").next_to(dot_2, 0.25*DOWN+0.02*RIGHT).scale(0.8)
+
+
+        
+
+        ###Conjunto y cubiertas
+        Conjunto_Cubierto = SVGMobject("Topologia_SVGs/ConjuntoCompacto.svg").scale(3)
+        K = Conjunto_Cubierto[0].set_color(PURPLE).next_to(t_1, 7*DOWN)
+        cover = Conjunto_Cubierto[1:16].next_to(t_2, DOWN)
+        index = VGroup()
+        colors = it.cycle([PINK,GREEN,YELLOW,RED,TEAL,GREEN_SCREEN,ORANGE,WHITE,BLUE, GOLD, MAROON, DARK_BROWN, BLUE_A, YELLOW_B, RED_B])
+        for i in range(len(cover)):
+            text= TextMobject('$U_{%d}$'%(i))
+            color = next(colors)
+            cover[i].set_fill(color, opacity=0.2).set_stroke(color,0.3)
+            text.move_to(cover[i])
+            index.add(text)
+
+
+        centros = VGroup(centro_1, centro_2, centro_3, centro_4)
+        index_2 = VGroup()
+        for i in range(len(centros)):
+            text= TextMobject('''$k_{%d}$'''%(i+1))
+            text.next_to(centros[i], 0.2*LEFT)
+            index_2.add(text)
+            
+        k_1 = Dot((0,0,0), color = WHITE, radius = 0.05).next_to(dot_2,3.65*UP)
+        k_2 = Dot((0,0,0), color = WHITE, radius = 0.05).next_to(dot_2,5.2*RIGHT)
+        k_3 = Dot((0,0,0), color = WHITE, radius = 0.05).next_to(dot_2,5.2*(UP+ LEFT))
+        k_4 = Dot((0,0,0), color = WHITE, radius = 0.05).next_to(dot_2,7.35*(DOWN + LEFT))
+        line_k_1 = Line((0.5,-0.5,0),k_1.get_center()).set_color(GREEN)
+        line_k_2 = Line((0.5,-0.5,0),k_2.get_center()).set_color(YELLOW)
+        line_k_3 = Line((0.5,-0.5,0),k_3.get_center()).set_color(RED)
+        line_k_4 = Line((0.5,-0.5,0),k_4.get_center()).set_color(TEAL)
+        tag_1 = TextMobject("$m_1$").move_to(line_k_1.get_center()+0.3*RIGHT).scale(0.8)
+        tag_2 = TextMobject("$m_2$").move_to(line_k_2.get_center()+0.3*DOWN).scale(0.8)
+        tag_3 = TextMobject("$m_3$").move_to(line_k_3.get_center()+0.3*LEFT+0.3*DOWN).scale(0.8)
+        tag_4 = TextMobject("$m_4$").move_to(line_k_4.get_center()+0.3*RIGHT+0.3*DOWN).scale(0.8)
+
+        tags = VGroup(tag_1,tag_2,tag_3,tag_4)
+        lineas = VGroup(line_k_1,line_k_2,line_k_3,line_k_4)
+        ks = VGroup(k_1,k_2,k_3,k_4)
+        U_2 = VGroup()
+        index_3 = VGroup()
+        colors_2 = it.cycle([GREEN,YELLOW,RED,TEAL,GREEN_SCREEN,ORANGE,WHITE,BLUE, GOLD, MAROON, DARK_BROWN, BLUE_A, YELLOW_B, RED_B])
+        for i in range(4):
+            text= TextMobject('''$%d$'''%(i+1)).scale(0.7)
+            text.move_to(tags[i].get_center())
+            color = next(colors_2)
+            bola = Circle(radius=1.4**i,fill_color=color,color=color,fill_opacity=0.3).move_to(dot_2).set_stroke(color,0.3)
+            index_3.add(text)
+            U_2.add(bola)
+
+        #line_2=Line(k_4.get_center(),dot_2.get_center()).move_to((k_4.get_center()+ dot_2.get_center())/2).set_color(TEAL)
+        r_max_2 = TextMobject('$r_{max}$').move_to(tag_4.get_center()+0.4*UP+0.5*RIGHT).set_color(TEAL)
+
+        ### Grupos
+        Group_1 = VGroup(t_1, K)
+        Group_2 = VGroup(cover[0], cover[8:])
+        Group_3 = VGroup(x, dot)
+        Group_4 = VGroup(bola_1, centro_1, bola_2, centro_2, bola_3, centro_3, bola_4, centro_4)
+        Group_5 = VGroup(line, brace,r)
+        Group_6 = VGroup(dot_2, x_0)
+        #Group_7 = VGroup(line_2,r_2)
+
+
+        #### Animaciones
+
+        self.play(Write(titulo))
+        self.wait(2.75)  
+        self.play(ReplacementTransform(titulo, Group_1))
+        self.wait(3.875)
+        self.play(ReplacementTransform(t_1, t_2),DrawBorderThenFill(cover))
+        self.wait(8.75)
+        self.play(ReplacementTransform(t_2, t_3))
+        self.wait(6.5)
+        self.play(ReplacementTransform(t_3, t_4), FadeOut(Group_2))
+        self.wait(4.25)
+        self.play(ReplacementTransform(t_4, t_5))
+        self.wait(6.125)
+        self.play(ReplacementTransform(t_5, t_6), Write(index[1:8]))
+        self.wait(7.25)
+        self.play(ReplacementTransform(t_6, t_7), FadeOut(cover[1:8]), FadeOut(index[1:8]))
+        self.wait(5.375)
+        self.play(ReplacementTransform(t_7, t_8))
+        self.wait(3.125)
+        self.play(ReplacementTransform(t_8, t_9), FadeIn(Group_3))
+        self.wait(5.75)
+        self.play(ReplacementTransform(t_9,t_9_1))
+        self.wait(13.626)
+        self.play(ReplacementTransform(t_9_1, t_10), FadeIn(Group_4))
+        self.wait(5)
+        self.play(Write(t_11), FadeIn(index_2))
+        self.wait(5)
+        self.play(ReplacementTransform(t_10, t_12))
+        self.wait(6.125)
+        self.play(ReplacementTransform(t_12, t_13))
+        self.play(ReplacementTransform(t_11,Group_5))
+        self.wait(4.25)
+        self.play(ReplacementTransform(t_13,t_14), DrawBorderThenFill(bola_5), FadeOut(brace), FadeOut(r), ApplyMethod(line.shift, (3/4)*RIGHT + 0.16/4*DOWN))
+        self.wait(11.375)
+        self.play(ReplacementTransform(t_14, t_15))
+        self.wait(8.75)
+        self.play(ReplacementTransform(t_15, t_16))
+        self.wait(4.25)
+        self.play(ReplacementTransform(t_16, t_17))
+        self.wait(6.125)
+        self.play(FadeOut(line), FadeOut(Group_4), FadeOut(Group_3), FadeOut(bola_5), FadeOut(index_2))
+        self.play(ReplacementTransform(t_17, t_18), FadeIn(Group_6))
+        self.wait(3.875)
+        self.play(ReplacementTransform(t_18,t_18_1))
+        self.wait(9.5)
+        self.play(ReplacementTransform(t_18_1, t_19))
+        self.play(Write(t_20), ShowIncreasingSubsets(U_2, run_time=5.0), ShowIncreasingSubsets(tags, run_time=5.0) ,  ShowIncreasingSubsets(ks, run_time=5.0), ShowIncreasingSubsets(lineas, runt_time=5.0))
+        self.wait(5.75)
+        self.play(ReplacementTransform(t_19,t_21))
+        self.wait(5)
+        self.play(ReplacementTransform(t_21,t_21_1))
+        self.play(FadeOut(tags[:3]))
+        self.wait(6.125)
+        self.play(ReplacementTransform(t_21_1,t_23))
+        self.wait(5)
+        self.play(FadeOut(U_2[:3]),FadeOut(lineas[:3]),FadeOut(ks[:3]) , ReplacementTransform(tags[3],r_max_2))
+        self.wait(4.25)
+        self.play(ReplacementTransform(t_23,t_24))
+        self.wait(5)
+        self.play(
+            *[FadeOut(mob)for mob in self.mobjects]
+        )
+        self.play(Write(t_25))
+        self.play(Write(t_26))
+        self.play(Write(t_27))
+        self.wait(7)
+        self.play(FadeOut(t_25), FadeOut(t_26), FadeOut(t_27))
+    
