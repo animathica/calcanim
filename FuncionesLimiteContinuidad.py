@@ -4621,11 +4621,13 @@ class LimitesDireccionales(ThreeDScene):
         self.play(*[FadeOut(obj) for obj in self.mobjects])
 
     def Regreso(self):
+        # Para los updaters
         def act_gr_direc(linea):
             te = t.get_value()
             direc.become(
                 ParametricFunction(lambda x: np.array([np.cos(te)*x,np.sin(te)*x,0]),t_min=-4,t_max=4).set_color(YELLOW)
             )
+        
         ### TEXTOS
         
         t_1 = TextMobject('''¿Se vale el regreso del teorema?\n
@@ -4700,20 +4702,105 @@ class LimitesDireccionales(ThreeDScene):
     def Ejemplo_regreso(self):
         ### TEXTOS
 
-        t_6 = TextMobject('''Ahora considera la función \n
-                             $f(x,y) = \\dfrac{xy}{x^2+y^2}$''')
-        t_7 = TextMobject('''Y toma los vectores directores $u=(1,0)$ y $v=(1,1)$ \n
-                             para ver el límite en $x_0=(0,0)$''').next_to(t_19,DOWN)
-        t_8 = TextMobject('''Vemos que para $u$ se tiene\n
-                             $$\\lim_{h\\rightarrow 0}f(x_0+hu)=0$$''')#agregar rectangulo
-        t_9 = TextMobject('''Mientras que para $v$ se tiene\n
-                             $$\\lim_{h\\rightarrow 0}f(x_0+hv)=\frac{1}{2}$$''')#agregar rectangulo
-        t_10= TextMobject('''Con lo que puedes concluir que el límite de\n
-                             $f$ en $(0,0)$ no existe.''')
-        t_11= TextMobject('''¿Podemos usar los límites direccionales \n
+        t_1 = TextMobject('''Ahora considera la función
+                             $$f(x,y) = \\dfrac{xy}{x^2+y^2}$$''').shift(UP)
+        t_2 = TextMobject('''Y toma los vectores directores ''','''$u=(1,0)$''',''' y ''','''$v=(1,1)$''',''' \n
+                             para ver el límite en $x_0=(0,0)$''').next_to(t_1,DOWN)
+        t_2.set_color_by_tex_to_color_map(
+            {
+                '''$u=(1,0)$''' : RED,
+                '''$v=(1,1)$''' : YELLOW
+            }
+        )
+        t_3 = TextMobject('''Vemos que para ''','''$u$''',''' se tiene
+                             $$\\lim_{h\\rightarrow 0}f(x_0+hu)=0$$''').to_edge(UP).scale(0.7)
+        t_3.set_color_by_tex_to_color_map(
+            {
+                '''$u$''' : RED
+            }
+        )
+        gpot3 = self.rectangulo_texto(t_3)
+        t_4 = TextMobject('''Mientras que para ''','''$v$''',''' se tiene
+                             $$\\lim_{h\\rightarrow 0}f(x_0+hv)=\\frac{1}{2}$$''').to_edge(UP).scale(0.7)
+        t_4.set_color_by_tex_to_color_map(
+            {
+                '''$v$''' : YELLOW
+            }
+        )
+        gpot4 = self.rectangulo_texto(t_4)
+        t_5= TextMobject('''Con lo que puedes concluir que el límite de\n
+                             $f$ en $(0,0)$ no existe.''').to_corner(UP)
+        gpot5 = self.rectangulo_texto(t_5)
+        t_6= TextMobject('''¿Podemos usar los límites direccionales \n
                             si $x_0$ está en la frontera del dominio?''')
 
+        ### OBJETOS - GRAFICAS
+
+        axes = ThreeDAxes(x_min = -4, x_max = 4, y_min = -4, y_max = 4,z_min=-1,z_max=3)
+        x_label = TexMobject(r"x").scale(0.75).move_to((4.5,0.3,0))
+        y_label = TexMobject(r"y").scale(0.75).move_to((0.3,4.5,0))
+        ejes = VGroup(axes,x_label,y_label)
+        direcu = Arrow(start=(0,0,0),end=(1,0,0),color=RED,buff=0)
+        direcv = Arrow(start=(0,0,0),end=(1,1,0),color=YELLOW,buff=0)
+        intersecu = ParametricFunction(lambda x: np.array([x,0,0]),t_min=-3,t_max=3,color=RED)
+        intersecv = ParametricFunction(lambda x: np.array([x,x,1/2]),t_min=-3,t_max=3,color=YELLOW)
+        superficie_1=ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (u*v)/(u**2+v**2)
+            ]),v_min=-3,v_max=-0.005,u_min=-3,u_max=-0.005,fill_opacity=0.7,checkerboard_colors=[GREEN_A,GREEN_B])
+        superficie_2=ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (u*v)/(u**2+v**2)
+            ]),v_min=-3,v_max=-0.005,u_min=0.005,u_max=3,fill_opacity=0.7,checkerboard_colors=[GREEN_A,GREEN_B])
+        superficie_3=ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (u*v)/(u**2+v**2)
+            ]),v_min=0.005,v_max=3,u_min=-3,u_max=-0.005,fill_opacity=0.7,checkerboard_colors=[GREEN_A,GREEN_B])
+        superficie_4=ParametricSurface(
+            lambda u, v: np.array([
+                u,
+                v,
+                (u*v)/(u**2+v**2)
+            ]),v_min=0.005,v_max=3,u_min=0.005,u_max=3,fill_opacity=0.7,checkerboard_colors=[GREEN_A,GREEN_B])
+        superficie=VGroup(superficie_1,superficie_2,superficie_3,superficie_4)
+
+        ### ANIMACION
+
+        self.play(Write(t_1))
+        self.wait(3)
+        self.play(Write(t_2))
+        self.wait(4)
+        self.play(*[FadeOut(obj) for obj in self.mobjects])
+        self.move_camera(phi=75*DEGREES,theta=30*DEGREES,frame_center=(0,0,1))
+        self.play(Write(ejes))
+        self.play(Write(direcu),Write(direcv))
+        self.play(ShowCreation(superficie))
+        self.acomodar_textos(gpot3)
+        self.play(Indicate(direcu,color=RED,scale_factor=1.5))
+        self.play(Write(intersecu))
+        self.wait(2)
+        self.play(FadeOut(gpot3),FadeOut(intersecu))
+        self.acomodar_textos(gpot4)
+        self.play(Indicate(direcv,scale_factor=1.5))
+        self.play(Write(intersecv))
+        self.wait(2)
+        self.play(FadeOut(gpot4),FadeOut(intersecv))
+        self.acomodar_textos(gpot5)
+        self.wait(3)
+        self.play(*[FadeOut(obj) for obj in self.mobjects])
+        self.move_camera(phi=0 * DEGREES,theta=-90*DEGREES,frame_center=(0,0,0))
+        self.play(Write(t_6))
+        self.wait(3)
+        self.play(FadeOut(t_6))
+
     def construct(self):
-        #self.Introduccion()
-        #self.Ejemplo_Teo()
+        self.Introduccion()
+        self.Ejemplo_Teo()
         self.Regreso()
+        self.Ejemplo_regreso()
