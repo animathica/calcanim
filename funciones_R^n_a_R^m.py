@@ -430,7 +430,7 @@ class Polares_y_Cartesianas(Scene):
 ##########################################################################
 ############# Campos lineales y Cambios de Coordenadas ###################
 #########################################################################
-# 11/10/2021
+# 15/11/2021
 class CamposLineales2(Scene):
 
     def parte1(self):
@@ -465,19 +465,19 @@ class CamposLineales2(Scene):
         text4[4].set_color(BLUE_C)
         text4[6].set_color(BLUE_C)
         text5 = TextMobject('''En general, podemos escribir cualquier elemento en \n
-                             las coordenadas canónicas, a las coordenadas ''', '''$\\beta$''', ''' \n
+                             las coordenadas canónicas, a las coordenadas ''', '''$\\gamma$''', ''' \n
                             con la siguiente transformación lineal.''').move_to(1 * UP)
         text5[1].set_color(BLUE_C)
-        text5_1 = TexMobject(r'''f((x,y)_\gamma)=\begin{bmatrix}
+        text5_1 = TexMobject(r'''f((x,y)_\beta)=\begin{bmatrix}
                                 1 & 0\\
-                                1 & 1 
+                                1 & 1
                                 \end{bmatrix}\begin{bmatrix}
                                 x\\
-                                y  
-                                \end{bmatrix}_\gamma=\begin{bmatrix}
+                                y
+                                \end{bmatrix}_\beta=\begin{bmatrix}
                                 x' \\
-                                y' 
-                                \end{bmatrix}_\beta  ''').move_to(text5.get_center() + 2 * DOWN)
+                                y'
+                                \end{bmatrix}_\gamma  ''').move_to(text5.get_center() + 2 * DOWN)
 
         linea1 = Arrow([0, -1, 0], [1, -1, 0], **ejes_config).set_color(YELLOW_C)
         linea2 = Arrow([0, -1, 0], [0, 0, 0], **ejes_config).set_color(YELLOW_C)
@@ -523,8 +523,9 @@ class CamposLineales2(Scene):
             "max_stroke_width_to_length_ratio": 2,
             "preserve_tip_size_when_scaling": False,
         }
-        text6 = TextMobject('''Veamos que esta función línea ''traduce'' los vectores de la base''', ''' \n
-                            $\\beta$''', ''' a vectores en el conjunto ''', '''$\\gamma$.''').move_to(3 * UP)
+
+        text6 = TextMobject('''La función lineal "traduce" los vectores en la base''', ''' \n
+                            $\\gamma$''', ''' a vectores en la base ''', '''$\\beta$.''')
         text6[1].set_color(YELLOW)
         text6[3].set_color(BLUE_C)
         text7 = TextMobject('''Más aún, debido a que el determinante de la matriz asociada \n
@@ -536,13 +537,13 @@ class CamposLineales2(Scene):
         text8[1].set_color(BLUE_C)
         text8_1 = TexMobject(r'''f^{-1} ((x,y)_\beta)=\begin{bmatrix}
                                                     1 & 0\\
-                                                    -1 & 1 
+                                                    -1 & 1
                                                     \end{bmatrix}\begin{bmatrix}
                                                     x\\
-                                                    y  
+                                                    y
                                                     \end{bmatrix}_\beta=\begin{bmatrix}
                                                     x' \\
-                                                    y' 
+                                                    y'
                                                     \end{bmatrix}_\gamma ''').move_to(text8.get_center() + 2 * DOWN)
         text9 = TextMobject('''Como habrás notado, en realidad''', ''' $\\gamma$''', ''' es \n
                             una base del plano cartesiano porque \n
@@ -574,12 +575,8 @@ class CamposLineales2(Scene):
         flecha = Arrow([-0.5, 0, 0], [0.5, 0, 0], buff=0)
 
         self.play(Write(text6))
-        self.wait(8.3)
-        self.play(ShowCreation(Plano))
-        self.play(ShowCreation(flecha))
-        self.play(ShowCreation(beta))
-        self.wait(5)
-        self.play(FadeOut(text6), FadeOut(beta), FadeOut(Plano), FadeOut(flecha))
+        self.wait(8)
+        self.play(FadeOut(text6))
         self.play(Write(text7))
         self.wait(12)
         self.play(FadeOut(text7))
@@ -608,7 +605,7 @@ class CamposLineales2(Scene):
             "max_stroke_width_to_length_ratio": 2,
             "preserve_tip_size_when_scaling": False,
         }
-        text12 = TextMobject('''No, los cambios de coordenadas deben preservar \n 
+        text12 = TextMobject('''No, los cambios de coordenadas deben preservar \n
                                     la estructura algebraica.''').move_to(1 * UP)
         text12_1 = TextMobject('''Consideremos la suma de dos vectores en las \n
                                   coordenadas ''', '''$\\beta$. ''').next_to(text12, DOWN, buff=1)
