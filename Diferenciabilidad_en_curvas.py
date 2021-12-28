@@ -1,10 +1,9 @@
 from manimlib.imports import *
 
 ######################################################
-##### Reparametrizacion de curvas #########
+##### Reparametrización de curvas #########
 #######################################################
-
-# Esta animación está en creada en partes, uniendo las animaciones al final del código
+#04/11/2021
 
 def curva1p(t):
     return [t, np.cos(4 * t), np.sin(4 * t)]
@@ -14,7 +13,7 @@ def curva2p(s):
     return [-s ** 3, np.cos(-4 * s ** 3), np.sin(-4 * s ** 3)]
 
 
-class Reparametrizacion_y_regla_de_la_cadena1(ThreeDScene):
+class Reparametrizacion_de_curvas_1(ThreeDScene):
     def textos1(self):
         axis_config = {
             "x_min": -8,
@@ -24,22 +23,35 @@ class Reparametrizacion_y_regla_de_la_cadena1(ThreeDScene):
             "z_min": -8,
             "z_max": 8,
         }
-        titulo = TextMobject('''Reparametrización de \n
-                             Curvas  y Regla \n
-                             de la Cadena''').scale(1.5)
-        text = TextMobject("Tomemos la siguiente curva").to_edge(UP)
-        text1 = TextMobject('''$\\gamma(t)=(t,\\cos(4t),\\sin(4t))$ \n''',
-                            '''y considera $C=Im(\gamma)$ ''').move_to(3 * UP)
-        text1.set_color_by_tex_to_color_map({
+        titulo = TextMobject('''Reparametrización \n
+                                de Curvas''').scale(2)
+        t_0 = TextMobject("Tomemos la siguiente curva").to_edge(UP)
+        t_0.bg = SurroundingRectangle(t_0, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        text=VGroup(t_0.bg,t_0)
+        t_1 = TextMobject('''$\\gamma(t)=(t,\\cos(4t),\\sin(4t))$ \n''',
+                            '''y considera $C=Im(\gamma)$. ''').move_to(3 * UP)
+        t_1.bg = SurroundingRectangle(t_1, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        t_1.set_color_by_tex_to_color_map({
             "$C$": BLUE,
         })
-        text2 = TextMobject('''Tomando $f(s)=-s^{3}$''').move_to(3 * UP)
-        text3 = TextMobject('''Entonces
+        text1=VGroup(t_1.bg,t_1)
+        t_2 = TextMobject('''Tomando $f(s)=-s^{3}$''').move_to(3 * UP)
+        t_2.bg = SurroundingRectangle(t_2, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        text2=VGroup(t_2.bg,t_2)
+        t_3 = TextMobject('''Entonces
                             $\\xi(s)=(\\gamma\\circ f)(s)=(-s^{3},\\cos(-4s^{3}),\\sin(-4s^{3}))$''').move_to(3 * UP)
-        text4 = TextMobject('''Como $Im(\\gamma)=Im(\\xi)=C$ decimos $\\xi$ \n
+        t_3.bg = SurroundingRectangle(t_3, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        text3=VGroup(t_3.bg,t_3)
+        t_4 = TextMobject('''Como $Im(\\gamma)=Im(\\xi)=C$ decimos $\\xi$ \n
                                 es una reparametrización de $C$.''').move_to(3 * UP)
-        text5 = TextMobject(''' Tomemos un punto en la curva y veamos como se mueve \n
+        t_4.bg = SurroundingRectangle(t_4, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        text4=VGroup(t_4.bg,t_4)
+        t_5 = TextMobject(''' Tomemos un punto en la curva y veamos como se mueve \n
                                  al comparar ambas parametrizaciones.''').move_to(3 * UP)
+        t_5.bg = SurroundingRectangle(t_5, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        text5=VGroup(t_5.bg,t_5)
+
+
         axes = ThreeDAxes(**axis_config)
 
         tmin = -8
@@ -214,8 +226,8 @@ class Reparametrizacion_y_regla_de_la_cadena1(ThreeDScene):
         text9 = TextMobject(''' Veamos como se aplica lo anterior en la \n
                                      curva presentada al inicio.''')
         text10 = TextMobject(''' La derivada de la reparametrización es: \n''',
-                             '''$\\xi'(s)=-3s^{2}(1,-4\\sin(-4s^{3}),4\\cos(-4s^{3})) $''').move_to(3 * UP)
-        text11 = TextMobject("Veamos como cambia $\\xi'$ conforme cambia s").move_to(DOWN * UP)
+                             '''$\\xi'(s)=-3s^{2}(1,-4\\sin(-4s^{3}),4\\cos(-4s^{3})) $''').move_to(0.5* UP)
+        text11 = TextMobject("Veamos como cambia $\\xi'$ conforme cambia s.").move_to(-0.5 * UP)
 
         axes = ThreeDAxes(**axis_config)
         tmin = -7
@@ -264,7 +276,7 @@ class Reparametrizacion_y_regla_de_la_cadena1(ThreeDScene):
         self.textos2()
 
 
-class Reparametrizacion_y_regla_de_la_cadena2(ThreeDScene):
+class Reparametrizacion_de_curvas2(ThreeDScene):
     def construct(self):
         t0 = 7
         line_config = {
@@ -308,8 +320,12 @@ class Reparametrizacion_y_regla_de_la_cadena2(ThreeDScene):
             "z_max": 8,
         }
 
-        text15 = TextMobject('''Derivada de la parametrización''').to_edge(UP)
-        text16 = TextMobject('''Derivada con la reparametrización''').to_edge(UP)
+        t_15 = TextMobject('''Derivada de la parametrización.''').to_edge(UP)
+        t_15.bg = SurroundingRectangle(t_15, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        text15=VGroup(t_15.bg,t_15)
+        t_16 = TextMobject('''Derivada con la reparametrización.''').to_edge(UP)
+        t_16.bg = SurroundingRectangle(t_16, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        text16=VGroup(t_16.bg,t_16)
         text12 = TextMobject('''Hay otra forma de saber si la reparametrización\n
         cambia el sentido. Si la derivada de la función que \n
         induce una reparametrización es positiva, \n
