@@ -467,7 +467,9 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
 
 
 #Definición de las superficies
+# 1/xy
 class superficie2_1_1(ParametricSurface):
+    # x<0,y<0
     def __init__(self, **kwargs):
         kwargs = {
         "u_min": -3,
@@ -479,8 +481,8 @@ class superficie2_1_1(ParametricSurface):
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
         return np.array([x,y,1/(x*y)])
-
 class superficie2_1_2(ParametricSurface):
+    # x>0,y>0
     def __init__(self, **kwargs):
         kwargs = {
         "u_min": 3,
@@ -493,6 +495,7 @@ class superficie2_1_2(ParametricSurface):
     def func(self, x, y):
         return np.array([x,y,1/(x*y)])
 class superficie2_1_3(ParametricSurface):
+    # x<0,y>0
     def __init__(self, **kwargs):
         kwargs = {
         "u_min": -3,
@@ -505,6 +508,7 @@ class superficie2_1_3(ParametricSurface):
     def func(self, x, y):
         return np.array([x,y,1/(x*y)])
 class superficie2_1_4(ParametricSurface):
+    # x>0,y<0
     def __init__(self, **kwargs):
         kwargs = {
         "u_min": 3,
@@ -516,9 +520,11 @@ class superficie2_1_4(ParametricSurface):
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
         return np.array([x,y,1/(x*y)])
+
 #Segunda superficie del video
-##############
+# 2xy/(x^2+y^2)
 class superficie2_2_1(ParametricSurface):
+    # x<0,y<0
     def __init__(self, **kwargs):
         kwargs = {
         "u_min": -3.5,
@@ -531,6 +537,7 @@ class superficie2_2_1(ParametricSurface):
     def func(self, x, y):
         return np.array([x,y,2*(x*y)/(x**2+y**2) ])
 class superficie2_2_2(ParametricSurface):
+    # x>0,y>0
     def __init__(self, **kwargs):
         kwargs = {
         "u_min": 3.5,
@@ -542,8 +549,8 @@ class superficie2_2_2(ParametricSurface):
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
         return np.array([x,y,2*(x*y)/(x**2+y**2) ])
-
 class superficie2_2_3(ParametricSurface):
+    # x<0,y>0
     def __init__(self, **kwargs):
         kwargs = {
         "u_min": -3.5,
@@ -555,8 +562,8 @@ class superficie2_2_3(ParametricSurface):
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
         return np.array([x,y,2*(x*y)/(x**2+y**2) ])
-
 class superficie2_2_4(ParametricSurface):
+    # x>0,y<0
     def __init__(self, **kwargs):
         kwargs = {
         "u_min": 3.5,
@@ -569,6 +576,7 @@ class superficie2_2_4(ParametricSurface):
     def func(self, x, y):
         return np.array([x,y,2*(x*y)/(x**2+y**2) ])
 
+#Plano que se usa para limites direcc
 class superficie2_3(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -579,19 +587,20 @@ class superficie2_3(ParametricSurface):
         "fill_color": BLUE_C,
         "pre_function_handle_to_anchor_scale_factor": 0.0000001,
         "fill_opacity": 1.0,
-        "checkerboard_colors": [BLUE_C, BLUE_D],
+        "checkerboard_colors": [BLUE_C, BLUE_D],#que coincida con el color de la curva
         "stroke_color": LIGHT_GREY,
         "pre_function_handle_to_anchor_scale_factor": 0.00001
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
-
         return np.array([x,y,0])
 def curva(t):
     return np.array([t**3,t,1])
 def curva1(t):
     return np.array([t**3,t,0])
+
 #cuarta superficie
+# 1/(x+y)^2 Se rota en la animación, con lo que queda como debería
 class superficie2_4_1(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -616,19 +625,22 @@ class superficie2_4_2(ParametricSurface):
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
        return np.array([x,y,1/(2*x)**2])
+
+#quinta superficie
+# |x-y|/(x+y)^2
+# No aparece la gráfica en el video
 class superficie2_4_3(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
         "u_min": 0.2,
-        "u_max": 4,
+        "u_max": 3,
         "v_min": 0.2,
-        "v_max": 4,
+        "v_max": 3,
         "checkerboard_colors": [BLUE_E]
         }
         ParametricSurface.__init__(self, self.func, **kwargs)
     def func(self, x, y):
        return np.array([x,y,((x-y)**2)**(1/2)/(x+y)**2])
-
 class superficie2_4_4(ParametricSurface):
     def __init__(self, **kwargs):
         kwargs = {
@@ -660,25 +672,25 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         text4=TextMobject('''Ilustremos esto con algunos ejemplos.''')
 
         self.play(Write(titulo))
-        self.wait(5)
+        self.wait(2)
         self.play(FadeOut(titulo))
         self.play(Write(text1[0]))
         self.play(Write(text1[1]))
         self.play(Write(text1[2]))
-        self.wait(11)
+        self.wait(6)
         self.play(FadeOut(text1))
         self.play(Write(text2[0]))
         self.play(Write(text2[1]))
         self.play(Write(text2[2]))
-        self.wait(13.5)
+        self.wait(4)
         self.play(FadeOut(text2))
         self.play(Write(text3))
-        self.wait(10)
+        self.wait(5)
         self.play(FadeOut(text3))
         self.play(Write(text4))
-        self.wait(7)
+        self.wait(2)
         self.play(FadeOut(text4))
-        self.wait()
+
     def parte1 (self):
         text5=TextMobject('''Sea $f:\\mathbb{R}^{2}-\\{(x,y)\\in \\mathbb{R}^{2}:x=0\\ \\text{ó}\\ y=0\\}\\rightarrow\\mathbb{R}$''',''' $$f(x,y)=\\frac{1}{xy}$$ ''')
         t_5_1=TextMobject('''$$f(x,y)=\\frac{1}{xy}$$''').move_to(3*UP)
@@ -704,10 +716,13 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
 
         g_text6_1_2=  VGroup(text6_1,text6_1_2)
         g_text6_1_2.bg = SurroundingRectangle(g_text6_1_2, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        g2_text6_1_2=VGroup(g_text6_1.bg,g_text6_1)
+        g2_text6_1_2=VGroup(g_text6_1_2.bg,g_text6_1_2)
 
         #objetos
-        axes=ThreeDAxes()
+        ejes = ThreeDAxes(x_min = -5, x_max = 5, y_min = -5, y_max = 5,z_min=-4,z_max=4)
+        x_label = TexMobject(r"x").scale(0.75).move_to((5.5,0.3,0))
+        y_label = TexMobject(r"y").scale(0.75).move_to((0.3,5.5,0))
+        axes = VGroup(ejes,x_label,y_label)
         #Definimos la superficies por partes por la discontinuidad
         superficie1_1=superficie2_1_1()
         superficie1_2=superficie2_1_2()
@@ -772,46 +787,48 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         self.play(Write(text5))
         self.wait(7)
         self.play(FadeOut(text5))
-        self.set_camera_orientation(0.7*np.pi/2, 1*np.pi,distance=12)
+        #self.set_camera_orientation(0.7*np.pi/2, 1*np.pi,distance=12)
+        self.move_camera(phi=80*DEGREES,theta=30*DEGREES,frame_center=(0,0,2))
         self.play(ShowCreation(axes))
         self.play(ShowCreation(superficie))
         self.add_fixed_in_frame_mobjects(text5_1)
         self.play(Write(text5_1))
-        self.wait(4)
+        self.wait(2)
         self.play(FadeOut(text5_1))
         self.add_fixed_in_frame_mobjects(text6)
         self.play(Write(text6))
-        self.wait(11)
+        self.wait(5)
         self.play(FadeOut(text6))
 
         
         self.add_fixed_in_frame_mobjects(g2_text6_1)
         self.play(Write(g2_text6_1))
-        self.play(ShowCreation(Elementos11), run_time=10)
+        self.play(ShowCreation(Elementos12), run_time=6)
         self.wait()
-        self.play(FadeOut(Elementos11),FadeOut(g2_text6_1))
+        self.play(FadeOut(Elementos12),FadeOut(g2_text6_1))
         #Con limite direccional
         self.add_fixed_in_frame_mobjects(text6_2)
         self.play(Write(text6_2))
-        self.add(punto_convergencia1)
-        self.play(t1_1.set_value, t1_1f,run_time=10)
+        self.add(punto_convergencia2)
+        self.play(t1_2.set_value, t1_2f,run_time=6)
         self.wait()
         self.play(FadeOut(text6_2),FadeOut(punto_convergencia1))
-        self.move_camera(0.7*np.pi/2, 0*np.pi,distance=12)
+        #self.move_camera(0.7*np.pi/2, 0*np.pi,distance=12)
+        self.move_camera(phi=80*DEGREES,theta=210*DEGREES,frame_center=(0,0,2))
         self.add_fixed_in_frame_mobjects(g2_text6_1_2)
         self.play(Write(g2_text6_1_2))
         
-        self.play(ShowCreation(Elementos12), run_time=10)
+        self.play(ShowCreation(Elementos11), run_time=6)
         self.wait()
-        self.play(FadeOut(Elementos12),FadeOut(g2_text6_1_2))
+        self.play(FadeOut(Elementos11),FadeOut(g2_text6_1_2))
         self.add_fixed_in_frame_mobjects(text6_2)
         self.play(Write(text6_2))
-        self.add(punto_convergencia2)
-        self.play(t1_2.set_value, t1_2f,run_time=10)
+        self.add(punto_convergencia1)
+        self.play(t1_1.set_value, t1_1f,run_time=6)
         self.wait()
-        self.play(FadeOut(superficie),FadeOut(axes),
-                    FadeOut(text6_2),FadeOut(punto_convergencia2))
+        self.play(*[FadeOut(obj) for obj in self.mobjects])
         self.wait()
+        
     def parte2 (self):
         text7=TextMobject('''Sin embargo, si nos acercamos por la recta menos \n
                                 identidad, la función diverge a $-\\infty$.''')
@@ -836,7 +853,10 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
 
 
         #objetos
-        axes=ThreeDAxes()
+        ejes = ThreeDAxes(x_min = -5, x_max = 5, y_min = -5, y_max = 5,z_min=-4,z_max=4)
+        x_label = TexMobject(r"x").scale(0.75).move_to((5.5,0.3,0))
+        y_label = TexMobject(r"y").scale(0.75).move_to((0.3,5.5,0))
+        axes = VGroup(ejes,x_label,y_label)
         #Definimos la superficies por partes por la discontinuidad
         superficie1_1=superficie2_1_1()
         superficie1_2=superficie2_1_2()
@@ -891,38 +911,38 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         #Animación
         self.add_fixed_in_frame_mobjects(text7)
         self.play(Write(text7))
-        self.wait(10)
+        self.wait(5)
         self.play(FadeOut(text7))
-        self.set_camera_orientation(0.7*np.pi/2, 0.50*np.pi,distance=12)
+        #self.set_camera_orientation(0.7*np.pi/2, 0.50*np.pi,distance=12)
+        self.move_camera(phi=70*DEGREES,theta=(30-45)*DEGREES,frame_center=(0,0,-1))
         self.play(ShowCreation(axes))
         self.play(ShowCreation(superficie))
 
         self.add_fixed_in_frame_mobjects(g2_text7_1_1)
         self.play(Write(g2_text7_1_1))
-        self.play(ShowCreation(Elementos13), run_time=10)
+        self.play(ShowCreation(Elementos14), run_time=6)
         self.wait()
-        self.play(FadeOut(Elementos13),FadeOut(g2_text7_1_1))
+        self.play(FadeOut(Elementos14),FadeOut(g2_text7_1_1))
 
         self.add_fixed_in_frame_mobjects(text7_2)
         self.play(Write(text7_2))
-        self.add(punto_convergencia1)
-        self.play(t1_1.set_value, t1_1f,run_time=10)
-        self.play(FadeOut(punto_convergencia1),FadeOut(text7_2))
-        self.move_camera(0.7*np.pi/2, 1.35*np.pi,distance=12)
+        self.add(punto_convergencia2)
+        self.play(t1_2.set_value, t1_2f,run_time=6)
+        self.play(FadeOut(punto_convergencia2),FadeOut(text7_2))
+        #self.move_camera(0.7*np.pi/2, 1.35*np.pi,distance=12)
+        self.move_camera(phi=70*DEGREES,theta=(210-45)*DEGREES,frame_center=(0,0,-1))
 
         self.add_fixed_in_frame_mobjects(g2_text7_1_2)
         self.play(Write(g2_text7_1_2))
-        self.play(ShowCreation(Elementos14), run_time=10)
+        self.play(ShowCreation(Elementos13), run_time=6)
         self.wait()
-        self.play(FadeOut(Elementos14),FadeOut(g2_text7_1_2))
+        self.play(FadeOut(Elementos13),FadeOut(g2_text7_1_2))
         self.add_fixed_in_frame_mobjects(g2_text7_1_3)
 
         self.play(Write(g2_text7_1_3))
-        self.add(punto_convergencia2)
-        self.play(t1_2.set_value, t1_2f,run_time=10)
-        self.play(FadeOut(punto_convergencia2),FadeOut(g2_text7_1_3),
-                FadeOut(axes),FadeOut(superficie))
-        self.wait()
+        self.add(punto_convergencia1)
+        self.play(t1_1.set_value, t1_1f,run_time=6)
+        self.play(*[FadeOut(obj) for obj in self.mobjects])
 
     def parte3 (self):
         text8=TextMobject('''Veamos otro ejemplo.''')
@@ -954,7 +974,10 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         punto_convergencia1.add_updater(mov_sup1)
 
         #Objetos
-        axes=ThreeDAxes()
+        ejes = ThreeDAxes(x_min = -4.5, x_max = 4.5, y_min = -4.5, y_max = 4.5,z_min=-1.5,z_max=4)
+        x_label = TexMobject(r"x").scale(0.75).move_to((5,0.3,0))
+        y_label = TexMobject(r"y").scale(0.75).move_to((0.3,5,0))
+        axes = VGroup(ejes,x_label,y_label)
         superficie1_1=superficie2_2_1()
         superficie1_2=superficie2_2_2()
         superficie1_3=superficie2_2_3()
@@ -969,7 +992,7 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         for i in range(1,n1_1):
             y1=3-i*(0.2)
             x1=0
-            x=-3+i*(0.2)
+            x=3-i*(0.2)
             y=0
             cjto1_2.append((x1,y1,2*x1*y1/(x1**2+y1**2)))
             cjto1_1.append((x,y,2*x*y/(x**2+y**2)))
@@ -1002,9 +1025,9 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         #Animación
         self.add_fixed_in_frame_mobjects(text8)
         self.play(Write(text8))
-        self.wait(4.5)
+        self.wait(2)
         self.play(FadeOut(text8))
-        self.set_camera_orientation(0.7*np.pi/2, (-1.4)*np.pi,distance=12)
+        self.set_camera_orientation(0.7*np.pi/2,(-1.4)*np.pi-90*DEGREES,distance=12)
         self.play(ShowCreation(axes))
         self.play(ShowCreation(superficie))
         self.add_fixed_in_frame_mobjects(text9)
@@ -1013,39 +1036,39 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         self.play(FadeOut(text9))
         self.add_fixed_in_frame_mobjects(text10)
         self.play(Write(text10))
-        self.wait(4)
-        self.play(ShowCreation(Elementos1),runtime=15)
-        self.wait(1.5)
+        self.wait(5)
+        self.play(ShowCreation(Elementos1),runtime=10)
+        self.wait()
         self.play(FadeOut(text10),FadeOut(Elementos1))
         self.add_fixed_in_frame_mobjects(text11)
         self.play(Write(text11))
-        self.wait(4)
-        self.play(ShowCreation(Elementos2),runtime=15)
+        self.wait(5)
+        self.play(ShowCreation(Elementos2),runtime=10)
         self.wait()
         self.play(FadeOut(text11),FadeOut(Elementos2))
         self.add_fixed_in_frame_mobjects(text12)
         self.play(Write(text12))
-        self.wait(7.5)
+        self.wait(3)
         self.play(FadeOut(text12),FadeOut(axes),FadeOut(superficie))
 
     def parte4 (self):
         text13=TextMobject('''Entonces con esto comprobamos que a veces no \n
                                  es suficiente analizar la función en \n
                                       las direcciones canónicas.''')
-        text14=TextMobject('''Sin embargo, como es de esperar, \n
+        text14=TextMobject('''Además, como es de esperar, \n
                                 si encontramos dos direcciones donde el \n
                                 límite difiere, entonces podemos concluir \n
                                     que el límite no existe.''')
-        text15=TextMobject('''Es posible que si nos acercamos al punto del\n
-                                 dominio en cualquier dirección, el límite sea\n
-                                 el mismo, pero puede que la función no tenga límite. ''')
-        t_15_1=TextMobject('''Por ejemplo, $f(x,y)=1$ si $y=x^3$ y $f(x,y)=0$ en otro caso''').move_to(3*UP)
-        t_15_1.bg = SurroundingRectangle(t_15_1, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        text15_1 = VGroup(t_15_1.bg,t_15_1)
-        t_15_2=TextMobject(''' $f$ no tiene límite en $\\vec{0}$, aunque sí existen \n
-                                todos los límites direccionales en el punto.''').move_to(3*UP)
-        t_15_2.bg = SurroundingRectangle(t_15_2, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        text15_2 = VGroup(t_15_2.bg,t_15_2)
+        #text15=TextMobject('''Es posible que si nos acercamos al punto del\n
+        #                         dominio en cualquier dirección, el límite sea\n
+        #                         el mismo, pero puede que la función no tenga límite. ''')
+        #t_15_1=TextMobject('''Por ejemplo, $f(x,y)=1$ si $y=x^3$ y $f(x,y)=0$ en otro caso''').move_to(3*UP)
+        #t_15_1.bg = SurroundingRectangle(t_15_1, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        #text15_1 = VGroup(t_15_1.bg,t_15_1)
+        #t_15_2=TextMobject(''' $f$ no tiene límite en $\\vec{0}$, aunque sí existen \n
+        #                        todos los límites direccionales en el punto.''').move_to(3*UP)
+        #t_15_2.bg = SurroundingRectangle(t_15_2, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        #text15_2 = VGroup(t_15_2.bg,t_15_2)
         text16=TextMobject("¿Cómo argumentamos entonces cuando el límite sí existe?").move_to(2*UP)
         text16_1=TextMobject("Una manera es usando la definición, o sea, la métrica.").move_to(1*UP)
         text17=TextMobject("Pero también podemos usar criterios de comparación.").move_to(0*DOWN)
@@ -1090,32 +1113,32 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         #Animación
         self.add_fixed_in_frame_mobjects(text13)
         self.play(Write(text13))
-        self.wait(9)
+        self.wait(5)
         self.play(FadeOut(text13))
         self.add_fixed_in_frame_mobjects(text14)
         self.play(Write(text14))
-        self.wait(10)
-        self.play(FadeOut(text14))
-        self.add_fixed_in_frame_mobjects(text15)
-        self.play(Write(text15))
-        self.wait(12)
-        self.play(FadeOut(text15))
-        self.set_camera_orientation(0.7*np.pi/2, 0.25*np.pi,distance=12)
-        self.play(ShowCreation(axes))
-        self.add_fixed_in_frame_mobjects(text15_1)
-        self.play(Write(text15_1))
         self.wait(6)
-        self.play(ShowCreation(superficie))
-        self.play(ShowCreation(f),ShowCreation(f1))
-        self.wait(2)
-        self.play(FadeOut(text15_1))
-        self.add_fixed_in_frame_mobjects(text15_2)
-        self.play(Write(text15_2))
-        self.wait(5)
-        self.play(ShowCreation(puntos))
-        self.play(t1_1.set_value, t1_1f,run_time=10)
-        self.play(FadeOut(text15_2),FadeOut(axes),FadeOut(superficie),FadeOut(f),
-                    FadeOut(f1),FadeOut(puntos))
+        self.play(FadeOut(text14))
+        #self.add_fixed_in_frame_mobjects(text15)
+        #self.play(Write(text15))
+        #self.wait(12)
+        #self.play(FadeOut(text15))
+        #self.set_camera_orientation(0.7*np.pi/2, 0.25*np.pi,distance=12)
+        #self.play(ShowCreation(axes))
+        #self.add_fixed_in_frame_mobjects(text15_1)
+        #self.play(Write(text15_1))
+        #self.wait(6)
+        #self.play(ShowCreation(superficie))
+        #self.play(ShowCreation(f),ShowCreation(f1))
+        #self.wait(2)
+        #self.play(FadeOut(text15_1))
+        #self.add_fixed_in_frame_mobjects(text15_2)
+        #self.play(Write(text15_2))
+        #self.wait(5)
+        #self.play(ShowCreation(puntos))
+        #self.play(t1_1.set_value, t1_1f,run_time=10)
+        #self.play(FadeOut(text15_2),FadeOut(axes),FadeOut(superficie),FadeOut(f),
+        #            FadeOut(f1),FadeOut(puntos))
         self.add_fixed_in_frame_mobjects(text16)
         self.play(Write(text16))
         self.add_fixed_in_frame_mobjects(text16_1)
@@ -1126,7 +1149,7 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         self.play(Write(text18))
         self.add_fixed_in_frame_mobjects(text18_1)
         self.play(Write(text18_1))
-        self.wait(15)
+        self.wait(10)
         self.play(FadeOut(text17),FadeOut(text16),FadeOut(text16_1),FadeOut(text18),FadeOut(text18_1))
 
     def parte5 (self):
@@ -1138,16 +1161,12 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
                                 esta función diverge.''').move_to(3*DOWN)
         t_20.bg = SurroundingRectangle(t_20, color=WHITE, fill_color=BLACK, fill_opacity=1)
         text20 = VGroup(t_20.bg,t_20)
-        text21=TextMobject('''Sin embargo no nos pasa \n
-                                como en el primer ejemplo, ''','''\n
-                                que la función diverge\n
-                                 hacia $\\infty$ o $-\\infty$ dependiendo \n
-                                 de la dirección\n
-                                  que escogemos;''','''\n
-                                 en este caso sólo diverge a $\\infty$, \n
-                                lo cual se puede demostrar sin mucha \n
-                                dificultad porque el numerador es una \n
-                                constante y el denominador tiende a \n
+        text21=TextMobject('''Sin embargo no nos pasa como en el primer ejemplo, ''','''\n
+                                que la función diverge hacia $\\infty$ o $-\\infty$ dependiendo \n
+                                de la dirección que escogemos;''','''\n
+                                en este caso sólo diverge a $\\infty$, lo cual se puede \n
+                                demostrar sin mucha dificultad porque el numerador \n
+                                es una constante y el denominador tiende a \n
                                 cero con valores positivos.''')
         text22=TextMobject('''Ahora piensa en la función $f(x,y)=\\frac{|x+y|}{(x+y)^2}$''')
         text23=TextMobject('''Tiende a infinito en el origen,''',''' porque el cuadrado en el \n
@@ -1155,7 +1174,10 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
                                  una valor mucho más pequeño que $|x+y|$ conforme ambas \n
                                   variables tienden a cero.''')#.move_to(2*DOWN)
 
-        axes=ThreeDAxes()
+        ejes = ThreeDAxes(x_min = -4.5, x_max = 4.5, y_min = -4.5, y_max = 4.5,z_min=-1.5,z_max=4)
+        x_label = TexMobject(r"x").scale(0.75).move_to((5,0.3,0))
+        y_label = TexMobject(r"y").scale(0.75).move_to((0.3,5,0))
+        axes = VGroup(ejes,x_label,y_label)
         superficie21=superficie2_4_1()#superficie2_4_1()
         superficie22=superficie2_4_2()
 
@@ -1172,7 +1194,7 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         punto2.add_updater(mov_sup1)
 
         ##animación
-        self.set_camera_orientation(0.7*np.pi/2, 0.65*np.pi,distance=12)
+        self.set_camera_orientation(0.7*np.pi/2, 0.65*np.pi-180*DEGREES,distance=12)
         self.play(ShowCreation(axes))
         self.add_fixed_in_frame_mobjects(text19)
         self.play(Write(text19))
@@ -1182,7 +1204,7 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         self.play(FadeOut(text19))
         self.add_fixed_in_frame_mobjects(text20)
         self.play(Write(text20))
-        self.wait(7)
+        self.wait(4)
         self.play(ShowCreation(punto2))
         self.play(t1_1.set_value, t1_1f,run_time=10)
         self.play(FadeOut(punto2),FadeOut(text20),FadeOut(axes),FadeOut(superficie))
@@ -1192,11 +1214,11 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         self.play(Write(text21[1]))
         self.add_fixed_in_frame_mobjects(text21[2])
         self.play(Write(text21[2]))
-        self.wait(20)
+        self.wait(13)
         self.play(FadeOut(text21))
         self.add_fixed_in_frame_mobjects(text22)
         self.play(Write(text22))
-        self.wait(10)
+        self.wait(7)
         self.play(FadeOut(text22))
         self.add_fixed_in_frame_mobjects(text23[0])
         self.play(Write(text23[0]))
@@ -1204,7 +1226,7 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         self.play(Write(text23[1]))
         self.add_fixed_in_frame_mobjects(text23[2])
         self.play(Write(text23[2]))
-        self.wait(17)
+        self.wait(10)
         self.play(FadeOut(text23))
 
     def construct (self):
