@@ -938,7 +938,8 @@ class superficies_parametrizadas (ThreeDScene, Scene):
                                 a la superficie en el punto $\\sigma(\\hat{x}_0)$''').move_to(3*UP)
         texto_9 = TextMobject(''' Definimos $\\dfrac{\\partial \\sigma}{\\partial x}(\\hat{x}_0) \\times \\dfrac{\\partial \\sigma}{\\partial y}(\\hat{x}_0)$ como el vector normal a la\n
                                 superficie en $\\sigma(\\hat{x}_0)$, inducida por la parametrización $\\sigma$ ''').move_to(3*UP)
-        texto_10 = TextMobject(''' Este vector genera un plano tangente a la superficie en $\\sigma(\\hat{x}_0)$ ''').move_to(3*UP)
+        texto_10 = TextMobject(''' Este vector genera un plano tangente a la superficie en $\\sigma(\\hat{x}_0)$, \n
+                                con la ecuación normal del plano.''').move_to(3*UP)
         texto_11 = TextMobject(''' Si $\\hat{x}_0$ corresponde a un punto crítico de $\\sigma$, puede ocurrir que\n
                                 $\\dfrac{\\partial \\sigma}{\\partial x}(\\hat{x}_0) =\\vec{0}= \\dfrac{\\partial \\sigma}{\\partial y}(\\hat{x}_0)$ y entonces la superficie no tiene\n
                                 plano tangente definido en el punto. ''').move_to(2.5*UP)
