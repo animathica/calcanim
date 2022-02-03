@@ -465,7 +465,6 @@ class Composicion_de_Superficie_Con_Funciones(ThreeDScene):
 #############  Límite de cocientes de funciones de dos variables ####################
 #####################################################################################
 
-
 #Definición de las superficies
 # 1/xy
 class superficie2_1_1(ParametricSurface):
@@ -659,64 +658,46 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
     def parte0 (self):
         titulo=TextMobject('''Límite de Cocientes \n
                                 de Funciones de Dos Variables''').scale(1.5)
-        text1=TextMobject(''' Cuando trabajamos con límites en funciones de $\\mathbb{R}^{2}\\rightarrow\\mathbb{R}$ ''','''\n
-                                la cosa se pone interesante debido a que en este''','''\n
-                                  caso tenemos diversas maneras de analizar  \n
-                                 el límite: métrica, direcciones, curvas, sucesiones.''')
-        text2=TextMobject('''Así, para argumentar que existe o no el límite,''','''\n
-                                 esto se complica, en comparación con el caso''','''\n
-                                    en que la variable es real.''')
-        text3=TextMobject('''Pero no todo está perdido, hay diversos detalles \n
-                                con los que podemos argumentar si el \n
-                                 límite existe o no.''')
-        text4=TextMobject('''Ilustremos esto con algunos ejemplos.''')
+        text1=TextMobject('''Si estamos analizando el límite de un cociente \n
+                             de dos funciones de varias variables, en caso \n
+                             de que ambas tengan límite y el del denominador \n
+                             sea diferente de cero, ya sabemos que el límite \n
+                             del cociente es el cociente de los límites.''')
+        text2=TextMobject('''¿Qué pasa en otras situaciones? \n
+                             Veamos algunos ejemplos.''')
+        text3=TextMobject('''Tengamos presente que en este caso hay \n
+                             diversas maneras de analizar el límite: \n
+                             métrica, límite direccional, límite por \n
+                             trayectorias o con suscesiones.''')
 
         self.play(Write(titulo))
-        self.wait(2)
+        self.wait(1)
         self.play(FadeOut(titulo))
-        self.play(Write(text1[0]))
-        self.play(Write(text1[1]))
-        self.play(Write(text1[2]))
-        self.wait(6)
+        self.play(Write(text1),run_time=3)
+        self.wait(5)
         self.play(FadeOut(text1))
-        self.play(Write(text2[0]))
-        self.play(Write(text2[1]))
-        self.play(Write(text2[2]))
-        self.wait(4)
+        self.play(Write(text2))
+        self.wait(2)
         self.play(FadeOut(text2))
         self.play(Write(text3))
         self.wait(5)
         self.play(FadeOut(text3))
-        self.play(Write(text4))
-        self.wait(2)
-        self.play(FadeOut(text4))
 
     def parte1 (self):
         text5=TextMobject('''Sea $f:\\mathbb{R}^{2}-\\{(x,y)\\in \\mathbb{R}^{2}:x=0\\ \\text{ó}\\ y=0\\}\\rightarrow\\mathbb{R}$''',''' $$f(x,y)=\\frac{1}{xy}$$ ''')
         t_5_1=TextMobject('''$$f(x,y)=\\frac{1}{xy}$$''').move_to(3*UP)
         t_5_1.bg = SurroundingRectangle(t_5_1, color=WHITE, fill_color=BLACK, fill_opacity=1)
         text5_1=VGroup(t_5_1.bg,t_5_1)
-        t_6=TextMobject('''Si nos acercamos al origen en la dirección \n
-                                dada por la recta identidad, la función \n
-                                diverge a $\\infty$.''' ).move_to(3*DOWN)
+        t_6=TextMobject('''Notamos que en este ejemplo el numerador es constante \n
+                           y el denominador tiende a cero conforme la variable \n
+                           tiende a $\\vec{0}$. ¿El límite de $f$ diverge a infinito?''' ).move_to(3*DOWN).scale(0.7)
         t_6.bg = SurroundingRectangle(t_6, color=WHITE, fill_color=BLACK, fill_opacity=1)
         text6=VGroup(t_6.bg,t_6)
-        text6_1=TextMobject('''El límite con una sucesión. ''').move_to(3*UP)
-        text6_1_1=TextMobject('''Coordenadas iguales y positivas. ''').move_to(2.5*UP)
-
-        g_text6_1=  VGroup(text6_1,text6_1_1)
-        g_text6_1.bg = SurroundingRectangle(g_text6_1, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        g2_text6_1=VGroup(g_text6_1.bg,g_text6_1)
-
-        text6_1_2=TextMobject('''Ahora con coordenadas iguales y negativas. ''').move_to(2.5*UP)
-        t_6_2=TextMobject('''Con límite direccional. ''').move_to(3*UP)
-        t_6_2.bg=SurroundingRectangle(t_6_2, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        text6_2=VGroup(t_6_2.bg,t_6_2)
-
-
-        g_text6_1_2=  VGroup(text6_1,text6_1_2)
-        g_text6_1_2.bg = SurroundingRectangle(g_text6_1_2, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        g2_text6_1_2=VGroup(g_text6_1_2.bg,g_text6_1_2)
+        
+        text6_1=TextMobject('''Si nos acercamos al origen por la dirección dada \n
+                               por la recta identidad, la función diverge a $\\infty$.''').move_to(3*UP)
+        text6_1.bg = SurroundingRectangle(text6_1, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        g2_text6_1=VGroup(text6_1.bg,text6_1)
 
         #objetos
         ejes = ThreeDAxes(x_min = -5, x_max = 5, y_min = -5, y_max = 5,z_min=-4,z_max=4)
@@ -729,35 +710,6 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         superficie1_3=superficie2_1_3()
         superficie1_4=superficie2_1_4()
         superficie=VGroup(superficie1_1,superficie1_2,superficie1_3,superficie1_4)
-        ## Movimiento para la primer convergencia en función +1/xy
-        #para z>0
-        #Pueden cambiarse los valores n1_1,n1_2, t1_1,t1_1f,t1_2,t1_2f
-        #Para cambiar los limites en los cuales se muestran los límites con sucesiones y direccionales
-        n1_1= 17 +17
-        cjto1_1 = []
-        for i in range(2,n1_1):
-            if i<= 17:
-                x = -3+(0.1*i)
-            if i > 17:
-                x= -3+(0.1*17)+((i-17)*0.06)
-            cjto1_1.append((x,x,1/(x*x)))##Puede cambiarse el conjunto de puntos a una forma general (x,y,1/(x*y))
-            #siempre y cuando sólo implemente la variable x para modificar el movimiento de la sucesión
-        n1_2= 17+17
-        cjto1_2 = []
-        for i in range(2,n1_2):
-            if i<=17:
-                x = 3-(0.1*i)
-            if i>17:
-                x = 3-(0.1*17)-((i-17)*0.06)
-            cjto1_2.append((x,x,1/(x*x)))##Puede cambiarse el conjunto de puntos a una forma general (x,y,1/(x*y))
-            #siempre y cuando sólo implemente la variable x para modificar el movimiento de la sucesión
-        #Con sucesiones
-        Elementos1_1 = [Dot(color=RED).set_color(RED_E).move_to(i) for i in cjto1_1]
-        Elementos11 = VGroup(*Elementos1_1)
-        Elementos1_2 = [Dot(color=RED).set_color(RED_E).move_to(i) for i in cjto1_2]
-        Elementos12 = VGroup(*Elementos1_2)
-
-
 
         ##
         #Con limite direccional
@@ -782,74 +734,32 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
 
         punto_convergencia2.add_updater(mov_sup2)
 
-
-        #Pueden modificarles los runtime que aparece para mostrar más rápido o lento el movimiento del límite de la sucesión
         self.play(Write(text5))
         self.wait(7)
         self.play(FadeOut(text5))
-        #self.set_camera_orientation(0.7*np.pi/2, 1*np.pi,distance=12)
         self.move_camera(phi=80*DEGREES,theta=30*DEGREES,frame_center=(0,0,2))
         self.play(ShowCreation(axes))
         self.play(ShowCreation(superficie))
         self.add_fixed_in_frame_mobjects(text5_1)
         self.play(Write(text5_1))
         self.wait(2)
-        self.play(FadeOut(text5_1))
         self.add_fixed_in_frame_mobjects(text6)
         self.play(Write(text6))
         self.wait(5)
-        self.play(FadeOut(text6))
+        self.play(FadeOut(text5_1),FadeOut(text6))
 
-        
         self.add_fixed_in_frame_mobjects(g2_text6_1)
         self.play(Write(g2_text6_1))
-        self.play(ShowCreation(Elementos12), run_time=6)
-        self.wait()
-        self.play(FadeOut(Elementos12),FadeOut(g2_text6_1))
         #Con limite direccional
-        self.add_fixed_in_frame_mobjects(text6_2)
-        self.play(Write(text6_2))
-        self.add(punto_convergencia2)
-        self.play(t1_2.set_value, t1_2f,run_time=6)
-        self.wait()
-        self.play(FadeOut(text6_2),FadeOut(punto_convergencia1))
-        #self.move_camera(0.7*np.pi/2, 0*np.pi,distance=12)
-        self.move_camera(phi=80*DEGREES,theta=210*DEGREES,frame_center=(0,0,2))
-        self.add_fixed_in_frame_mobjects(g2_text6_1_2)
-        self.play(Write(g2_text6_1_2))
-        
-        self.play(ShowCreation(Elementos11), run_time=6)
-        self.wait()
-        self.play(FadeOut(Elementos11),FadeOut(g2_text6_1_2))
-        self.add_fixed_in_frame_mobjects(text6_2)
-        self.play(Write(text6_2))
-        self.add(punto_convergencia1)
-        self.play(t1_1.set_value, t1_1f,run_time=6)
+        self.add(punto_convergencia2,punto_convergencia1)
+        self.play(t1_2.set_value, t1_2f,t1_1.set_value,t1_1f,run_time=6)
+        #self.play(t1_1.set_value, t1_1f,run_time=6)
         self.wait()
         self.play(*[FadeOut(obj) for obj in self.mobjects])
-        self.wait()
         
     def parte2 (self):
         text7=TextMobject('''Sin embargo, si nos acercamos por la recta menos \n
                                 identidad, la función diverge a $-\\infty$.''')
-        text7_1=TextMobject('''El límite con una sucesión. ''').move_to(3*UP)
-        text7_1_1=TextMobject('''Primera coordenada positiva y segunda negativa. ''').move_to(2.5*UP)
-        text7_1_2=TextMobject('''Primera coordenada negativa y segunda positiva. ''').move_to(2.5*UP)
-        t_7_2=TextMobject('''Con límite direccional. ''').move_to(3*UP)
-        t_7_2.bg = SurroundingRectangle(t_7_2, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        text7_2 = VGroup(t_7_2.bg,t_7_2)
-
-        g_text7_1_1 = VGroup(text7_1,text7_1_1)
-        g_text7_1_1.bg = SurroundingRectangle(g_text7_1_1, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        g2_text7_1_1 = VGroup(g_text7_1_1.bg,g_text7_1_1)
-
-        g_text7_1_2 = VGroup(text7_1,text7_1_2)
-        g_text7_1_2.bg = SurroundingRectangle(g_text7_1_2, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        g2_text7_1_2 = VGroup(g_text7_1_2.bg,g_text7_1_2)
-
-        g_text7_1_3 = VGroup(t_7_2,text7_1_2)
-        g_text7_1_3.bg = SurroundingRectangle(g_text7_1_3, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        g2_text7_1_3 = VGroup(g_text7_1_3.bg,g_text7_1_3)
 
 
         #objetos
@@ -864,31 +774,6 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         superficie1_4=superficie2_1_4()
         superficie=VGroup(superficie1_1,superficie1_2,superficie1_3,superficie1_4)
 
-        #Analogo a la parte anterior pueden moficiarse los valores n's y t's así como los conjuntos de posiciones para modificar el movimiento de las sucesiones y límites direccionales
-        #z<0
-        #Con sucesiones
-        n1_3= 17 +17
-        cjto1_3 = []
-        for i in range(2,n1_3):
-            if i<= 17:
-                x = -3+(0.1*i)
-            if i > 17:
-                x= -3+(0.1*17)+((i-17)*0.06)
-            cjto1_3.append((x,-x,-1/(x**2)))
-        n1_4= 17+17
-        cjto1_4 = []
-        for i in range(2,n1_4):
-            if i<=17:
-                x = 3-(0.1*i)
-            if i>17:
-                x = 3-(0.1*17)-((i-17)*0.06)
-            cjto1_4.append((x,-x,-1/(x**2)))
-
-        Elementos1_3 = [Dot(color=RED).set_color(RED_E).move_to(i) for i in cjto1_3]
-        Elementos13 = VGroup(*Elementos1_3)
-        Elementos1_4 = [Dot(color=RED).set_color(RED_E).move_to(i) for i in cjto1_4]
-        Elementos14 = VGroup(*Elementos1_4)
-        #Con limite direccional
         #Con limite direccional
         t1_1=ValueTracker(-3)
         punto_convergencia1=Sphere(radius=0.05, fill_opacity=1, fill_color = RED).move_to([-3,-3,1/(9)])
@@ -918,60 +803,122 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         self.play(ShowCreation(axes))
         self.play(ShowCreation(superficie))
 
-        self.add_fixed_in_frame_mobjects(g2_text7_1_1)
-        self.play(Write(g2_text7_1_1))
+        self.add(punto_convergencia2,punto_convergencia1)
+        self.play(t1_2.set_value, t1_2f,t1_1.set_value,t1_1f,run_time=6)
+        self.play(FadeOut(punto_convergencia2),FadeOut(punto_convergencia1))
+
+        self.play(*[FadeOut(obj) for obj in self.mobjects])
+
+    def partesucesiones (self):
+        t_1 = TextMobject('''De acuerdo al Teorema de límite de funciones con \n
+                             límites direccionales, podemos concluir que $f$ \n
+                             diverge en $\\vec{0}$ pero no diverge a infinito en \n
+                             ese punto.''')
+        t_2 = TextMobject('''Podemos verificar lo anterior usando límite con \n
+                             sucesiones''')
+        t_3 = TextMobject('''Como hay dos sucesiones que convergen al origen \n
+                             en el dominio, cuyas imágenes divergen a más y \n
+                             menos infinito respectivamente, concluimos que \n
+                             el límite en el punto $(0,0)$ no existe y no \n
+                             diverge a infinito ni a menos infinito.''')
+        
+        ## Objetos
+
+        ejes = ThreeDAxes(x_min = -5, x_max = 5, y_min = -5, y_max = 5,z_min=-4,z_max=4)
+        x_label = TexMobject(r"x").scale(0.75).move_to((5.5,0.3,0))
+        y_label = TexMobject(r"y").scale(0.75).move_to((0.3,5.5,0))
+        axes = VGroup(ejes,x_label,y_label)
+        #Definimos la superficies por partes por la discontinuidad
+        superficie1_1=superficie2_1_1()
+        superficie1_2=superficie2_1_2()
+        superficie1_3=superficie2_1_3()
+        superficie1_4=superficie2_1_4()
+        superficie=VGroup(superficie1_1,superficie1_2,superficie1_3,superficie1_4)
+        ## Movimiento para la primer convergencia en función +1/xy
+        #para z>0
+        #Pueden cambiarse los valores n1_2,n1_4
+        #Para cambiar los limites en los cuales se muestran los límites con sucesiones
+        n1_2= 17+17
+        cjto1_2 = []
+        for i in range(2,n1_2):
+            if i<=17:
+                x = 3-(0.1*i)
+            if i>17:
+                x = 3-(0.1*17)-((i-17)*0.06)
+            cjto1_2.append((x,x,1/(x*x)))##Puede cambiarse el conjunto de puntos a una forma general (x,y,1/(x*y))
+            #siempre y cuando sólo implemente la variable x para modificar el movimiento de la sucesión
+        #Con sucesiones
+        Elementos1_2 = [Dot(color=RED).set_color(RED_E).move_to(i) for i in cjto1_2]
+        Elementos12 = VGroup(*Elementos1_2)
+        #z<0
+        #Con sucesiones
+        n1_4= 17+17
+        cjto1_4 = []
+        for i in range(2,n1_4):
+            if i<=17:
+                x = 3-(0.1*i)
+            if i>17:
+                x = 3-(0.1*17)-((i-17)*0.06)
+            cjto1_4.append((x,-x,-1/(x**2)))
+
+        Elementos1_4 = [Dot(color=RED).set_color(RED_E).move_to(i) for i in cjto1_4]
+        Elementos14 = VGroup(*Elementos1_4)
+
+        ## Para la animación de sucesiones
+
+        self.add_fixed_in_frame_mobjects(t_1)
+        self.play(Write(t_1))
+        self.wait(4)
+        self.play(FadeOut(t_1))
+        self.add_fixed_in_frame_mobjects(t_2)
+        self.play(Write(t_2))
+        self.wait(2)
+        self.play(FadeOut(t_2))
+        self.move_camera(phi=80*DEGREES,theta=30*DEGREES,frame_center=(0,0,2))
+        self.play(Write(axes,run_time=0.5))
+        self.play(ShowCreation(superficie))
+        # sucesion sobre recta identidad
+        self.play(ShowCreation(Elementos12), run_time=6)
+        self.wait()
+        self.play(FadeOut(Elementos12))
+        #sucesion sobre recta menos identidad
+        self.move_camera(phi=80*DEGREES,theta=(30-45)*DEGREES,frame_center=(0,0,-1))
         self.play(ShowCreation(Elementos14), run_time=6)
         self.wait()
-        self.play(FadeOut(Elementos14),FadeOut(g2_text7_1_1))
-
-        self.add_fixed_in_frame_mobjects(text7_2)
-        self.play(Write(text7_2))
-        self.add(punto_convergencia2)
-        self.play(t1_2.set_value, t1_2f,run_time=6)
-        self.play(FadeOut(punto_convergencia2),FadeOut(text7_2))
-        #self.move_camera(0.7*np.pi/2, 1.35*np.pi,distance=12)
-        self.move_camera(phi=70*DEGREES,theta=(210-45)*DEGREES,frame_center=(0,0,-1))
-
-        self.add_fixed_in_frame_mobjects(g2_text7_1_2)
-        self.play(Write(g2_text7_1_2))
-        self.play(ShowCreation(Elementos13), run_time=6)
-        self.wait()
-        self.play(FadeOut(Elementos13),FadeOut(g2_text7_1_2))
-        self.add_fixed_in_frame_mobjects(g2_text7_1_3)
-
-        self.play(Write(g2_text7_1_3))
-        self.add(punto_convergencia1)
-        self.play(t1_1.set_value, t1_1f,run_time=6)
+        self.play(FadeOut(Elementos14))
         self.play(*[FadeOut(obj) for obj in self.mobjects])
+        self.add_fixed_in_frame_mobjects(t_3)
+        self.play(Write(t_3))
+        self.wait(6)
+        self.play(FadeOut(t_3))
 
     def parte3 (self):
         text8=TextMobject('''Veamos otro ejemplo.''')
         t_9=TextMobject('''Sea $f:\\mathbb{R}^{2}-{\\vec{0}}\\rightarrow\\mathbb{R}$ \n
-                                $f(x,y)=\\frac{2xy}{x^2+y^2}$''').move_to(3*UP)
+                                $f(x,y)=\\frac{2xy}{x^2+y^2}$''').move_to(3*DOWN)
         t_9.bg = SurroundingRectangle(t_9, color=WHITE, fill_color=BLACK, fill_opacity=1)
         text9 = VGroup(t_9.bg,t_9)
+        t9_5 = TextMobject('''En este ejemplo tanto la función del numerador como \n
+                              la del denominador convergen a cero en el origen. ¿Qué \n
+                              pasa con el cociente?''').scale(0.7).move_to(3*DOWN)
+        t9_5.bg = SurroundingRectangle(t9_5,color=WHITE,fill_color=BLACK,fill_opacity=1)
+        text9_5 = VGroup(t9_5.bg,t9_5)
         t_10=TextMobject('''Notemos que si nos aproximamos al origen en el \n
                                 dominio en las direcciones canónicas entonces \n
-                                el límite es 0.''').move_to(3*DOWN)
+                                el límite es 0.''').move_to(3*DOWN).scale(0.7)
         t_10.bg = SurroundingRectangle(t_10, color=WHITE, fill_color=BLACK, fill_opacity=1)
         text10 = VGroup(t_10.bg,t_10)
         t_11=TextMobject('''Ahora tomemos la dirección dada por la recta \n
-                                identidad y veamos qué ocurre.''').move_to(3*UP)
+                                identidad y veamos qué ocurre.''').move_to(3*DOWN)
         t_11.bg = SurroundingRectangle(t_11, color=WHITE, fill_color=BLACK, fill_opacity=1)
         text11 = VGroup(t_11.bg,t_11)
-        t_12 = TextMobject('''Notamos que en este caso el límite es diferente \n
-                                    de 0.''').move_to(3*UP)
+        t_12 = TextMobject('''Notamos que en este caso el límite es 1 y es diferente \n
+                                    de 0.''').move_to(3*DOWN)
         t_12.bg = SurroundingRectangle(t_12, color=WHITE, fill_color=BLACK, fill_opacity=1)
         text12 = VGroup(t_12.bg,t_12)
-        #Puede cambiarse t1_t y t1_1f para cambiar el intervalo donde se obtendrá la derivada direccional
-        t1_1=ValueTracker(-3)
-        punto_convergencia1=Sphere(radius=0.05, fill_opacity=1, fill_color = RED).move_to([-3,-3,1/(9)])
-        t1_1f=-0.45
-        def mov_sup1 (obj):
-            t = t1_1.get_value()
-            punto_convergencia1.become(Sphere(radius=0.05, fill_opacity=1, fill_color = RED).move_to([t,t,t**(-2)]))
-
-        punto_convergencia1.add_updater(mov_sup1)
+        text13 = TextMobject('''Como ya sabemos, si encontramos dos direcciones donde los \n
+                                límites direccionales difieren, entonces podemos concluir \n
+                                que el límite no existe.''')
 
         #Objetos
         ejes = ThreeDAxes(x_min = -4.5, x_max = 4.5, y_min = -4.5, y_max = 4.5,z_min=-1.5,z_max=4)
@@ -1034,6 +981,10 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         self.play(Write(text9))
         self.wait(5)
         self.play(FadeOut(text9))
+        self.add_fixed_in_frame_mobjects(text9_5)
+        self.play(Write(text9_5))
+        self.wait(4)
+        self.play(FadeOut(text9_5))
         self.add_fixed_in_frame_mobjects(text10)
         self.play(Write(text10))
         self.wait(5)
@@ -1042,137 +993,43 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         self.play(FadeOut(text10),FadeOut(Elementos1))
         self.add_fixed_in_frame_mobjects(text11)
         self.play(Write(text11))
-        self.wait(5)
+        self.wait(2)
         self.play(ShowCreation(Elementos2),runtime=10)
-        self.wait()
-        self.play(FadeOut(text11),FadeOut(Elementos2))
+        self.play(FadeOut(text11))
         self.add_fixed_in_frame_mobjects(text12)
         self.play(Write(text12))
         self.wait(3)
-        self.play(FadeOut(text12),FadeOut(axes),FadeOut(superficie))
-
-    def parte4 (self):
-        text13=TextMobject('''Entonces con esto comprobamos que a veces no \n
-                                 es suficiente analizar la función en \n
-                                      las direcciones canónicas.''')
-        text14=TextMobject('''Además, como es de esperar, \n
-                                si encontramos dos direcciones donde el \n
-                                límite difiere, entonces podemos concluir \n
-                                    que el límite no existe.''')
-        #text15=TextMobject('''Es posible que si nos acercamos al punto del\n
-        #                         dominio en cualquier dirección, el límite sea\n
-        #                         el mismo, pero puede que la función no tenga límite. ''')
-        #t_15_1=TextMobject('''Por ejemplo, $f(x,y)=1$ si $y=x^3$ y $f(x,y)=0$ en otro caso''').move_to(3*UP)
-        #t_15_1.bg = SurroundingRectangle(t_15_1, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        #text15_1 = VGroup(t_15_1.bg,t_15_1)
-        #t_15_2=TextMobject(''' $f$ no tiene límite en $\\vec{0}$, aunque sí existen \n
-        #                        todos los límites direccionales en el punto.''').move_to(3*UP)
-        #t_15_2.bg = SurroundingRectangle(t_15_2, color=WHITE, fill_color=BLACK, fill_opacity=1)
-        #text15_2 = VGroup(t_15_2.bg,t_15_2)
-        text16=TextMobject("¿Cómo argumentamos entonces cuando el límite sí existe?").move_to(2*UP)
-        text16_1=TextMobject("Una manera es usando la definición, o sea, la métrica.").move_to(1*UP)
-        text17=TextMobject("Pero también podemos usar criterios de comparación.").move_to(0*DOWN)
-        text18=TextMobject('''Podemos analizar los órdenes de magnitud de los''').move_to(1*DOWN)
-        text18_1=TextMobject('''términos de la función''').move_to(2*DOWN)
-
-
-        axes=ThreeDAxes()
-        superficie=superficie2_3()
-        f = ParametricFunction(curva,t_min=-(3**(1/3)),t_max=3**(1/3),color=BLUE_D)
-        f1 = ParametricFunction(curva1,t_min=-(3**(1/3)),t_max=3**(1/3),color=BLACK)
-
-        t1_1=ValueTracker(-3)
-        t1_1f=-0.2
-        punto1=Dot(radius=0.1, fill_opacity=1, fill_color = RED).move_to([0,-3,0])
-        punto2=Dot(radius=0.1, fill_opacity=1, fill_color = RED).move_to([-3,0,0])
-        punto3=Dot(radius=0.1, fill_opacity=1, fill_color = RED).move_to([0,3,0])
-        punto4=Dot(radius=0.1, fill_opacity=1, fill_color = RED).move_to([3,0,0])
-        punto5=Dot(radius=0.1, fill_opacity=1, fill_color = RED).move_to([3,-3,0])
-        punto6=Dot(radius=0.1, fill_opacity=1, fill_color = RED).move_to([-3,3,0])
-
-
-        def mov_sup1 (obj):
-            t = t1_1.get_value()
-            punto1.become(Dot(radius=0.1, fill_opacity=1, fill_color = RED).move_to([0,t,0]))
-            punto2.become(Dot(radius=0.1, fill_opacity=1, fill_color = RED).move_to([t,0,0]))
-            punto3.become(Dot(radius=0.1, fill_opacity=1, fill_color = RED).move_to([0,-t,0]))
-            punto4.become(Dot(radius=0.1, fill_opacity=1, fill_color = RED).move_to([-t,0,0]))
-            punto5.become(Dot(radius=0.1, fill_opacity=1, fill_color = RED)).move_to([-t,t,0])
-            punto6.become(Dot(radius=0.1, fill_opacity=1, fill_color = RED)).move_to([t,-t,0])
-
-
-        punto1.add_updater(mov_sup1)
-        punto2.add_updater(mov_sup1)
-        punto3.add_updater(mov_sup1)
-        punto4.add_updater(mov_sup1)
-        punto5.add_updater(mov_sup1)
-        punto6.add_updater(mov_sup1)
-        puntos=VGroup(punto1,punto2,punto3,punto4,punto5,punto6)
-
-
-        #Animación
+        self.play(FadeOut(text12),FadeOut(axes),FadeOut(superficie),FadeOut(Elementos2))
         self.add_fixed_in_frame_mobjects(text13)
         self.play(Write(text13))
-        self.wait(5)
+        self.wait(4)
         self.play(FadeOut(text13))
-        self.add_fixed_in_frame_mobjects(text14)
-        self.play(Write(text14))
-        self.wait(6)
-        self.play(FadeOut(text14))
-        #self.add_fixed_in_frame_mobjects(text15)
-        #self.play(Write(text15))
-        #self.wait(12)
-        #self.play(FadeOut(text15))
-        #self.set_camera_orientation(0.7*np.pi/2, 0.25*np.pi,distance=12)
-        #self.play(ShowCreation(axes))
-        #self.add_fixed_in_frame_mobjects(text15_1)
-        #self.play(Write(text15_1))
-        #self.wait(6)
-        #self.play(ShowCreation(superficie))
-        #self.play(ShowCreation(f),ShowCreation(f1))
-        #self.wait(2)
-        #self.play(FadeOut(text15_1))
-        #self.add_fixed_in_frame_mobjects(text15_2)
-        #self.play(Write(text15_2))
-        #self.wait(5)
-        #self.play(ShowCreation(puntos))
-        #self.play(t1_1.set_value, t1_1f,run_time=10)
-        #self.play(FadeOut(text15_2),FadeOut(axes),FadeOut(superficie),FadeOut(f),
-        #            FadeOut(f1),FadeOut(puntos))
-        self.add_fixed_in_frame_mobjects(text16)
-        self.play(Write(text16))
-        self.add_fixed_in_frame_mobjects(text16_1)
-        self.play(Write(text16_1))
-        self.add_fixed_in_frame_mobjects(text17)
-        self.play(Write(text17))
-        self.add_fixed_in_frame_mobjects(text18)
-        self.play(Write(text18))
-        self.add_fixed_in_frame_mobjects(text18_1)
-        self.play(Write(text18_1))
-        self.wait(10)
-        self.play(FadeOut(text17),FadeOut(text16),FadeOut(text16_1),FadeOut(text18),FadeOut(text18_1))
 
-    def parte5 (self):
-        t_19=TextMobject('''Por ejemplo $f:\\mathbb{R}^{2}-{\\vec{0}}\\rightarrow\\mathbb{R}$\n
-                                 $f(x,y)=\\frac{1}{(x+y)^{2}}$''').move_to(3*DOWN)
+    def parte4 (self):
+        t_19=TextMobject('''Consideremos $f:\\mathbb{R}^{2}-{\\vec{0}}\\rightarrow\\mathbb{R}$\n
+                            $f(x,y)=\\frac{1}{(x+y)^{2}}$''').move_to(3*DOWN)
         t_19.bg = SurroundingRectangle(t_19, color=WHITE, fill_color=BLACK, fill_opacity=1)
         text19 = VGroup(t_19.bg,t_19)
-        t_20=TextMobject('''Cuando nos vamos acercando a $\\vec{0}$, \n
-                                esta función diverge.''').move_to(3*DOWN)
+        t_20=TextMobject('''Nuevamente tenemos una función donde el numerador es \n
+                            constante y el denominador tiende a cero en el origen.''').move_to(3*DOWN)
         t_20.bg = SurroundingRectangle(t_20, color=WHITE, fill_color=BLACK, fill_opacity=1)
         text20 = VGroup(t_20.bg,t_20)
-        text21=TextMobject('''Sin embargo no nos pasa como en el primer ejemplo, ''','''\n
-                                que la función diverge hacia $\\infty$ o $-\\infty$ dependiendo \n
-                                de la dirección que escogemos;''','''\n
-                                en este caso sólo diverge a $\\infty$, lo cual se puede \n
-                                demostrar sin mucha dificultad porque el numerador \n
-                                es una constante y el denominador tiende a \n
-                                cero con valores positivos.''')
-        text22=TextMobject('''Ahora piensa en la función $f(x,y)=\\frac{|x+y|}{(x+y)^2}$''')
-        text23=TextMobject('''Tiende a infinito en el origen,''',''' porque el cuadrado en el \n
-                                 denominador afecta a las dos variables,''',''' lo que nos da \n
-                                 una valor mucho más pequeño que $|x+y|$ conforme ambas \n
-                                  variables tienden a cero.''')#.move_to(2*DOWN)
+        t21 = TextMobject('''Sin embargo, cuando nos vamos acercando a $\\vec{0}$, esta \n
+                             función tiene un comportamiento diferente al del primer \n
+                             ejemplo.''').move_to(3*DOWN).scale(0.8)
+        t21.bg = SurroundingRectangle(t21, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        text21 = VGroup(t21.bg,t21)
+        t22 = TextMobject('''En este caso $f$ diverge a $\\infty$, lo cual se puede \n
+                             demostrar sin mucha dificultad porque el numerador \n
+                             es una constante y el denominador tiende a cero con \n
+                             valores positivos.''').move_to(3*DOWN).scale(0.8)
+        t22.bg = SurroundingRectangle(t22, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        text22 = VGroup(t22.bg,t22)
+        text23 = TextMobject('''De hecho, usando la métrica se puede demostrar \n
+                                fácilmente que si en un cociente el numerador es \n
+                                constante, el denominador tiende a cero en un \n
+                                punto y además es positivo, entonces el cociente \n
+                                diverge a infinito en el punto.''')
 
         ejes = ThreeDAxes(x_min = -4.5, x_max = 4.5, y_min = -4.5, y_max = 4.5,z_min=-1.5,z_max=4)
         x_label = TexMobject(r"x").scale(0.75).move_to((5,0.3,0))
@@ -1198,42 +1055,61 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         self.play(ShowCreation(axes))
         self.add_fixed_in_frame_mobjects(text19)
         self.play(Write(text19))
-        self.wait(5)
+        self.wait(4)
         self.play(ShowCreation(superficie))
         self.wait()
         self.play(FadeOut(text19))
         self.add_fixed_in_frame_mobjects(text20)
         self.play(Write(text20))
         self.wait(4)
+        self.play(FadeOut(text20))
+        self.add_fixed_in_frame_mobjects(text21)
+        self.play(Write(text21),run_time=2)
+        self.wait(2)
         self.play(ShowCreation(punto2))
         self.play(t1_1.set_value, t1_1f,run_time=10)
-        self.play(FadeOut(punto2),FadeOut(text20),FadeOut(axes),FadeOut(superficie))
-        self.add_fixed_in_frame_mobjects(text21[0])
-        self.play(Write(text21[0]))
-        self.add_fixed_in_frame_mobjects(text21[1])
-        self.play(Write(text21[1]))
-        self.add_fixed_in_frame_mobjects(text21[2])
-        self.play(Write(text21[2]))
-        self.wait(13)
-        self.play(FadeOut(text21))
+        self.play(FadeOut(text21),FadeOut(punto2))
         self.add_fixed_in_frame_mobjects(text22)
         self.play(Write(text22))
-        self.wait(7)
-        self.play(FadeOut(text22))
-        self.add_fixed_in_frame_mobjects(text23[0])
-        self.play(Write(text23[0]))
-        self.add_fixed_in_frame_mobjects(text23[1])
-        self.play(Write(text23[1]))
-        self.add_fixed_in_frame_mobjects(text23[2])
-        self.play(Write(text23[2]))
-        self.wait(10)
+        self.wait(5)
+        self.play(*[FadeOut(obj) for obj in self.mobjects])
+        self.add_fixed_in_frame_mobjects(text23)
+        self.play(Write(text23))
+        self.wait(8)
         self.play(FadeOut(text23))
+
+    def parte5(self):
+        text1 = TextMobject('''También podemos usar criterios de comparación \n
+                               analizando los órdenes de magnitud de las funciones \n
+                               en el cociente''')
+        text2 = TextMobject('''La función \n
+                               $f(x,y)=\\dfrac{x^2+y^2}{\\sin^2(x^2+y^2)}$ \n
+                               tiende a infinito en el origen.''').move_to(2*UP)
+        text3 = TextMobject('''Pues al considerar $r^2=x^2+y^2$, cerca del origen \n
+                               obtenemos''').next_to(text2,DOWN)
+        text4 = TexMobject(r"\dfrac{r^2}{\sin^2(r^2)}\approx\dfrac{r^2}{r^4}=\dfrac{1}{r^2}").next_to(text3,DOWN)
+
+        self.add_fixed_in_frame_mobjects(text1)
+        self.play(Write(text1))
+        self.wait(3)
+        self.play(FadeOut(text1))
+        self.add_fixed_in_frame_mobjects(text2)
+        self.play(Write(text2))
+        self.wait(2)
+        self.add_fixed_in_frame_mobjects(text3)
+        self.play(Write(text3))
+        self.wait(2)
+        self.add_fixed_in_frame_mobjects(text4)
+        self.play(Write(text4))
+        self.wait(3)
+        self.play(*[FadeOut(obj) for obj in self.mobjects])
 
     def construct (self):
         ### ANIMACIÓN PARA LAS DIFERENTES PARTES ###
         self.parte0()
         self.parte1()
         self.parte2()
+        self.partesucesiones()
         self.parte3()
         self.parte4()
         self.parte5()
