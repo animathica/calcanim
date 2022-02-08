@@ -33,7 +33,7 @@ https://eulertour.com/gallery
   - [Norma euclideana y sus propiedades](https://www.youtube.com/watch?v=HXG0XtM1kmM) ([norma_euclidea.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/norma_euclidea.py))
   - [Diferentes tipos de normas](https://www.youtube.com/watch?v=u0plZWFAor0) ([tipos_normas.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/tipos_normas.py))
   - [Producto interno de vectores](https://www.youtube.com/watch?v=eEABVOd5myc) ([prod_interno.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/prod_interno.py))
-  - **Vector proyección de x sobre y** ([proyeccion.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/proyeccion.py))
+  - [Vector proyección de x sobre y](https://www.youtube.com/watch?v=Kktc8_Q6C0I) ([proyeccion.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/proyeccion.py))
   - [Métrica](https://www.youtube.com/watch?v=3FDLM-HpvPY) ([metrica.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/metrica.py))
   
 ## Sucesiones:
