@@ -21,41 +21,139 @@ https://eulertour.com/gallery
 
 # Temario
 ## Introducción al cálculo multivariable:
-  - Motivación, ¿de donde sale la necesidad de utilizar funciones de múltiples varialbes?
+  - Motivación, ¿de donde sale la necesidad de utilizar funciones de múltiples variables?
 
 ## Espacios vectoriales:
-  - Asociatividad
-  - Distributividad
-  - Conmutatividad
-  - Inverso aditivo
   - Operaciones con vectores
-  - Bases
-  - Distintos tipos de Normas
-  - Norma y sus propiedades
-  - Producto interior y sus propiedades
-  - Métrica y sus propiedades:
+  - Conmutatividad con vectores
+  - Asociatividad de vectores 
+  - Propiedad distributiva en un espacio vectorial
+  - Inverso aditivo de un vector
+  - Bases de espacios vectoriales
+  - Norma euclideana y sus propiedades
+  - Diferentes tipos de normas
+  - Producto interno de vectores
+  - Vector proyección de x sobre y 
+  - Métrica 
   
 ## Sucesiones:
-  - Definición de una sucesión
-  - Definición de límite de una sucesión
-  - Ejemplos de sucesiones convergentes/divergentes
-  - El Teorema Puente
-  - Sucesiones de Cauchy
+  - Definición de sucesiones
   - Sucesiones acotadas
   - Subsucesiones
-  - El Teorema de los Rectángulos Anidados
-  - El Teorema de Bolzano-Weierstrass 
+  - Ejemplos de sucesiones
+  - Defición de límite de sucesiones
+  - Teorema puente de sucesiones
+  - Sucesiones de Cauchy
+  - Teorema de rectángulos anidados
+  - Teorema de Bolzano Weiestrass
   
 ## Topología de R^n:
-  - Definición de una bola/vecindad
-  - Clasificación de puntos: Interior, exterior, frontera
+  - Bolas y vecindades
+  - Tipos de puntos
   - Conjuntos abiertos
-  - Conjuntos cerrados
-  - Propiedades/observación de conjuntos abiertos y cerrados
+  - COnjuntos cerrados
+  - Ni abierto, ni cerrado
   - Cerradura de un conjunto
-  - Clasificación de puntos: Aislado y de Acumulación
-  - Cubiertas
-  - Lema del número de Lebesgue
-  - Conjuntos Disconexos/Conexos
-  - Conjuntos Convexos
+  - Puntos aislados, de acumulación y conjunto derivado
+  - Cubierta de un conjunto
   - Conjuntos compactos
+  - Número de Lebesge
+  - Conjuntos conexos y disconexos
+  - Conjuntos convexos
+  
+## Límite y continuidad en funciones multivariable:
+  - Definición de gráficas
+  - Ejemplos de gráficas 
+  - Imagen inversa
+  - Definición de conjuntos de nivel
+  - Ejemplo de curvas de nivel
+  - Existencia del límite de funciones de R^n a R^m en x_0
+  - Ejemplo de límite en campos
+  - Límites direccionales
+  - Existencia del límite en infinito de funciones de R a R^n
+  - Existencia del límite en infinito de funciones de R^n a R
+  - Divergencia a infinito de funciones de R a R^n en un punto t_0
+  - Divergencia a infinito del límite de funciones de R^n a R en
+  un punto a
+  - Divergencia a infinito de funciones de R a R^n en infinito
+  - Divergencia a infinito del límite de funciones de R^n a R en infinito.
+  - Continuidad con sucesiones
+  - Teorema de operaciones para funciones continuas
+  - Funciones continuas y abiertos  
+  - Teorema fuerte: las funciones continuas son acotadas en compactos
+  - Teorema de valor extremo (parte 1)
+  - Teorema del Valor Intermedio  
+
+## Calculo diferencial en curvas:
+  - Curvas en el plano
+  - Tipos de curvas (curvas simples y simples cerradas)
+  - Vector velocidad, rápidez y derivabilidad
+  - **Teorema puente: derivabilidad de curvas**
+  - **Tangente y vector tangente unitario**
+  - Reparametrización de curvas 
+  - Curvas regulares y picos
+  - Curvas rectificables
+  - Curvas no rectificables
+  - Curvas suaves y cruces
+  - Vector aceleración y aceleración tangencial
+  - Curvatura
+  - **Curvas en el espacio**
+  - **Vector binormal**
+  - **Torsión**
+  - **Teorema Fundamental de Curvas**
+
+## Cálculo diferencial de superficies
+  - Translaciones y Hometecias en Superficies
+  - **Función tipo Dirichlet**
+  - Límite de cocientes de funciones de dos variables
+  - **Límites iterados**
+  - Planos y su inclinación
+  - Plano tangente y derivadas direccionales
+  - **Parciales y diferenciabilidad**
+  - **Teorema de operaciones: diferenciabilidad de superficies
+  - Derivada direccional**
+  - **Parciales cruzadas**
+  - Máximos y mínimos
+  - **Multiplicadores de Lagrange**
+  - **Máximos y mínimos globales**
+  - **Teorema de Taylor para superficies**
+  - Teorema de la función implícita
+  - Teoremas de diferenciabilidad
+  - **Corte de una superficie con un plano**
+  - Plano tangente a una superficie 
+  - **Gradiente**
+  - Funciones de R^2 en R^3: superficies parametrizadas
+
+## Extra:
+  - Gráficas en R^4
+  
+## Funciones de R^n a R^m:
+  - Coordenadas Polares y Cartesianas
+  - Campos lineales y Cambios de Coordenadas
+  - **Campos diferenciables en R^2**
+  - Funciones de R^2 en R^3: superficies parametrizadas
+
+## Teoremas de diferenciabilidad:
+  - Teorema de la función inversa
+  - Regla de la cadena 
+
+## Integral de volumen:
+  - Definición
+  - **Criterio de Lebesgue**
+  - **Fubini**
+  - Cambio de variable
+
+## Integral de línea:
+  - **Definición**
+  - **Teoremas fundamentales**
+  - **Rotacional en R^2**
+  - **Teorema de Green**
+  - **Rotacional en R^3**
+
+## Integral de superficie:
+  - **Definición**
+  - **Stokes**
+  - **Divergencia**
+  - **Gauss**
+
+  
