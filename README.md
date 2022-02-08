@@ -47,19 +47,19 @@ https://eulertour.com/gallery
   - [Teorema de rectángulos anidados](https://youtu.be/e3elst62Tho) ([rectangulos_anidados.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/rectangulos_anidados.py))
   - [Teorema de Bolzano Weiestrass](https://youtu.be/40SytFua38c) ([bolzano-weierstrass.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/bolzano-weierstrass.py))
   
-## Topología de R^n:
-  - Bolas y vecindades
-  - Tipos de puntos
-  - Conjuntos abiertos
-  - COnjuntos cerrados
-  - Ni abierto, ni cerrado
-  - Cerradura de un conjunto
-  - Puntos aislados, de acumulación y conjunto derivado
-  - Cubierta de un conjunto
-  - Conjuntos compactos
-  - Número de Lebesge
-  - Conjuntos conexos y disconexos
-  - Conjuntos convexos
+## Topología de $$\mathbb{R}^n$$:
+  - [Bolas y vecindades](https://youtu.be/rlVvklg52sE) ([bolas.py](https://github.com/animathica/calcanim/blob/master/Topologia/bolas.py))
+  - [Tipos de puntos](https://youtu.be/wu67J58H8SE) ([tipos_puntos.py](https://github.com/animathica/calcanim/blob/master/Topologia/tipos_puntos.py))
+  - [Conjuntos abiertos](https://youtu.be/UH8UvU2ms8c) ([abiertos.py](https://github.com/animathica/calcanim/blob/master/Topologia/abiertos.py))
+  - [Conjuntos cerrados](https://youtu.be/D9czG7Qy6pk) ([cerrados.py](https://github.com/animathica/calcanim/blob/master/Topologia/cerrados.py))
+  - [Ni abierto, ni cerrado](https://youtu.be/bBtV_er1b5s) ([noabierto_nocerrado.py](https://github.com/animathica/calcanim/blob/master/Topologia/noabierto_nocerrado.py))
+  - [Cerradura de un conjunto](https://youtu.be/GkkZASMDEUY) ([cerradura.py](https://github.com/animathica/calcanim/blob/master/Topologia/cerradura.py))
+  - [Puntos aislados, de acumulación y conjunto derivado](https://youtu.be/Ubn2WAfWHMI) ([aislados_acumulacion.py](https://github.com/animathica/calcanim/blob/master/Topologia/aislados_acumulacion.py))
+  - [Cubierta de un conjunto](https://youtu.be/z7akWs73nxw) ([cubierta.py](https://github.com/animathica/calcanim/blob/master/Topologia/cubierta.py))
+  - [Conjuntos compactos](https://youtu.be/N-U-dZYctMc) ([compactos.py](https://github.com/animathica/calcanim/blob/master/Topologia/compactos.py))
+  - [Número de Lebesgue](https://youtu.be/G0xexlvnzIw) ([lebesgue.py](https://github.com/animathica/calcanim/blob/master/Topologia/lebesgue.py))
+  - [Conjuntos conexos y disconexos](https://youtu.be/53B--2zUB8w) ([conexidad.py](https://github.com/animathica/calcanim/blob/master/Topologia/conexidad.py))
+  - [Conjuntos convexos](https://youtu.be/e41cFOJbiPc) ([convexos.py](https://github.com/animathica/calcanim/blob/master/Topologia/convexos.py))
   
 ## Límite y continuidad en funciones multivariable:
   - Definición de gráficas
