@@ -103,24 +103,23 @@ https://eulertour.com/gallery
   - **Teorema Fundamental de Curvas**
 
 ## Cálculo diferencial de superficies
-  - Translaciones y Hometecias en Superficies
+  - Translaciones y Hometecias en Superficies ([composicion.py](https://github.com/animathica/calcanim/blob/C%C3%A1lculo-diferencial-de-superficies/C%C3%A1lculo%20diferencial%20de%20superficies/composicion.py))
   - **Función tipo Dirichlet**
   - Límite de cocientes de funciones de dos variables
   - **Límites iterados**
-  - Planos y su inclinación
-  - Plano tangente y derivadas direccionales
+  - [Planos y su inclinación](https://www.youtube.com/watch?v=ZJZ4fO8v7Ns&t=17s) ([inclinacion.py](https://github.com/animathica/calcanim/blob/C%C3%A1lculo-diferencial-de-superficies/C%C3%A1lculo%20diferencial%20de%20superficies/inclinacion.py))
+  - Plano tangente y derivadas direccionales ([tangente.py](https://github.com/animathica/calcanim/blob/C%C3%A1lculo-diferencial-de-superficies/C%C3%A1lculo%20diferencial%20de%20superficies/tangente.py))
   - **Parciales y diferenciabilidad**
-  - **Teorema de operaciones: diferenciabilidad de superficies
-  - Derivada direccional**
+  - **Teorema de operaciones: diferenciabilidad de superficies**
+  - **Derivada direccional**
   - **Parciales cruzadas**
   - Máximos y mínimos
   - **Multiplicadores de Lagrange**
   - **Máximos y mínimos globales**
   - **Teorema de Taylor para superficies**
-  - Teorema de la función implícita
-  - Teoremas de diferenciabilidad
+  - Teorema de la función implícita ([implicita.py](https://github.com/animathica/calcanim/blob/C%C3%A1lculo-diferencial-de-superficies/C%C3%A1lculo%20diferencial%20de%20superficies/implicita.py))
+  - Teoremas de diferenciabilidad ([teo_dif.py](https://github.com/animathica/calcanim/blob/C%C3%A1lculo-diferencial-de-superficies/C%C3%A1lculo%20diferencial%20de%20superficies/teo_dif.py))
   - **Corte de una superficie con un plano**
-  - Plano tangente a una superficie 
   - **Gradiente**
   - Funciones de R^2 en R^3: superficies parametrizadas
 
