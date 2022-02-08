@@ -43,9 +43,9 @@ https://eulertour.com/gallery
   - [Ejemplos de sucesiones](https://youtu.be/L7gi9ypWROQ) ([ejemplos.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/ejemplos.py))
   - [Defición de límite de sucesiones](https://youtu.be/gckzpzsLdso) ([limite.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/limite.py))
   - [Teorema puente de sucesiones](https://youtu.be/HUcMlULQyDk) ([teo_puente.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/teo_puente.py))
-  - [Sucesiones de Cauchy](https://youtu.be/FUaPUN98cWA) ([](https://github.com/animathica/calcanim/blob/master/Sucesiones/acotadas.py))
+  - [Sucesiones de Cauchy](https://youtu.be/FUaPUN98cWA) ([cauchy.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/cauchy.py))
   - [Teorema de rectángulos anidados](https://youtu.be/e3elst62Tho) ([rectangulos_anidados.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/rectangulos_anidados.py))
-  - [Teorema de Bolzano Weiestrass](https://youtu.be/40SytFua38c) ([](https://github.com/animathica/calcanim/blob/master/Sucesiones/acotadas.py))
+  - [Teorema de Bolzano Weiestrass](https://youtu.be/40SytFua38c) ([bolzano-weierstrass.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/bolzano-weierstrass.py))
   
 ## Topología de R^n:
   - Bolas y vecindades
