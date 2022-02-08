@@ -37,15 +37,15 @@ https://eulertour.com/gallery
   - [Métrica](https://www.youtube.com/watch?v=3FDLM-HpvPY) ([metrica.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/metrica.py))
   
 ## Sucesiones:
-  - Definición de sucesiones
-  - Sucesiones acotadas
-  - Subsucesiones
-  - Ejemplos de sucesiones
-  - Defición de límite de sucesiones
-  - Teorema puente de sucesiones
-  - Sucesiones de Cauchy
-  - Teorema de rectángulos anidados
-  - Teorema de Bolzano Weiestrass
+  - [Definición de sucesiones](https://youtu.be/4ZLPARmmyXw) ([definicion.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/definicion.py))
+  - [Sucesiones acotadas](https://youtu.be/qdRRx_2LE6Y) ([acotadas.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/acotadas.py))
+  - [Subsucesiones](https://youtu.be/FxwZYd1dwgU) ([subsucesiones.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/subsucesiones.py))
+  - [Ejemplos de sucesiones](https://youtu.be/L7gi9ypWROQ) ([ejemplos.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/ejemplos.py))
+  - [Defición de límite de sucesiones](https://youtu.be/gckzpzsLdso) ([limite.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/limite.py))
+  - [Teorema puente de sucesiones](https://youtu.be/HUcMlULQyDk) ([teo_puente.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/teo_puente.py))
+  - [Sucesiones de Cauchy](https://youtu.be/FUaPUN98cWA) ([](https://github.com/animathica/calcanim/blob/master/Sucesiones/acotadas.py))
+  - [Teorema de rectángulos anidados](https://youtu.be/e3elst62Tho) ([rectangulos_anidados.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/rectangulos_anidados.py))
+  - [Teorema de Bolzano Weiestrass](https://youtu.be/40SytFua38c) ([](https://github.com/animathica/calcanim/blob/master/Sucesiones/acotadas.py))
   
 ## Topología de R^n:
   - Bolas y vecindades
