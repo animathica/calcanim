@@ -85,18 +85,18 @@ https://eulertour.com/gallery
   - Teorema del Valor Intermedio  
 
 ## Calculo diferencial en curvas:
-  - Curvas en el plano
-  - Tipos de curvas (curvas simples y simples cerradas)
-  - Vector velocidad, rápidez y derivabilidad
+  - Curvas en el plano ([plano.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/plano.py))
+  - [Tipos de curvas: simples y simples cerradas](https://www.youtube.com/watch?v=inWeRDKCbJE) ([tipos.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/tipos.py))
+  - Vector velocidad, rápidez y  ([vel_rapidez.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/vel_rapidez.py))
   - **Teorema puente: derivabilidad de curvas**
   - **Tangente y vector tangente unitario**
-  - Reparametrización de curvas 
-  - Curvas regulares y picos
-  - Curvas rectificables
-  - Curvas no rectificables
-  - Curvas suaves y cruces
-  - Vector aceleración y aceleración tangencial
-  - Curvatura
+  - [Reparametrización de curvas](https://www.youtube.com/watch?v=pXDnFBIundA) ([reparametrizacion.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/reparametrizacion.py))
+  - [Curvas regulares y picos](https://www.youtube.com/watch?v=2PRSPgs7hQE) ([regulares.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/regulares.py))
+  - [Curvas rectificables](https://www.youtube.com/watch?v=Nkgcjfh0Faw&t=47s) ([rectificables.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/rectificables.py))
+  - Curvas no rectificables ([no_rectificables.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/no_rectificables.py))
+  - Curvas suaves y cruces ([suaves_y_cruces](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/suaves_y_cruces.py))
+  - **Vector aceleración y aceleración tangencial**
+  - **Circulo osculador**
   - **Curvas en el espacio**
   - **Vector binormal**
   - **Torsión**
