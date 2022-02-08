@@ -24,17 +24,17 @@ https://eulertour.com/gallery
   - Motivación, ¿de donde sale la necesidad de utilizar funciones de múltiples variables?
 
 ## Espacios vectoriales:
-  - Operaciones con vectores
-  - Conmutatividad con vectores
-  - Asociatividad de vectores 
-  - Propiedad distributiva en un espacio vectorial
-  - Inverso aditivo de un vector
-  - Bases de espacios vectoriales
-  - Norma euclideana y sus propiedades
-  - Diferentes tipos de normas
-  - Producto interno de vectores
-  - Vector proyección de x sobre y 
-  - Métrica 
+  - [Operaciones con vectores](https://www.youtube.com/watch?v=FYrhEXUZR2M) ([operaciones.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/operaciones.py))
+  - [Conmutatividad con vectores](https://www.youtube.com/watch?v=D0vHXaN5VyU) ([conmutatividad.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/conmutatividad.py))
+  - [Asociatividad de vectores](https://www.youtube.com/watch?v=7rZmyzy6DJo) ([asociatividad.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/asociatividad.py))
+  - [Propiedad distributiva en un espacio vectorial](https://www.youtube.com/watch?v=KB6rhZ854OI) ([distributiva.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/distributiva.py))
+  - [Inverso aditivo de un vector](https://www.youtube.com/watch?v=RJrFM0sV9Os) ([inverso_aditivo.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/inverso_aditivo.py))
+  - [Bases de espacios vectoriales](https://www.youtube.com/watch?v=E-fkJo8f7pI) ([bases.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/bases.py))
+  - [Norma euclideana y sus propiedades](https://www.youtube.com/watch?v=HXG0XtM1kmM) ([norma_euclidea.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/norma_euclidea.py))
+  - [Diferentes tipos de normas](https://www.youtube.com/watch?v=u0plZWFAor0) ([tipos_normas.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/tipos_normas.py))
+  - [Producto interno de vectores](https://www.youtube.com/watch?v=eEABVOd5myc) ([prod_interno.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/prod_interno.py))
+  - **Vector proyección de x sobre y** ([proyeccion.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/proyeccion.py))
+  - [Métrica](https://www.youtube.com/watch?v=3FDLM-HpvPY) ([metrica.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/metrica.py))
   
 ## Sucesiones:
   - Definición de sucesiones
