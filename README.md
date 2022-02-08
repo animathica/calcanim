@@ -105,7 +105,7 @@ https://eulertour.com/gallery
 ## Cálculo diferencial de superficies
   - Translaciones y Hometecias en Superficies ([composicion.py](https://github.com/animathica/calcanim/blob/C%C3%A1lculo-diferencial-de-superficies/C%C3%A1lculo%20diferencial%20de%20superficies/composicion.py))
   - **Función tipo Dirichlet**
-  - Límite de cocientes de funciones de dos variables
+  - Límite de cocientes de funciones de dos variables ([cociente.py](https://github.com/animathica/calcanim/blob/C%C3%A1lculo-diferencial-de-superficies/C%C3%A1lculo%20diferencial%20de%20superficies/cociente.py))
   - **Límites iterados**
   - [Planos y su inclinación](https://www.youtube.com/watch?v=ZJZ4fO8v7Ns&t=17s) ([inclinacion.py](https://github.com/animathica/calcanim/blob/C%C3%A1lculo-diferencial-de-superficies/C%C3%A1lculo%20diferencial%20de%20superficies/inclinacion.py))
   - Plano tangente y derivadas direccionales ([tangente.py](https://github.com/animathica/calcanim/blob/C%C3%A1lculo-diferencial-de-superficies/C%C3%A1lculo%20diferencial%20de%20superficies/tangente.py))
