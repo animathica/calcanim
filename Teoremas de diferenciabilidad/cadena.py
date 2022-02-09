@@ -144,3 +144,42 @@ class Regla_de_la_Cadena_I(ThreeDScene):
         self.add(t_4_gpo)
         self.wait(2)
         self.play(*[FadeOut(obj) for obj in self.mobjects])
+	
+class Regla_de_la_Cadena_II(Scene):
+
+	def construct(self):
+
+		Ejemplo2_T1 = TextMobject("Consideremos $g:\\mathbb{R}^2 \\to \\mathbb{R}^2$, dada por $g(\\rho, \\theta) = (\\rho cos(\\theta), \\rho \\sin(\\theta))$ y")
+		Ejemplo2_T2 = TextMobject("una función derivable $f: \\mathbb{R}^2 \\to \\mathbb{R}^m$, entonces:").next_to(Ejemplo2_T1, DOWN)
+
+		Enunciado2 = VGroup(Ejemplo2_T1, Ejemplo2_T2)
+
+		Ejemplo2_T3 = TexMobject("D(g \\circ f) =", " [Dg(f)]"," [Df]").move_to(Ejemplo2_T2.get_center() + DOWN)
+
+		Ejemplo2_T4 = TexMobject(r"\begin{bmatrix} \cfrac{\delta f}{\delta x_1} (g) & \quad \cfrac{\delta f}{\delta y_1} (g) \\ \vdots & \vdots \\ \cfrac{\delta f}{\delta x_m} (g) & \cfrac{\delta f}{\delta y_m} (g) \end{bmatrix}").next_to(Ejemplo2_T3, DOWN)
+		Ejemplo2_T5 = TexMobject(r"\begin{bmatrix} \cfrac{\delta}{\delta \rho} \rho \cos(\theta) & \cfrac{\delta}{\delta \theta} \rho \cos(\theta) \\ \cfrac{\delta}{\delta \rho} \rho \sin(\theta) & \cfrac{\delta}{\delta \theta} \rho \sin(\theta) \end{bmatrix}").next_to(Ejemplo2_T4, RIGHT)
+
+		Ejemplo2_T6 = TexMobject(r"\begin{bmatrix} \cos(\theta) & \quad -\rho \sin{\theta} \\ \sin{\theta} & \rho \cos{\theta} \end{bmatrix}").next_to(Ejemplo2_T4, RIGHT)
+
+		Matrices2 = VGroup(Ejemplo2_T4, Ejemplo2_T5, Ejemplo2_T6).move_to(Ejemplo2_T3.get_center() + 2.5*DOWN)
+
+		Ejemplo2 = VGroup(Enunciado2, Ejemplo2_T3, Matrices2).scale(0.9)
+		Ejemplo2.move_to(0.5*UP)
+
+		self.wait()
+		self.play(Write(Ejemplo2_T1, run_time = 4))
+		self.play(Write(Ejemplo2_T2, run_time = 4))
+		self.wait()
+		self.play(Write(Ejemplo2_T3, run_time = 3))
+		self.play(Indicate(Ejemplo2_T3[1], run_time = 2))
+		self.wait()
+		self.play(Write(Ejemplo2_T4, run_time = 3))
+		self.wait()
+		self.play(Indicate(Ejemplo2_T3[2], run_time = 2))
+		self.wait()
+		self.play(Write(Ejemplo2_T5, run_time = 3))
+		self.wait(2)
+		self.play(ReplacementTransform(Ejemplo2_T5, Ejemplo2_T6, run_time = 3))
+		self.wait(4)
+		self.play(FadeOut(Ejemplo2, run_time = 2))
+		self.wait()
