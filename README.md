@@ -120,16 +120,16 @@ https://eulertour.com/gallery
   - Teoremas de diferenciabilidad ([teo_dif.py](https://github.com/animathica/calcanim/blob/C%C3%A1lculo-diferencial-de-superficies/C%C3%A1lculo%20diferencial%20de%20superficies/teo_dif.py))
   - **Corte de una superficie con un plano**
   - **Gradiente**
-  - Funciones de R^2 en R^3: superficies parametrizadas
+  - [Funciones de R^2 en R^3: superficies parametrizadas](https://www.youtube.com/watch?v=7F2uIrlOFj0&t=5s) ([superficies_parametrizadas.py](https://github.com/animathica/calcanim/blob/funciones_Rn_a_Rm/Funciones%20de%20Rn%20a%20Rm/superficies_parametrizadas.py))
 
 ## Extra:
   - Gráficas en R^4
   
 ## Funciones de R^n a R^m:
-  - Coordenadas Polares y Cartesianas
-  - Campos lineales y Cambios de Coordenadas
+  - [Coordenadas Polares y Cartesianas](https://www.youtube.com/watch?v=hnNhcPwL16U) ([polares_cartesianas.py](https://github.com/animathica/calcanim/blob/funciones_Rn_a_Rm/Funciones%20de%20Rn%20a%20Rm/polares_cartesianas.py))
+  - Campos lineales y Cambios de Coordenadas ([campos_lineales.py](https://github.com/animathica/calcanim/blob/funciones_Rn_a_Rm/Funciones%20de%20Rn%20a%20Rm/campos_lineales.py))
   - **Campos diferenciables en R^2**
-  - Funciones de R^2 en R^3: superficies parametrizadas
+  - [Funciones de R^2 en R^3: superficies parametrizadas](https://www.youtube.com/watch?v=7F2uIrlOFj0&t=5s) ([superficies_parametrizadas.py](https://github.com/animathica/calcanim/blob/funciones_Rn_a_Rm/Funciones%20de%20Rn%20a%20Rm/superficies_parametrizadas.py))
 
 ## Teoremas de diferenciabilidad:
   - Teorema de la función inversa
