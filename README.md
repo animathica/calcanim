@@ -21,7 +21,7 @@ https://eulertour.com/gallery
 
 # Temario
 ## Introducción al cálculo multivariable:
-  - Motivación, ¿de donde sale la necesidad de utilizar funciones de múltiples variables?
+  - [Motivación, ¿de donde sale la necesidad de utilizar funciones de múltiples variables?](https://youtu.be/x9pDiAbOZKk)
 
 ## Espacios vectoriales:
   - [Operaciones con vectores](https://www.youtube.com/watch?v=FYrhEXUZR2M) ([operaciones.py](https://github.com/animathica/calcanim/blob/master/Espacios%20vectoriales/operaciones.py))
@@ -47,7 +47,7 @@ https://eulertour.com/gallery
   - [Teorema de rectángulos anidados](https://youtu.be/e3elst62Tho) ([rectangulos_anidados.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/rectangulos_anidados.py))
   - [Teorema de Bolzano Weiestrass](https://youtu.be/40SytFua38c) ([bolzano-weierstrass.py](https://github.com/animathica/calcanim/blob/master/Sucesiones/bolzano-weierstrass.py))
   
-## Topología de $$\mathbb{R}^n$$:
+## Topología de R^n:
   - [Bolas y vecindades](https://youtu.be/rlVvklg52sE) ([bolas.py](https://github.com/animathica/calcanim/blob/master/Topologia/bolas.py))
   - [Tipos de puntos](https://youtu.be/wu67J58H8SE) ([tipos_puntos.py](https://github.com/animathica/calcanim/blob/master/Topologia/tipos_puntos.py))
   - [Conjuntos abiertos](https://youtu.be/UH8UvU2ms8c) ([abiertos.py](https://github.com/animathica/calcanim/blob/master/Topologia/abiertos.py))
@@ -62,27 +62,26 @@ https://eulertour.com/gallery
   - [Conjuntos convexos](https://youtu.be/e41cFOJbiPc) ([convexos.py](https://github.com/animathica/calcanim/blob/master/Topologia/convexos.py))
   
 ## Límite y continuidad en funciones multivariable:
-  - Definición de gráficas
-  - Ejemplos de gráficas 
-  - Imagen inversa
-  - Definición de conjuntos de nivel
-  - Ejemplo de curvas de nivel
-  - Existencia del límite de funciones de R^n a R^m en x_0
-  - Ejemplo de límite en campos
-  - Límites direccionales
-  - Existencia del límite en infinito de funciones de R a R^n
-  - Existencia del límite en infinito de funciones de R^n a R
-  - Divergencia a infinito de funciones de R a R^n en un punto t_0
-  - Divergencia a infinito del límite de funciones de R^n a R en
-  un punto a
-  - Divergencia a infinito de funciones de R a R^n en infinito
-  - Divergencia a infinito del límite de funciones de R^n a R en infinito.
-  - Continuidad con sucesiones
-  - Teorema de operaciones para funciones continuas
-  - Funciones continuas y abiertos  
-  - Teorema fuerte: las funciones continuas son acotadas en compactos
-  - Teorema de valor extremo (parte 1)
-  - Teorema del Valor Intermedio  
+  - [Definición de gráficas](https://youtu.be/6gValeBGu5s) ([definicion_grafica.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/definicion_grafica.py))
+  - [Ejemplos de gráficas](https://youtu.be/XNtniowm-mI) ([visualizacion.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/visualizacion.py))
+  - [Imagen inversa](https://youtu.be/bci1v1ex7RY) ([imagen_inversa.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/imagen_inversa.py))
+  - [Definición de conjuntos de nivel](https://youtu.be/X0tkDP7R1IE) ([conjunto_nivel.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/conjunto_nivel.py))
+  - [Ejemplo de curvas de nivel](https://youtu.be/u1yuqaeZAbU) ([curva_nivel.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/curva_nivel.py))
+  - [Existencia del límite de funciones de R^n a R^m en x_0](https://youtu.be/-oNl2FKUc1s) ([existencia_x0.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/existencia_x0.py))
+  - Ejemplo de límite en campos NO ([campos.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/campos.py))
+  - Límites direccionales NO ([direccionales.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/direccionales.py))
+  - [Existencia del límite en infinito de funciones de R a R^n](https://youtu.be/hb6wAc47Heg) ([limite_infinito_R-Rn.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/limite_infinito_R-Rn.py))
+  - [Existencia del límite en infinito de funciones de R^n a R](https://youtu.be/jFkIez1VNps) ([limite_infinito_Rn-R.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/limite_infinito_Rn-R.py))
+  - [Divergencia a infinito de funciones de R a R^n en un punto t_0](https://youtu.be/eWlEpjGsdb8) ([divergencia_R-Rn_punto.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/divergencia_R-Rn_punto.py))
+  - [Divergencia a infinito del límite de funciones de R^n a R en un punto a](https://youtu.be/O9Ak-U7WRms) ([divergencia_Rn-R_punto.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/divergencia_Rn-R_punto.py))
+  - [Divergencia a infinito de funciones de R a R^n en infinito](https://youtu.be/u9m-0a2eChM) ([divergencia_R-Rn_infinito.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/divergencia_R-Rn_infinito.py))
+  - [Divergencia a infinito del límite de funciones de R^n a R en infinito](https://youtu.be/ghVhDdAfY88) ([divergencia_Rn-R_infinito.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/divergencia_Rn-R_infinito.py))
+  - [Continuidad con sucesiones](https://youtu.be/j3xyulVd-BY) ([continuas_sucesiones.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/continuas_sucesiones.py))
+  - [Teorema de operaciones para funciones continuas](https://youtu.be/7kpPhGtckMo) ([operaciones_continuas.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/operaciones_continuas.py))
+  - [Funciones continuas y abiertos](https://youtu.be/-nlctRUPh7U) ([continuas_abiertos.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/continuas_abiertos.py))
+  - [Teorema fuerte: las funciones continuas son acotadas en compactos](https://youtu.be/0vRiS8It7CQ) ([continua_acotada.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/continua_acotada.py))
+  - [Teorema de valor extremo (parte 1)](https://youtu.be/GuqeijJncTg) ([valor_extremo.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/valor_extremo.py))
+  - [Teorema del Valor Intermedio](https://youtu.be/IR5fTCz4ZVI) ([valor_intermedio.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/valor_intermedio.py))
 
 ## Calculo diferencial en curvas:
   - Curvas en el plano ([plano.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/plano.py))
