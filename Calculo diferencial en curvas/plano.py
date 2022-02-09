@@ -30,7 +30,8 @@ class Curvas(GraphScene):
 	def show_function_graph(self):
 		self.setup_axes(animate = False)
 
-		Titulo = TextMobject("Curvas")
+		Titulo = TextMobject('''Curvas en el \n 
+                                plano''').scale(2)
 
 		#Función
 
@@ -267,11 +268,11 @@ class Curvas(GraphScene):
 		self.play(FadeOut(Pantalla_3, run_time = 3), FadeOut(Texto_3, run_time = 3))
 		self.wait(2)
 
-		self.play(Write(Texto_4, run_time = 5), Write(Cardioide, run_time = 5))
+		self.play(Write(Texto_6, run_time = 5), Write(Cardioide, run_time = 5))
 		self.wait(2)
-		self.play(Write(Texto_5, run_time = 3), Write(Curva_Peano, run_time = 5, rate_func=linear))
+		self.play(Write(Texto_4, run_time = 3), Write(Curva_Peano, run_time = 5, rate_func=linear))
 		self.wait(2)
-		self.play(Write(Texto_6, run_time = 3), Write(Astroide, run_time = 5))
+		self.play(Write(Texto_5, run_time = 3), Write(Astroide, run_time = 5))
 		self.wait(3)
 		self.play(FadeOut(Pantalla_4, run_time = 3))
 		self.wait(2)
