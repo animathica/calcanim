@@ -112,7 +112,7 @@ https://eulertour.com/gallery
   - **Teorema de operaciones: diferenciabilidad de superficies**
   - **Derivada direccional**
   - **Parciales cruzadas**
-  - Máximos y mínimos
+  - **Máximos y mínimos**
   - **Multiplicadores de Lagrange**
   - **Máximos y mínimos globales**
   - **Teorema de Taylor para superficies**
