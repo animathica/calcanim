@@ -136,7 +136,7 @@ https://eulertour.com/gallery
   - Regla de la cadena ([cadena.py](https://github.com/animathica/calcanim/blob/Teoremas-de-diferenciablidad/Teoremas%20de%20diferenciabilidad/cadena.py)) 
 
 ## Integral de volumen:
-  - Definición
+  - Definición ([integral_volumen.py](https://github.com/animathica/calcanim/blob/Integral-de-volumen/Integral%20de%20volumen/integral_volumen.py))
   - **Criterio de Lebesgue**
   - **Fubini**
   - Cambio de variable
