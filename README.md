@@ -112,7 +112,7 @@ https://eulertour.com/gallery
   - **Teorema de operaciones: diferenciabilidad de superficies**
   - **Derivada direccional**
   - **Parciales cruzadas**
-  - **Máximos y mínimos**
+  - Máximos y mínimos ([max_min.py](https://github.com/animathica/calcanim/blob/Teoremas-de-diferenciablidad/Teoremas%20de%20diferenciabilidad/max_min.py)) 
   - **Multiplicadores de Lagrange**
   - **Máximos y mínimos globales**
   - **Teorema de Taylor para superficies**
@@ -133,7 +133,7 @@ https://eulertour.com/gallery
 
 ## Teoremas de diferenciabilidad:
   - Teorema de la función inversa
-  - Regla de la cadena 
+  - Regla de la cadena ([cadena.py](https://github.com/animathica/calcanim/blob/Teoremas-de-diferenciablidad/Teoremas%20de%20diferenciabilidad/cadena.py)) 
 
 ## Integral de volumen:
   - Definición
