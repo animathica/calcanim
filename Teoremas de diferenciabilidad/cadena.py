@@ -88,6 +88,17 @@ class Regla_de_la_Cadena_I(ThreeDScene):
         t_4 = TextMobject('''Gráfica de $g\\circ f$''').to_edge(UP)
         t_4.bg = SurroundingRectangle(t_4, color=WHITE, fill_color=BLACK, fill_opacity=1)
         t_4_gpo = VGroup(t_4.bg,t_4)
+        t_5 = TextMobject('''Veamos la recta tangente a la curva en \n
+                             $t=-2$''').to_edge(UP)
+        t_5.bg = SurroundingRectangle(t_5, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        t_5_gpo = VGroup(t_5.bg,t_5)
+        t_6 = TextMobject('''Notamos que esta tiene pendiente igual a 0.''').to_edge(UP)
+        t_6.bg = SurroundingRectangle(t_6, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        t_6_gpo = VGroup(t_6.bg,t_6)
+        t_7 = TextMobject('''Usando la regla de la cadena, obtenemos que \n
+                             la derivada en $t=-2$ es precisamente 0.''').to_edge(UP)
+        t_7.bg = SurroundingRectangle(t_7, color=WHITE, fill_color=BLACK, fill_opacity=1)
+        t_7_gpo = VGroup(t_7.bg,t_7)
     
         ejes3D = ThreeDAxes(x_min = -5, x_max = 5, y_min = -5, y_max = 5,z_min=-4,z_max=4)
         x_label = TexMobject(r"x").scale(0.75).move_to((5.3,-0.3,0))
@@ -115,6 +126,7 @@ class Regla_de_la_Cadena_I(ThreeDScene):
             )
         Curva = VGroup(Curva1,Curva2)
         Composicion = ParametricFunction(lambda x: np.array([x,(x**2)*(np.exp(x)),0]), color=YELLOW,t_min=-5,t_max=1.13)
+        tangente = ParametricFunction(lambda x: np.array([x,4*np.exp(-2),0]), color= RED,t_min=-5,t_max=1)
 
         self.play(Write(t_final))
         self.wait(2)
@@ -143,6 +155,17 @@ class Regla_de_la_Cadena_I(ThreeDScene):
         self.play(Write(Composicion))
         self.add(t_4_gpo)
         self.wait(2)
+        self.play(FadeOut(t_4_gpo))
+        self.play(Write(t_5_gpo))
+        self.wait()
+        tangente.shift(2*DOWN)
+        self.play(ShowCreation(tangente))
+        self.play(FadeOut(t_5_gpo))
+        self.play(Write(t_6_gpo))
+        self.wait(2)
+        self.play(FadeOut(t_6_gpo))
+        self.play(Write(t_7_gpo))
+        self.wait(3)
         self.play(*[FadeOut(obj) for obj in self.mobjects])
 	
 class Regla_de_la_Cadena_II(Scene):
@@ -154,10 +177,10 @@ class Regla_de_la_Cadena_II(Scene):
 
 		Enunciado2 = VGroup(Ejemplo2_T1, Ejemplo2_T2)
 
-		Ejemplo2_T3 = TexMobject("D(g \\circ f) =", " [Dg(f)]"," [Df]").move_to(Ejemplo2_T2.get_center() + DOWN)
+		Ejemplo2_T3 = TexMobject("D(f \\circ g) =", " [Df(g)]"," [Dg]").move_to(Ejemplo2_T2.get_center() + DOWN)
 
-		Ejemplo2_T4 = TexMobject(r"\begin{bmatrix} \cfrac{\delta f}{\delta x_1} (g) & \quad \cfrac{\delta f}{\delta y_1} (g) \\ \vdots & \vdots \\ \cfrac{\delta f}{\delta x_m} (g) & \cfrac{\delta f}{\delta y_m} (g) \end{bmatrix}").next_to(Ejemplo2_T3, DOWN)
-		Ejemplo2_T5 = TexMobject(r"\begin{bmatrix} \cfrac{\delta}{\delta \rho} \rho \cos(\theta) & \cfrac{\delta}{\delta \theta} \rho \cos(\theta) \\ \cfrac{\delta}{\delta \rho} \rho \sin(\theta) & \cfrac{\delta}{\delta \theta} \rho \sin(\theta) \end{bmatrix}").next_to(Ejemplo2_T4, RIGHT)
+		Ejemplo2_T4 = TexMobject(r"\begin{bmatrix} \cfrac{\partial f}{\partial x_1} (g) & \quad \cfrac{\partial f}{\partial y_1} (g) \\ \vdots & \vdots \\ \cfrac{\partial f}{\partial x_m} (g) & \cfrac{\partial f}{\partial y_m} (g) \end{bmatrix}").next_to(Ejemplo2_T3, DOWN)
+		Ejemplo2_T5 = TexMobject(r"\begin{bmatrix} \cfrac{\partial}{\partial \rho} \rho \cos(\theta) & \cfrac{\partial}{\partial \theta} \rho \cos(\theta) \\ \cfrac{\partial}{\partial \rho} \rho \sin(\theta) & \cfrac{\partial}{\partial \theta} \rho \sin(\theta) \end{bmatrix}").next_to(Ejemplo2_T4, RIGHT)
 
 		Ejemplo2_T6 = TexMobject(r"\begin{bmatrix} \cos(\theta) & \quad -\rho \sin{\theta} \\ \sin{\theta} & \rho \cos{\theta} \end{bmatrix}").next_to(Ejemplo2_T4, RIGHT)
 
