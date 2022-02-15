@@ -4,8 +4,8 @@ from manimlib.imports import *
 ############### Plano tangente y derivadas direccionales #####################
 ##############################################################################
 
-# Anexado el 07 de julio de 2021.
-# Corregido el 04 de noviembre de 2021.
+# Corregido el 15-02-2022
+
 
 class Superficie1(ParametricSurface):
 
@@ -400,7 +400,7 @@ class Plano_tangente(ThreeDScene):
                               las relacionadas con la aritmética de funciones.''')
                              
         text12 = TextMobject('''Por ejemplo, si tenemos dos funciones tales que\n
-                                $D_{\\vec{u}}f(\\vec{x_{0}})$ y $D_{\\vec{u}}g(\\vec{x_{0}})$ existen, $D_{\\vec{u}}(fg)(\\vec{x_{0}})$ existe y además''',
+                                $D_{\\vec{u}}f(\\vec{x_{0}})$ y $D_{\\vec{u}}g(\\vec{x_{0}})$ existe, entonces $D_{\\vec{u}}(fg)(\\vec{x_{0}})$ existe y además''',
                                 '''$$D_{\\vec{u}}(fg)(\\vec{x_{0}}) = f(\\vec{x}_{0})D_{\\vec{u}}g(\\vec{x_{0}}) + g(\\vec{x}_{0})D_{\\vec{u}}f(\\vec{x_{0}}).$$''')
         
         text12.set_color_by_tex('''$$D_{\\vec{u}}(fg)(\\vec{x_{0}}) = f(\\vec{x}_{0})D_{\\vec{u}}g(\\vec{x_{0}}) + g(\\vec{x}_{0})D_{\\vec{u}}f(\\vec{x_{0}}).$$''', color = TEAL)
@@ -531,6 +531,7 @@ class Plano_tangente(ThreeDScene):
         self.set_camera_orientation(0.7*np.pi/2, 0.25*np.pi)
         self.add_fixed_in_frame_mobjects(gpo13)
         self.play(Write(gpo13))
+        self.wait(3)
         graf_f = VGroup(axes_f, paraboloide2)
         graf_f.move_to(2.5*RIGHT+2*DOWN)
         graf_f.scale(0.8)
@@ -538,7 +539,7 @@ class Plano_tangente(ThreeDScene):
         graf_g.move_to(1.5*LEFT+3*UP)
         graf_g.scale(0.8)
         self.play(ShowCreation(graf_f), ShowCreation(graf_g))
-        self.wait()
+        self.wait(2)
         self.play(FadeOut(graf_f), FadeOut(graf_g))
         self.play(ShowCreation(axes), ShowCreation(superficie2))
         self.wait()
@@ -547,10 +548,13 @@ class Plano_tangente(ThreeDScene):
         self.move_camera(90*DEGREES, 45*DEGREES, frame_center = (0,0,0), run_time = 3)
         self.add_fixed_in_frame_mobjects(f_text, g_text)
         self.play(Write(f_text), Write(g_text))
+        self.wait(3)
         self.add_fixed_in_frame_mobjects(df_text, dg_text)
         self.play(Write(df_text), Write(dg_text))
+        self.wait(3)
         self.add_fixed_in_frame_mobjects(dfg_text)
         self.play(Write(dfg_text))
+        self.wait(3)
         self.play(ShowCreation(tangente2))
         self.wait()
         self.play(*[FadeOut(mob)for mob in self.mobjects])    
@@ -624,7 +628,7 @@ class Plano_tangente(ThreeDScene):
                                 direccionales como $D_{\\vec{u}}f(\\vec{x_{0}})=\\nabla f(\\vec{x}_0)\\cdot\\vec{u}$.''').next_to(text15, 3*DOWN)
         
         text17 = TextMobject('''En segundo lugar, el gradiente apunta en la\n
-                                dirección y sentido de máxima razón de cambio, como\n
+                                dirección y sentido de máximo crecimiento de la superficie,\n
                                 como consecuencia de que $D_{\\vec{u}}f(\\vec{x}_0)=||\\nabla f(\\vec{x}_0)||\\cdot\\cos\\theta$,\n
                                 donde $\\theta$ es el ángulo entre el gradiente y $\\vec{u}$.''').move_to(UP)
         
@@ -659,7 +663,7 @@ class Plano_tangente(ThreeDScene):
         
         text24.scale(0.7)
         
-        text25 = TextMobject('''Además, en esa dirección y sentido está la mayor inclinación habia abajo, porque el gradiente de $f$ en $(0,2)$ apunta hacia el origen.''').move_to(3*DOWN)
+        text25 = TextMobject('''Además, en esa dirección y sentido está la mayor inclinación hacia abajo, porque el gradiente de $f$ en $(0,2)$ apunta hacia el origen.''').move_to(3*DOWN)
         
         text25.scale(0.7)
         
@@ -897,6 +901,7 @@ class Plano_tangente(ThreeDScene):
         self.wait(8)
         self.play(FadeOut(text27))
         self.wait()
+        self.play(*[FadeOut(mob)for mob in self.mobjects])
     
     def construct(self):
         
