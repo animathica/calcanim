@@ -38,17 +38,17 @@ class LimitesDireccionales(ThreeDScene):
         self.play(Write(t_1))
         self.wait(3)
         self.play(ReplacementTransform(t_1,t_2))
-        self.wait(11.25)
+        self.wait(29)
         self.play(ReplacementTransform(t_2,t_3))
-        self.wait(6.75)
-        self.play(ReplacementTransform(t_3,t_4))
         self.wait(9)
+        self.play(ReplacementTransform(t_3,t_4))
+        self.wait(11)
         self.play(ReplacementTransform(t_4,t_5))
-        self.wait(5)
-        self.play(ReplacementTransform(t_5,t_6))
-        self.wait(6)
-        self.play(ReplacementTransform(t_6,t_7))
         self.wait(4)
+        self.play(ReplacementTransform(t_5,t_6))
+        self.wait(9)
+        self.play(ReplacementTransform(t_6,t_7))
+        self.wait(5)
         self.play(*[FadeOut(obj) for obj in self.mobjects])
 
     def Ejemplo_Teo(self):
@@ -122,9 +122,9 @@ class LimitesDireccionales(ThreeDScene):
         ### ANIMACION
 
         self.play(Write(t_1))
-        self.wait(4)
+        self.wait(8)
         self.play(ReplacementTransform(t_1,t_2))
-        self.wait(4)
+        self.wait(6)
         self.play(FadeOut(t_2))
         self.acomodar_textos(gpot3)
         self.play(Write(ejes))
@@ -141,7 +141,7 @@ class LimitesDireccionales(ThreeDScene):
         self.play(Write(parabola_i))
         self.remove(gpot5)
         self.add(gpot5)
-        self.wait(6)
+        self.wait(15)
         self.play(FadeOut(gpot5))
         self.acomodar_textos(gpot6)
 
@@ -174,8 +174,9 @@ class LimitesDireccionales(ThreeDScene):
         
         ### TEXTOS
         
-        t_1 = TextMobject('''¿Se vale el regreso del teorema?\n
+        t_1 = TextMobject('''Ahora nos preguntamos, ¿Se vale el regreso del teorema?\n
                              NO''')
+        gpot1 = self.rectangulo_texto(t_1)
         t_2 = TextMobject('''Considera la función característica $\\chi:\\mathbb{R}^2\\rightarrow\\mathbb{R}$ \n
                              de la curva $y = x^2$ (vale 1 en los puntos de la curva \n
                              y 0 en lo demás).''').to_edge(UP).scale(0.7)
@@ -213,9 +214,9 @@ class LimitesDireccionales(ThreeDScene):
 
         ### ANIMACION
         
-        self.play(Write(t_1))
-        self.wait(2)
-        self.play(FadeOut(t_1))
+        self.acomodar_textos(gpot1)
+        self.wait(9)
+        self.play(FadeOut(gpot1))
         self.move_camera(phi=70*DEGREES,theta=30*DEGREES,frame_center=(0,0,1))
         self.play(Write(ejes))
         self.acomodar_textos(gpot2)
@@ -229,10 +230,10 @@ class LimitesDireccionales(ThreeDScene):
         self.add(direc)
         self.play(t.increment_value, 2*np.pi,run_time=4)
         direc.remove_updater(act_gr_direc)
-
+        self.wait(6)
         self.play(FadeOut(gpot3),FadeOut(direc))
         self.acomodar_textos(gpot4)
-        self.wait(3)
+        self.wait(11)
         self.remove(para_1)
         para_1.set_color(YELLOW)
         self.add(para_1)
@@ -240,7 +241,7 @@ class LimitesDireccionales(ThreeDScene):
         self.play(*[FadeOut(obj) for obj in self.mobjects])
         self.move_camera(phi=0 * DEGREES,theta=-90*DEGREES,frame_center=(0,0,0))
         self.play(Write(t_5))
-        self.wait(5)
+        self.wait(9)
         self.play(FadeOut(t_5))
 
     def Ejemplo_regreso(self):
@@ -317,9 +318,9 @@ class LimitesDireccionales(ThreeDScene):
         ### ANIMACION
 
         self.play(Write(t_1))
-        self.wait(3)
+        self.wait(8)
         self.play(Write(t_2))
-        self.wait(4)
+        self.wait(7)
         self.play(*[FadeOut(obj) for obj in self.mobjects])
         self.move_camera(phi=75*DEGREES,theta=30*DEGREES,frame_center=(0,0,1))
         self.play(Write(ejes))
@@ -328,7 +329,7 @@ class LimitesDireccionales(ThreeDScene):
         self.acomodar_textos(gpot3)
         self.play(Indicate(direcu,color=RED,scale_factor=1.5))
         self.play(Write(intersecu))
-        self.wait(2)
+        self.wait(8)
         self.play(FadeOut(gpot3),FadeOut(intersecu))
         self.acomodar_textos(gpot4)
         self.play(Indicate(direcv,scale_factor=1.5))
@@ -336,11 +337,11 @@ class LimitesDireccionales(ThreeDScene):
         self.wait(2)
         self.play(FadeOut(gpot4),FadeOut(intersecv))
         self.acomodar_textos(gpot5)
-        self.wait(3)
+        self.wait(4)
         self.play(*[FadeOut(obj) for obj in self.mobjects])
         self.move_camera(phi=0 * DEGREES,theta=-90*DEGREES,frame_center=(0,0,0))
         self.play(Write(t_6))
-        self.wait(3)
+        self.wait(6)
         self.play(FadeOut(t_6))
 
     def construct(self):
