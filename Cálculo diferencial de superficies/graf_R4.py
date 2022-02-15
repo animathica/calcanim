@@ -164,6 +164,7 @@ class grafica_r4(ThreeDScene):
         self.wait(6)
         self.wait(10)
         self.play(ReplacementTransform(t_2,t_3_1))
+        self.wait(7)
         self.play(Write(t_3_2))
         self.play(ShowCreation(ejes2))
         self.play(Write(n_l))
@@ -182,7 +183,7 @@ class grafica_r4(ThreeDScene):
         self.wait(6.5)
         self.wait(6)
         self.play(ReplacementTransform(t_4,t_5))
-        self.wait(6.5)
+        self.wait(19)
         self.play(ReplacementTransform(t_5,t_6))
         self.wait(8.5)
         self.play(ReplacementTransform(t_6,t_7))
@@ -210,4 +211,3 @@ class grafica_r4(ThreeDScene):
         self.play(rad.set_value,0,run_time=4)
         self.wait()
         self.play( *[FadeOut(mob)for mob in self.mobjects] )
-        
