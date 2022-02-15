@@ -14,6 +14,7 @@ def getY(mob):
     return mob.get_center()[1]
 class PathScene(Scene):
     CONFIG = {
+        "camera_config":{"background_color": BLACK},
         "x_coords":[0,  1, 3,  -2, -3],
         "y_coords":[3, -2, 1, 2.5, -1]
     }
@@ -454,9 +455,9 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
                                  la ecuación ''','''$f(x,y)=k$''',''', pero con el ''','''teorema de \n
                                     la función implícita podemos asegurar que dicha curva \n
                                   se puede describir como la gráfica de una función $g(x)=y$.''')
+        #Quite coma despues de BLUE_D
         text8_9.set_color_by_tex_to_color_map({
-            '''$f(x,y)=k$''':BLUE_D,
-            
+            '''$f(x,y)=k$''':BLUE_D 
         })
         #text8_9.bg=SurroundingRectangle(text8_9,fill_color=BLACK, stroke_color=BLACK,fill_opacity=1)
         ejes=ThreeDAxes(y_min=-2,y_max=3,x_max=3,x_min=-2,z_max=2.5)
@@ -629,13 +630,20 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         text15=TextMobject('''Además debido a que \n
                                 $\\frac{\\partial \\gamma}{\\partial y}=x. $''').move_to(3*UP)
         text15.bg=SurroundingRectangle(text15,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text16=TextMobject('''En los puntos de la ''','''curva de nivel''',''' en el eje $y$ la parcial \n
-                                se anula y no es posible aplicar el''',''' teorema de \n
-                                la función implícita''','''.''').move_to(2.5*UP)
-        text16.set_color_by_tex_to_color_map({
-            '''curva de nivel''': BLUE_D,
-            '''teorema de la función implícita''': YELLOW
-        })
+        
+        #text16=TextMobject('''En los puntos de la ''','''curva de nivel''',''' en el eje $y$ la parcial \n
+        #                        se anula y no es posible aplicar el''',''' teorema de \n
+        #                        la función implícita''','''.''').move_to(2.5*UP)
+        #text16.set_color_by_tex_to_color_map({
+        #    '''curva de nivel''': BLUE_D,
+        #    '''teorema de la función implícita''': YELLOW
+        #})
+        
+        text16=TextMobject('''En los puntos del eje $y$, $\\frac{\\partial \\gamma}{\\partial y} = \\frac{\\partial \\gamma}{\\partial x} = 0$, no podemos usar \n
+                            el Teorema de la Función Implícita, además la curva de \n
+                            nivel cero es una recta vertical y no puede ser la gráfica\n
+                             de una función g(x)=y.''','''.''').move_to(2.5*UP)
+       
         text16.bg=SurroundingRectangle(text16,color=WHITE,fill_color=BLACK,fill_opacity=1)
         text17=TextMobject('''¿Qué ocurre si $\\frac{\\partial f}{\\partial x}(x,y)\\neq 0$?''',''' \n
                                 Enuncia el Teorema de la función implícita correspondiente.''')
@@ -873,7 +881,8 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         y1=np.cos(x2**2)
         punto=Dot(color=RED).move_to([x2,y1,0])
         gradiente1=Arrow([x2,y1,0],[2*x2*np.sin(x2**2)+x2,1+y1,0],buff=0,color=RED)
-        gradiente1_label=TexMobject(r"\nabla(f(x,y)=0)").set_color(RED).next_to(gradiente1,LEFT+UP,buff=-0.3).scale(0.7)
+        #gradiente1_label=TexMobject(r"\nabla(f(x,y)=0)").set_color(RED).next_to(gradiente1,LEFT+UP,buff=-0.3).scale(0.7)
+        gradiente1_label=TexMobject(r"\nabla(f(x,y))").set_color(RED).next_to(gradiente1,LEFT+UP,buff=-0.3).scale(0.7)
         def GRADIENTE(obj):
             x=x1.get_value()
             y=np.cos(x**2)
@@ -938,8 +947,10 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         text25=TextMobject('''Podemos describir la superficie de nivel con \n
                                 la función $z=-x^2-y$.''').move_to(3*DOWN)
         text25.bg=SurroundingRectangle(text25,color=WHITE,fill_color=BLACK,fill_opacity=1)
-        text26=TextMobject('''Incluso podemos dejar la superficie de \n
-                                    nivel en términos de $y$.''').move_to(-3.3*DOWN)
+        text26=TextMobject('''Incluso podemos expresar la superficie \n
+                                    despejando la variable $y$.''').move_to(-3.3*DOWN)
+        #text26=TextMobject('''Incluso podemos dejar la superficie de \n
+        #                            nivel en términos de $y$.''').move_to(-3.3*DOWN)
         text26.bg=SurroundingRectangle(text26,color=WHITE,fill_color=BLACK,fill_opacity=1)
         text27=TextMobject('''Con esto, notamos que el teorema de la función \n
                                     implícita nos permite afirmar cuándo podemos describir el \n
@@ -986,4 +997,3 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         self.Cuarta_escena()
         self.Quinta_escena()
         self.Sexta_escena()
-
