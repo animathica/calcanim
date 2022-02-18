@@ -95,7 +95,7 @@ https://eulertour.com/gallery
   - Curvas no rectificables ([no_rectificables.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/no_rectificables.py))
   - Curvas suaves y cruces ([suaves_y_cruces](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/suaves_y_cruces.py))
   - **Vector aceleración y aceleración tangencial**
-  - **Circulo osculador**
+  - Círculo osculador ([circ_osculador.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/circ_osculador.py))
   - **Curvas en el espacio**
   - **Vector binormal**
   - **Torsión**
