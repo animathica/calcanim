@@ -25,10 +25,10 @@ class Regla_de_la_Cadena_I(ThreeDScene):
         Ejemplo1_T1 = TextMobject("Sea $f: \\mathbb{R} \\setminus \\{0\\} \\to \\mathbb{R}^2$ dada por $f(t) = (t^2, t^{-1}) $ y")
         Ejemplo1_T2 = TextMobject("$g: \\mathbb{R}^2 \\to \\mathbb{R}$ dada por $g(x,y) = xe^{xy}$, entonces:").next_to(Ejemplo1_T1, DOWN)
 
-        Ejemplo1_T3 = TexMobject("D(g \\circ f) =", " [Dg(f)]"," [Df]").move_to(Ejemplo1_T2.get_center() + DOWN)
+        Ejemplo1_T3 = TexMobject("D(g \\circ f) =", " [Dg(f)]"," [Df]=").move_to(Ejemplo1_T2.get_center() + DOWN)
 
-        Ejemplo1_T4 = TexMobject(r"\begin{bmatrix} e^t + te^t & \quad t^4 e^t \end{bmatrix}").next_to(Ejemplo1_T3, DOWN)
-        Ejemplo1_T5 = TexMobject(r"\begin{bmatrix} 2t \\ -t^{-2} \end{bmatrix}").next_to(Ejemplo1_T4, RIGHT)
+        Ejemplo1_T4 = TexMobject(r"=\begin{bmatrix} e^t + te^t & \quad t^4 e^t \end{bmatrix}").next_to(Ejemplo1_T3, DOWN)
+        Ejemplo1_T5 = TexMobject(r"\begin{bmatrix} 2t \\ -t^{-2} \end{bmatrix}=").next_to(Ejemplo1_T4, RIGHT)
 
         Matrices = VGroup(Ejemplo1_T4, Ejemplo1_T5).move_to(Ejemplo1_T3.get_center() + 1.3*DOWN)
 
