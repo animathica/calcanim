@@ -494,7 +494,7 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
 
         path = VMobject()
         path.set_points_smoothly([*[coord(x,y) for x in xx for y in yy]])
-        self.set_camera_orientation(phi=75 * DEGREES,theta=-80*DEGREES,distance=4)
+        self.set_camera_orientation(phi=75 * DEGREES,theta=-80*DEGREES,distance=10)
         #self.set_camera_orientation(phi=75 * DEGREES,theta=-160*DEGREES,distance=4)
         self.play(ShowCreation(axes))
         self.acomodar_textos(text8_1.bg)
