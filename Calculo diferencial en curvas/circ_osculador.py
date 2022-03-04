@@ -107,11 +107,11 @@ class CurvaturaOsculador(Scene):
                             en un punto.''').next_to(t6,DOWN)
         gpo = VGroup(t5,t6,t7)
 
-        self.write_wait_fade(t1,3)
-        self.write_wait_fade(t2,7)
+        self.write_wait_fade(t1,4)
+        self.write_wait_fade(t2,9)
         self.write_wait_fade(t3,5)
         self.write_wait_fade(t4,6)
-        self.write_wait_fade(gpo,6)
+        self.write_wait_fade(gpo,8)
 
     def parte3(self):
         t1 = TextMobject('''Considera las siguientes funciones''')
@@ -150,25 +150,85 @@ class CurvaturaOsculador(Scene):
 
         self.play(Write(t1))
         self.play(Write(t2))
-        self.wait(2)
+        self.wait(3)
         self.play(ApplyMethod(gpo.to_edge,DOWN))
         grupo_util.shift(1.5*DOWN)
         self.play(Write(ejes))
         self.play(Write(parabola1),Write(parabola2))
         self.play(FadeOut(gpo))
         self.write_wait_fade(t3,3)
-        self.write_wait_fade(t4,3)
+        self.write_wait_fade(t4,4)
         self.write_wait_fade(t5,3)
         self.play(*[FadeOut(obj) for obj in self.mobjects])
         self.write_wait_fade(t6,3)
         self.write_wait_fade(t7,5)
-        self.write_wait_fade(t8,3)
+        self.write_wait_fade(t8,4)
         self.write_wait_fade(t9,3)
+    
+    def definiciones(self):
+        t1 = TextMobject('''Por lo anterior, el círculo osculador de $f(t)$ en $t_0$ \n
+                            está dado por''')\
+            .shift(3*UP)
+        t2 = TexMobject(r"C(t)=\frac{1}{\kappa(t_0)}(\cos t,\sin t)+D_0").next_to(t1,DOWN)
+        t3 = TexMobject(r"D_0 = f(t_0)+\frac{N(t_0)}{\kappa(t_0)}").next_to(t2,DOWN)
+        t4 = TexMobject(r"\kappa(t_0)=\frac{||T'(t_0)||}{||f'(t_0)||}").next_to(t3,DOWN)
+        t5 = TexMobject(r"N(t_0)=\frac{T'(t_0)}{||T'(t_0)||}").next_to(t4,DOWN)
+
+        self.play(Write(t1))
+        self.play(Write(t2))
+        self.play(Write(t3))
+        self.play(Write(t4))
+        self.play(Write(t5))
+        self.wait(7)
+        self.play(*[FadeOut(mob) for mob in self.mobjects])
+
+
+    def ejemplo(self):
+        t1 = TextMobject('''Considera el ejemplo dado por la siguiente curva''').to_edge(UP)
+        t2 = TexMobject(r"f(t)=(3\cos t,2\sin t)").next_to(t1,DOWN)
+        t12 = VGroup(t1,t2)
+        t12gpo = self.rectangulo_texto(t12)
+        ejes = Axes(
+            y_min = -2.5,
+            y_max = 2.5,
+            x_min = -5,
+            x_max = 5
+        )
+        elipse = ParametricFunction(self.elipse,t_min=0,t_max=2*PI,color=RED)
+
+        self.play(ShowCreation(ejes),Write(t12gpo))
+        self.play(ShowCreation(elipse))
+        osculador = Circle(radius=1/self.curvatura(0),color=YELLOW,arc_center=self.centro_circ(0))
+
+        self.t_offset = 0
+        def osculador_update(mob,dt):
+            rate = 0.7*dt
+            new_osculador = Circle(
+                radius=1/self.curvatura(self.t_offset+rate),
+                color=YELLOW,
+                arc_center=self.centro_circ(self.t_offset+rate))
+            mob.become(new_osculador)
+            self.t_offset += rate
+
+        t3 = TextMobject('''Nota que siempre el círculo "besa" \n
+                            en un solo punto a la curva $f$ \n
+                            de ahí su nombre.''',color="#a5f0e6")\
+                                .to_corner(LEFT+DOWN)\
+                                .scale(0.6)
+
+        self.play(ShowCreation(osculador))
+        osculador.add_updater(osculador_update)
+        self.play(Write(t3),run_time=2)
+        self.wait(8.5)
+        osculador.clear_updaters()
+        self.play(*[FadeOut(mob) for mob in self.mobjects])
 
     def construct(self):
         self.parte1()
         self.parte2()
         self.parte3()
+        self.definiciones()
+        self.ejemplo()
 
     def write_wait_fade(self,obj,time=1):
         self.play(Write(obj))
@@ -179,3 +239,14 @@ class CurvaturaOsculador(Scene):
         rect = SurroundingRectangle(obj,color=WHITE,fill_color=BLACK,fill_opacity=1)
         grupo = VGroup(rect,obj)
         return grupo
+    
+    def elipse(self,t):
+        return [3*np.cos(t),2*np.sin(t),0]
+
+    def curvatura(self,t):
+        k = 6/((9*np.sin(t)**2 + 4*np.cos(t)**2)**(1/2))
+        return k
+
+    def centro_circ(self,t):
+        D_0 = [(8/3)*np.cos(t),(3/2)*np.sin(t),0]
+        return D_0
