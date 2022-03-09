@@ -238,7 +238,7 @@ class Plano_tangente(ThreeDScene):
                                $$\\lim_{\\vec{h}\\to\\vec{0}}\\dfrac{f\\left(\\vec{x}_0+\\vec{h}\\right)-\\left(f(\\vec{x}_0)+\\vec{m}\\cdot\\vec{h}\\right)}{||\\vec{h}||}=0.$$''')
         
         text12 = TextMobject('''Por lo tanto, podemos decir que $f$ es diferenciable en $\\vec{x}_{0}$ si y\n
-                               solo si el plano tangente a la función en $(\\vec{x}_{0},f(\\vec{x}_{0}))$ es una\n
+                               sólo si el plano tangente a la función en $(\\vec{x}_{0},f(\\vec{x}_{0}))$ es una\n
                                buena aproximación para la función alrededor de ese punto.''').move_to(UP)
                                
         text13 = TextMobject('''Pero, ''', '''¿cómo podemos encontrar al vector $\\vec{m}$?''').next_to(text12, 3*DOWN)
@@ -399,8 +399,8 @@ class Plano_tangente(ThreeDScene):
                               de cierta forma las derivadas direccionales, como\n
                               las relacionadas con la aritmética de funciones.''')
                              
-        text12 = TextMobject('''Por ejemplo, si tenemos dos funciones tales que\n
-                                $D_{\\vec{u}}f(\\vec{x_{0}})$ y $D_{\\vec{u}}g(\\vec{x_{0}})$ existe, entonces $D_{\\vec{u}}(fg)(\\vec{x_{0}})$ existe y además''',
+        text12 = TextMobject('''Por ejemplo, si tenemos dos funciones tales que $D_{\\vec{u}}f(\\vec{x_{0}})$ y\n
+                                $D_{\\vec{u}}g(\\vec{x_{0}})$ existen, entonces $D_{\\vec{u}}(fg)(\\vec{x_{0}})$ existe y además''',
                                 '''$$D_{\\vec{u}}(fg)(\\vec{x_{0}}) = f(\\vec{x}_{0})D_{\\vec{u}}g(\\vec{x_{0}}) + g(\\vec{x}_{0})D_{\\vec{u}}f(\\vec{x_{0}}).$$''')
         
         text12.set_color_by_tex('''$$D_{\\vec{u}}(fg)(\\vec{x_{0}}) = f(\\vec{x}_{0})D_{\\vec{u}}g(\\vec{x_{0}}) + g(\\vec{x}_{0})D_{\\vec{u}}f(\\vec{x_{0}}).$$''', color = TEAL)
@@ -611,7 +611,8 @@ class Plano_tangente(ThreeDScene):
         
         text13 = TextMobject('''Al vector $\\left(\\frac{\\partial f}{\\partial x_1}(\\vec{x}_0),...,\\frac{\\partial f}{\\partial x_n}(\\vec{x}_0)\\right)$ se le llama\n
                                 gradiente de $f$ en $\\vec{x}_0$, representado como $\\nabla f(x_0)$,\n
-                                y es la mejor aproximación lineal a $f$ en el punto $\\vec{x}_{0}$.''')
+                                y es la mejor aproximación lineal a $f$ en el punto $\\vec{x}_{0}$, \n
+                                para funciones diferenciables.''')
         
         text14 = TextMobject('''Por lo tanto, si una función $f$ es diferenciable en $\\vec{x}_{0}$,\n
                                 ¡el vector $\\vec{m}$ que buscamos y que cumple la ''', '''Definición 1''', '''\n
@@ -777,9 +778,6 @@ class Plano_tangente(ThreeDScene):
         self.play(FadeOut(gpo1))
         self.add_fixed_in_frame_mobjects(gpo2)
         self.play(Write(gpo2))
-        self.play(ShowCreation(circulo))
-        circulo.add_updater(upd_for_circle)
-        self.play(rad.set_value, 1, rate_func = linear)
         self.play(ShowCreation(Dirs))
         self.wait()
         self.play(FadeOut(gpo2))
