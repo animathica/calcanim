@@ -3,7 +3,7 @@ from manimlib.imports import *
 ##################################################################
 #################### Regla de la cadena ##########################
 ##################################################################
-# 06/04/2021
+# 08/03/2022
 
 class Regla_de_la_Cadena_I(ThreeDScene):
     def construct(self):
@@ -45,25 +45,18 @@ class Regla_de_la_Cadena_I(ThreeDScene):
         self.play(FadeOutAndShift(Texto_Intro, DOWN, run_time = 2))
         self.wait()
 
-        self.play(Write(Text_R_C_1, run_time = 4))
-        self.wait(0.5)
-        self.play(Write(Text_R_C_2, run_time = 4))
-        self.wait(0.5)
-        self.play(Write(Text_R_C_3, run_time = 3))
-        self.wait()
-        self.play(Write(Text_R_C_4, run_time = 3))
-        self.wait(0.5)
+        self.play(FadeIn(Text_R_C_1), FadeIn(Text_R_C_2), FadeIn(Text_R_C_3), FadeIn(Text_R_C_4))
+        self.wait(44)
         self.play(Write(Text_R_C_5, run_time = 2))
-        self.wait()
+        self.wait(3)
         self.play(Write(Text_R_C_6, run_time = 3))
-
-        self.wait(2)
+        self.wait(8)
         self.play(FadeOut(Regla_de_la_Cadena, run_time = 2))
         self.wait(2)
 
-        self.play(Write(Ejemplo1_T1, run_time = 4))
-        self.play(Write(Ejemplo1_T2, run_time = 4))
-        self.wait()
+        self.play(FadeIn(Ejemplo1_T1))
+        self.play(FadeIn(Ejemplo1_T2))
+        self.wait(22)
         self.play(Write(Ejemplo1_T3, run_time = 3))
         self.play(Indicate(Ejemplo1_T3[1], run_time = 2))
         self.play(Write(Ejemplo1_T4, run_time = 2))
@@ -129,7 +122,7 @@ class Regla_de_la_Cadena_I(ThreeDScene):
         tangente = ParametricFunction(lambda x: np.array([x,4*np.exp(-2),0]), color= RED,t_min=-5,t_max=1)
 
         self.play(Write(t_final))
-        self.wait(2)
+        self.wait(3.5)
         self.play(FadeOut(t_final))
         self.play(Write(axes2D))
         self.play(Write(t_2_gpo))
@@ -165,7 +158,7 @@ class Regla_de_la_Cadena_I(ThreeDScene):
         self.wait(2)
         self.play(FadeOut(t_6_gpo))
         self.play(Write(t_7_gpo))
-        self.wait(3)
+        self.wait(6)
         self.play(*[FadeOut(obj) for obj in self.mobjects])
 	
 class Regla_de_la_Cadena_II(Scene):
@@ -190,9 +183,9 @@ class Regla_de_la_Cadena_II(Scene):
 		Ejemplo2.move_to(0.5*UP)
 
 		self.wait()
-		self.play(Write(Ejemplo2_T1, run_time = 4))
-		self.play(Write(Ejemplo2_T2, run_time = 4))
-		self.wait()
+		self.play(FadeIn(Ejemplo2_T1))
+		self.play(FadeIn(Ejemplo2_T2))
+		self.wait(15.5)
 		self.play(Write(Ejemplo2_T3, run_time = 3))
 		self.play(Indicate(Ejemplo2_T3[1], run_time = 2))
 		self.wait()
