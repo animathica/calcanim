@@ -560,7 +560,7 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         text21 = VGroup(t21.bg,t21)
         t22 = TextMobject('''En este caso $f$ diverge a $\\infty$, lo cual se puede \n
                              demostrar sin mucha dificultad porque el numerador \n
-                             es una constante y el denominador tiende a cero con \n
+                             es una constante positiva y el denominador tiende a cero con \n
                              valores positivos.''').move_to(3*DOWN).scale(0.8)
         t22.bg = SurroundingRectangle(t22, color=WHITE, fill_color=BLACK, fill_opacity=1)
         text22 = VGroup(t22.bg,t22)
@@ -640,7 +640,7 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         self.wait(2)
         self.add_fixed_in_frame_mobjects(text4)
         self.play(Write(text4))
-        self.wait(3)
+        self.wait(6)
         self.play(*[FadeOut(obj) for obj in self.mobjects])
 
     def construct (self):
