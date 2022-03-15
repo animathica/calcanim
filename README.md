@@ -138,7 +138,7 @@ https://eulertour.com/gallery
 ## Integral de volumen:
   - Definición ([integral_volumen.py](https://github.com/animathica/calcanim/blob/Integral-de-volumen/Integral%20de%20volumen/integral_volumen.py))
   - **Criterio de Lebesgue**
-  - **Fubini**
+  - Fubini ([fubini.py](https://github.com/animathica/calcanim/blob/Integral-de-volumen/Integral%20de%20volumen/fubini.py))
   - Cambio de variable ([cambio_variable.py](https://github.com/animathica/calcanim/blob/Integral-de-volumen/Integral%20de%20volumen/cambio_variable.py))
 
 ## Integral de línea:
