@@ -207,7 +207,7 @@ class Limite_de_cocientes_de_dos_variables (ThreeDScene):
         text3=TextMobject('''Tengamos presente que en este caso hay \n
                              diversas maneras de analizar el límite: \n
                              métrica, límite direccional, límite por \n
-                             trayectorias o con suscesiones.''')
+                             trayectorias o con sucesiones.''')
 
         self.play(Write(titulo))
         self.wait(1)
