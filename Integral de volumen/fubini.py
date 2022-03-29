@@ -15,7 +15,7 @@ class TeoFubini(ThreeDScene):
                             utilizando solo geometría, todas se pueden \n
                             obtener mediante integración.''')
         t5 = TextMobject('''Para facilitar el cálculo del volumen bajo \n
-                            una función determianda, existen resultados que \n
+                            una función determinada, existen resultados que \n
                             permiten calcular las integrales de varias \n
                             variables mediante varias integrales de funciones \n
                             de una variable.''')
@@ -90,10 +90,14 @@ class TeoFubini(ThreeDScene):
 
     def parte3(self):
         t1 = TextMobject('''Para comprender mejor el teorema enunciado,\n
-                            consideremos el sólido de revolución dado por \n
-                            la función''').shift(UP)
+                            consideremos el sólido delimitado por arriba con \n
+                            la gráfica de $f$, por abajo con el rectángulo $R$ \n
+                            en el plano $xy$ y a los lados por segmentos \n
+                            de planos verticales que intersectan a la frontera\n
+                            de $R$ y al borde de la gráfica de $f$, con $f$ \n
+                            dada por''').to_edge(UP)
         t2 = TexMobject(r"f(x,y)=x^2+y^2").next_to(t1,DOWN)
-        t3 = TextMobject('''Definimos también el rectangulo \n 
+        t3 = TextMobject('''Definimos el rectangulo \n 
                             $R$ en $\\mathbb{R}^2$''').shift(0.5*UP)
         t4 = TexMobject(r"R=[0,1]\times[0,1]").next_to(t3,DOWN)
         t34 = VGroup(t3,t4)
@@ -122,8 +126,10 @@ class TeoFubini(ThreeDScene):
         nota1 = TextMobject('''Nota que el corte es \n 
                                paralelo al plano $yz$''').scale(0.6).to_corner(RIGHT+DOWN)
         t9 = TextMobject('''Entonces al tomar una \n 
-                            partición del intervalo $A_1$, 
-                            $$\\left(\\int_{A_2}f_x(y)dy\\right)(x_{i+1}-x_i)$$
+                            partición del intervalo $A_1$, \n
+                            y fijar una $\\xi_i$ en el \n
+                            subintervalo $[x_i,x_{i+1}]$
+                            $$\\left(\\int_{A_2}f_{\\xi_i} (y)dy\\right)(x_{i+1}-x_i)$$
                             es un volumen que aproxima \n 
                             el volumen bajo la \n
                             superficie en el rectángulo \n 
@@ -131,7 +137,7 @@ class TeoFubini(ThreeDScene):
         t9_fin = self.rectangulo_texto(t9).to_edge(LEFT).scale(0.7)
         t10 = TextMobject('''Luego, definiendo $F(x)=\\int_{A_2} f_x(y)dy$, obtenemos \n
                              que el volumen bajo $f$ está dado por:
-                             $$V=\\lim_{n\\to\\infty}\\sum_{i=1}^n F(x)(x_i-x_{i-1})$$
+                             $$V=\\lim_{n\\to\\infty}\\sum_{i=1}^n F(\\xi_i)(x_i-x_{i-1})$$
                              $$V=\\int_{A_1}\\int_{A_2}f(x,y)dydx=\\int_0^1\\int_0^1(x^2+y^2)dydx$$''')
         t10_fin = self.rectangulo_texto(t10)
         
@@ -157,14 +163,13 @@ class TeoFubini(ThreeDScene):
                 u,
                 v,
                 u**2+v**2
-            ]),u_min=-2,u_max=2,v_min=-2,v_max=2
+            ]),u_min=0,u_max=2,v_min=0,v_max=2
         )
         rect = Rectangle(height=2,width=2,color=RED,fill_color=RED,fill_opacity=0.6).shift(UP+RIGHT)
         xy = np.array([1,1,0])
         fxy = np.array([0,0,xy[0]**2+xy[1]**2])
-        dot_dom = Sphere(radius=0.1,color=ORANGE).move_to(xy)
-        dot_fun = Sphere(radius=0.1,color=GREEN_SCREEN).move_to(xy+fxy)
         fixxed_x = 1
+        line_dom = Line(start=np.array([fixxed_x,0,0]),end=np.array([fixxed_x,2,0]))
         f_x = ParametricFunction(lambda t: np.array([fixxed_x,t,fixxed_x**2+t**2]),t_min=0,t_max=2,color=YELLOW)
         curve2 = ParametricFunction(lambda t: np.array([fixxed_x,t,0]),t_min=0,t_max=2)
         long = 0.2
@@ -178,7 +183,7 @@ class TeoFubini(ThreeDScene):
 
         self.play(Write(t1))
         self.acomodar_textos(t2)
-        self.wait(2)
+        self.wait(14)
         self.play(FadeOut(t1))
         self.play(ApplyMethod(t2.to_edge,LEFT))
         self.move_camera(phi=70*DEGREES,theta=60*DEGREES-90*DEGREES,frame_center=(0,0,2.5))
@@ -195,12 +200,11 @@ class TeoFubini(ThreeDScene):
         self.acomodar_textos_wait(t6_fin,2)
         self.play(FadeOut(t6_fin))
         self.acomodar_textos_wait(t7_fin,4)
-        self.play(Write(dot_dom))
-        self.play(Write(dot_fun))
+        self.play(Write(line_dom))
+        self.play(Write(f_x))
         self.wait()
-        self.play(FadeOut(dot_dom),FadeOut(dot_fun),FadeOut(t7_fin))
+        self.play(FadeOut(t7_fin))
         self.acomodar_textos_wait(t8_fin,3)
-        self.play(ShowCreation(f_x))
         self.play(ShowCreation(reg1))        
         self.acomodar_textos(nota1)
         self.play(FadeOut(t8_fin))
@@ -209,10 +213,10 @@ class TeoFubini(ThreeDScene):
         self.play(ShowCreation(particion))
         self.play(ShowCreation(reg2))
         self.play(ShowCreation(reg3))        
-        self.wait(3)
+        self.wait(5)
         self.play(FadeOut(t9_fin))
-        self.acomodar_textos_wait(t10_fin,10)
-        self.play(FadeOut(t10_fin),FadeOut(reg1),FadeOut(reg2),FadeOut(reg3),FadeOut(particion),FadeOut(f_x))
+        self.acomodar_textos_wait(t10_fin,12)
+        self.play(FadeOut(t10_fin),FadeOut(reg1),FadeOut(reg2),FadeOut(reg3),FadeOut(particion),FadeOut(f_x),FadeOut(line_dom))
 
     def parte4(self):
         t7 = TextMobject('''Por otro lado, si fijamos $y\\in A_2$,\n 
@@ -230,8 +234,10 @@ class TeoFubini(ThreeDScene):
         nota1 = TextMobject('''Nota que el corte es \n 
                                paralelo al plano $xz$''').scale(0.6).to_corner(RIGHT+DOWN)
         t9 = TextMobject('''Entonces al tomar una \n 
-                            partición del intervalo $A_2$, 
-                            $$\\left(\\int_{A_1}f_y(x)dx\\right)(y_{i+1}-y_i)$$
+                            partición del intervalo $A_2$, \n
+                            y fijar una $\\zeta_i$ en el \n
+                            subintervalo $[y_i,y_{i+1}]$
+                            $$\\left(\\int_{A_1}f_{\\zeta_i}(x)dx\\right)(y_{i+1}-y_i)$$
                             es un volumen que aproxima \n 
                             el volumen bajo la \n
                             superficie en el rectángulo \n 
@@ -239,7 +245,7 @@ class TeoFubini(ThreeDScene):
         t9_fin = self.rectangulo_texto(t9).to_edge(LEFT).scale(0.7)
         t10 = TextMobject('''Así, si $G(y)=\\int_{A_1} f_y(x)dx$, obtenemos \n
                              que el volumen bajo $f$ está dado por:
-                             $$V=\\lim_{n\\to\\infty}\\sum_{i=1}^n G(y)(y_i-y_{i-1})$$
+                             $$V=\\lim_{n\\to\\infty}\\sum_{i=1}^n G(\\zeta_i)(y_i-y_{i-1})$$
                              $$V=\\int_{A_2}\\int_{A_1}f(x,y)dxdy=\\int_0^1\\int_0^1(x^2+y^2)dxdy$$''')
         t10_fin = self.rectangulo_texto(t10)
         t1 = TextMobject('''Resolviendo las integrales:''').shift(1.5*UP)
@@ -250,9 +256,8 @@ class TeoFubini(ThreeDScene):
 
         xy = np.array([1,1,0])
         fxy = np.array([0,0,xy[0]**2+xy[1]**2])
-        dot_dom = Sphere(radius=0.1,color=ORANGE).move_to(xy)
-        dot_fun = Sphere(radius=0.1,color=GREEN_SCREEN).move_to(xy+fxy)
         fixxed_y = 1
+        line_dom = Line(start=np.array([0,fixxed_y,0]),end=np.array([2,fixxed_y,0]))
         f_y = ParametricFunction(lambda t: np.array([t,fixxed_y,fixxed_y**2+t**2]),t_min=0,t_max=2,color=YELLOW)
         curve2 = ParametricFunction(lambda t: np.array([t,fixxed_y,0]),t_min=0,t_max=2)
         long = 0.2
@@ -265,12 +270,11 @@ class TeoFubini(ThreeDScene):
         reg3 = self.get_region(0 ,2 , f_y, f_y_apoyo)
 
         self.acomodar_textos_wait(t7_fin,4)
-        self.play(Write(dot_dom))
-        self.play(Write(dot_fun))
+        self.play(Write(line_dom))
+        self.play(Write(f_y))
         self.wait()
-        self.play(FadeOut(dot_dom),FadeOut(dot_fun),FadeOut(t7_fin))
+        self.play(FadeOut(t7_fin))
         self.acomodar_textos_wait(t8_fin,3)
-        self.play(ShowCreation(f_y))
         self.play(ShowCreation(reg1))        
         self.acomodar_textos(nota1)
         self.play(FadeOut(t8_fin))
@@ -279,9 +283,9 @@ class TeoFubini(ThreeDScene):
         self.play(ShowCreation(particion))
         self.play(ShowCreation(reg2))
         self.play(ShowCreation(reg3))        
-        self.wait(3)
+        self.wait(5)
         self.play(FadeOut(t9_fin))
-        self.acomodar_textos_wait(t10_fin,10)
+        self.acomodar_textos_wait(t10_fin,12)
         self.play(*[FadeOut(mob) for mob in self.mobjects])
         self.move_camera(phi=0*DEGREES,theta=-90*DEGREES,frame_center=(0,0,0))
         self.write_wait_fade(tgpo,10)
