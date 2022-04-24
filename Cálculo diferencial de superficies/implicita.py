@@ -631,18 +631,11 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
                                 $\\frac{\\partial \\gamma}{\\partial y}=x. $''').move_to(3*UP)
         text15.bg=SurroundingRectangle(text15,color=WHITE,fill_color=BLACK,fill_opacity=1)
         
-        #text16=TextMobject('''En los puntos de la ''','''curva de nivel''',''' en el eje $y$ la parcial \n
-        #                        se anula y no es posible aplicar el''',''' teorema de \n
-        #                        la función implícita''','''.''').move_to(2.5*UP)
-        #text16.set_color_by_tex_to_color_map({
-        #    '''curva de nivel''': BLUE_D,
-        #    '''teorema de la función implícita''': YELLOW
-        #})
         
         text16=TextMobject('''En los puntos del eje $y$, $\\frac{\\partial \\gamma}{\\partial y} = \\frac{\\partial \\gamma}{\\partial x} = 0$, no podemos usar \n
                             el Teorema de la Función Implícita, además la curva de \n
                             nivel cero es una recta vertical y no puede ser la gráfica\n
-                             de una función g(x)=y.''','''.''').move_to(2.5*UP)
+                             de una función g(x)=y''','''.''').move_to(2.5*UP)
        
         text16.bg=SurroundingRectangle(text16,color=WHITE,fill_color=BLACK,fill_opacity=1)
         text17=TextMobject('''¿Qué ocurre si $\\frac{\\partial f}{\\partial x}(x,y)\\neq 0$?''',''' \n
