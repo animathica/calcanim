@@ -133,7 +133,7 @@ class CurvaturaOsculador(Scene):
                             y curvatura que $f$ en $t$.''')
         t8 = TextMobject('''Además, este círculo y la curva están del mismo lado de\n
                             la tangente que tienen en común.''')
-        t9 = TextMobject('''En otras palabra, el círculo osculador es el que más \n
+        t9 = TextMobject('''En otras palabras, el círculo osculador es el que más \n
                             se parece a la función en $t$.''')
 
         gpo = VGroup(t1,t2)
@@ -211,7 +211,7 @@ class CurvaturaOsculador(Scene):
             self.t_offset += rate
 
         t3 = TextMobject('''Nota que siempre el círculo "besa" \n
-                            en un solo punto a la curva $f$ \n
+                            en un solo punto a la curva $f$, \n
                             de ahí su nombre.''',color="#a5f0e6")\
                                 .to_corner(LEFT+DOWN)\
                                 .scale(0.6)
