@@ -31,9 +31,9 @@ class maximos_minimos (ThreeDScene, Scene):
                 x_min=-3,
                 x_max=3,
                 y_min=-2,
-                y_max= 2,
-                delta_x=.25,
-                delta_y=.25,
+                y_max=2,
+                delta_x=0.25,
+                delta_y=0.25,
                 # length_func=linear,
                 length_func=lambda norm: 0.5 * sigmoid(norm),
                 colors=[GREEN],
@@ -126,13 +126,18 @@ class maximos_minimos (ThreeDScene, Scene):
         
         #Objetos
 
-        axes = NumberPlane()
+        axes = NumberPlane(
+            x_min = -3.5,
+            x_max = 3.5,
+            y_min = -2.5,
+            y_max = 2.5
+        )
         punto_critico = Dot(color=RED)
 
         #Campo Gradiente de f
         def campo(point):
             x, y = point[:2]
-            return 3*y+3*x**2 * RIGHT + 3*x-3*y**2 * UP
+            return (3*y+3*x**2) * RIGHT + (3*x-3*y**2) * UP
         campo = self.get_vector_field(campo)
 
         #Animacion
@@ -196,6 +201,26 @@ class maximos_minimos (ThreeDScene, Scene):
             texto_10, color=WHITE, fill_color=BLACK, fill_opacity=1
         )
         caja_texto_10 = VGroup(texto_10.bg,texto_10)
+        texto_11 = TextMobject('''Las flechas que tienen este comportamiento están sobre \n
+                                  la recta menos identidad para ambos campos, esto es como \n
+                                  en una singularidad estable.''').scale(0.8).to_edge(UP)
+        texto_11.bg = SurroundingRectangle(
+            texto_11, color=WHITE, fill_color=BLACK, fill_opacity=1
+        )
+        caja_texto_11 = VGroup(texto_11.bg,texto_11)
+        texto_12 = TextMobject('''Mientras que, cerca del origen, sobre la recta identidad \n
+                                  las flechas siempre se alejan del origen, es decir, es \n
+                                  como una singularidad inestable.''').scale(0.8).to_edge(UP)
+        texto_12.bg = SurroundingRectangle(
+            texto_12, color=WHITE, fill_color=BLACK, fill_opacity=1
+        )
+        caja_texto_12 = VGroup(texto_12.bg,texto_12)
+        texto_13 = TextMobject('''Por esto es que se conluye que en el origen hay \n
+                                  un punto silla.''').to_edge(UP)
+        texto_13.bg = SurroundingRectangle(
+            texto_13, color=WHITE, fill_color=BLACK, fill_opacity=1
+        )
+        caja_texto_13 = VGroup(texto_13.bg,texto_13)
         #Objetos
         # Ejes gradiente
         axes = NumberPlane(
@@ -204,8 +229,8 @@ class maximos_minimos (ThreeDScene, Scene):
             y_min = -2.5,
             y_max = 2.5
         )\
-            .scale(0.8)\
-            .to_edge(LEFT)
+            .scale(0.85)\
+            .move_to(3.5*LEFT)
         # Ejes aprox Hessiana
         axes2 = NumberPlane(
             x_min = -3.5,
@@ -213,15 +238,15 @@ class maximos_minimos (ThreeDScene, Scene):
             y_min = -2.5,
             y_max = 2.5
         )\
-            .scale(0.8)\
-            .to_edge(RIGHT)
+            .scale(0.85)\
+            .move_to(3.5*RIGHT)
         # Campo gradiente
         def campo_grad(point):
             x, y = point[:2]
-            return 3*y+3*x**2 * RIGHT + 3*x-3*y**2 * UP
+            return (3*y+3*x**2) * RIGHT + (3*x-3*y**2) * UP
         campograd = self.get_vector_field(campo_grad)\
             .scale(0.85)\
-            .to_edge(LEFT)
+            .move_to(3.5*LEFT)
         label1 = TextMobject('''Campo \n 
                                 gradiente''',color=BLUE).scale(0.6)
         label1.bg = SurroundingRectangle(label1,color=WHITE,fill_color=BLACK,fill_opacity=1)
@@ -232,11 +257,41 @@ class maximos_minimos (ThreeDScene, Scene):
             return 3*y * RIGHT + 3*x * UP
         campo = self.get_vector_field(campo)\
             .scale(0.85)\
-            .to_edge(RIGHT)
+            .move_to(3.5*RIGHT)
         label2 = TextMobject('''Campo de la \n 
                                 Hessiana''',color=BLUE).scale(0.6)
         label2.bg = SurroundingRectangle(label2,color=WHITE,fill_color=BLACK,fill_opacity=1)
         label2_caja = VGroup(label2.bg,label2).move_to((4,-2.5,0))
+
+        identidad = ParametricFunction(
+            lambda t : np.array([t,t,0]),
+            t_min = -2,
+            t_max = 2,
+            color = YELLOW
+        )
+        menos_identidad = ParametricFunction(
+            lambda t : np.array([t,-t,0]),
+            t_min = -2,
+            t_max = 2,
+            color = RED
+        )
+        identidad2 = ParametricFunction(
+            lambda t : np.array([t,t,0]),
+            t_min = -2,
+            t_max = 2,
+            color = YELLOW
+        )
+        menos_identidad2 = ParametricFunction(
+            lambda t : np.array([t,-t,0]),
+            t_min = -2,
+            t_max = 2,
+            color = RED
+        )
+        identidad.scale(0.85).move_to(3.5*LEFT)
+        menos_identidad.scale(0.85).move_to(3.5*LEFT)
+        identidad2.scale(0.85).move_to(3.5*RIGHT)
+        menos_identidad2.scale(0.85).move_to(3.5*RIGHT)
+        rectas = VGroup(identidad,identidad2,menos_identidad,menos_identidad2)
         
         #Animacion
         self.play(Write(texto_1))
@@ -270,7 +325,17 @@ class maximos_minimos (ThreeDScene, Scene):
         self.wait(9)
         self.play(FadeOut(caja_texto_9))
         self.play(ShowCreation(caja_texto_10))
-        self.wait(13)
+        self.play(Write(rectas))
+        self.wait(10)
+        self.play(FadeOut(caja_texto_10))
+        self.play(ShowCreation(caja_texto_11))
+        self.wait(10)
+        self.play(FadeOut(caja_texto_11))
+        self.play(ShowCreation(caja_texto_12))
+        self.wait(10)
+        self.play(FadeOut(caja_texto_12))
+        self.play(ShowCreation(caja_texto_13))
+        self.wait(5)
         self.play(
             *[FadeOut(mob)for mob in self.mobjects]
         )
