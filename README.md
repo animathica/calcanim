@@ -69,7 +69,7 @@ https://eulertour.com/gallery
   - [Ejemplo de curvas de nivel](https://youtu.be/u1yuqaeZAbU) ([curva_nivel.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/curva_nivel.py))
   - [Existencia del límite de funciones de R^n a R^m en x_0](https://youtu.be/-oNl2FKUc1s) ([existencia_x0.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/existencia_x0.py))
   - Ejemplo de límite en campos ([campos.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/campos.py))
-  - Límites direccionales ([direccionales.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/direccionales.py))
+  - [Límites direccionales](https://www.youtube.com/watch?v=AkCOKNJtORA) ([direccionales.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/direccionales.py))
   - [Existencia del límite en infinito de funciones de R a R^n](https://youtu.be/hb6wAc47Heg) ([limite_infinito_R-Rn.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/limite_infinito_R-Rn.py))
   - [Existencia del límite en infinito de funciones de R^n a R](https://youtu.be/jFkIez1VNps) ([limite_infinito_Rn-R.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/limite_infinito_Rn-R.py))
   - [Divergencia a infinito de funciones de R a R^n en un punto t_0](https://youtu.be/eWlEpjGsdb8) ([divergencia_R-Rn_punto.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/divergencia_R-Rn_punto.py))
@@ -93,7 +93,7 @@ https://eulertour.com/gallery
   - [Curvas regulares y picos](https://www.youtube.com/watch?v=2PRSPgs7hQE) ([regulares.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/regulares.py))
   - [Curvas rectificables](https://www.youtube.com/watch?v=Nkgcjfh0Faw&t=47s) ([rectificables.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/rectificables.py))
   - Curvas no rectificables ([no_rectificables.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/no_rectificables.py))
-  - Curvas suaves y cruces ([suaves_y_cruces](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/suaves_y_cruces.py))
+  - [Curvas suaves y cruces](https://www.youtube.com/watch?v=mMCwtSQdFaY) ([suaves_y_cruces](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/suaves_y_cruces.py))
   - **Vector aceleración y aceleración tangencial**
   - Círculo osculador ([circ_osculador.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/circ_osculador.py))
   - **Curvas en el espacio**
@@ -102,7 +102,7 @@ https://eulertour.com/gallery
   - **Teorema Fundamental de Curvas**
 
 ## Cálculo diferencial de superficies
-  - Translaciones y Hometecias en Superficies ([composicion.py](https://github.com/animathica/calcanim/blob/C%C3%A1lculo-diferencial-de-superficies/C%C3%A1lculo%20diferencial%20de%20superficies/composicion.py))
+  - [Translaciones y Hometecias en Superficies](https://www.youtube.com/watch?v=ZxP_7rxgN2I&t=3s) ([composicion.py](https://github.com/animathica/calcanim/blob/C%C3%A1lculo-diferencial-de-superficies/C%C3%A1lculo%20diferencial%20de%20superficies/composicion.py))
   - **Función tipo Dirichlet**
   - Límite de cocientes de funciones de dos variables ([cociente.py](https://github.com/animathica/calcanim/blob/C%C3%A1lculo-diferencial-de-superficies/C%C3%A1lculo%20diferencial%20de%20superficies/cociente.py))
   - **Límites iterados**
@@ -133,10 +133,10 @@ https://eulertour.com/gallery
 
 ## Teoremas de diferenciabilidad:
   - Teorema de la función inversa
-  - Regla de la cadena ([cadena.py](https://github.com/animathica/calcanim/blob/Teoremas-de-diferenciablidad/Teoremas%20de%20diferenciabilidad/cadena.py)) 
+  - [Regla de la cadena](https://www.youtube.com/watch?v=pHYwoTf9G6U) ([cadena.py](https://github.com/animathica/calcanim/blob/Teoremas-de-diferenciablidad/Teoremas%20de%20diferenciabilidad/cadena.py)) 
 
 ## Integral de volumen:
-  - Definición ([integral_volumen.py](https://github.com/animathica/calcanim/blob/Integral-de-volumen/Integral%20de%20volumen/integral_volumen.py))
+  - [Definición](https://www.youtube.com/watch?v=qb2Xbdc3RTA) ([integral_volumen.py](https://github.com/animathica/calcanim/blob/Integral-de-volumen/Integral%20de%20volumen/integral_volumen.py))
   - **Criterio de Lebesgue**
   - Fubini ([fubini.py](https://github.com/animathica/calcanim/blob/Integral-de-volumen/Integral%20de%20volumen/fubini.py))
   - Cambio de variable ([cambio_variable.py](https://github.com/animathica/calcanim/blob/Integral-de-volumen/Integral%20de%20volumen/cambio_variable.py))
