@@ -59,7 +59,8 @@ class maximos_minimos (ThreeDScene, Scene):
         return superficie
     
     def PrimeraEscena(self):
-        titulo = TextMobject("Máximos y Mínimos").scale(1.5)
+        titulo = TextMobject('''Matriz hessiana\n
+                                y puntos críticos''').scale(1.5)
         texto_1 = TextMobject("Consideremos la siguiente función").move_to(UP)
         texto_2_1 = TexMobject(r"f:\mathbb{R}^2\to\mathbb{R}").next_to(texto_1, DOWN)
         texto_2_2 = TexMobject(r"f(x,y)=x^3-y^3+3xy").next_to(texto_2_1, DOWN)
@@ -351,8 +352,8 @@ class maximos_minimos (ThreeDScene, Scene):
                                  clase $C^2$,  con un punto crítico $\\Vec{x_0}$ en el interior de $A$ y \n
                                 $H(\\Vec{x_0})$ la matriz hessiana en $\\Vec{x_0}$,''').move_to(2*UP)
         texto_3 = TextMobject(''' i) Si $\\text{det}(H(\\Vec{x_0}))< 0$, $\\Vec{x_0}$ es un punto silla''').next_to(texto_2,1.5*DOWN)
-        texto_4 = TextMobject(''' ii) Si $\\text{det}(H(\\Vec{x_0}))> 0$ y $\dfrac{\\partial^2 f}{\\partial x^2}(\\Vec{x_0})>0$, $\\Vec{x_0}$ es un mínimo local''').next_to(texto_3,1*DOWN)                       
-        texto_5 = TextMobject(''' iii) Si $\\text{det}(H(\\Vec{x_0}))> 0$ y $\dfrac{\\partial^2 f}{\\partial x^2}(\\Vec{x_0})<0$, $\\Vec{x_0}$ es un máximo local''').next_to(texto_4,1*DOWN)          
+        texto_4 = TextMobject(''' ii) Si $\\text{det}(H(\\Vec{x_0}))> 0$ y $\dfrac{\\partial^2 f}{\\partial x^2}(\\Vec{x_0})>0$, $f(x_0)$ es un mínimo local''').next_to(texto_3,1*DOWN)                       
+        texto_5 = TextMobject(''' iii) Si $\\text{det}(H(\\Vec{x_0}))> 0$ y $\dfrac{\\partial^2 f}{\\partial x^2}(\\Vec{x_0})<0$, $f(x_0)$ es un máximo local''').next_to(texto_4,1*DOWN)          
         texto_6 = TextMobject(''' iv) Si $\\text{det}(H(\\Vec{x_0}))= 0$, este criterio no es aplicable''').next_to(texto_5,1*DOWN)          
 
         #Objetos
@@ -401,7 +402,7 @@ class maximos_minimos (ThreeDScene, Scene):
         texto_7 = TextMobject(''' Pero en $(0,0)$ la hessiana se vuelve ''').move_to(1.5*UP)
         texto_8 = TexMobject(r""" H_f(0,0)= \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix} """).next_to(texto_4,DOWN)
         texto_9 = TextMobject(''' En este caso la matriz hessiana no nos permite clasificar el \n
-                                punto crítico, por lo tanto el criterio no es siempre aplicable ''')
+                                punto crítico, por lo tanto el criterio no es siempre aplicable. ''')
         #Objetos
         axes = ThreeDAxes(x_min=-2.5,x_max=2.5,y_min=-2.5,y_max=2.5,z_min=-1,z_max=3,num_axis_pieces= 30)
         superficie = self.superficie2()
