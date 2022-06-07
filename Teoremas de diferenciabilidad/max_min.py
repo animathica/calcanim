@@ -3,7 +3,6 @@ from manimlib.imports import *
 ##################################################################
 #################### Máximos y Mínimos ##########################
 ##################################################################
-# 24/05/2021
 
 class maximos_minimos (ThreeDScene, Scene):
     def setup(self):
@@ -171,7 +170,7 @@ class maximos_minimos (ThreeDScene, Scene):
         texto_1 = TextMobject(''' Ahora aproximamos el campo gradiente de $f$ alrededor \n
                                  de $(0,0)$, utilizando su derivada $D(\\nabla f)$ ''')
         texto_2 = TextMobject(''' La matriz asociada a $D(\\nabla f)$ se llama matriz hessiana.\n
-                                  Definimos entonces $H_f(x,y)=D(\\nabla f)$''')
+                                  Definimos entonces $H_f(x,y)=D(\\nabla f)(x,y)$''')
         texto_3 = TextMobject("En el ejemplo,").move_to(1.5*UP)
         texto_4 = TexMobject(r""" H_f(x,y)= \begin{pmatrix} 6x & 3 \\ 3 & -6y \end{pmatrix} """)
         texto_5 = TextMobject("En particular sobre el punto $(0,0)$,").move_to(1.5*UP)
@@ -202,9 +201,9 @@ class maximos_minimos (ThreeDScene, Scene):
             texto_10, color=WHITE, fill_color=BLACK, fill_opacity=1
         )
         caja_texto_10 = VGroup(texto_10.bg,texto_10)
-        texto_11 = TextMobject('''Las flechas que tienen este comportamiento están sobre \n
-                                  la recta menos identidad para ambos campos, esto es como \n
-                                  en una singularidad estable.''').scale(0.8).to_edge(UP)
+        texto_11 = TextMobject('''Las flechas que están sobre la recta menos identidad y \n
+                                  cerca del origen, apuntan hacia el origen para ambos \n 
+                                  campos, esto es como en una singularidad estable.''').scale(0.8).to_edge(UP)
         texto_11.bg = SurroundingRectangle(
             texto_11, color=WHITE, fill_color=BLACK, fill_opacity=1
         )
@@ -350,11 +349,11 @@ class maximos_minimos (ThreeDScene, Scene):
         caja_texto_1 = VGroup(texto_1.bg, texto_1)                             
         texto_2 = TextMobject(''' En general, dado un campo escalar $f:A\\subset\\mathbb{R}^2\\to\\mathbb{R}$ de \n
                                  clase $C^2$,  con un punto crítico $\\Vec{x_0}$ en el interior de $A$ y \n
-                                $H(\\Vec{x_0})$ la matriz hessiana en $\\Vec{x_0}$,''').move_to(2*UP)
-        texto_3 = TextMobject(''' i) Si $\\text{det}(H(\\Vec{x_0}))< 0$, $\\Vec{x_0}$ es un punto silla''').next_to(texto_2,1.5*DOWN)
-        texto_4 = TextMobject(''' ii) Si $\\text{det}(H(\\Vec{x_0}))> 0$ y $\dfrac{\\partial^2 f}{\\partial x^2}(\\Vec{x_0})>0$, $f(x_0)$ es un mínimo local''').next_to(texto_3,1*DOWN)                       
-        texto_5 = TextMobject(''' iii) Si $\\text{det}(H(\\Vec{x_0}))> 0$ y $\dfrac{\\partial^2 f}{\\partial x^2}(\\Vec{x_0})<0$, $f(x_0)$ es un máximo local''').next_to(texto_4,1*DOWN)          
-        texto_6 = TextMobject(''' iv) Si $\\text{det}(H(\\Vec{x_0}))= 0$, este criterio no es aplicable''').next_to(texto_5,1*DOWN)          
+                                $H_f(\\Vec{x_0})$ la matriz hessiana en $\\Vec{x_0}$,''').move_to(2*UP)
+        texto_3 = TextMobject(''' i) Si $\\text{det}(H_f(\\Vec{x_0}))< 0$, $\\Vec{x_0}$ es un punto silla''').next_to(texto_2,1.5*DOWN)
+        texto_4 = TextMobject(''' ii) Si $\\text{det}(H_f(\\Vec{x_0}))> 0$ y $\dfrac{\\partial^2 f}{\\partial x^2}(\\Vec{x_0})>0$, $f(x_0)$ es un mínimo local''').next_to(texto_3,1*DOWN)                       
+        texto_5 = TextMobject(''' iii) Si $\\text{det}(H_f(\\Vec{x_0}))> 0$ y $\dfrac{\\partial^2 f}{\\partial x^2}(\\Vec{x_0})<0$, $f(x_0)$ es un máximo local''').next_to(texto_4,1*DOWN)          
+        texto_6 = TextMobject(''' iv) Si $\\text{det}(H_f(\\Vec{x_0}))= 0$, este criterio no es aplicable''').next_to(texto_5,1*DOWN)          
 
         #Objetos
         axes = ThreeDAxes(x_min=-2.5,x_max=2.5,y_min=-2.5,y_max=2.5,z_min=-1,z_max=3,num_axis_pieces= 30)
