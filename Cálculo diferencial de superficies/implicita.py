@@ -632,8 +632,8 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         text15.bg=SurroundingRectangle(text15,color=WHITE,fill_color=BLACK,fill_opacity=1)
         
         
-        text16=TextMobject('''En los puntos del eje $y$, $\\frac{\\partial \\gamma}{\\partial y} = \\frac{\\partial \\gamma}{\\partial x} = 0$, no podemos usar \n
-                            el Teorema de la Función Implícita, además la curva de \n
+        text16=TextMobject('''En los puntos del eje $y$, $\\frac{\\partial \\gamma}{\\partial y} = 0$, por lo que no podemos usar \n
+                            el Teorema de la Función Implícita. Además la curva de \n
                             nivel cero es una recta vertical y no puede ser la gráfica\n
                              de una función g(x)=y''','''.''').move_to(2.5*UP)
        
@@ -875,13 +875,13 @@ class Teorema_de_la_funcion_implicita (ThreeDScene,Scene):
         punto=Dot(color=RED).move_to([x2,y1,0])
         gradiente1=Arrow([x2,y1,0],[2*x2*np.sin(x2**2)+x2,1+y1,0],buff=0,color=RED)
         #gradiente1_label=TexMobject(r"\nabla(f(x,y)=0)").set_color(RED).next_to(gradiente1,LEFT+UP,buff=-0.3).scale(0.7)
-        gradiente1_label=TexMobject(r"\nabla(f(x,y))").set_color(RED).next_to(gradiente1,LEFT+UP,buff=-0.3).scale(0.7)
+        gradiente1_label=TexMobject(r"\nabla f(x,y)").set_color(RED).next_to(gradiente1,LEFT+UP,buff=-0.3).scale(0.7)
         def GRADIENTE(obj):
             x=x1.get_value()
             y=np.cos(x**2)
             punto.become(Dot(color=RED).move_to([x,y,0]))
             gradiente1.become(Arrow([x,y,0],[2*x*np.sin(x**2)+x,1+y,0],buff=0,color=RED))
-            gradiente1_label.become(TexMobject(r"\nabla(f(x,y)=0)").set_color(RED).next_to(gradiente1,UP+RIGHT*(x/((x**2))**(1/2)),buff=-0.3).scale(0.7))
+            gradiente1_label.become(TexMobject(r"\nabla f(x,y)").set_color(RED).next_to(gradiente1,UP+RIGHT*(x/((x**2))**(1/2)),buff=-0.3).scale(0.7))
     
         punto.add_updater(GRADIENTE)
         gradiente1.add_updater(GRADIENTE)
