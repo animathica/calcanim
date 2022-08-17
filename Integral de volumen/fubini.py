@@ -28,8 +28,8 @@ class TeoFubini(ThreeDScene):
 
         # Para los SVG cambiar la ruta, los SVG están en la misma carpeta que este codigo
         esf = Sphere(radius=1.5,fill_opacity=0.6).shift(3.5*LEFT+1*DOWN)
-        con = SVGMobject('D:\Documentos\Animathica\Videos\cono.svg',color=WHITE,fill_color=RED).shift(1.5*DOWN).scale(1.5)
-        pir = SVGMobject('D:\Documentos\Animathica\Videos\Basic_pyramid.svg',color=WHITE,fill_color=YELLOW).shift(3.5*RIGHT+1*DOWN).scale(1.5)
+        con = SVGMobject("C:\manim\manim-master\manim-master\Cono.svg",color=WHITE,fill_color=RED).shift(1.5*DOWN).scale(1.5)
+        pir = SVGMobject("C:\manim\manim-master\manim-master\Basic_pyramid.svg",color=WHITE,fill_color=YELLOW).shift(3.5*RIGHT+1*DOWN).scale(1.5)
 
         a1.next_to(esf,DOWN)
         a2.next_to(con,DOWN)
@@ -137,7 +137,7 @@ class TeoFubini(ThreeDScene):
         t9_fin = self.rectangulo_texto(t9).to_edge(LEFT).scale(0.7)
         t10 = TextMobject('''Luego, definiendo $F(x)=\\int_{A_2} f_x(y)dy$, obtenemos \n
                              que el volumen bajo $f$ está dado por:
-                             $$V=\\lim_{n\\to\\infty}\\sum_{i=1}^n F(\\xi_i)(x_i-x_{i-1})$$
+                             $$V=\\lim_{n\\to\\infty}\\sum_{i=1}^n F(\\xi_i)(x_{i+1}-x_i})$$
                              $$V=\\int_{A_1}\\int_{A_2}f(x,y)dydx=\\int_0^1\\int_0^1(x^2+y^2)dydx$$''')
         t10_fin = self.rectangulo_texto(t10)
         
@@ -244,8 +244,8 @@ class TeoFubini(ThreeDScene):
                             $A_1 \\times[y_i,y_{i+1}]$.''')
         t9_fin = self.rectangulo_texto(t9).to_edge(LEFT).scale(0.7)
         t10 = TextMobject('''Así, si $G(y)=\\int_{A_1} f_y(x)dx$, obtenemos \n
-                             que el volumen bajo $f$ está dado por:
-                             $$V=\\lim_{n\\to\\infty}\\sum_{i=1}^n G(\\zeta_i)(y_i-y_{i-1})$$
+                             que el volumen bajo $f$ está dado por: 
+                             $$V=\\lim_{n\\to\\infty}\\sum_{i=1}^n G(\\zeta_i)(y_{i+1}-y_{i})$$
                              $$V=\\int_{A_2}\\int_{A_1}f(x,y)dxdy=\\int_0^1\\int_0^1(x^2+y^2)dxdy$$''')
         t10_fin = self.rectangulo_texto(t10)
         t1 = TextMobject('''Resolviendo las integrales:''').shift(1.5*UP)
