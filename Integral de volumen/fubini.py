@@ -137,7 +137,7 @@ class TeoFubini(ThreeDScene):
         t9_fin = self.rectangulo_texto(t9).to_edge(LEFT).scale(0.7)
         t10 = TextMobject('''Luego, definiendo $F(x)=\\int_{A_2} f_x(y)dy$, obtenemos \n
                              que el volumen bajo $f$ está dado por:
-                             $$V=\\lim_{n\\to\\infty}\\sum_{i=1}^n F(\\xi_i)(x_{i+1}-x_i})$$
+                             $$V=\\lim_{n\\to\\infty}\\sum_{i=1}^n F(\\xi_i)(x_{i+1}-x_i)$$
                              $$V=\\int_{A_1}\\int_{A_2}f(x,y)dydx=\\int_0^1\\int_0^1(x^2+y^2)dydx$$''')
         t10_fin = self.rectangulo_texto(t10)
         
