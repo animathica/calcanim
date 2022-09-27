@@ -113,7 +113,7 @@ class TeoFubini(ThreeDScene):
         t6_fin = self.rectangulo_texto(t6).to_edge(LEFT).scale(0.8)
         t7 = TextMobject('''Notemos que fijando $x\\in A_1$,\n 
                             podemos considerar \n
-                            la función $f_x:A_2\\to R$ \n 
+                            la función $f_x:A_2\\to \\mathbb{R}$ \n 
                             definida por $f_x(y)=f(x,y)$ \n
                             donde $x$ es una constante \n
                             y la variable es $y\in A_2$.''')
@@ -221,7 +221,7 @@ class TeoFubini(ThreeDScene):
     def parte4(self):
         t7 = TextMobject('''Por otro lado, si fijamos $y\\in A_2$,\n 
                             podemos considerar \n
-                            la función $f_y:A_1\\to R$ \n 
+                            la función $f_y:A_1\\to \mathbb{R}$ \n 
                             definida por $f_y(x)=f(x,y)$ \n
                             donde $y$ es una constante \n
                             y la variable es $x\in A_1$.''')
@@ -235,9 +235,9 @@ class TeoFubini(ThreeDScene):
                                paralelo al plano $xz$''').scale(0.6).to_corner(RIGHT+DOWN)
         t9 = TextMobject('''Entonces al tomar una \n 
                             partición del intervalo $A_2$, \n
-                            y fijar una $\\zeta_i$ en el \n
+                            y fijar una $\\xi_i$ en el \n
                             subintervalo $[y_i,y_{i+1}]$
-                            $$\\left(\\int_{A_1}f_{\\zeta_i}(x)dx\\right)(y_{i+1}-y_i)$$
+                            $$\\left(\\int_{A_1}f_{\\xi_i}(x)dx\\right)(y_{i+1}-y_i)$$
                             es un volumen que aproxima \n 
                             el volumen bajo la \n
                             superficie en el rectángulo \n 
