@@ -39,19 +39,30 @@ class CamposLineales2(Scene):
         text4[4].set_color(BLUE_C)
         text4[6].set_color(BLUE_C)
         text5 = TextMobject('''En general, podemos escribir cualquier elemento en \n
-                             las coordenadas canónicas, a las coordenadas ''', '''$\\gamma$''', ''' \n
-                            con la siguiente transformación lineal.''').move_to(1 * UP)
+                             las coordenadas canónicas de $\\gamma$, a las coordenadas ''', '''$\\beta$''', ''' \n
+                            con la siguiente transformación lineal.''').move_to(2.5 * UP)
         text5[1].set_color(BLUE_C)
-        text5_1 = TexMobject(r'''f((x,y)_\beta)=\begin{bmatrix}
+        text5_1 = TexMobject(r'''f((x,y)_\gamma)=\begin{bmatrix}
                                 1 & 0\\
                                 1 & 1
                                 \end{bmatrix}\begin{bmatrix}
                                 x\\
                                 y
-                                \end{bmatrix}_\beta=\begin{bmatrix}
+                                \end{bmatrix}_\gamma=\begin{bmatrix}
                                 x' \\
                                 y'
-                                \end{bmatrix}_\gamma  ''').move_to(text5.get_center() + 2 * DOWN)
+                                \end{bmatrix}_\beta  ''').move_to(text5.get_center() + 2 * DOWN)
+        text5_2 = TextMobject("Por ejemplo:").move_to(text5_1.get_center() + 1.3 * DOWN)
+        text5_3 = TexMobject(r'''f((1,1)_\gamma)=\begin{bmatrix}
+                                1 & 0\\
+                                1 & 1
+                                \end{bmatrix}\begin{bmatrix}
+                                1\\
+                                1
+                                \end{bmatrix}_\gamma=\begin{bmatrix}
+                                1 \\
+                                2
+                                \end{bmatrix}_\beta  ''').move_to(text5_2.get_center() + 1.3 * DOWN)
 
         linea1 = Arrow([0, -1, 0], [1, -1, 0], **ejes_config).set_color(YELLOW_C)
         linea2 = Arrow([0, -1, 0], [0, 0, 0], **ejes_config).set_color(YELLOW_C)
@@ -84,10 +95,12 @@ class CamposLineales2(Scene):
         self.wait(13.2)
         self.play(FadeOut(text4), FadeOut(w), FadeOut(beta))
         self.play(Write(text5))
-        self.wait(8.7)
         self.play(Write(text5_1))
+        self.play(Write(text5_2))
+        self.play(Write(text5_3))
         self.wait(8)
-        self.play(FadeOut(text5), FadeOut(text5_1))
+        self.play(FadeOut(text5), FadeOut(text5_1), FadeOut(text5_2), 
+                    FadeOut(text5_3))
 
     def parte2(self):
         ejes_config = {
@@ -98,15 +111,11 @@ class CamposLineales2(Scene):
             "preserve_tip_size_when_scaling": False,
         }
 
-        text6 = TextMobject('''La función lineal "traduce" los vectores en la base''', ''' \n
-                            $\\gamma$''', ''' a vectores en la base ''', '''$\\beta$.''')
-        text6[1].set_color(YELLOW)
-        text6[3].set_color(BLUE_C)
         text7 = TextMobject('''Más aún, debido a que el determinante de la matriz asociada \n
                                  a la función es diferente de 0, la función posee \n
                                  inversa y es biyectiva. ''')
         text8 = TextMobject('''Entonces la función que nos traduce los vectores \n
-                                 descritos con el conjunto ''', '''$\beta$ ''', '''a la \n
+                                 descritos con el conjunto ''', '''$\\beta$ ''', '''a la \n
                                  base ($\\gamma$)es''').move_to(1 * UP)
         text8[1].set_color(BLUE_C)
         text8_1 = TexMobject(r'''f^{-1} ((x,y)_\beta)=\begin{bmatrix}
@@ -148,9 +157,6 @@ class CamposLineales2(Scene):
 
         flecha = Arrow([-0.5, 0, 0], [0.5, 0, 0], buff=0)
 
-        self.play(Write(text6))
-        self.wait(8)
-        self.play(FadeOut(text6))
         self.play(Write(text7))
         self.wait(12)
         self.play(FadeOut(text7))
@@ -289,7 +295,6 @@ class CamposLineales2(Scene):
         self.play(ReplacementTransform(vectorest, vec_suma_tG2), ReplacementTransform(vectores, suma))
         self.wait(7)
         self.play(FadeOut(vec_suma_tG2), FadeOut(suma), FadeOut(flecha), FadeOut(text14))
-
         self.play(Write(text15))
         self.wait(7)
         self.play(ShowCreation(vector))
@@ -414,4 +419,3 @@ class CamposLineales2(Scene):
         self.parte2()
         self.parte3()
         self.parte4()
-
