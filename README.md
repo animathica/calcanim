@@ -121,7 +121,6 @@ https://eulertour.com/gallery
   - **Corte de una superficie con un plano**
   - **Gradiente**
   - [Funciones de R^2 en R^3: superficies parametrizadas](https://www.youtube.com/watch?v=7F2uIrlOFj0&t=5s) ([superficies_parametrizadas.py](https://github.com/animathica/calcanim/blob/funciones_Rn_a_Rm/Funciones%20de%20Rn%20a%20Rm/superficies_parametrizadas.py))
-  - [Límites direccionales](https://www.youtube.com/watch?v=AkCOKNJtORA&ab_channel=Animathica)
   
 
 ## Extra:
