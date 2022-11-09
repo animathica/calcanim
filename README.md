@@ -84,7 +84,7 @@ https://eulertour.com/gallery
   - [Teorema del Valor Intermedio](https://youtu.be/IR5fTCz4ZVI) ([valor_intermedio.py](https://github.com/animathica/calcanim/blob/lim_cont/L%C3%ADmite%20y%20continuidad%20en%20funciones%20multivariable/valor_intermedio.py))
 
 ## Calculo diferencial en curvas:
-  - [Curvas en el plano] (https://www.youtube.com/watch?v=GUOD99SkmZY&ab_channel=Animathica) ([plano.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/plano.py))
+  - [Curvas en el plano](https://www.youtube.com/watch?v=GUOD99SkmZY&ab_channel=Animathica) ([plano.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/plano.py))
   - [Tipos de curvas: simples y simples cerradas](https://www.youtube.com/watch?v=inWeRDKCbJE) ([tipos.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/tipos.py))
   - Vector velocidad, rápidez y  ([vel_rapidez.py](https://github.com/animathica/calcanim/blob/Curvas/Calculo%20diferencial%20en%20curvas/vel_rapidez.py))
   - **Teorema puente: derivabilidad de curvas**
@@ -121,7 +121,7 @@ https://eulertour.com/gallery
   - **Corte de una superficie con un plano**
   - **Gradiente**
   - [Funciones de R^2 en R^3: superficies parametrizadas](https://www.youtube.com/watch?v=7F2uIrlOFj0&t=5s) ([superficies_parametrizadas.py](https://github.com/animathica/calcanim/blob/funciones_Rn_a_Rm/Funciones%20de%20Rn%20a%20Rm/superficies_parametrizadas.py))
-  - [Límites direccionales] (https://www.youtube.com/watch?v=AkCOKNJtORA&ab_channel=Animathica)
+  - [Límites direccionales](https://www.youtube.com/watch?v=AkCOKNJtORA&ab_channel=Animathica)
   
 
 ## Extra:
@@ -140,7 +140,7 @@ https://eulertour.com/gallery
 ## Integral de volumen:
   - [Definición](https://www.youtube.com/watch?v=qb2Xbdc3RTA) ([integral_volumen.py](https://github.com/animathica/calcanim/blob/Integral-de-volumen/Integral%20de%20volumen/integral_volumen.py))
   - **Criterio de Lebesgue**
-  - [Fubini] (https://www.youtube.com/watch?v=fCArbnmgd68&ab_channel=Animathica) ([fubini.py](https://github.com/animathica/calcanim/blob/Integral-de-volumen/Integral%20de%20volumen/fubini.py))
+  - [Fubini](https://www.youtube.com/watch?v=fCArbnmgd68&ab_channel=Animathica) ([fubini.py](https://github.com/animathica/calcanim/blob/Integral-de-volumen/Integral%20de%20volumen/fubini.py))
   - Cambio de variable ([cambio_variable.py](https://github.com/animathica/calcanim/blob/Integral-de-volumen/Integral%20de%20volumen/cambio_variable.py))
 
 ## Integral de línea:
